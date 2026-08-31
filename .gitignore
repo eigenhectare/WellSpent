@@ -1,0 +1,38 @@
+# macOS
+.DS_Store
+
+# Xcode user state
+*.xcuserstate
+xcuserdata/
+*.xccheckout
+*.xcscmblueprint
+
+# Build products and local derived data
+build/
+DerivedData/
+.derivedData/
+*.dSYM
+*.dSYM.zip
+*.ipa
+*.xcarchive
+*.xcresult
+*.resultstream
+
+# Signing, provisioning, and local secrets
+*.cer
+*.p8
+*.p12
+*.pem
+*.mobileprovision
+.env
+.env.*
+Secrets.xcconfig
+Local.xcconfig
+
+# Swift Package Manager local state
+.build/
+.swiftpm/
+
+# Xcode playground timelines
+timeline.xctimeline
+playground.xcworkspace

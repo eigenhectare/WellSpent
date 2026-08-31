@@ -1,0 +1,179 @@
+name: BillableHours
+
+options:
+  bundleIdPrefix: com.drewreilly.billablehours
+  deploymentTarget:
+    iOS: "26.0"
+  createIntermediateGroups: true
+  defaultConfig: Debug
+  groupSortPosition: top
+  minimumXcodeGenVersion: 2.45.4
+
+configs:
+  Debug: debug
+  Release: release
+
+configFiles:
+  Debug: Configurations/Debug.xcconfig
+  Release: Configurations/Release.xcconfig
+
+settings:
+  base:
+    CURRENT_PROJECT_VERSION: 1
+    DEVELOPMENT_TEAM: 68LEY459MW
+    MARKETING_VERSION: 0.1.0
+    SWIFT_VERSION: 6.0
+    TARGETED_DEVICE_FAMILY: 1
+
+targets:
+  BillableHours:
+    type: application
+    platform: iOS
+    deploymentTarget: "26.0"
+    sources:
+      - path: BillableHoursApp
+    dependencies:
+      - target: BillableHoursShared
+        embed: false
+      - target: BillableHoursWidgets
+    info:
+      path: BillableHoursApp/Resources/Info.plist
+      properties:
+        CFBundleDisplayName: Billable Hours
+        CFBundleShortVersionString: "$(MARKETING_VERSION)"
+        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
+        ITSAppUsesNonExemptEncryption: false
+        LSRequiresIPhoneOS: true
+        NSSupportsLiveActivities: true
+        UIApplicationSupportsIndirectInputEvents: true
+        CFBundleURLTypes:
+          - CFBundleTypeRole: Editor
+            CFBundleURLName: com.drewreilly.billablehours.completion
+            CFBundleURLSchemes:
+              - billablehours
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.drewreilly.billablehours
+        CODE_SIGN_STYLE: Automatic
+        CODE_SIGN_ENTITLEMENTS: BillableHoursApp/Resources/BillableHours.entitlements
+        ENABLE_DEBUG_DYLIB: false
+        GENERATE_INFOPLIST_FILE: false
+        OTHER_LDFLAGS:
+          - $(inherited)
+          - -force_load
+          - $(BUILT_PRODUCTS_DIR)/BillableHoursShared.framework/BillableHoursShared
+
+  BillableHoursShared:
+    type: framework
+    platform: iOS
+    deploymentTarget: "26.0"
+    sources:
+      - path: BillableHoursShared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.drewreilly.billablehours.shared
+        PRODUCT_NAME: BillableHoursShared
+        DEFINES_MODULE: true
+        GENERATE_INFOPLIST_FILE: true
+        MACH_O_TYPE: staticlib
+        SKIP_INSTALL: true
+
+  BillableHoursWidgets:
+    type: app-extension
+    platform: iOS
+    deploymentTarget: "26.0"
+    sources:
+      - path: BillableHoursWidgets
+    dependencies:
+      - target: BillableHoursShared
+    info:
+      path: BillableHoursWidgets/Info.plist
+      properties:
+        CFBundleDisplayName: Billable Hours Activity
+        CFBundleShortVersionString: "$(MARKETING_VERSION)"
+        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+        NSSupportsLiveActivities: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.drewreilly.billablehours.widgets
+        PRODUCT_NAME: BillableHoursWidgets
+        APPLICATION_EXTENSION_API_ONLY: true
+        CODE_SIGN_STYLE: Automatic
+        CODE_SIGN_ENTITLEMENTS: BillableHoursWidgets/BillableHoursWidgets.entitlements
+        GENERATE_INFOPLIST_FILE: false
+        OTHER_LDFLAGS:
+          - $(inherited)
+          - -force_load
+          - $(BUILT_PRODUCTS_DIR)/BillableHoursShared.framework/BillableHoursShared
+        SKIP_INSTALL: true
+
+  BillableHoursTests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: "26.0"
+    sources:
+      - path: BillableHoursTests
+    dependencies:
+      - target: BillableHours
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.drewreilly.billablehours.tests
+        GENERATE_INFOPLIST_FILE: true
+
+  BillableHoursUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    deploymentTarget: "26.0"
+    sources:
+      - path: BillableHoursUITests
+    dependencies:
+      - target: BillableHours
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.drewreilly.billablehours.uitests
+        GENERATE_INFOPLIST_FILE: true
+        TEST_TARGET_NAME: BillableHours
+
+schemes:
+  BillableHours:
+    build:
+      targets:
+        BillableHours: all
+        BillableHoursTests: [test]
+        BillableHoursUITests: [test]
+    run:
+      config: Debug
+    test:
+      config: Debug
+      gatherCoverageData: true
+      targets:
+        - name: BillableHoursTests
+          parallelizable: false
+        - name: BillableHoursUITests
+          parallelizable: false
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
+
+  BillableHoursWidgets:
+    build:
+      targets:
+        BillableHoursWidgets: all
+    run:
+      config: Debug
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
