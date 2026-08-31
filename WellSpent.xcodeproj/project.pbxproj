@@ -10,6 +10,7 @@
 		04AA65043C5505966B85DF27 /* WellSpentSpikeRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4CF8EA54D2A6EFE4FD3549 /* WellSpentSpikeRecord.swift */; };
 		05C8D3E56B87AE3B815BD301 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 6432A31BECFF30BA00CDB54F /* PrivacyInfo.xcprivacy */; };
 		090AB8C1E11F91490BE845E8 /* WellSpentDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60552D35C84141FA98F0E3A2 /* WellSpentDependencies.swift */; };
+		0AEF52452078F728FE6491A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04D11B6456E491EA52A46A94 /* Assets.xcassets */; };
 		0B901BD64603C68B85016B8B /* AppPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B03A5E0AAEF51E5CE1E7EAE /* AppPreferences.swift */; };
 		0D2240B1F730B4B2C598044F /* SessionOverlapDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F234D73070BC89EE8987E9B /* SessionOverlapDetectorTests.swift */; };
 		0EE036C3425B74075E00C70C /* SessionTagCommandService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9722C883781D3A9B63F0EF76 /* SessionTagCommandService.swift */; };
@@ -132,6 +133,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		04D11B6456E491EA52A46A94 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0BA5322EC582289BE125D9CA /* AppIntentsPackageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntentsPackageTests.swift; sourceTree = "<group>"; };
 		0E4CF8EA54D2A6EFE4FD3549 /* WellSpentSpikeRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentSpikeRecord.swift; sourceTree = "<group>"; };
 		137F608F6902F1C6F94B4269 /* WellSpentWidgets.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = WellSpentWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -395,6 +397,7 @@
 		74ADE38DC6B8DDA8F68AA1FC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				04D11B6456E491EA52A46A94 /* Assets.xcassets */,
 				68E39A7F208E148A4D580DA9 /* Info.plist */,
 				6432A31BECFF30BA00CDB54F /* PrivacyInfo.xcprivacy */,
 				E73B0867138641CE37B2BB68 /* WellSpent.entitlements */,
@@ -815,6 +818,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AEF52452078F728FE6491A8 /* Assets.xcassets in Resources */,
 				05C8D3E56B87AE3B815BD301 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -992,8 +996,7 @@
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
-					"-force_load",
-					"$(BUILT_PRODUCTS_DIR)/WellSpentShared.framework/WellSpentShared",
+					"-all_load",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent.widgets;
 				PRODUCT_NAME = WellSpentWidgets;
@@ -1033,8 +1036,7 @@
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
-					"-force_load",
-					"$(BUILT_PRODUCTS_DIR)/WellSpentShared.framework/WellSpentShared",
+					"-all_load",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent.widgets;
 				PRODUCT_NAME = WellSpentWidgets;
@@ -1059,8 +1061,7 @@
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
-					"-force_load",
-					"$(BUILT_PRODUCTS_DIR)/WellSpentShared.framework/WellSpentShared",
+					"-all_load",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent;
 				SDKROOT = iphoneos;
@@ -1115,8 +1116,7 @@
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
-					"-force_load",
-					"$(BUILT_PRODUCTS_DIR)/WellSpentShared.framework/WellSpentShared",
+					"-all_load",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent;
 				SDKROOT = iphoneos;
