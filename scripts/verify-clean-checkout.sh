@@ -4,7 +4,7 @@ set -euo pipefail
 
 readonly script_directory="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 readonly repository_root="$(cd "${script_directory}/.." && pwd)"
-readonly temporary_root="$(mktemp -d "${TMPDIR:-/tmp}/BillableHoursCleanCheckout.XXXXXX")"
+readonly temporary_root="$(mktemp -d "${TMPDIR:-/tmp}/WellSpentCleanCheckout.XXXXXX")"
 readonly source_repository="${temporary_root}/source"
 readonly clean_clone="${temporary_root}/clone"
 
@@ -15,7 +15,7 @@ cleanup() {
     fi
 
     case "${temporary_root}" in
-        "${TMPDIR:-/tmp}"/BillableHoursCleanCheckout.*)
+        "${TMPDIR:-/tmp}"/WellSpentCleanCheckout.*)
             rm -rf -- "${temporary_root}"
             ;;
         *)
@@ -37,7 +37,7 @@ rsync -a \
 git -C "${source_repository}" init --quiet
 git -C "${source_repository}" add --all
 git -C "${source_repository}" \
-    -c user.name='Billable Hours CI Verification' \
+    -c user.name='WellSpent CI Verification' \
     -c user.email='ci-verification@example.invalid' \
     commit --quiet --message='Temporary clean-checkout verification'
 git clone --quiet "${source_repository}" "${clean_clone}"

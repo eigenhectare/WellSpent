@@ -13,8 +13,8 @@ xcrun swift-format lint \
     --parallel \
     --strict \
     --no-color-diagnostics \
-    BillableHoursApp \
-    BillableHoursShared \
-    BillableHoursWidgets \
-    BillableHoursTests \
-    BillableHoursUITests
+    WellSpentApp \
+    WellSpentShared \
+    WellSpentWidgets \
+    WellSpentTests \
+    WellSpentUITests

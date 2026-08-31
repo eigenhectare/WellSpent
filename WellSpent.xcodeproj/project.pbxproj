@@ -1,0 +1,1347 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		04AA65043C5505966B85DF27 /* WellSpentSpikeRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4CF8EA54D2A6EFE4FD3549 /* WellSpentSpikeRecord.swift */; };
+		05C8D3E56B87AE3B815BD301 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 6432A31BECFF30BA00CDB54F /* PrivacyInfo.xcprivacy */; };
+		090AB8C1E11F91490BE845E8 /* WellSpentDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60552D35C84141FA98F0E3A2 /* WellSpentDependencies.swift */; };
+		0B901BD64603C68B85016B8B /* AppPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B03A5E0AAEF51E5CE1E7EAE /* AppPreferences.swift */; };
+		0D2240B1F730B4B2C598044F /* SessionOverlapDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F234D73070BC89EE8987E9B /* SessionOverlapDetectorTests.swift */; };
+		0EE036C3425B74075E00C70C /* SessionTagCommandService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9722C883781D3A9B63F0EF76 /* SessionTagCommandService.swift */; };
+		109F5BA89EB08ACD78099D8E /* ReportingEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D3505DEF536F3A8AAF91FD /* ReportingEngineTests.swift */; };
+		122D24033A6D35D31D60C33B /* TimerStopCommandServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26421305C7F9D3FA646A3081 /* TimerStopCommandServiceTests.swift */; };
+		2B0A7CA67B7D47538CE9E566 /* SessionCommandService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AF2A30F627E47ECB8B2B8E /* SessionCommandService.swift */; };
+		2BC6D030B58A31F628B9B877 /* TimerCommandService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCA28397E4567851DC495B0 /* TimerCommandService.swift */; };
+		2C11F8C1333A83ABE9CAD5A8 /* WellSpentPersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190B55B15B9F7D100EF3DF33 /* WellSpentPersistenceTests.swift */; };
+		2E82244728CA30C238400FFD /* ProjectCommandServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74C732C90E052820EF0C4AF /* ProjectCommandServiceTests.swift */; };
+		3251F9F82FABB345C26753C0 /* WellSpentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F447374C52F83C97EB3FD4FF /* WellSpentUITests.swift */; };
+		355BD975DE9019F8BE120072 /* SessionTagCommandServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78544992737A5EA51E09CD5C /* SessionTagCommandServiceTests.swift */; };
+		3A437A083832AFDE9B817FD8 /* WellSpentPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13988B3A60F42A7BD6F02D5A /* WellSpentPersistence.swift */; };
+		3CF92F403D176F6B2003C14F /* SessionOverlapDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E80DC0110D62AF9C7ADF134 /* SessionOverlapDetector.swift */; };
+		3F309365E0882D5665E55024 /* ReportingInvariantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC10A6D03EE6E83C058718 /* ReportingInvariantTests.swift */; };
+		42FA066A60577818288FFE29 /* WellSpentAppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7AF77E3DFFABDA64AF73FAF /* WellSpentAppModel.swift */; };
+		4D8BFF2807546CC2A7D6C3A2 /* WellSpentUITestBootstrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A3A37CCCEDD415EB2B6F66 /* WellSpentUITestBootstrap.swift */; };
+		4DCBCF786310D169D2945BB0 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA83BEE509AA3EF83A4C74C /* OnboardingView.swift */; };
+		586BC39E48C2794E416BF589 /* DependencyFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203B6058026C044A52E2C39E /* DependencyFixtures.swift */; };
+		5C77FA9647692C0BB7BE2881 /* TimerCommandServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71DBBE2045B37BEF521B51E /* TimerCommandServiceTests.swift */; };
+		5E5DD30A6D7AE0C811661E58 /* SessionReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E82337598F0CE16E5BC216 /* SessionReviewView.swift */; };
+		601881FF3828B6A978C3A0AC /* SessionCompletionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9C44B2E475B1F85D34FACE /* SessionCompletionView.swift */; };
+		62A2EE9FC9BC5BD716743EA5 /* ProjectSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FD5E70EAF74BACB9FAC6DD /* ProjectSnapshot.swift */; };
+		6812BCE2E4E8FAA0548A4B9B /* WellSpentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0CC8C5053D236F3A8E0C21 /* WellSpentTests.swift */; };
+		69E34DCA2754A6B6212494E9 /* WellSpentStartup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5DD0A2E1047C33B3B6A735 /* WellSpentStartup.swift */; };
+		6C17EECBA45446A8C3E4464F /* ProjectCommandService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14B931BA04222F13C2881C9 /* ProjectCommandService.swift */; };
+		6FE9ED618579B665F87F6561 /* SessionTagRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4370C7ED12B4CA7303818E /* SessionTagRepository.swift */; };
+		7661AA7685E57CDC12417610 /* SessionTagSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE296DA432A2F6DD81E35AEC /* SessionTagSnapshot.swift */; };
+		797C5C5F52F2F6203467796E /* WellSpentActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CFB0359AE453E76144CC14 /* WellSpentActivityAttributes.swift */; };
+		81B458A8891FD6E879AC117B /* TrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7540D684B423150E5505F7 /* TrackView.swift */; };
+		83314E0A22031D661DFEC26C /* PresentationSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC21CF1F1B9EDA93B09F4B5 /* PresentationSupport.swift */; };
+		86A1675848162F35427F8780 /* WellSpentDependenciesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E0F549568DA4F9099A6D0D /* WellSpentDependenciesTests.swift */; };
+		86B16BFDF3260FBA9A8A523F /* LiveActivityLifecycleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1C9BB16DB72D70F2BCDFCB /* LiveActivityLifecycleTests.swift */; };
+		8B13B76299F32B90B8B4A665 /* LiveActivityStopHandoffReconciler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54199F75EAFAC44B0866891 /* LiveActivityStopHandoffReconciler.swift */; };
+		8B6C23F7DD8F2572D7F3FFE1 /* SessionCommandServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970F774C1FD756414F545791 /* SessionCommandServiceTests.swift */; };
+		8EA24C098DF0C024F4F3B56F /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = B94C81C96484807D1AB75CE6 /* PrivacyInfo.xcprivacy */; };
+		8EB158709F1439984E065050 /* ManualSessionEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B3362AA65932EF8998B000 /* ManualSessionEditorView.swift */; };
+		95AFE8679A08DA3BFBB5F2C8 /* ProjectManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8F526866E1379D54D75901 /* ProjectManagementView.swift */; };
+		97767666AE74C9AB2D9CC37D /* WellSpentSchemaV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A776AAD0B4E75C059486D /* WellSpentSchemaV2.swift */; };
+		9CA5D230DDA21F04BC61C4AD /* LiveActivityLifecycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F772050E8BDD82FE095121 /* LiveActivityLifecycle.swift */; };
+		A7D695111D86326B4AC64851 /* WellSpentAccessibilityUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AB98520E19B37B7A5786B /* WellSpentAccessibilityUITests.swift */; };
+		A7F0B0AAB77280CF260B877F /* SessionHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B80F19BE5DAB0DEB2E48A3 /* SessionHistoryView.swift */; };
+		BC575BC92370AAA52B728FCE /* TimerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE52F65CB28E04A5AD929C44 /* TimerRepository.swift */; };
+		BCD7DE37A40C28118606D21C /* WellSpentShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 402A5AEA2A8ADF2FF3930A7C /* WellSpentShared.framework */; };
+		BF1E470860ADCF0C6FDD5264 /* WellSpentLiveActivityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8147B15FD1DAFB755409D1 /* WellSpentLiveActivityWidget.swift */; };
+		C4B843C97A09BE6FF1A0DFC7 /* SessionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2029D941C3A1F397AB6001 /* SessionRepository.swift */; };
+		C70FB4568EA656EDD90EEDF8 /* ReportsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF43AECCBC8722C06BDB1608 /* ReportsView.swift */; };
+		C92CE0D14E80A280E1DAEE21 /* WellSpentAppIntentsPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60083FF6CD2426CDEEAB36A1 /* WellSpentAppIntentsPackage.swift */; };
+		CA71FD7E6BCB2880EAE1725C /* WellSpentWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 137F608F6902F1C6F94B4269 /* WellSpentWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		CBE94B3304B6287951DF43A1 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390FBAFAB4DC9B71E2DB3E9F /* SettingsView.swift */; };
+		D20CE05B1A1E280939A71013 /* WellSpentWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93EF667FC0DA607F25A71AD /* WellSpentWidgetBundle.swift */; };
+		D270B980BAD54F8942B34245 /* TimerSwitchCommandServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B69E0D213E34A3A9F0C0BE4 /* TimerSwitchCommandServiceTests.swift */; };
+		D4375C6196A6356073456292 /* WellSpentStopHandoff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8002EDE1EDC48B7A7C6DFB5E /* WellSpentStopHandoff.swift */; };
+		D8E971EB75C8E045B1C8D5E2 /* WellSpentWidgetsAppIntentsPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC72C2BED800B45FC7AC2A49 /* WellSpentWidgetsAppIntentsPackage.swift */; };
+		DAB40D9DF44B08D59B879A3A /* WellSpentApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43A5A10607AF1EFE098F373 /* WellSpentApp.swift */; };
+		DC52C7F3368C84CFC2A613F4 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C186F102F13DA0394675E9 /* RootView.swift */; };
+		DEAC02766AB65BB11F070A59 /* AppIntentsPackageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA5322EC582289BE125D9CA /* AppIntentsPackageTests.swift */; };
+		E127CD5AEF35BE3670959EEB /* SessionCommandModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F89992EB04FA7C5EF8BBD26 /* SessionCommandModels.swift */; };
+		E19717622E07A07398FEFAD8 /* WellSpentSchemaV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEEC857AD6CBFB521383C6E /* WellSpentSchemaV1.swift */; };
+		E5F0D2471C67662A22DE7672 /* ActiveSessionReconciliationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE9A4431B068E1BF6EDE876 /* ActiveSessionReconciliationTests.swift */; };
+		E627DF062746CD0206768CD1 /* StopWellSpentTimerIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171EE71C5A73C6C78C2ED88E /* StopWellSpentTimerIntent.swift */; };
+		E9203FC348948A5B9BC95EC8 /* TimeSessionSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF245EE92D6B4B3EE3AD8E5A /* TimeSessionSnapshot.swift */; };
+		EA9A3C1239867BA413823DFD /* WellSpentShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 402A5AEA2A8ADF2FF3930A7C /* WellSpentShared.framework */; };
+		ECC494C69A3BFA333AC153A5 /* WellSpentMigrationPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE477A8BBEB06E3612F6920 /* WellSpentMigrationPlan.swift */; };
+		ED265D914279C104C3998025 /* ReportingEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C8F01380685B1659A7D012 /* ReportingEngine.swift */; };
+		EF9A03524544C41D9C52D7CE /* ProjectQueryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38484E2A88B2B7BA12128614 /* ProjectQueryService.swift */; };
+		F54F2B19EF9F53299DB7836F /* WellSpentSharedAppIntentsPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6108B62152B1B987075032EE /* WellSpentSharedAppIntentsPackage.swift */; };
+		FC2A4CA13969E53C93A34F1C /* ProjectRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6390ACE1C44AEA50CCE81A /* ProjectRepository.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4DDA1C45F4EDD294BFE8FA54 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92B76DAE9422749E386A4CD5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A64528016DA24E8DE6368C9D;
+			remoteInfo = WellSpentShared;
+		};
+		850585671C03678998630851 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92B76DAE9422749E386A4CD5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BC75FB58DC410DFF83E9B7C6;
+			remoteInfo = WellSpent;
+		};
+		C8E557B3B1B4FCED5EF582F4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92B76DAE9422749E386A4CD5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A64528016DA24E8DE6368C9D;
+			remoteInfo = WellSpentShared;
+		};
+		CAB5EE921782AB1BA2A9C332 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92B76DAE9422749E386A4CD5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 964E32DDAD063D861DBA9038;
+			remoteInfo = WellSpentWidgets;
+		};
+		DBD002E62847481661920FDD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92B76DAE9422749E386A4CD5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BC75FB58DC410DFF83E9B7C6;
+			remoteInfo = WellSpent;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B1F4AE8629651EE4D2972A8B /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				CA71FD7E6BCB2880EAE1725C /* WellSpentWidgets.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0BA5322EC582289BE125D9CA /* AppIntentsPackageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntentsPackageTests.swift; sourceTree = "<group>"; };
+		0E4CF8EA54D2A6EFE4FD3549 /* WellSpentSpikeRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentSpikeRecord.swift; sourceTree = "<group>"; };
+		137F608F6902F1C6F94B4269 /* WellSpentWidgets.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = WellSpentWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		13988B3A60F42A7BD6F02D5A /* WellSpentPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentPersistence.swift; sourceTree = "<group>"; };
+		15C8F01380685B1659A7D012 /* ReportingEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportingEngine.swift; sourceTree = "<group>"; };
+		16C186F102F13DA0394675E9 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		171EE71C5A73C6C78C2ED88E /* StopWellSpentTimerIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWellSpentTimerIntent.swift; sourceTree = "<group>"; };
+		190B55B15B9F7D100EF3DF33 /* WellSpentPersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentPersistenceTests.swift; sourceTree = "<group>"; };
+		1F234D73070BC89EE8987E9B /* SessionOverlapDetectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionOverlapDetectorTests.swift; sourceTree = "<group>"; };
+		203B6058026C044A52E2C39E /* DependencyFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyFixtures.swift; sourceTree = "<group>"; };
+		25EFA6A395587B95CBFFF120 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		26421305C7F9D3FA646A3081 /* TimerStopCommandServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerStopCommandServiceTests.swift; sourceTree = "<group>"; };
+		26A3A37CCCEDD415EB2B6F66 /* WellSpentUITestBootstrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentUITestBootstrap.swift; sourceTree = "<group>"; };
+		2B03A5E0AAEF51E5CE1E7EAE /* AppPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPreferences.swift; sourceTree = "<group>"; };
+		2C071B5C2E843509063F2C29 /* WellSpentTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = WellSpentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E80DC0110D62AF9C7ADF134 /* SessionOverlapDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionOverlapDetector.swift; sourceTree = "<group>"; };
+		38484E2A88B2B7BA12128614 /* ProjectQueryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectQueryService.swift; sourceTree = "<group>"; };
+		390FBAFAB4DC9B71E2DB3E9F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		39E82337598F0CE16E5BC216 /* SessionReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionReviewView.swift; sourceTree = "<group>"; };
+		3AEEC857AD6CBFB521383C6E /* WellSpentSchemaV1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentSchemaV1.swift; sourceTree = "<group>"; };
+		3D8147B15FD1DAFB755409D1 /* WellSpentLiveActivityWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentLiveActivityWidget.swift; sourceTree = "<group>"; };
+		3F2029D941C3A1F397AB6001 /* SessionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRepository.swift; sourceTree = "<group>"; };
+		402A5AEA2A8ADF2FF3930A7C /* WellSpentShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WellSpentShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		45DAB5C27AD9C87E659B93D4 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		46E638E2AC5D37F357B2A605 /* WellSpentUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = WellSpentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F0CC8C5053D236F3A8E0C21 /* WellSpentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentTests.swift; sourceTree = "<group>"; };
+		574A776AAD0B4E75C059486D /* WellSpentSchemaV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentSchemaV2.swift; sourceTree = "<group>"; };
+		58FD5E70EAF74BACB9FAC6DD /* ProjectSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectSnapshot.swift; sourceTree = "<group>"; };
+		5A6390ACE1C44AEA50CCE81A /* ProjectRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectRepository.swift; sourceTree = "<group>"; };
+		5BCA28397E4567851DC495B0 /* TimerCommandService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCommandService.swift; sourceTree = "<group>"; };
+		5D9C44B2E475B1F85D34FACE /* SessionCompletionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCompletionView.swift; sourceTree = "<group>"; };
+		60083FF6CD2426CDEEAB36A1 /* WellSpentAppIntentsPackage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentAppIntentsPackage.swift; sourceTree = "<group>"; };
+		60552D35C84141FA98F0E3A2 /* WellSpentDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentDependencies.swift; sourceTree = "<group>"; };
+		6108B62152B1B987075032EE /* WellSpentSharedAppIntentsPackage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentSharedAppIntentsPackage.swift; sourceTree = "<group>"; };
+		635AB98520E19B37B7A5786B /* WellSpentAccessibilityUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentAccessibilityUITests.swift; sourceTree = "<group>"; };
+		6432A31BECFF30BA00CDB54F /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		68E39A7F208E148A4D580DA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		78544992737A5EA51E09CD5C /* SessionTagCommandServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTagCommandServiceTests.swift; sourceTree = "<group>"; };
+		78AF2A30F627E47ECB8B2B8E /* SessionCommandService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCommandService.swift; sourceTree = "<group>"; };
+		7B69E0D213E34A3A9F0C0BE4 /* TimerSwitchCommandServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSwitchCommandServiceTests.swift; sourceTree = "<group>"; };
+		7EDC10A6D03EE6E83C058718 /* ReportingInvariantTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportingInvariantTests.swift; sourceTree = "<group>"; };
+		8002EDE1EDC48B7A7C6DFB5E /* WellSpentStopHandoff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentStopHandoff.swift; sourceTree = "<group>"; };
+		85D3505DEF536F3A8AAF91FD /* ReportingEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportingEngineTests.swift; sourceTree = "<group>"; };
+		8B1C9BB16DB72D70F2BCDFCB /* LiveActivityLifecycleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityLifecycleTests.swift; sourceTree = "<group>"; };
+		8D7540D684B423150E5505F7 /* TrackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackView.swift; sourceTree = "<group>"; };
+		8DC21CF1F1B9EDA93B09F4B5 /* PresentationSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationSupport.swift; sourceTree = "<group>"; };
+		8F5DD0A2E1047C33B3B6A735 /* WellSpentStartup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentStartup.swift; sourceTree = "<group>"; };
+		91CFB0359AE453E76144CC14 /* WellSpentActivityAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentActivityAttributes.swift; sourceTree = "<group>"; };
+		970F774C1FD756414F545791 /* SessionCommandServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCommandServiceTests.swift; sourceTree = "<group>"; };
+		9722C883781D3A9B63F0EF76 /* SessionTagCommandService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTagCommandService.swift; sourceTree = "<group>"; };
+		9CE477A8BBEB06E3612F6920 /* WellSpentMigrationPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentMigrationPlan.swift; sourceTree = "<group>"; };
+		9F89992EB04FA7C5EF8BBD26 /* SessionCommandModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCommandModels.swift; sourceTree = "<group>"; };
+		A14B931BA04222F13C2881C9 /* ProjectCommandService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCommandService.swift; sourceTree = "<group>"; };
+		AC72C2BED800B45FC7AC2A49 /* WellSpentWidgetsAppIntentsPackage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentWidgetsAppIntentsPackage.swift; sourceTree = "<group>"; };
+		ACE9A4431B068E1BF6EDE876 /* ActiveSessionReconciliationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveSessionReconciliationTests.swift; sourceTree = "<group>"; };
+		B6F772050E8BDD82FE095121 /* LiveActivityLifecycle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityLifecycle.swift; sourceTree = "<group>"; };
+		B7AF77E3DFFABDA64AF73FAF /* WellSpentAppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentAppModel.swift; sourceTree = "<group>"; };
+		B8B3362AA65932EF8998B000 /* ManualSessionEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualSessionEditorView.swift; sourceTree = "<group>"; };
+		B94C81C96484807D1AB75CE6 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		BBEDFA99147F26A4384BA3FE /* WellSpentWidgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WellSpentWidgets.entitlements; sourceTree = "<group>"; };
+		C8E0F549568DA4F9099A6D0D /* WellSpentDependenciesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentDependenciesTests.swift; sourceTree = "<group>"; };
+		CD6E6E1CF428A57A1A78E207 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		CE296DA432A2F6DD81E35AEC /* SessionTagSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTagSnapshot.swift; sourceTree = "<group>"; };
+		D7801B7EF6244BCBF97E86D4 /* WellSpent.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = WellSpent.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9B80F19BE5DAB0DEB2E48A3 /* SessionHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionHistoryView.swift; sourceTree = "<group>"; };
+		DA8F526866E1379D54D75901 /* ProjectManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectManagementView.swift; sourceTree = "<group>"; };
+		DE52F65CB28E04A5AD929C44 /* TimerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRepository.swift; sourceTree = "<group>"; };
+		E43A5A10607AF1EFE098F373 /* WellSpentApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentApp.swift; sourceTree = "<group>"; };
+		E54199F75EAFAC44B0866891 /* LiveActivityStopHandoffReconciler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityStopHandoffReconciler.swift; sourceTree = "<group>"; };
+		E71DBBE2045B37BEF521B51E /* TimerCommandServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCommandServiceTests.swift; sourceTree = "<group>"; };
+		E73B0867138641CE37B2BB68 /* WellSpent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WellSpent.entitlements; sourceTree = "<group>"; };
+		EF245EE92D6B4B3EE3AD8E5A /* TimeSessionSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSessionSnapshot.swift; sourceTree = "<group>"; };
+		EF43AECCBC8722C06BDB1608 /* ReportsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsView.swift; sourceTree = "<group>"; };
+		F447374C52F83C97EB3FD4FF /* WellSpentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentUITests.swift; sourceTree = "<group>"; };
+		F74C732C90E052820EF0C4AF /* ProjectCommandServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCommandServiceTests.swift; sourceTree = "<group>"; };
+		F93EF667FC0DA607F25A71AD /* WellSpentWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentWidgetBundle.swift; sourceTree = "<group>"; };
+		FBA83BEE509AA3EF83A4C74C /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		FD4370C7ED12B4CA7303818E /* SessionTagRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTagRepository.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2F82244E3F0F8C34216F2FC2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA9A3C1239867BA413823DFD /* WellSpentShared.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B04467881C6A4D3A4AD04443 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BCD7DE37A40C28118606D21C /* WellSpentShared.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0C5EBA1AD663EE27C89A0C6F /* WellSpentApp */ = {
+			isa = PBXGroup;
+			children = (
+				B7DBC7717B1422ABED7877D2 /* App */,
+				8F1A10ACB2C3B38ED0B35A1F /* Data */,
+				2E59CD4A811F4FB0BE21C6DE /* Domain */,
+				47F8B927FC5457F0C6B87697 /* Features */,
+				1435F0D6C8184402256C3B2D /* Integrations */,
+				74ADE38DC6B8DDA8F68AA1FC /* Resources */,
+			);
+			path = WellSpentApp;
+			sourceTree = "<group>";
+		};
+		1435F0D6C8184402256C3B2D /* Integrations */ = {
+			isa = PBXGroup;
+			children = (
+				E4393EB320269C1386D228F3 /* LiveActivity */,
+			);
+			path = Integrations;
+			sourceTree = "<group>";
+		};
+		1472E042B44E190FD949564B /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				16C186F102F13DA0394675E9 /* RootView.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		16F0BE0BF048A6ED43696C14 /* Reporting */ = {
+			isa = PBXGroup;
+			children = (
+				15C8F01380685B1659A7D012 /* ReportingEngine.swift */,
+			);
+			path = Reporting;
+			sourceTree = "<group>";
+		};
+		23D2387FFEE3CC758BC92CBB /* Projects */ = {
+			isa = PBXGroup;
+			children = (
+				F74C732C90E052820EF0C4AF /* ProjectCommandServiceTests.swift */,
+			);
+			path = Projects;
+			sourceTree = "<group>";
+		};
+		2689640D512DCDBDE02BBFAA /* Validation */ = {
+			isa = PBXGroup;
+			children = (
+				2E80DC0110D62AF9C7ADF134 /* SessionOverlapDetector.swift */,
+			);
+			path = Validation;
+			sourceTree = "<group>";
+		};
+		2E59CD4A811F4FB0BE21C6DE /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				365E29C0957C0DC74141B0C8 /* Commands */,
+				984863867FF9EA1A9E6466F3 /* Models */,
+				16F0BE0BF048A6ED43696C14 /* Reporting */,
+				2689640D512DCDBDE02BBFAA /* Validation */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		365E29C0957C0DC74141B0C8 /* Commands */ = {
+			isa = PBXGroup;
+			children = (
+				A14B931BA04222F13C2881C9 /* ProjectCommandService.swift */,
+				38484E2A88B2B7BA12128614 /* ProjectQueryService.swift */,
+				78AF2A30F627E47ECB8B2B8E /* SessionCommandService.swift */,
+				9722C883781D3A9B63F0EF76 /* SessionTagCommandService.swift */,
+				5BCA28397E4567851DC495B0 /* TimerCommandService.swift */,
+			);
+			path = Commands;
+			sourceTree = "<group>";
+		};
+		39FDD79FFFE3D2F2D9BFC35C /* SwiftDataModels */ = {
+			isa = PBXGroup;
+			children = (
+				3AEEC857AD6CBFB521383C6E /* WellSpentSchemaV1.swift */,
+				574A776AAD0B4E75C059486D /* WellSpentSchemaV2.swift */,
+			);
+			path = SwiftDataModels;
+			sourceTree = "<group>";
+		};
+		3A895B7A379DBCCFAB4B481B /* WellSpentWidgets */ = {
+			isa = PBXGroup;
+			children = (
+				25EFA6A395587B95CBFFF120 /* Info.plist */,
+				B94C81C96484807D1AB75CE6 /* PrivacyInfo.xcprivacy */,
+				3D8147B15FD1DAFB755409D1 /* WellSpentLiveActivityWidget.swift */,
+				F93EF667FC0DA607F25A71AD /* WellSpentWidgetBundle.swift */,
+				BBEDFA99147F26A4384BA3FE /* WellSpentWidgets.entitlements */,
+				AC72C2BED800B45FC7AC2A49 /* WellSpentWidgetsAppIntentsPackage.swift */,
+			);
+			path = WellSpentWidgets;
+			sourceTree = "<group>";
+		};
+		47F8B927FC5457F0C6B87697 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				8040DA28E38E92F1EE4CCF64 /* Onboarding */,
+				7BFDF85E4A885A7AB4C41A6C /* Projects */,
+				CB7F34A0454EB1E3B1C95B32 /* Reports */,
+				E3A2631FC3708EE191D3578C /* SessionCompletion */,
+				5D307EA307A524477D898A64 /* SessionEditor */,
+				7A6335D3A332870F9D5AD2AC /* Settings */,
+				8FBD27896FE422C34EC92C6B /* Shared */,
+				E182A3DF1F8BA5470F648CD4 /* Track */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		50D4C1FAA94B740B2AFBD1A4 /* Reporting */ = {
+			isa = PBXGroup;
+			children = (
+				85D3505DEF536F3A8AAF91FD /* ReportingEngineTests.swift */,
+				7EDC10A6D03EE6E83C058718 /* ReportingInvariantTests.swift */,
+			);
+			path = Reporting;
+			sourceTree = "<group>";
+		};
+		51C9C2CF7B66498BD52EE85D /* Migrations */ = {
+			isa = PBXGroup;
+			children = (
+				9CE477A8BBEB06E3612F6920 /* WellSpentMigrationPlan.swift */,
+			);
+			path = Migrations;
+			sourceTree = "<group>";
+		};
+		5D307EA307A524477D898A64 /* SessionEditor */ = {
+			isa = PBXGroup;
+			children = (
+				B8B3362AA65932EF8998B000 /* ManualSessionEditorView.swift */,
+				D9B80F19BE5DAB0DEB2E48A3 /* SessionHistoryView.swift */,
+				39E82337598F0CE16E5BC216 /* SessionReviewView.swift */,
+			);
+			path = SessionEditor;
+			sourceTree = "<group>";
+		};
+		6BBD974F0970BAA9B597108B /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				ACE9A4431B068E1BF6EDE876 /* ActiveSessionReconciliationTests.swift */,
+				E71DBBE2045B37BEF521B51E /* TimerCommandServiceTests.swift */,
+				26421305C7F9D3FA646A3081 /* TimerStopCommandServiceTests.swift */,
+				7B69E0D213E34A3A9F0C0BE4 /* TimerSwitchCommandServiceTests.swift */,
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
+		73689C3EA4D53A3D5BFD8B6E /* LiveActivity */ = {
+			isa = PBXGroup;
+			children = (
+				0BA5322EC582289BE125D9CA /* AppIntentsPackageTests.swift */,
+				8B1C9BB16DB72D70F2BCDFCB /* LiveActivityLifecycleTests.swift */,
+			);
+			path = LiveActivity;
+			sourceTree = "<group>";
+		};
+		74ADE38DC6B8DDA8F68AA1FC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				68E39A7F208E148A4D580DA9 /* Info.plist */,
+				6432A31BECFF30BA00CDB54F /* PrivacyInfo.xcprivacy */,
+				E73B0867138641CE37B2BB68 /* WellSpent.entitlements */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		7A6335D3A332870F9D5AD2AC /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				390FBAFAB4DC9B71E2DB3E9F /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		7BFDF85E4A885A7AB4C41A6C /* Projects */ = {
+			isa = PBXGroup;
+			children = (
+				DA8F526866E1379D54D75901 /* ProjectManagementView.swift */,
+			);
+			path = Projects;
+			sourceTree = "<group>";
+		};
+		8040DA28E38E92F1EE4CCF64 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				FBA83BEE509AA3EF83A4C74C /* OnboardingView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		87184451D07EC4BD825F59F9 /* WellSpentShared */ = {
+			isa = PBXGroup;
+			children = (
+				C140991443B6D43E1155DDB4 /* LiveActivity */,
+			);
+			path = WellSpentShared;
+			sourceTree = "<group>";
+		};
+		89820AC8BA6FACAA068DC027 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				190B55B15B9F7D100EF3DF33 /* WellSpentPersistenceTests.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		8F1A10ACB2C3B38ED0B35A1F /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				51C9C2CF7B66498BD52EE85D /* Migrations */,
+				BEC6042A50ED2A5EA1A1DEE8 /* Repositories */,
+				39FDD79FFFE3D2F2D9BFC35C /* SwiftDataModels */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		8FBD27896FE422C34EC92C6B /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				8DC21CF1F1B9EDA93B09F4B5 /* PresentationSupport.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		91612F84C71E8863F8A96820 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				203B6058026C044A52E2C39E /* DependencyFixtures.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		984863867FF9EA1A9E6466F3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				58FD5E70EAF74BACB9FAC6DD /* ProjectSnapshot.swift */,
+				9F89992EB04FA7C5EF8BBD26 /* SessionCommandModels.swift */,
+				CE296DA432A2F6DD81E35AEC /* SessionTagSnapshot.swift */,
+				EF245EE92D6B4B3EE3AD8E5A /* TimeSessionSnapshot.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9D337AF4B267B60868CEE7BD /* WellSpentTests */ = {
+			isa = PBXGroup;
+			children = (
+				D1C0AADA1F693E8507591EA8 /* Dependencies */,
+				73689C3EA4D53A3D5BFD8B6E /* LiveActivity */,
+				89820AC8BA6FACAA068DC027 /* Persistence */,
+				23D2387FFEE3CC758BC92CBB /* Projects */,
+				50D4C1FAA94B740B2AFBD1A4 /* Reporting */,
+				F111BCA7F3F319E55B4B12C9 /* Sessions */,
+				91612F84C71E8863F8A96820 /* Support */,
+				6BBD974F0970BAA9B597108B /* Timer */,
+				4F0CC8C5053D236F3A8E0C21 /* WellSpentTests.swift */,
+			);
+			path = WellSpentTests;
+			sourceTree = "<group>";
+		};
+		A9763E2142E21746A9B1C412 = {
+			isa = PBXGroup;
+			children = (
+				D0EB123BAF8A1893C0F0CEBD /* Configurations */,
+				0C5EBA1AD663EE27C89A0C6F /* WellSpentApp */,
+				87184451D07EC4BD825F59F9 /* WellSpentShared */,
+				9D337AF4B267B60868CEE7BD /* WellSpentTests */,
+				CD193D57C628CDB899A5ECDC /* WellSpentUITests */,
+				3A895B7A379DBCCFAB4B481B /* WellSpentWidgets */,
+				AF927B4C3EB51BD067527E38 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AF927B4C3EB51BD067527E38 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D7801B7EF6244BCBF97E86D4 /* WellSpent.app */,
+				402A5AEA2A8ADF2FF3930A7C /* WellSpentShared.framework */,
+				2C071B5C2E843509063F2C29 /* WellSpentTests.xctest */,
+				46E638E2AC5D37F357B2A605 /* WellSpentUITests.xctest */,
+				137F608F6902F1C6F94B4269 /* WellSpentWidgets.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B7DBC7717B1422ABED7877D2 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				CDDCC7ADDB80A87C0648D23A /* AppEnvironment */,
+				E092775039F6EC2FAC0DBED3 /* Dependencies */,
+				1472E042B44E190FD949564B /* Navigation */,
+				DD767C8028999CED82255A3D /* Startup */,
+				E43A5A10607AF1EFE098F373 /* WellSpentApp.swift */,
+				60083FF6CD2426CDEEAB36A1 /* WellSpentAppIntentsPackage.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		BEC6042A50ED2A5EA1A1DEE8 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				5A6390ACE1C44AEA50CCE81A /* ProjectRepository.swift */,
+				3F2029D941C3A1F397AB6001 /* SessionRepository.swift */,
+				FD4370C7ED12B4CA7303818E /* SessionTagRepository.swift */,
+				DE52F65CB28E04A5AD929C44 /* TimerRepository.swift */,
+				13988B3A60F42A7BD6F02D5A /* WellSpentPersistence.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		C140991443B6D43E1155DDB4 /* LiveActivity */ = {
+			isa = PBXGroup;
+			children = (
+				171EE71C5A73C6C78C2ED88E /* StopWellSpentTimerIntent.swift */,
+				91CFB0359AE453E76144CC14 /* WellSpentActivityAttributes.swift */,
+				6108B62152B1B987075032EE /* WellSpentSharedAppIntentsPackage.swift */,
+				0E4CF8EA54D2A6EFE4FD3549 /* WellSpentSpikeRecord.swift */,
+				8002EDE1EDC48B7A7C6DFB5E /* WellSpentStopHandoff.swift */,
+			);
+			path = LiveActivity;
+			sourceTree = "<group>";
+		};
+		CB7F34A0454EB1E3B1C95B32 /* Reports */ = {
+			isa = PBXGroup;
+			children = (
+				EF43AECCBC8722C06BDB1608 /* ReportsView.swift */,
+			);
+			path = Reports;
+			sourceTree = "<group>";
+		};
+		CD193D57C628CDB899A5ECDC /* WellSpentUITests */ = {
+			isa = PBXGroup;
+			children = (
+				635AB98520E19B37B7A5786B /* WellSpentAccessibilityUITests.swift */,
+				F447374C52F83C97EB3FD4FF /* WellSpentUITests.swift */,
+			);
+			path = WellSpentUITests;
+			sourceTree = "<group>";
+		};
+		CDDCC7ADDB80A87C0648D23A /* AppEnvironment */ = {
+			isa = PBXGroup;
+			children = (
+				2B03A5E0AAEF51E5CE1E7EAE /* AppPreferences.swift */,
+				B7AF77E3DFFABDA64AF73FAF /* WellSpentAppModel.swift */,
+			);
+			path = AppEnvironment;
+			sourceTree = "<group>";
+		};
+		D0EB123BAF8A1893C0F0CEBD /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				CD6E6E1CF428A57A1A78E207 /* Debug.xcconfig */,
+				45DAB5C27AD9C87E659B93D4 /* Release.xcconfig */,
+			);
+			path = Configurations;
+			sourceTree = "<group>";
+		};
+		D1C0AADA1F693E8507591EA8 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				C8E0F549568DA4F9099A6D0D /* WellSpentDependenciesTests.swift */,
+			);
+			path = Dependencies;
+			sourceTree = "<group>";
+		};
+		DD767C8028999CED82255A3D /* Startup */ = {
+			isa = PBXGroup;
+			children = (
+				8F5DD0A2E1047C33B3B6A735 /* WellSpentStartup.swift */,
+				26A3A37CCCEDD415EB2B6F66 /* WellSpentUITestBootstrap.swift */,
+			);
+			path = Startup;
+			sourceTree = "<group>";
+		};
+		E092775039F6EC2FAC0DBED3 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				60552D35C84141FA98F0E3A2 /* WellSpentDependencies.swift */,
+			);
+			path = Dependencies;
+			sourceTree = "<group>";
+		};
+		E182A3DF1F8BA5470F648CD4 /* Track */ = {
+			isa = PBXGroup;
+			children = (
+				8D7540D684B423150E5505F7 /* TrackView.swift */,
+			);
+			path = Track;
+			sourceTree = "<group>";
+		};
+		E3A2631FC3708EE191D3578C /* SessionCompletion */ = {
+			isa = PBXGroup;
+			children = (
+				5D9C44B2E475B1F85D34FACE /* SessionCompletionView.swift */,
+			);
+			path = SessionCompletion;
+			sourceTree = "<group>";
+		};
+		E4393EB320269C1386D228F3 /* LiveActivity */ = {
+			isa = PBXGroup;
+			children = (
+				B6F772050E8BDD82FE095121 /* LiveActivityLifecycle.swift */,
+				E54199F75EAFAC44B0866891 /* LiveActivityStopHandoffReconciler.swift */,
+			);
+			path = LiveActivity;
+			sourceTree = "<group>";
+		};
+		F111BCA7F3F319E55B4B12C9 /* Sessions */ = {
+			isa = PBXGroup;
+			children = (
+				970F774C1FD756414F545791 /* SessionCommandServiceTests.swift */,
+				1F234D73070BC89EE8987E9B /* SessionOverlapDetectorTests.swift */,
+				78544992737A5EA51E09CD5C /* SessionTagCommandServiceTests.swift */,
+			);
+			path = Sessions;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		964E32DDAD063D861DBA9038 /* WellSpentWidgets */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AB78902DA7CA302CEBDF7C31 /* Build configuration list for PBXNativeTarget "WellSpentWidgets" */;
+			buildPhases = (
+				022A397AB973B7AA7B6FE6DB /* Sources */,
+				30BC27C135214976D30C4E16 /* Resources */,
+				2F82244E3F0F8C34216F2FC2 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				21727400AC669887CB6D0E34 /* PBXTargetDependency */,
+			);
+			name = WellSpentWidgets;
+			packageProductDependencies = (
+			);
+			productName = WellSpentWidgets;
+			productReference = 137F608F6902F1C6F94B4269 /* WellSpentWidgets.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		A64528016DA24E8DE6368C9D /* WellSpentShared */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4B339B19D73A2BF7C923EDB3 /* Build configuration list for PBXNativeTarget "WellSpentShared" */;
+			buildPhases = (
+				B5111AC29AE3CACC271F6A5D /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WellSpentShared;
+			packageProductDependencies = (
+			);
+			productName = WellSpentShared;
+			productReference = 402A5AEA2A8ADF2FF3930A7C /* WellSpentShared.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		BC75FB58DC410DFF83E9B7C6 /* WellSpent */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 93EFB25E8F52A03B7C13016F /* Build configuration list for PBXNativeTarget "WellSpent" */;
+			buildPhases = (
+				2CB662C2C4853EC3ABBDEFE4 /* Sources */,
+				FEF928D3E600698042B15F96 /* Resources */,
+				B04467881C6A4D3A4AD04443 /* Frameworks */,
+				B1F4AE8629651EE4D2972A8B /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A13F70ECC32351555F207D33 /* PBXTargetDependency */,
+				9838121AFA99D07FC2FF50ED /* PBXTargetDependency */,
+			);
+			name = WellSpent;
+			packageProductDependencies = (
+			);
+			productName = WellSpent;
+			productReference = D7801B7EF6244BCBF97E86D4 /* WellSpent.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C84F48F3F1AC07BF6D3231B6 /* WellSpentTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA28FD43F15917EA0D4234E3 /* Build configuration list for PBXNativeTarget "WellSpentTests" */;
+			buildPhases = (
+				D52F1C4624B07863D2ED685C /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E9CEB499FA2BDB68CF77D8F6 /* PBXTargetDependency */,
+			);
+			name = WellSpentTests;
+			packageProductDependencies = (
+			);
+			productName = WellSpentTests;
+			productReference = 2C071B5C2E843509063F2C29 /* WellSpentTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F0B0F34E21306CCEDD2B6522 /* WellSpentUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA11F787378F2601683BA9DD /* Build configuration list for PBXNativeTarget "WellSpentUITests" */;
+			buildPhases = (
+				42187E3F20DDDBBD1524853F /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ADB8D3217CE0B4E800F320E5 /* PBXTargetDependency */,
+			);
+			name = WellSpentUITests;
+			packageProductDependencies = (
+			);
+			productName = WellSpentUITests;
+			productReference = 46E638E2AC5D37F357B2A605 /* WellSpentUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		92B76DAE9422749E386A4CD5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					964E32DDAD063D861DBA9038 = {
+						DevelopmentTeam = 68LEY459MW;
+						ProvisioningStyle = Automatic;
+					};
+					A64528016DA24E8DE6368C9D = {
+						DevelopmentTeam = 68LEY459MW;
+					};
+					BC75FB58DC410DFF83E9B7C6 = {
+						DevelopmentTeam = 68LEY459MW;
+						ProvisioningStyle = Automatic;
+					};
+					C84F48F3F1AC07BF6D3231B6 = {
+						DevelopmentTeam = 68LEY459MW;
+					};
+					F0B0F34E21306CCEDD2B6522 = {
+						DevelopmentTeam = 68LEY459MW;
+						TestTargetID = BC75FB58DC410DFF83E9B7C6;
+					};
+				};
+			};
+			buildConfigurationList = 3621EB93C17BB43B3D507CC4 /* Build configuration list for PBXProject "WellSpent" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = A9763E2142E21746A9B1C412;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = AF927B4C3EB51BD067527E38 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BC75FB58DC410DFF83E9B7C6 /* WellSpent */,
+				A64528016DA24E8DE6368C9D /* WellSpentShared */,
+				C84F48F3F1AC07BF6D3231B6 /* WellSpentTests */,
+				F0B0F34E21306CCEDD2B6522 /* WellSpentUITests */,
+				964E32DDAD063D861DBA9038 /* WellSpentWidgets */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		30BC27C135214976D30C4E16 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8EA24C098DF0C024F4F3B56F /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FEF928D3E600698042B15F96 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05C8D3E56B87AE3B815BD301 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		022A397AB973B7AA7B6FE6DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF1E470860ADCF0C6FDD5264 /* WellSpentLiveActivityWidget.swift in Sources */,
+				D20CE05B1A1E280939A71013 /* WellSpentWidgetBundle.swift in Sources */,
+				D8E971EB75C8E045B1C8D5E2 /* WellSpentWidgetsAppIntentsPackage.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2CB662C2C4853EC3ABBDEFE4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B901BD64603C68B85016B8B /* AppPreferences.swift in Sources */,
+				9CA5D230DDA21F04BC61C4AD /* LiveActivityLifecycle.swift in Sources */,
+				8B13B76299F32B90B8B4A665 /* LiveActivityStopHandoffReconciler.swift in Sources */,
+				8EB158709F1439984E065050 /* ManualSessionEditorView.swift in Sources */,
+				4DCBCF786310D169D2945BB0 /* OnboardingView.swift in Sources */,
+				83314E0A22031D661DFEC26C /* PresentationSupport.swift in Sources */,
+				6C17EECBA45446A8C3E4464F /* ProjectCommandService.swift in Sources */,
+				95AFE8679A08DA3BFBB5F2C8 /* ProjectManagementView.swift in Sources */,
+				EF9A03524544C41D9C52D7CE /* ProjectQueryService.swift in Sources */,
+				FC2A4CA13969E53C93A34F1C /* ProjectRepository.swift in Sources */,
+				62A2EE9FC9BC5BD716743EA5 /* ProjectSnapshot.swift in Sources */,
+				ED265D914279C104C3998025 /* ReportingEngine.swift in Sources */,
+				C70FB4568EA656EDD90EEDF8 /* ReportsView.swift in Sources */,
+				DC52C7F3368C84CFC2A613F4 /* RootView.swift in Sources */,
+				E127CD5AEF35BE3670959EEB /* SessionCommandModels.swift in Sources */,
+				2B0A7CA67B7D47538CE9E566 /* SessionCommandService.swift in Sources */,
+				601881FF3828B6A978C3A0AC /* SessionCompletionView.swift in Sources */,
+				A7F0B0AAB77280CF260B877F /* SessionHistoryView.swift in Sources */,
+				3CF92F403D176F6B2003C14F /* SessionOverlapDetector.swift in Sources */,
+				C4B843C97A09BE6FF1A0DFC7 /* SessionRepository.swift in Sources */,
+				5E5DD30A6D7AE0C811661E58 /* SessionReviewView.swift in Sources */,
+				0EE036C3425B74075E00C70C /* SessionTagCommandService.swift in Sources */,
+				6FE9ED618579B665F87F6561 /* SessionTagRepository.swift in Sources */,
+				7661AA7685E57CDC12417610 /* SessionTagSnapshot.swift in Sources */,
+				CBE94B3304B6287951DF43A1 /* SettingsView.swift in Sources */,
+				E9203FC348948A5B9BC95EC8 /* TimeSessionSnapshot.swift in Sources */,
+				2BC6D030B58A31F628B9B877 /* TimerCommandService.swift in Sources */,
+				BC575BC92370AAA52B728FCE /* TimerRepository.swift in Sources */,
+				81B458A8891FD6E879AC117B /* TrackView.swift in Sources */,
+				DAB40D9DF44B08D59B879A3A /* WellSpentApp.swift in Sources */,
+				C92CE0D14E80A280E1DAEE21 /* WellSpentAppIntentsPackage.swift in Sources */,
+				42FA066A60577818288FFE29 /* WellSpentAppModel.swift in Sources */,
+				090AB8C1E11F91490BE845E8 /* WellSpentDependencies.swift in Sources */,
+				ECC494C69A3BFA333AC153A5 /* WellSpentMigrationPlan.swift in Sources */,
+				3A437A083832AFDE9B817FD8 /* WellSpentPersistence.swift in Sources */,
+				E19717622E07A07398FEFAD8 /* WellSpentSchemaV1.swift in Sources */,
+				97767666AE74C9AB2D9CC37D /* WellSpentSchemaV2.swift in Sources */,
+				69E34DCA2754A6B6212494E9 /* WellSpentStartup.swift in Sources */,
+				4D8BFF2807546CC2A7D6C3A2 /* WellSpentUITestBootstrap.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42187E3F20DDDBBD1524853F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7D695111D86326B4AC64851 /* WellSpentAccessibilityUITests.swift in Sources */,
+				3251F9F82FABB345C26753C0 /* WellSpentUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5111AC29AE3CACC271F6A5D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E627DF062746CD0206768CD1 /* StopWellSpentTimerIntent.swift in Sources */,
+				797C5C5F52F2F6203467796E /* WellSpentActivityAttributes.swift in Sources */,
+				F54F2B19EF9F53299DB7836F /* WellSpentSharedAppIntentsPackage.swift in Sources */,
+				04AA65043C5505966B85DF27 /* WellSpentSpikeRecord.swift in Sources */,
+				D4375C6196A6356073456292 /* WellSpentStopHandoff.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D52F1C4624B07863D2ED685C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5F0D2471C67662A22DE7672 /* ActiveSessionReconciliationTests.swift in Sources */,
+				DEAC02766AB65BB11F070A59 /* AppIntentsPackageTests.swift in Sources */,
+				586BC39E48C2794E416BF589 /* DependencyFixtures.swift in Sources */,
+				86B16BFDF3260FBA9A8A523F /* LiveActivityLifecycleTests.swift in Sources */,
+				2E82244728CA30C238400FFD /* ProjectCommandServiceTests.swift in Sources */,
+				109F5BA89EB08ACD78099D8E /* ReportingEngineTests.swift in Sources */,
+				3F309365E0882D5665E55024 /* ReportingInvariantTests.swift in Sources */,
+				8B6C23F7DD8F2572D7F3FFE1 /* SessionCommandServiceTests.swift in Sources */,
+				0D2240B1F730B4B2C598044F /* SessionOverlapDetectorTests.swift in Sources */,
+				355BD975DE9019F8BE120072 /* SessionTagCommandServiceTests.swift in Sources */,
+				5C77FA9647692C0BB7BE2881 /* TimerCommandServiceTests.swift in Sources */,
+				122D24033A6D35D31D60C33B /* TimerStopCommandServiceTests.swift in Sources */,
+				D270B980BAD54F8942B34245 /* TimerSwitchCommandServiceTests.swift in Sources */,
+				86A1675848162F35427F8780 /* WellSpentDependenciesTests.swift in Sources */,
+				2C11F8C1333A83ABE9CAD5A8 /* WellSpentPersistenceTests.swift in Sources */,
+				6812BCE2E4E8FAA0548A4B9B /* WellSpentTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		21727400AC669887CB6D0E34 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A64528016DA24E8DE6368C9D /* WellSpentShared */;
+			targetProxy = C8E557B3B1B4FCED5EF582F4 /* PBXContainerItemProxy */;
+		};
+		9838121AFA99D07FC2FF50ED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 964E32DDAD063D861DBA9038 /* WellSpentWidgets */;
+			targetProxy = CAB5EE921782AB1BA2A9C332 /* PBXContainerItemProxy */;
+		};
+		A13F70ECC32351555F207D33 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A64528016DA24E8DE6368C9D /* WellSpentShared */;
+			targetProxy = 4DDA1C45F4EDD294BFE8FA54 /* PBXContainerItemProxy */;
+		};
+		ADB8D3217CE0B4E800F320E5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BC75FB58DC410DFF83E9B7C6 /* WellSpent */;
+			targetProxy = DBD002E62847481661920FDD /* PBXContainerItemProxy */;
+		};
+		E9CEB499FA2BDB68CF77D8F6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BC75FB58DC410DFF83E9B7C6 /* WellSpent */;
+			targetProxy = 850585671C03678998630851 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		16057598CDD7EB1C6E86E37E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent.shared;
+				PRODUCT_NAME = WellSpentShared;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		1A21A3BC003687383139EA02 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = WellSpentWidgets/WellSpentWidgets.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = WellSpentWidgets/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-force_load",
+					"$(BUILT_PRODUCTS_DIR)/WellSpentShared.framework/WellSpentShared",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent.widgets;
+				PRODUCT_NAME = WellSpentWidgets;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		40120F59CF498B4D65E0E2D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent.uitests;
+				SDKROOT = iphoneos;
+				TEST_TARGET_NAME = WellSpent;
+			};
+			name = Debug;
+		};
+		5D36FAFE54E74D62945A6B9B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = WellSpentWidgets/WellSpentWidgets.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = WellSpentWidgets/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-force_load",
+					"$(BUILT_PRODUCTS_DIR)/WellSpentShared.framework/WellSpentShared",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent.widgets;
+				PRODUCT_NAME = WellSpentWidgets;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		66403C6DEF4F6EA133CEE32B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = WellSpentApp/Resources/WellSpent.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_DEBUG_DYLIB = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = WellSpentApp/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-force_load",
+					"$(BUILT_PRODUCTS_DIR)/WellSpentShared.framework/WellSpentShared",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		6EAF681B569FB3EC78C24415 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent.tests;
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WellSpent.app/WellSpent";
+			};
+			name = Release;
+		};
+		75F1505CCD662970A4438BF6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent.tests;
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WellSpent.app/WellSpent";
+			};
+			name = Debug;
+		};
+		8F98D0612D124CB0702F2198 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = WellSpentApp/Resources/WellSpent.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_DEBUG_DYLIB = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = WellSpentApp/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-force_load",
+					"$(BUILT_PRODUCTS_DIR)/WellSpentShared.framework/WellSpentShared",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent;
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		C559A4988368BE76A33A27B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent.shared;
+				PRODUCT_NAME = WellSpentShared;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		D9DE344F0E9E10ADE6070C79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent.uitests;
+				SDKROOT = iphoneos;
+				TEST_TARGET_NAME = WellSpent;
+			};
+			name = Release;
+		};
+		DE9BEF33767CD5515ADC5A45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CD6E6E1CF428A57A1A78E207 /* Debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 68LEY459MW;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		F30FC53A6D9C044B72C994FD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 45DAB5C27AD9C87E659B93D4 /* Release.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 68LEY459MW;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3621EB93C17BB43B3D507CC4 /* Build configuration list for PBXProject "WellSpent" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DE9BEF33767CD5515ADC5A45 /* Debug */,
+				F30FC53A6D9C044B72C994FD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		4B339B19D73A2BF7C923EDB3 /* Build configuration list for PBXNativeTarget "WellSpentShared" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				16057598CDD7EB1C6E86E37E /* Debug */,
+				C559A4988368BE76A33A27B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		93EFB25E8F52A03B7C13016F /* Build configuration list for PBXNativeTarget "WellSpent" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66403C6DEF4F6EA133CEE32B /* Debug */,
+				8F98D0612D124CB0702F2198 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		AB78902DA7CA302CEBDF7C31 /* Build configuration list for PBXNativeTarget "WellSpentWidgets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5D36FAFE54E74D62945A6B9B /* Debug */,
+				1A21A3BC003687383139EA02 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		BA11F787378F2601683BA9DD /* Build configuration list for PBXNativeTarget "WellSpentUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				40120F59CF498B4D65E0E2D4 /* Debug */,
+				D9DE344F0E9E10ADE6070C79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		BA28FD43F15917EA0D4234E3 /* Build configuration list for PBXNativeTarget "WellSpentTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				75F1505CCD662970A4438BF6 /* Debug */,
+				6EAF681B569FB3EC78C24415 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 92B76DAE9422749E386A4CD5 /* Project object */;
+}

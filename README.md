@@ -1,6 +1,6 @@
-# Billable Hours
+# WellSpent
 
-Native, iPhone-first billable-hours tracker. The app now includes first-launch
+Native, iPhone-first time tracker. The app now includes first-launch
 onboarding, one-tap timestamp-backed Start/Switch/Stop, completion notes and
 configurable tags, emoji/color project identity, manual corrections, overlap
 warnings, and exact Day, Week, and Project reports with source-session

@@ -36,3 +36,7 @@ Local.xcconfig
 # Xcode playground timelines
 timeline.xctimeline
 playground.xcworkspace
+
+# Internal development documentation
+*.md
+!README.md

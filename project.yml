@@ -1,7 +1,7 @@
-name: BillableHours
+name: WellSpent
 
 options:
-  bundleIdPrefix: com.drewreilly.billablehours
+  bundleIdPrefix: com.drewreilly.wellspent
   deploymentTarget:
     iOS: "26.0"
   createIntermediateGroups: true
@@ -26,20 +26,20 @@ settings:
     TARGETED_DEVICE_FAMILY: 1
 
 targets:
-  BillableHours:
+  WellSpent:
     type: application
     platform: iOS
     deploymentTarget: "26.0"
     sources:
-      - path: BillableHoursApp
+      - path: WellSpentApp
     dependencies:
-      - target: BillableHoursShared
+      - target: WellSpentShared
         embed: false
-      - target: BillableHoursWidgets
+      - target: WellSpentWidgets
     info:
-      path: BillableHoursApp/Resources/Info.plist
+      path: WellSpentApp/Resources/Info.plist
       properties:
-        CFBundleDisplayName: Billable Hours
+        CFBundleDisplayName: WellSpent
         CFBundleShortVersionString: "$(MARKETING_VERSION)"
         CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
         ITSAppUsesNonExemptEncryption: false
@@ -48,9 +48,9 @@ targets:
         UIApplicationSupportsIndirectInputEvents: true
         CFBundleURLTypes:
           - CFBundleTypeRole: Editor
-            CFBundleURLName: com.drewreilly.billablehours.completion
+            CFBundleURLName: com.drewreilly.wellspent.completion
             CFBundleURLSchemes:
-              - billablehours
+              - wellspent
         UILaunchScreen: {}
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
@@ -58,43 +58,43 @@ targets:
           - UIInterfaceOrientationLandscapeRight
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.drewreilly.billablehours
+        PRODUCT_BUNDLE_IDENTIFIER: com.drewreilly.wellspent
         CODE_SIGN_STYLE: Automatic
-        CODE_SIGN_ENTITLEMENTS: BillableHoursApp/Resources/BillableHours.entitlements
+        CODE_SIGN_ENTITLEMENTS: WellSpentApp/Resources/WellSpent.entitlements
         ENABLE_DEBUG_DYLIB: false
         GENERATE_INFOPLIST_FILE: false
         OTHER_LDFLAGS:
           - $(inherited)
           - -force_load
-          - $(BUILT_PRODUCTS_DIR)/BillableHoursShared.framework/BillableHoursShared
+          - $(BUILT_PRODUCTS_DIR)/WellSpentShared.framework/WellSpentShared
 
-  BillableHoursShared:
+  WellSpentShared:
     type: framework
     platform: iOS
     deploymentTarget: "26.0"
     sources:
-      - path: BillableHoursShared
+      - path: WellSpentShared
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.drewreilly.billablehours.shared
-        PRODUCT_NAME: BillableHoursShared
+        PRODUCT_BUNDLE_IDENTIFIER: com.drewreilly.wellspent.shared
+        PRODUCT_NAME: WellSpentShared
         DEFINES_MODULE: true
         GENERATE_INFOPLIST_FILE: true
         MACH_O_TYPE: staticlib
         SKIP_INSTALL: true
 
-  BillableHoursWidgets:
+  WellSpentWidgets:
     type: app-extension
     platform: iOS
     deploymentTarget: "26.0"
     sources:
-      - path: BillableHoursWidgets
+      - path: WellSpentWidgets
     dependencies:
-      - target: BillableHoursShared
+      - target: WellSpentShared
     info:
-      path: BillableHoursWidgets/Info.plist
+      path: WellSpentWidgets/Info.plist
       properties:
-        CFBundleDisplayName: Billable Hours Activity
+        CFBundleDisplayName: WellSpent Activity
         CFBundleShortVersionString: "$(MARKETING_VERSION)"
         CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
         NSExtension:
@@ -102,61 +102,61 @@ targets:
         NSSupportsLiveActivities: true
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.drewreilly.billablehours.widgets
-        PRODUCT_NAME: BillableHoursWidgets
+        PRODUCT_BUNDLE_IDENTIFIER: com.drewreilly.wellspent.widgets
+        PRODUCT_NAME: WellSpentWidgets
         APPLICATION_EXTENSION_API_ONLY: true
         CODE_SIGN_STYLE: Automatic
-        CODE_SIGN_ENTITLEMENTS: BillableHoursWidgets/BillableHoursWidgets.entitlements
+        CODE_SIGN_ENTITLEMENTS: WellSpentWidgets/WellSpentWidgets.entitlements
         GENERATE_INFOPLIST_FILE: false
         OTHER_LDFLAGS:
           - $(inherited)
           - -force_load
-          - $(BUILT_PRODUCTS_DIR)/BillableHoursShared.framework/BillableHoursShared
+          - $(BUILT_PRODUCTS_DIR)/WellSpentShared.framework/WellSpentShared
         SKIP_INSTALL: true
 
-  BillableHoursTests:
+  WellSpentTests:
     type: bundle.unit-test
     platform: iOS
     deploymentTarget: "26.0"
     sources:
-      - path: BillableHoursTests
+      - path: WellSpentTests
     dependencies:
-      - target: BillableHours
+      - target: WellSpent
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.drewreilly.billablehours.tests
+        PRODUCT_BUNDLE_IDENTIFIER: com.drewreilly.wellspent.tests
         GENERATE_INFOPLIST_FILE: true
 
-  BillableHoursUITests:
+  WellSpentUITests:
     type: bundle.ui-testing
     platform: iOS
     deploymentTarget: "26.0"
     sources:
-      - path: BillableHoursUITests
+      - path: WellSpentUITests
     dependencies:
-      - target: BillableHours
+      - target: WellSpent
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.drewreilly.billablehours.uitests
+        PRODUCT_BUNDLE_IDENTIFIER: com.drewreilly.wellspent.uitests
         GENERATE_INFOPLIST_FILE: true
-        TEST_TARGET_NAME: BillableHours
+        TEST_TARGET_NAME: WellSpent
 
 schemes:
-  BillableHours:
+  WellSpent:
     build:
       targets:
-        BillableHours: all
-        BillableHoursTests: [test]
-        BillableHoursUITests: [test]
+        WellSpent: all
+        WellSpentTests: [test]
+        WellSpentUITests: [test]
     run:
       config: Debug
     test:
       config: Debug
       gatherCoverageData: true
       targets:
-        - name: BillableHoursTests
+        - name: WellSpentTests
           parallelizable: false
-        - name: BillableHoursUITests
+        - name: WellSpentUITests
           parallelizable: false
     profile:
       config: Release
@@ -165,10 +165,10 @@ schemes:
     archive:
       config: Release
 
-  BillableHoursWidgets:
+  WellSpentWidgets:
     build:
       targets:
-        BillableHoursWidgets: all
+        WellSpentWidgets: all
     run:
       config: Debug
     profile:

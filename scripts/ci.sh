@@ -13,8 +13,8 @@ cd "${repository_root}"
 "${script_directory}/privacy-audit.sh"
 
 xcodebuild \
-    -project BillableHours.xcodeproj \
-    -scheme BillableHours \
+    -project WellSpent.xcodeproj \
+    -scheme WellSpent \
     -configuration Debug \
     -destination 'generic/platform=iOS Simulator' \
     -derivedDataPath "${derived_data_root}/Debug" \
@@ -22,8 +22,8 @@ xcodebuild \
     clean build
 
 xcodebuild \
-    -project BillableHours.xcodeproj \
-    -scheme BillableHours \
+    -project WellSpent.xcodeproj \
+    -scheme WellSpent \
     -configuration Release \
     -destination 'generic/platform=iOS Simulator' \
     -derivedDataPath "${derived_data_root}/Release" \
@@ -31,8 +31,8 @@ xcodebuild \
     clean build
 
 xcodebuild \
-    -project BillableHours.xcodeproj \
-    -scheme BillableHours \
+    -project WellSpent.xcodeproj \
+    -scheme WellSpent \
     -configuration Debug \
     -destination "${simulator_destination}" \
     -parallel-testing-enabled NO \
@@ -40,5 +40,5 @@ xcodebuild \
     -default-test-execution-time-allowance 30 \
     -maximum-test-execution-time-allowance 60 \
     -derivedDataPath "${derived_data_root}/Tests" \
-    -only-testing:BillableHoursTests \
+    -only-testing:WellSpentTests \
     test

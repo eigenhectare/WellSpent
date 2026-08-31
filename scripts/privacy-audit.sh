@@ -8,9 +8,9 @@ readonly repository_root="$(cd "${script_directory}/.." && pwd)"
 cd "${repository_root}"
 
 readonly production_paths=(
-    BillableHoursApp
-    BillableHoursShared
-    BillableHoursWidgets
+    WellSpentApp
+    WellSpentShared
+    WellSpentWidgets
 )
 
 if rg -n \
