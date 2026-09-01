@@ -8,7 +8,14 @@ import WellSpentShared
         static let projectOneID = UUID(uuidString: "11111111-1111-1111-1111-111111111111")!
         static let projectTwoID = UUID(uuidString: "22222222-2222-2222-2222-222222222222")!
         static let archivedProjectID = UUID(uuidString: "33333333-3333-3333-3333-333333333333")!
+        static let projectThreeID = UUID(uuidString: "44444444-4444-4444-4444-444444444444")!
         static let completedSessionID = UUID(uuidString: "AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA")!
+        static let appStoreSessionTwoID = UUID(
+            uuidString: "BBBBBBBB-BBBB-BBBB-BBBB-BBBBBBBBBBBB"
+        )!
+        static let appStoreSessionThreeID = UUID(
+            uuidString: "CCCCCCCC-CCCC-CCCC-CCCC-CCCCCCCCCCCC"
+        )!
 
         static func prepare(modelContainer: ModelContainer) throws {
             let arguments = ProcessInfo.processInfo.arguments
@@ -49,6 +56,8 @@ import WellSpentShared
                 || arguments.contains("UITEST_SEED_OVERLAP")
                 || arguments.contains("UITEST_SEED_REPORTS")
                 || arguments.contains("UITEST_SEED_COMPLETION")
+                || arguments.contains("UITEST_SEED_APP_STORE")
+                || arguments.contains("UITEST_SEED_APP_STORE_ACTIVE")
             {
                 try seed(into: context, arguments: arguments)
             }
@@ -56,6 +65,13 @@ import WellSpentShared
 
         private static func seed(into context: ModelContext, arguments: [String]) throws {
             let now = Date.now
+            if arguments.contains("UITEST_SEED_APP_STORE")
+                || arguments.contains("UITEST_SEED_APP_STORE_ACTIVE")
+            {
+                try seedAppStore(into: context, now: now, arguments: arguments)
+                return
+            }
+
             let projectOne = ProjectRecord(
                 id: projectOneID,
                 name: "Client Redesign",
@@ -168,6 +184,122 @@ import WellSpentShared
                         startAt: now.addingTimeInterval(-7_200),
                         endAt: now.addingTimeInterval(-3_600),
                         note: nil
+                    )
+                )
+            }
+
+            try context.save()
+        }
+
+        private static func seedAppStore(
+            into context: ModelContext,
+            now: Date,
+            arguments: [String]
+        ) throws {
+            let calendar = Calendar.autoupdatingCurrent
+            let today = calendar.startOfDay(for: now)
+            let timeZoneID = TimeZone.current.identifier
+            let projects = [
+                ProjectRecord(
+                    id: projectOneID,
+                    name: "Client Strategy",
+                    colorToken: "blue",
+                    emoji: "💼",
+                    createdAt: today.addingTimeInterval(-86_400 * 28),
+                    updatedAt: today.addingTimeInterval(-86_400 * 28)
+                ),
+                ProjectRecord(
+                    id: projectTwoID,
+                    name: "Product Launch",
+                    colorToken: "orange",
+                    emoji: "🚀",
+                    createdAt: today.addingTimeInterval(-86_400 * 18),
+                    updatedAt: today.addingTimeInterval(-86_400 * 18)
+                ),
+                ProjectRecord(
+                    id: projectThreeID,
+                    name: "Market Research",
+                    colorToken: "purple",
+                    emoji: "🔎",
+                    createdAt: today.addingTimeInterval(-86_400 * 11),
+                    updatedAt: today.addingTimeInterval(-86_400 * 11)
+                ),
+            ]
+            projects.forEach(context.insert)
+
+            let sessions = [
+                completedSession(
+                    id: completedSessionID,
+                    projectID: projectOneID,
+                    startAt: today.addingTimeInterval(8 * 3_600 + 40 * 60),
+                    endAt: today.addingTimeInterval(10 * 3_600 + 15 * 60),
+                    note: "Discovery workshop and roadmap priorities"
+                ),
+                completedSession(
+                    id: appStoreSessionTwoID,
+                    projectID: projectTwoID,
+                    startAt: today.addingTimeInterval(10 * 3_600 + 30 * 60),
+                    endAt: today.addingTimeInterval(12 * 3_600),
+                    note: "Launch plan and stakeholder notes"
+                ),
+                completedSession(
+                    id: appStoreSessionThreeID,
+                    projectID: projectThreeID,
+                    startAt: today.addingTimeInterval(13 * 3_600 + 10 * 60),
+                    endAt: today.addingTimeInterval(14 * 3_600 + 35 * 60),
+                    note: "Competitive research and synthesis"
+                ),
+                completedSession(
+                    projectID: projectOneID,
+                    startAt: today.addingTimeInterval(-86_400 + 14 * 3_600),
+                    endAt: today.addingTimeInterval(-86_400 + 15 * 3_600 + 20 * 60),
+                    note: "Proposal scope and estimate"
+                ),
+            ]
+            sessions.forEach(context.insert)
+
+            let tagDefinitions = SessionTagCommandService.builtInTags
+            for tag in tagDefinitions {
+                context.insert(
+                    SessionTagRecord(
+                        id: tag.id,
+                        name: tag.name,
+                        normalizedName: tag.name,
+                        isBuiltIn: true,
+                        createdAt: today,
+                        updatedAt: today
+                    )
+                )
+            }
+
+            let tagsByName = Dictionary(uniqueKeysWithValues: tagDefinitions.map { ($0.name, $0.id) })
+            for (sessionID, tagNames) in [
+                (completedSessionID, ["meeting", "collaboration"]),
+                (appStoreSessionTwoID, ["collaboration"]),
+                (appStoreSessionThreeID, ["solo work"]),
+            ] {
+                for tagName in tagNames {
+                    guard let tagID = tagsByName[tagName] else { continue }
+                    context.insert(
+                        SessionTagAssignmentRecord(
+                            sessionID: sessionID,
+                            tagID: tagID,
+                            nameSnapshot: tagName,
+                            createdAt: today
+                        )
+                    )
+                }
+            }
+
+            if arguments.contains("UITEST_SEED_APP_STORE_ACTIVE") {
+                context.insert(
+                    TimeSessionRecord(
+                        projectID: projectTwoID,
+                        source: .timer,
+                        startAt: now.addingTimeInterval(-(3_600 + 12 * 60 + 34)),
+                        startTimeZoneID: timeZoneID,
+                        createdAt: now.addingTimeInterval(-(3_600 + 12 * 60 + 34)),
+                        updatedAt: now.addingTimeInterval(-(3_600 + 12 * 60 + 34))
                     )
                 )
             }

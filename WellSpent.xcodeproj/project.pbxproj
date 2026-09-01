@@ -66,9 +66,11 @@
 		D8E971EB75C8E045B1C8D5E2 /* WellSpentWidgetsAppIntentsPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC72C2BED800B45FC7AC2A49 /* WellSpentWidgetsAppIntentsPackage.swift */; };
 		DAB40D9DF44B08D59B879A3A /* WellSpentApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43A5A10607AF1EFE098F373 /* WellSpentApp.swift */; };
 		DC52C7F3368C84CFC2A613F4 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C186F102F13DA0394675E9 /* RootView.swift */; };
+		DE0BD16321E36D2A38CBCC3F /* WellSpentAppStoreScreenshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FE36EDB408D280E1F40BE1 /* WellSpentAppStoreScreenshotTests.swift */; };
 		DEAC02766AB65BB11F070A59 /* AppIntentsPackageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA5322EC582289BE125D9CA /* AppIntentsPackageTests.swift */; };
 		E127CD5AEF35BE3670959EEB /* SessionCommandModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F89992EB04FA7C5EF8BBD26 /* SessionCommandModels.swift */; };
 		E19717622E07A07398FEFAD8 /* WellSpentSchemaV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEEC857AD6CBFB521383C6E /* WellSpentSchemaV1.swift */; };
+		E221C7B96256B3F725513BB9 /* WellSpentExternalLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67825CC81D0C3260BCFC399 /* WellSpentExternalLinks.swift */; };
 		E5F0D2471C67662A22DE7672 /* ActiveSessionReconciliationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE9A4431B068E1BF6EDE876 /* ActiveSessionReconciliationTests.swift */; };
 		E627DF062746CD0206768CD1 /* StopWellSpentTimerIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171EE71C5A73C6C78C2ED88E /* StopWellSpentTimerIntent.swift */; };
 		E9203FC348948A5B9BC95EC8 /* TimeSessionSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF245EE92D6B4B3EE3AD8E5A /* TimeSessionSnapshot.swift */; };
@@ -133,6 +135,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		01FE36EDB408D280E1F40BE1 /* WellSpentAppStoreScreenshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentAppStoreScreenshotTests.swift; sourceTree = "<group>"; };
 		04D11B6456E491EA52A46A94 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0BA5322EC582289BE125D9CA /* AppIntentsPackageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntentsPackageTests.swift; sourceTree = "<group>"; };
 		0E4CF8EA54D2A6EFE4FD3549 /* WellSpentSpikeRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentSpikeRecord.swift; sourceTree = "<group>"; };
@@ -194,6 +197,7 @@
 		B8B3362AA65932EF8998B000 /* ManualSessionEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualSessionEditorView.swift; sourceTree = "<group>"; };
 		B94C81C96484807D1AB75CE6 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		BBEDFA99147F26A4384BA3FE /* WellSpentWidgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WellSpentWidgets.entitlements; sourceTree = "<group>"; };
+		C67825CC81D0C3260BCFC399 /* WellSpentExternalLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentExternalLinks.swift; sourceTree = "<group>"; };
 		C8E0F549568DA4F9099A6D0D /* WellSpentDependenciesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentDependenciesTests.swift; sourceTree = "<group>"; };
 		CD6E6E1CF428A57A1A78E207 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		CE296DA432A2F6DD81E35AEC /* SessionTagSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTagSnapshot.swift; sourceTree = "<group>"; };
@@ -572,6 +576,7 @@
 			isa = PBXGroup;
 			children = (
 				635AB98520E19B37B7A5786B /* WellSpentAccessibilityUITests.swift */,
+				01FE36EDB408D280E1F40BE1 /* WellSpentAppStoreScreenshotTests.swift */,
 				F447374C52F83C97EB3FD4FF /* WellSpentUITests.swift */,
 			);
 			path = WellSpentUITests;
@@ -582,6 +587,7 @@
 			children = (
 				2B03A5E0AAEF51E5CE1E7EAE /* AppPreferences.swift */,
 				B7AF77E3DFFABDA64AF73FAF /* WellSpentAppModel.swift */,
+				C67825CC81D0C3260BCFC399 /* WellSpentExternalLinks.swift */,
 			);
 			path = AppEnvironment;
 			sourceTree = "<group>";
@@ -873,6 +879,7 @@
 				C92CE0D14E80A280E1DAEE21 /* WellSpentAppIntentsPackage.swift in Sources */,
 				42FA066A60577818288FFE29 /* WellSpentAppModel.swift in Sources */,
 				090AB8C1E11F91490BE845E8 /* WellSpentDependencies.swift in Sources */,
+				E221C7B96256B3F725513BB9 /* WellSpentExternalLinks.swift in Sources */,
 				ECC494C69A3BFA333AC153A5 /* WellSpentMigrationPlan.swift in Sources */,
 				3A437A083832AFDE9B817FD8 /* WellSpentPersistence.swift in Sources */,
 				E19717622E07A07398FEFAD8 /* WellSpentSchemaV1.swift in Sources */,
@@ -887,6 +894,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7D695111D86326B4AC64851 /* WellSpentAccessibilityUITests.swift in Sources */,
+				DE0BD16321E36D2A38CBCC3F /* WellSpentAppStoreScreenshotTests.swift in Sources */,
 				3251F9F82FABB345C26753C0 /* WellSpentUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1198,7 +1206,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 68LEY459MW;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1261,7 +1269,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 68LEY459MW;
 				ENABLE_NS_ASSERTIONS = NO;

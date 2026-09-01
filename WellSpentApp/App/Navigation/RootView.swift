@@ -128,8 +128,26 @@ struct RootView: View {
             await model.applicationBecameActive()
         }
         .onChange(of: scenePhase) { _, newPhase in
-            guard newPhase == .active else { return }
+            if newPhase != .active {
+                PrivacyShieldWindowController.show()
+                return
+            }
+            PrivacyShieldWindowController.hide()
             Task { await model.applicationBecameActive() }
+        }
+        .onReceive(
+            NotificationCenter.default.publisher(
+                for: UIApplication.willResignActiveNotification
+            )
+        ) { _ in
+            PrivacyShieldWindowController.show()
+        }
+        .onReceive(
+            NotificationCenter.default.publisher(
+                for: UIApplication.didBecomeActiveNotification
+            )
+        ) { _ in
+            PrivacyShieldWindowController.hide()
         }
         .onOpenURL { url in
             if WellSpentDeepLink.isTrackerURL(url) {
@@ -138,6 +156,65 @@ struct RootView: View {
             }
             Task { await model.handle(url: url) }
         }
+    }
+}
+
+@MainActor
+private enum PrivacyShieldWindowController {
+    private static let shieldTag = 9_274_611
+
+    static func show() {
+        for window in applicationWindows where window.viewWithTag(shieldTag) == nil {
+            let shield = UIView()
+            shield.tag = shieldTag
+            shield.backgroundColor = .systemBackground
+            shield.translatesAutoresizingMaskIntoConstraints = false
+            shield.isAccessibilityElement = true
+            shield.accessibilityLabel = "WellSpent is hidden while inactive"
+            shield.accessibilityIdentifier = "app-privacy-shield"
+            shield.accessibilityViewIsModal = true
+
+            let image = UIImageView(image: UIImage(systemName: "lock.fill"))
+            image.tintColor = .secondaryLabel
+            image.preferredSymbolConfiguration = UIImage.SymbolConfiguration(pointSize: 28)
+            image.isAccessibilityElement = false
+
+            let label = UILabel()
+            label.text = "WellSpent"
+            label.font = .preferredFont(forTextStyle: .headline)
+            label.textColor = .label
+            label.textAlignment = .center
+            label.isAccessibilityElement = false
+
+            let stack = UIStackView(arrangedSubviews: [image, label])
+            stack.axis = .vertical
+            stack.alignment = .center
+            stack.spacing = 12
+            stack.translatesAutoresizingMaskIntoConstraints = false
+
+            shield.addSubview(stack)
+            window.addSubview(shield)
+            NSLayoutConstraint.activate([
+                shield.leadingAnchor.constraint(equalTo: window.leadingAnchor),
+                shield.trailingAnchor.constraint(equalTo: window.trailingAnchor),
+                shield.topAnchor.constraint(equalTo: window.topAnchor),
+                shield.bottomAnchor.constraint(equalTo: window.bottomAnchor),
+                stack.centerXAnchor.constraint(equalTo: shield.centerXAnchor),
+                stack.centerYAnchor.constraint(equalTo: shield.centerYAnchor),
+            ])
+        }
+    }
+
+    static func hide() {
+        for window in applicationWindows {
+            window.viewWithTag(shieldTag)?.removeFromSuperview()
+        }
+    }
+
+    private static var applicationWindows: [UIWindow] {
+        UIApplication.shared.connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .flatMap(\.windows)
     }
 }
 

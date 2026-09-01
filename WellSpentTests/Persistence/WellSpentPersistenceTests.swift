@@ -89,6 +89,53 @@ final class WellSpentPersistenceTests: XCTestCase {
         }
     }
 
+    func testPersistentStoreIsExcludedFromDeviceBackups() throws {
+        let fixture = try TemporaryStoreFixture()
+        defer { fixture.remove() }
+
+        _ = try WellSpentPersistence.makePersistentContainer(storeURL: fixture.storeURL)
+
+        XCTAssertTrue(try LocalStoragePrivacy.isExcludedFromBackup(fixture.directoryURL))
+        XCTAssertTrue(try LocalStoragePrivacy.isExcludedFromBackup(fixture.storeURL))
+    }
+
+    @MainActor
+    func testLocalDataResetDeletesEveryPersistentEntity() throws {
+        let container = try WellSpentPersistence.makeInMemoryContainer()
+        let context = ModelContext(container)
+        let project = ProjectRecord(name: "Confidential client")
+        let session = TimeSessionRecord(
+            projectID: project.id,
+            source: .manual,
+            startAt: Date(timeIntervalSince1970: 1_800_000_000),
+            endAt: Date(timeIntervalSince1970: 1_800_003_600),
+            startTimeZoneID: "UTC",
+            endTimeZoneID: "UTC",
+            note: "Privileged work note"
+        )
+        let tag = SessionTagRecord(name: "private", normalizedName: "private")
+        let assignment = SessionTagAssignmentRecord(
+            sessionID: session.id,
+            tagID: tag.id,
+            nameSnapshot: tag.name
+        )
+        context.insert(project)
+        context.insert(session)
+        context.insert(tag)
+        context.insert(assignment)
+        try context.save()
+
+        try WellSpentLocalDataResetService(context: context).deleteAllUserData()
+
+        XCTAssertEqual(try context.fetchCount(FetchDescriptor<ProjectRecord>()), 0)
+        XCTAssertEqual(try context.fetchCount(FetchDescriptor<TimeSessionRecord>()), 0)
+        XCTAssertEqual(try context.fetchCount(FetchDescriptor<SessionTagRecord>()), 0)
+        XCTAssertEqual(
+            try context.fetchCount(FetchDescriptor<SessionTagAssignmentRecord>()),
+            0
+        )
+    }
+
     func testOldestShippedFixtureOpensThroughMigrationHarness() throws {
         let fixture = try TemporaryStoreFixture()
         defer { fixture.remove() }

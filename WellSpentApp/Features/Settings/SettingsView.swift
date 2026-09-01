@@ -8,6 +8,7 @@ struct SettingsView: View {
     private var showProjectNamesOnLockScreen = false
     @State private var newTagName = ""
     @State private var tagRemovalCandidate: SessionTagSnapshot?
+    @State private var showsDeleteAllDataConfirmation = false
     @FocusState private var newTagFieldIsFocused: Bool
 
     var body: some View {
@@ -114,9 +115,59 @@ struct SettingsView: View {
                     )
                 }
 
-                Section("Permissions") {
-                    Text("This release does not request Calendar, notification, or iCloud permission.")
+                Section("Privacy") {
+                    Text(
+                        "WellSpent uses no account, server, analytics, tracking, or CloudKit sync. Activity data is excluded from device backups."
+                    )
+                    Text(
+                        "This release does not request Calendar or notification access and does not export files."
+                    )
+                    .foregroundStyle(.secondary)
+
+                    if let privacyPolicyURL = WellSpentExternalLinks.privacyPolicy {
+                        Link(destination: privacyPolicyURL) {
+                            Label("Privacy Policy", systemImage: "hand.raised")
+                        }
+                        .accessibilityIdentifier("privacy-policy-link")
+                    }
+                }
+
+                Section("Help and legal") {
+                    if let supportURL = WellSpentExternalLinks.support {
+                        Link(destination: supportURL) {
+                            Label("Support", systemImage: "questionmark.circle")
+                        }
+                        .accessibilityIdentifier("support-link")
+                    }
+
+                    if let sourceCodeURL = WellSpentExternalLinks.sourceCode {
+                        Link(destination: sourceCodeURL) {
+                            Label("Source Code", systemImage: "chevron.left.forwardslash.chevron.right")
+                        }
+                        .accessibilityIdentifier("source-code-link")
+                    }
+
+                    LabeledContent("Version", value: WellSpentExternalLinks.versionDescription)
+                        .accessibilityIdentifier("app-version")
+                    LabeledContent("Copyright", value: "© 2026 WellSpent contributors")
+                        .accessibilityIdentifier("app-copyright")
+                    Text("Source code is available under the GNU Affero General Public License v3.0.")
+                        .font(.footnote)
                         .foregroundStyle(.secondary)
+                        .accessibilityIdentifier("source-license")
+                }
+
+                Section("Local data") {
+                    Button("Erase All WellSpent Data", role: .destructive) {
+                        showsDeleteAllDataConfirmation = true
+                    }
+                    .disabled(model.isPerformingTimerCommand)
+                    .accessibilityIdentifier("delete-all-local-data")
+
+                    Text(
+                        "Deletes projects, sessions, notes, custom tags, preferences, and pending Lock Screen actions from this iPhone."
+                    )
+                    .foregroundStyle(.secondary)
                 }
             }
             .navigationTitle("Settings")
@@ -136,6 +187,20 @@ struct SettingsView: View {
                 Button("Cancel", role: .cancel) { tagRemovalCandidate = nil }
             } message: {
                 Text("It will no longer be offered for new sessions. Historical sessions keep it.")
+            }
+            .confirmationDialog(
+                "Delete all local data?",
+                isPresented: $showsDeleteAllDataConfirmation,
+                titleVisibility: .visible
+            ) {
+                Button("Delete All Data", role: .destructive) {
+                    Task { await model.deleteAllLocalData() }
+                }
+                Button("Cancel", role: .cancel) {}
+            } message: {
+                Text(
+                    "This permanently deletes every project, session, note, custom tag, and preference. This action cannot be undone."
+                )
             }
         }
     }

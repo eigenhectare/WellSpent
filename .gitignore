@@ -18,6 +18,9 @@ DerivedData/
 *.xcresult
 *.resultstream
 
+# Local App Store submission workspace (metadata, screenshots, and site sources)
+AppStore/
+
 # Signing, provisioning, and local secrets
 *.cer
 *.p8

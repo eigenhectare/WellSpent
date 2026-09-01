@@ -11,6 +11,7 @@ cd "${repository_root}"
 
 "${script_directory}/lint.sh"
 "${script_directory}/privacy-audit.sh"
+"${script_directory}/privacy-audit-regression-tests.sh"
 
 xcodebuild \
     -project WellSpent.xcodeproj \
@@ -29,6 +30,9 @@ xcodebuild \
     -derivedDataPath "${derived_data_root}/Release" \
     CODE_SIGNING_ALLOWED=NO \
     clean build
+
+PRIVACY_AUDIT_APP_BUNDLE="${derived_data_root}/Release/Build/Products/Release-iphonesimulator/WellSpent.app" \
+    "${script_directory}/privacy-audit.sh"
 
 xcodebuild \
     -project WellSpent.xcodeproj \

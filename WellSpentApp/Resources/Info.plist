@@ -35,6 +35,8 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.productivity</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSSupportsLiveActivities</key>
@@ -49,5 +51,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>WellSpentPrivacyPolicyURL</key>
+	<string>https://wellspent-holdings.github.io/privacy/</string>
+	<key>WellSpentSourceCodeURL</key>
+	<string>https://github.com/eigenhectare/WellSpent</string>
+	<key>WellSpentSupportURL</key>
+	<string>https://wellspent-holdings.github.io/support/</string>
 </dict>
 </plist>

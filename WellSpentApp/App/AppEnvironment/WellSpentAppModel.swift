@@ -38,6 +38,7 @@ final class WellSpentAppModel: ObservableObject {
     private let sessionRepository: any SessionRepository
     private let sessionTagCommands: SessionTagCommandService
     private let sessionTagRepository: any SessionTagRepository
+    private let localDataResetService: WellSpentLocalDataResetService
     private let liveActivityLifecycle: any LiveActivityLifecycle
     private let stopHandoffSuiteName: String
     private let foregroundHandoffPollDelays: [Duration]
@@ -65,6 +66,7 @@ final class WellSpentAppModel: ObservableObject {
         self.startupReconciliation = startupReconciliation
         self.sessionRepository = sessionRepository
         self.sessionTagRepository = sessionTagRepository
+        localDataResetService = WellSpentLocalDataResetService(context: context)
         self.liveActivityLifecycle =
             liveActivityLifecycle ?? ActivityKitLiveActivityLifecycle()
         self.stopHandoffSuiteName = stopHandoffSuiteName
@@ -469,6 +471,43 @@ final class WellSpentAppModel: ObservableObject {
             return true
         } catch {
             present(error)
+            return false
+        }
+    }
+
+    @discardableResult
+    func deleteAllLocalData() async -> Bool {
+        guard !isPerformingTimerCommand else { return false }
+        isPerformingTimerCommand = true
+        defer { isPerformingTimerCommand = false }
+
+        var liveActivityEnded = true
+        do {
+            try await liveActivityLifecycle.reconcile(with: nil)
+        } catch {
+            liveActivityEnded = false
+        }
+
+        do {
+            try WellSpentStopHandoff.clear(suiteName: stopHandoffSuiteName)
+            try WellSpentSpikeStorage.clearSpikeData(suiteName: stopHandoffSuiteName)
+            try localDataResetService.deleteAllUserData()
+            UserDefaults.standard.removeObject(forKey: AppPreferenceKeys.completedOnboarding)
+            UserDefaults.standard.removeObject(
+                forKey: AppPreferenceKeys.showProjectNamesOnLockScreen
+            )
+            completionRoute = nil
+            liveActivityRecoveryMessage = nil
+            try sessionTagCommands.seedBuiltInsIfNeeded()
+            refresh()
+            message =
+                liveActivityEnded
+                ? "All WellSpent activity data was deleted from this iPhone."
+                : "All WellSpent activity data was deleted. iOS may briefly retain the old Lock Screen card."
+            return true
+        } catch {
+            refresh()
+            message = "All local data could not be deleted. No data was sent anywhere. Try again."
             return false
         }
     }

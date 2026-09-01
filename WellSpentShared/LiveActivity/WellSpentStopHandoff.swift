@@ -50,6 +50,7 @@ public enum WellSpentStopHandoff {
                 at: directoryURL,
                 withIntermediateDirectories: true
             )
+            try protectHandoffItem(directoryURL)
             let fileURL = requestFileURL(for: sessionID, in: directoryURL)
             if let existing = try request(at: fileURL) {
                 return existing
@@ -60,7 +61,11 @@ public enum WellSpentStopHandoff {
                 endedAt: endedAt,
                 endTimeZoneID: endTimeZoneID
             )
-            try JSONEncoder().encode(persistedRequest).write(to: fileURL, options: .atomic)
+            try JSONEncoder().encode(persistedRequest).write(
+                to: fileURL,
+                options: [.atomic, .completeFileProtectionUntilFirstUserAuthentication]
+            )
+            try protectHandoffItem(fileURL)
             return persistedRequest
         }
     }
@@ -164,5 +169,24 @@ public enum WellSpentStopHandoff {
             requestFilePrefix + sessionID.uuidString + ".json",
             isDirectory: false
         )
+    }
+
+    private static func protectHandoffItem(_ url: URL) throws {
+        var resourceValues = URLResourceValues()
+        resourceValues.isExcludedFromBackup = true
+        var protectedURL = url
+        try protectedURL.setResourceValues(resourceValues)
+
+        #if targetEnvironment(simulator)
+            try? FileManager.default.setAttributes(
+                [.protectionKey: FileProtectionType.completeUntilFirstUserAuthentication],
+                ofItemAtPath: url.path
+            )
+        #else
+            try FileManager.default.setAttributes(
+                [.protectionKey: FileProtectionType.completeUntilFirstUserAuthentication],
+                ofItemAtPath: url.path
+            )
+        #endif
     }
 }

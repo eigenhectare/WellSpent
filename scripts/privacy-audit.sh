@@ -7,10 +7,22 @@ readonly repository_root="$(cd "${script_directory}/.." && pwd)"
 
 cd "${repository_root}"
 
-readonly production_paths=(
+production_paths=(
     WellSpentApp
     WellSpentShared
     WellSpentWidgets
+)
+if [[ -n "${PRIVACY_AUDIT_EXTRA_SOURCE_PATH:-}" ]]; then
+    production_paths+=("${PRIVACY_AUDIT_EXTRA_SOURCE_PATH}")
+fi
+readonly -a production_paths
+readonly privacy_manifests=(
+    WellSpentApp/Resources/PrivacyInfo.xcprivacy
+    WellSpentWidgets/PrivacyInfo.xcprivacy
+)
+readonly entitlements_files=(
+    WellSpentApp/Resources/WellSpent.entitlements
+    WellSpentWidgets/WellSpentWidgets.entitlements
 )
 
 if rg -n \
@@ -22,11 +34,130 @@ then
 fi
 
 if rg -n \
-    '(^import (Network|AdSupport|AppTrackingTransparency)$|URLSession|Analytics|Crashlytics|Sentry)' \
-    "${production_paths[@]}"
+    '(^import (Network|CFNetwork|WebKit|CloudKit|MetricKit|AdSupport|AppTrackingTransparency|AuthenticationServices|StoreKit)$|URLSession|NSURLSession|NSURLConnection|HTTPURLResponse|NW(Connection|PathMonitor|Listener|Browser)|(^|[^[:alnum:]_])(socket|connect|send|recv|getaddrinfo)[[:space:]]*\(|WKWebView|ASWebAuthenticationSession|registerForRemoteNotifications|UNUserNotificationCenter|push(TokenUpdates|ToStartToken)|pushType:[[:space:]]*\.(token|channel)|CKContainer|cloudKitDatabase:[[:space:]]*\.(automatic|private|public)|Analytics|Crashlytics|Sentry|Firebase|Telemetry|AppCenter|Datadog|NewRelic|Bugsnag|Instabug|Amplitude|Mixpanel|PostHog|Snowplow)' \
+    "${production_paths[@]}" \
+    --glob '*.swift'
 then
     echo "Privacy audit failed: unexpected network, tracking, or diagnostics API found." >&2
     exit 1
 fi
 
-echo "Privacy audit passed: no production logging, networking, tracking, or diagnostics APIs found."
+if rg -n \
+    "(https?|wss?|ftp)://[^[:space:]\"']+" \
+    "${production_paths[@]}" \
+    --glob '*.swift'
+then
+    echo "Privacy audit failed: hard-coded remote URL found in production source." >&2
+    exit 1
+fi
+
+if rg -n \
+    '(fatalError|preconditionFailure|assertionFailure)[[:space:]]*\([^\n]*\\\(' \
+    "${production_paths[@]}" \
+    --glob '*.swift'
+then
+    echo "Privacy audit failed: interpolated production crash/assertion message found." >&2
+    exit 1
+fi
+
+if rg -n \
+    '(XCRemoteSwiftPackageReference|repositoryURL[[:space:]]*=|packageReferences[[:space:]]*=)' \
+    WellSpent.xcodeproj/project.pbxproj project.yml
+then
+    echo "Privacy audit failed: remote package dependency found." >&2
+    exit 1
+fi
+
+readonly dependency_manifests=(
+    Package.swift
+    Package.resolved
+    Podfile
+    Podfile.lock
+    Cartfile
+    Cartfile.resolved
+)
+for dependency_manifest in "${dependency_manifests[@]}"; do
+    if [[ -e "${dependency_manifest}" ]]; then
+        echo "Privacy audit failed: dependency manifest found: ${dependency_manifest}." >&2
+        exit 1
+    fi
+done
+
+for entitlements_file in "${entitlements_files[@]}"; do
+    plutil -lint "${entitlements_file}" >/dev/null
+    if rg -n \
+        '(aps-environment|com\.apple\.developer\.icloud|com\.apple\.developer\.associated-domains|com\.apple\.developer\.networking|com\.apple\.developer\.healthkit|com\.apple\.developer\.usernotifications)' \
+        "${entitlements_file}"
+    then
+        echo "Privacy audit failed: unexpected cloud, network, or sensitive entitlement found." >&2
+        exit 1
+    fi
+done
+
+for privacy_manifest in "${privacy_manifests[@]}"; do
+    plutil -lint "${privacy_manifest}" >/dev/null
+    if [[ "$(plutil -extract NSPrivacyTracking raw -o - "${privacy_manifest}")" != "false" ]]; then
+        echo "Privacy audit failed: tracking is enabled in ${privacy_manifest}." >&2
+        exit 1
+    fi
+    if [[ "$(plutil -extract NSPrivacyCollectedDataTypes json -o - "${privacy_manifest}")" != "[]" ]]; then
+        echo "Privacy audit failed: collected data is declared in ${privacy_manifest}." >&2
+        exit 1
+    fi
+done
+
+readonly app_bundle="${PRIVACY_AUDIT_APP_BUNDLE:-}"
+if [[ -n "${app_bundle}" ]]; then
+    if [[ ! -d "${app_bundle}" ]]; then
+        echo "Privacy audit failed: Release app bundle not found at ${app_bundle}." >&2
+        exit 1
+    fi
+
+    readonly app_binary="${app_bundle}/WellSpent"
+    readonly widget_bundle="${app_bundle}/PlugIns/WellSpentWidgets.appex"
+    readonly widget_binary="${widget_bundle}/WellSpentWidgets"
+    readonly binaries=("${app_binary}" "${widget_binary}")
+
+    for bundled_manifest in \
+        "${app_bundle}/PrivacyInfo.xcprivacy" \
+        "${widget_bundle}/PrivacyInfo.xcprivacy"
+    do
+        if [[ ! -f "${bundled_manifest}" ]]; then
+            echo "Privacy audit failed: bundled privacy manifest missing: ${bundled_manifest}." >&2
+            exit 1
+        fi
+        plutil -lint "${bundled_manifest}" >/dev/null
+    done
+
+    if find "${app_bundle}" -path '*/Frameworks/*' -type f -print -quit | rg -q .; then
+        echo "Privacy audit failed: embedded runtime framework or library found." >&2
+        exit 1
+    fi
+
+    for binary in "${binaries[@]}"; do
+        if [[ ! -x "${binary}" ]]; then
+            echo "Privacy audit failed: expected executable missing: ${binary}." >&2
+            exit 1
+        fi
+        if otool -L "${binary}" | rg -n \
+            '/(CFNetwork|Network|WebKit|CloudKit|MetricKit|AdSupport|AuthenticationServices|StoreKit)\.framework/'
+        then
+            echo "Privacy audit failed: prohibited framework linked by ${binary}." >&2
+            exit 1
+        fi
+        if nm -u "${binary}" | rg -n -i \
+            '(URLSession|NSURLConnection|HTTPURLResponse|NWConnection|NWPathMonitor|CKContainer|WKWebView|registerForRemoteNotifications|pushTokenUpdates|pushToStartToken|Analytics|Crashlytics|Sentry|Firebase)'
+        then
+            echo "Privacy audit failed: prohibited egress symbol found in ${binary}." >&2
+            exit 1
+        fi
+        if strings -a "${binary}" | rg -n -i \
+            '((https?|wss?|ftp)://|([0-9]{1,3}\.){3}[0-9]{1,3})'
+        then
+            echo "Privacy audit failed: remote URL or IP literal found in ${binary}." >&2
+            exit 1
+        fi
+    done
+fi
+
+echo "Privacy audit passed: source, capabilities, dependencies, manifests, and available Release binaries are local-only."

@@ -252,6 +252,56 @@ final class LiveActivityLifecycleTests: XCTestCase {
         XCTAssertNil(model.liveActivityRecoveryMessage)
         XCTAssertEqual(fixture.lifecycle.calls.last, .reconcile(model.activeSession?.id))
     }
+
+    func testDeleteAllLocalDataClearsRecordsPreferencesAndHandoffs() async throws {
+        let fixture = try LiveActivityModelFixture()
+        let project = ProjectRecord(id: fixture.firstProjectID, name: "Confidential Client")
+        let session = fixture.activeSession(
+            id: fixture.oldSessionID,
+            projectID: project.id,
+            startAt: fixture.now.addingTimeInterval(-600)
+        )
+        fixture.context.insert(project)
+        fixture.context.insert(session)
+        try fixture.context.save()
+        try WellSpentStopHandoff.persist(
+            sessionID: session.id,
+            endedAt: fixture.now,
+            endTimeZoneID: "UTC",
+            suiteName: fixture.handoffSuiteName
+        )
+        UserDefaults.standard.set(true, forKey: AppPreferenceKeys.completedOnboarding)
+        UserDefaults.standard.set(
+            true,
+            forKey: AppPreferenceKeys.showProjectNamesOnLockScreen
+        )
+        defer {
+            UserDefaults.standard.removeObject(forKey: AppPreferenceKeys.completedOnboarding)
+            UserDefaults.standard.removeObject(
+                forKey: AppPreferenceKeys.showProjectNamesOnLockScreen
+            )
+        }
+        let model = fixture.makeModel()
+        XCTAssertTrue(model.addSessionTag(name: "private"))
+
+        let didDelete = await model.deleteAllLocalData()
+
+        XCTAssertTrue(didDelete)
+
+        XCTAssertTrue(model.projects.isEmpty)
+        XCTAssertTrue(model.sessions.isEmpty)
+        XCTAssertFalse(model.sessionTags.contains { $0.name == "private" })
+        XCTAssertFalse(UserDefaults.standard.bool(forKey: AppPreferenceKeys.completedOnboarding))
+        XCTAssertFalse(
+            UserDefaults.standard.bool(forKey: AppPreferenceKeys.showProjectNamesOnLockScreen)
+        )
+        XCTAssertTrue(
+            try WellSpentStopHandoff.pendingRequests(
+                suiteName: fixture.handoffSuiteName
+            ).isEmpty
+        )
+        XCTAssertEqual(fixture.lifecycle.calls.last, .reconcile(nil))
+    }
 }
 
 @MainActor

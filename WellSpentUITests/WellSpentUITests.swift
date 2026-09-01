@@ -286,6 +286,35 @@ final class WellSpentUITests: XCTestCase {
     }
 
     @MainActor
+    func testDeleteAllLocalDataRequiresConfirmationAndReturnsToFirstLaunch() {
+        let app = launch("UITEST_SKIP_ONBOARDING", "UITEST_SEED_REPORTS")
+        app.tabBars.buttons["Settings"].tap()
+
+        let eraseButton = app.buttons["delete-all-local-data"]
+        for _ in 0..<6 {
+            if eraseButton.exists { break }
+            app.swipeUp()
+        }
+        XCTAssertTrue(eraseButton.waitForExistence(timeout: 5))
+        eraseButton.tap()
+        let confirmationButton = app.buttons["Delete All Data"]
+        XCTAssertTrue(confirmationButton.waitForExistence(timeout: 5))
+        XCTAssertFalse(app.otherElements["onboarding-screen"].exists)
+        confirmationButton.tap()
+        XCTAssertTrue(confirmationButton.waitForNonExistence(timeout: 5))
+
+        app.tabBars.buttons["Track"].tap()
+        XCTAssertTrue(app.staticTexts["No Projects Yet"].waitForExistence(timeout: 5))
+
+        app.terminate()
+        app.launchArguments = []
+        app.launch()
+        XCTAssertTrue(app.otherElements["onboarding-screen"].waitForExistence(timeout: 5))
+        app.buttons["dismiss-onboarding"].tap()
+        XCTAssertTrue(app.staticTexts["No Projects Yet"].waitForExistence(timeout: 5))
+    }
+
+    @MainActor
     func testSuccessfulArchiveRemovesProjectFromTrackButKeepsItManageable() {
         let app = launch("UITEST_SKIP_ONBOARDING", "UITEST_SEED_POPULATED")
         app.buttons["manage-projects"].tap()
@@ -378,6 +407,30 @@ final class WellSpentUITests: XCTestCase {
         XCTAssertEqual(
             relaunched.switches["show-project-names-lock-screen"].value as? String,
             "1"
+        )
+    }
+
+    @MainActor
+    func testSettingsShowsPrivacySupportAndOwnershipInformation() {
+        let app = launch("UITEST_SKIP_ONBOARDING")
+        app.tabBars.buttons["Settings"].tap()
+
+        let privacyPolicy = scrollToElement("privacy-policy-link", in: app)
+        XCTAssertTrue(privacyPolicy.waitForExistence(timeout: 5))
+        XCTAssertTrue(scrollToElement("support-link", in: app).waitForExistence(timeout: 5))
+        XCTAssertTrue(
+            scrollToElement("source-code-link", in: app).waitForExistence(timeout: 5)
+        )
+        XCTAssertEqual(
+            scrollToElement("app-version", in: app).label,
+            "Version, 0.1.0 (2)"
+        )
+        XCTAssertEqual(
+            scrollToElement("app-copyright", in: app).label,
+            "Copyright, © 2026 WellSpent contributors"
+        )
+        XCTAssertTrue(
+            scrollToElement("source-license", in: app).waitForExistence(timeout: 5)
         )
     }
 
@@ -520,5 +573,14 @@ final class WellSpentUITests: XCTestCase {
     @MainActor
     private func element(_ identifier: String, in app: XCUIApplication) -> XCUIElement {
         app.descendants(matching: .any)[identifier]
+    }
+
+    @MainActor
+    private func scrollToElement(_ identifier: String, in app: XCUIApplication) -> XCUIElement {
+        let target = element(identifier, in: app)
+        for _ in 0..<8 where !target.exists {
+            app.swipeUp()
+        }
+        return target
     }
 }

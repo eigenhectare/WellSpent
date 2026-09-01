@@ -13,6 +13,8 @@ Stop handoff, completion routing, foreground repair, and long-session recovery.
 The authoritative store is the versioned SwiftData v2 schema, with a tested
 lightweight migration from the oldest v1 store. Views invoke the
 project, timer, and session command boundaries rather than mutating records.
+The store remains on-device, explicitly opts out of device backups, and uses no
+account, server, analytics, tracking, or CloudKit synchronization.
 Reporting is a pure calendar-aware engine whose segments preserve source
 identity and handle local midnight, configurable weeks, daylight-saving days,
 active sessions, and fully counted overlaps.
@@ -29,3 +31,9 @@ Implementation contracts and scope boundaries are documented in
 release operations are captured in [BETA-TESTING.md](BETA-TESTING.md),
 [RELEASE-CANDIDATE-VALIDATION.md](RELEASE-CANDIDATE-VALIDATION.md), and
 [APP-STORE-RELEASE.md](APP-STORE-RELEASE.md).
+
+## License
+
+Copyright © 2026 WellSpent contributors.
+
+WellSpent is licensed under the [GNU Affero General Public License v3.0](LICENSE).

@@ -28,7 +28,7 @@ struct WellSpentApp: App {
                 )
             )
         } catch {
-            preconditionFailure("Unable to initialize the local data store: \(error)")
+            preconditionFailure("Unable to initialize the local data store.")
         }
     }
 
