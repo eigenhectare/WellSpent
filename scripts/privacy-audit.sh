@@ -25,7 +25,14 @@ readonly entitlements_files=(
     WellSpentWidgets/WellSpentWidgets.entitlements
 )
 
-if rg -n \
+search_swift_sources() {
+    local pattern="$1"
+    shift
+
+    find "$@" -type f -name '*.swift' -exec grep -nEH -- "${pattern}" {} +
+}
+
+if search_swift_sources \
     '(^|[^[:alnum:]_])(print|debugPrint|NSLog|os_log)[[:space:]]*\(|Logger[[:space:]]*\(' \
     "${production_paths[@]}"
 then
@@ -33,34 +40,31 @@ then
     exit 1
 fi
 
-if rg -n \
+if search_swift_sources \
     '(^import (Network|CFNetwork|WebKit|CloudKit|MetricKit|AdSupport|AppTrackingTransparency|AuthenticationServices|StoreKit)$|URLSession|NSURLSession|NSURLConnection|HTTPURLResponse|NW(Connection|PathMonitor|Listener|Browser)|(^|[^[:alnum:]_])(socket|connect|send|recv|getaddrinfo)[[:space:]]*\(|WKWebView|ASWebAuthenticationSession|registerForRemoteNotifications|UNUserNotificationCenter|push(TokenUpdates|ToStartToken)|pushType:[[:space:]]*\.(token|channel)|CKContainer|cloudKitDatabase:[[:space:]]*\.(automatic|private|public)|Analytics|Crashlytics|Sentry|Firebase|Telemetry|AppCenter|Datadog|NewRelic|Bugsnag|Instabug|Amplitude|Mixpanel|PostHog|Snowplow)' \
-    "${production_paths[@]}" \
-    --glob '*.swift'
+    "${production_paths[@]}"
 then
     echo "Privacy audit failed: unexpected network, tracking, or diagnostics API found." >&2
     exit 1
 fi
 
-if rg -n \
+if search_swift_sources \
     "(https?|wss?|ftp)://[^[:space:]\"']+" \
-    "${production_paths[@]}" \
-    --glob '*.swift'
+    "${production_paths[@]}"
 then
     echo "Privacy audit failed: hard-coded remote URL found in production source." >&2
     exit 1
 fi
 
-if rg -n \
-    '(fatalError|preconditionFailure|assertionFailure)[[:space:]]*\([^\n]*\\\(' \
-    "${production_paths[@]}" \
-    --glob '*.swift'
+if search_swift_sources \
+    '(fatalError|preconditionFailure|assertionFailure)[[:space:]]*\([^)]*\\\(' \
+    "${production_paths[@]}"
 then
     echo "Privacy audit failed: interpolated production crash/assertion message found." >&2
     exit 1
 fi
 
-if rg -n \
+if grep -nEH \
     '(XCRemoteSwiftPackageReference|repositoryURL[[:space:]]*=|packageReferences[[:space:]]*=)' \
     WellSpent.xcodeproj/project.pbxproj project.yml
 then
@@ -85,7 +89,7 @@ done
 
 for entitlements_file in "${entitlements_files[@]}"; do
     plutil -lint "${entitlements_file}" >/dev/null
-    if rg -n \
+    if grep -nEH \
         '(aps-environment|com\.apple\.developer\.icloud|com\.apple\.developer\.associated-domains|com\.apple\.developer\.networking|com\.apple\.developer\.healthkit|com\.apple\.developer\.usernotifications)' \
         "${entitlements_file}"
     then
@@ -129,7 +133,7 @@ if [[ -n "${app_bundle}" ]]; then
         plutil -lint "${bundled_manifest}" >/dev/null
     done
 
-    if find "${app_bundle}" -path '*/Frameworks/*' -type f -print -quit | rg -q .; then
+    if [[ -n "$(find "${app_bundle}" -path '*/Frameworks/*' -type f -print -quit)" ]]; then
         echo "Privacy audit failed: embedded runtime framework or library found." >&2
         exit 1
     fi
@@ -139,19 +143,19 @@ if [[ -n "${app_bundle}" ]]; then
             echo "Privacy audit failed: expected executable missing: ${binary}." >&2
             exit 1
         fi
-        if otool -L "${binary}" | rg -n \
+        if otool -L "${binary}" | grep -nE \
             '/(CFNetwork|Network|WebKit|CloudKit|MetricKit|AdSupport|AuthenticationServices|StoreKit)\.framework/'
         then
             echo "Privacy audit failed: prohibited framework linked by ${binary}." >&2
             exit 1
         fi
-        if nm -u "${binary}" | rg -n -i \
+        if nm -u "${binary}" | grep -nEi \
             '(URLSession|NSURLConnection|HTTPURLResponse|NWConnection|NWPathMonitor|CKContainer|WKWebView|registerForRemoteNotifications|pushTokenUpdates|pushToStartToken|Analytics|Crashlytics|Sentry|Firebase)'
         then
             echo "Privacy audit failed: prohibited egress symbol found in ${binary}." >&2
             exit 1
         fi
-        if strings -a "${binary}" | rg -n -i \
+        if strings -a "${binary}" | grep -nEi \
             '((https?|wss?|ftp)://|([0-9]{1,3}\.){3}[0-9]{1,3})'
         then
             echo "Privacy audit failed: remote URL or IP literal found in ${binary}." >&2

@@ -22,7 +22,7 @@ run_rejected_fixture() {
         exit 1
     fi
 
-    if ! rg -q "${expected_failure}" "${output_file}"; then
+    if ! grep -qF -- "${expected_failure}" "${output_file}"; then
         echo "Privacy audit regression failed: ${fixture_name} failed for the wrong reason." >&2
         cat "${output_file}" >&2
         exit 1
