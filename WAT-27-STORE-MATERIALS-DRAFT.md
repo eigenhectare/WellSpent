@@ -5,8 +5,8 @@ published or submission-ready.** Build 3's source-bound drafts remain
 visual-design evidence, but build 3 failed App Store processing and cannot be
 final submission evidence. Build 4's exact exported phone and Watch AppIcon
 catalogs pass binary integrity checks. Final build-4 capture acceptance,
-processed-icon visual sign-off, retention evidence, App Store Connect warnings
-and independent install review remain open.
+processed-icon visual sign-off, live-page review, retention evidence, App Store
+Connect warnings and independent install review remain open.
 
 ## Screenshot story and icon
 
@@ -236,6 +236,17 @@ and uninstall/unpair/backup cautions. The isolated clean commit is `3a9b9cb`
 Git credential is authenticated as an account without write access and the push
 was rejected with HTTP 403. Publish and visually review these exact pages using
 an authorized GitHub account before attaching their URLs to the submission.
+
+`scripts/watch-support-site-check.sh` subsequently passed that unchanged clean
+site commit. It verifies the committed source identity; required HTML, CSS, SVG,
+robots and sitemap files; canonical/stylesheet/favicon/internal links; Watch and
+support-contact disclosure on all three pages; the 11-question Watch-aware FAQ;
+and the privacy, Pending, Review Required, notification, backup, unpair and
+remote-erase boundaries. It rejects the obsolete iPhone-only retention and
+notification claims. Identifier-free evidence is retained at
+`.derivedData/WAT27-SupportSiteInspection1/summary.json`; the report explicitly
+records `publicationPerformed: false`. Live rendering and link response remain
+post-publication gates.
 
 ### Build-4 draft regeneration — September 4
 
