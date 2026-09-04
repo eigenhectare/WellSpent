@@ -207,3 +207,29 @@ Before submission: replace draft screenshots with exact-candidate captures,
 proof every asset after processing, reconcile privacy/support claims, have a
 reviewer follow these steps unaided, and verify there are no unresolved App Store
 Connect warnings. No public page, metadata field or review message has been sent.
+
+## Build-3 source binding and public-page correction — September 4
+
+The five preferred-size screens were regenerated after the approved build-3
+source checkpoint. The single capture test passed in 18.222 seconds and exported
+five opaque, unmodified 416 × 496 PNGs to
+`.derivedData/WAT27-Build3DraftAssets1/`. All five were visually inspected in
+story order—Projects, Time Goal, active metrics, Controls, saved summary—with no
+clipping, overlap or private data observed. The sanitized binding record at
+`.derivedData/WAT27-Build3AssetsCandidateBinding1/summary.json` ties their
+manifest to source commit `8ead2308259fa030abdd0d81ef3ba9ab0199c7b9` and the
+build-3 production-source manifest. It deliberately records
+`binaryCapture: false` and `submissionReady: false`: these are DEBUG isolated
+fictitious fixtures, not the installed exported/TestFlight binary.
+
+Review of the live privacy, support and root pages found stale iPhone-only claims,
+including no notification access and no paired exchange. The corresponding
+GitHub Pages repository was corrected locally to disclose the iPhone/Watch
+product, Watch Connectivity, local goal alerts, Pending/Review Required recovery,
+and uninstall/unpair/backup cautions. The isolated clean commit is `3a9b9cb`
+(`docs: add Apple Watch support and privacy guidance`) on branch
+`codex/wellspent-watch-support` in
+`.derivedData/WellSpentSupportSite`. Publication did not occur: the available
+Git credential is authenticated as an account without write access and the push
+was rejected with HTTP 403. Publish and visually review these exact pages using
+an authorized GitHub account before attaching their URLs to the submission.

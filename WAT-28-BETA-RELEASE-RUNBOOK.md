@@ -53,6 +53,16 @@ does not treat successful processing or an invitation as successful testing.
 > Do not perform uninstall, erase or unpair tests without a separately approved
 > dedicated dataset and recovery plan.
 
+### Build-3 beta package — September 4
+
+`.derivedData/WAT28-Build3BetaPackage1/` contains an identifier-free candidate
+ledger, `WhatToTest.txt`, and a concise operator README. It binds version 0.1.0
+(3) to source commit `8ead2308259fa030abdd0d81ef3ba9ab0199c7b9`, the clean
+381-test CI result, the four-component archive inspection and the source-bound
+draft-asset review. The ledger correctly records export, upload, processed-build
+confirmation and both tester cohorts as false. No invitation was sent and no
+external beta was created; those scopes remain separately gated.
+
 ### Repository beta-package integration — September 3
 
 `BETA-TESTING.md` now identifies a combined iPhone/Watch build, requires a new

@@ -301,18 +301,51 @@ with the final App Store Connect privacy answers before closing WAT-26.
 
 ## Candidate record and closure checklist
 
+### Approved build-3 candidate checkpoint — September 4
+
+The owner-approved source checkpoint is commit
+`8ead2308259fa030abdd0d81ef3ba9ab0199c7b9`, tree
+`91fba2b65df906240ded78df5313fc99c8dae968`, at version 0.1.0 (3).
+The clean source receipt is retained at
+`.derivedData/WAT26-Build3SourceReceipt1/summary.json`; its 142-file production
+manifest is
+`a008d2d0cbfbed0f06e8a85d50cc19777a9c8fa96c98dc64dab355c4f81d2bca`.
+
+The exact checkpoint passed all 13 CI stages and 381 tests with no failures,
+skips or expected failures. Same-run provenance is retained at
+`.derivedData/CI/run.RGIiBQ/source-product-provenance.json`; its unsigned product
+manifest is
+`9b166d718be8af5c2b707c85397e9d927236cf32d319c3d3c4f104a3cc52dd28`.
+
+The joint archive `.derivedData/WAT26-Build3Candidate1.xcarchive` was created at
+2026-09-04T11:48:13Z. Strict inspection passed all four 0.1.0 (3) components:
+each signature and exact architecture/UUID dSYM pairing was checked, the iPhone
+products contain arm64, and the Watch products contain arm64_32 and arm64. The
+archive product manifest is
+`41871fef8b96022660696c0f8a51f9045a48d9c21b5565ef3df1d2e20eb51322`;
+identifier-free evidence is retained at
+`.derivedData/WAT26-Build3ArchiveInspection1/summary.json` and
+`.derivedData/WAT26-Build3Candidate1-Sanitized/summary.json`.
+
+Command-line App Store export stopped without changing the archive because this
+shell has no Xcode Apple account, Apple Distribution certificate, or App Store
+profiles for the Watch products. The next safe step is the authenticated Xcode
+Accounts/Organizer workflow on an unlocked Mac, using this existing archive and
+without rebuilding. Export, the candidate privacy report, upload validation,
+processing, candidate installation and remaining physical gates are still open.
+
 For the eventual candidate, record actual values rather than pre-filling passes:
 
-- [ ] Approved source commit, clean tree and full CI evidence, including the
-  final WAT-23 changes; all WAT-24/25 gates resolved.
+- [x] Approved source commit, clean tree and full CI evidence, including the
+  final WAT-23 changes. Remaining WAT-24/25 physical gates are tracked separately.
 - [x] Current external build history identified in authenticated App Store
   Connect on September 4, 2026: version 0.1.0 contains builds 1 and 2 only;
   build 2 is attached to the current Waiting for Review submission. The owner
   approved 0.1.0 (3), and the shared working-source build number was incremented
   once for this upload.
-- [ ] Signed joint archive path/date/toolchain, all four IDs/versions, profile
-  and signing observations, product/dSYM UUIDs and SHA-256 inventories retained.
-- [ ] Run signed-archive inspection; reconcile exported distribution signatures,
+- [x] Signed joint archive path/date, all four IDs/versions, signatures,
+  product/dSYM UUIDs and SHA-256 inventories retained in sanitized evidence.
+- [ ] Export the unchanged archive and reconcile distribution signatures,
   entitlements, profiles, validity, architectures and deployment support.
 - [ ] Generate Xcode's privacy report; match required-reason APIs, manifests,
   optional local notifications and App Store privacy answers to this candidate.
