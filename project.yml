@@ -4,10 +4,12 @@ options:
   bundleIdPrefix: com.drewreilly.wellspent
   deploymentTarget:
     iOS: "26.0"
+    watchOS: "26.0"
   createIntermediateGroups: true
   defaultConfig: Debug
   groupSortPosition: top
   minimumXcodeGenVersion: 2.45.4
+  developmentLanguage: en
 
 configs:
   Debug: debug
@@ -19,7 +21,7 @@ configFiles:
 
 settings:
   base:
-    CURRENT_PROJECT_VERSION: 2
+    CURRENT_PROJECT_VERSION: 3
     DEVELOPMENT_TEAM: 68LEY459MW
     MARKETING_VERSION: 0.1.0
     SWIFT_VERSION: 6.0
@@ -35,7 +37,13 @@ targets:
     dependencies:
       - target: WellSpentShared
         embed: false
+      - target: WellSpentWatchContracts
+        embed: false
       - target: WellSpentWidgets
+      - target: WellSpentWatch
+        embed: true
+        link: false
+        removeHeaders: true
     info:
       path: WellSpentApp/Resources/Info.plist
       properties:
@@ -46,6 +54,8 @@ targets:
         LSApplicationCategoryType: public.app-category.productivity
         LSRequiresIPhoneOS: true
         NSSupportsLiveActivities: true
+        NSUserActivityTypes:
+          - com.drewreilly.wellspent.review
         UIApplicationSupportsIndirectInputEvents: true
         WellSpentPrivacyPolicyURL: "https://wellspent-holdings.github.io/privacy/"
         WellSpentSourceCodeURL: "https://github.com/eigenhectare/WellSpent"
@@ -86,6 +96,44 @@ targets:
         GENERATE_INFOPLIST_FILE: true
         MACH_O_TYPE: staticlib
         SKIP_INSTALL: true
+
+  WellSpentWatchContracts:
+    type: framework
+    platform: auto
+    supportedDestinations:
+      - iOS
+      - watchOS
+    sources:
+      - path: WellSpentWatchContracts
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.drewreilly.wellspent.watchcontracts
+        PRODUCT_NAME: WellSpentWatchContracts
+        "TARGETED_DEVICE_FAMILY[sdk=watch*]": 4
+        DEFINES_MODULE: true
+        GENERATE_INFOPLIST_FILE: true
+        MACH_O_TYPE: staticlib
+        SKIP_INSTALL: true
+
+  WellSpentWatchStore:
+    type: framework
+    platform: watchOS
+    deploymentTarget: "26.0"
+    sources:
+      - path: WellSpentWatchStore
+    dependencies:
+      - target: WellSpentWatchContracts
+        embed: false
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.drewreilly.wellspent.watchstore
+        PRODUCT_NAME: WellSpentWatchStore
+        APPLICATION_EXTENSION_API_ONLY: true
+        DEFINES_MODULE: true
+        GENERATE_INFOPLIST_FILE: true
+        MACH_O_TYPE: staticlib
+        SKIP_INSTALL: true
+        TARGETED_DEVICE_FAMILY: 4
 
   WellSpentWidgets:
     type: app-extension
@@ -144,7 +192,251 @@ targets:
         GENERATE_INFOPLIST_FILE: true
         TEST_TARGET_NAME: WellSpent
 
+  WellSpentWatch:
+    type: application
+    platform: watchOS
+    deploymentTarget: "26.0"
+    sources:
+      - path: WellSpentWatch
+      - path: WellSpentWatchLocalization
+      - path: WellSpentWatchIntents
+      - path: WellSpentWatchWidgets/WellSpentWatchStatusView.swift
+    dependencies:
+      - target: WellSpentWatchContracts
+        embed: false
+      - target: WellSpentWatchStore
+        embed: false
+      - target: WellSpentWatchWidgets
+    info:
+      path: WellSpentWatch/Resources/Info.plist
+      properties:
+        CFBundleDisplayName: WellSpent
+        CFBundleShortVersionString: "$(MARKETING_VERSION)"
+        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
+        ITSAppUsesNonExemptEncryption: false
+        WKApplication: true
+        WKSupportsLiveActivityLaunchAttributeTypes: []
+        CFBundleURLTypes:
+          - CFBundleURLName: com.drewreilly.wellspent.watch.navigation
+            CFBundleURLSchemes:
+              - wellspent-watch
+              - wellspent
+        WKCompanionAppBundleIdentifier: com.drewreilly.wellspent
+        WKRunsIndependentlyOfCompanionApp: false
+    settings:
+      base:
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        PRODUCT_BUNDLE_IDENTIFIER: com.drewreilly.wellspent.watchkitapp
+        PRODUCT_NAME: WellSpentWatch
+        SWIFT_EMIT_LOC_STRINGS: true
+        LOCALIZATION_PREFERS_STRING_CATALOGS: true
+        CODE_SIGN_STYLE: Automatic
+        CODE_SIGN_ENTITLEMENTS: WellSpentWatch/Resources/WellSpentWatch.entitlements
+        GENERATE_INFOPLIST_FILE: false
+        TARGETED_DEVICE_FAMILY: 4
+
+  WellSpentWatchWidgets:
+    type: app-extension
+    platform: watchOS
+    deploymentTarget: "26.0"
+    sources:
+      - path: WellSpentWatchWidgets
+      - path: WellSpentWatchIntents
+      - path: WellSpentWatchLocalization
+    dependencies:
+      - target: WellSpentWatchStore
+        embed: false
+    info:
+      path: WellSpentWatchWidgets/Info.plist
+      properties:
+        CFBundleDisplayName: WellSpent
+        CFBundleShortVersionString: "$(MARKETING_VERSION)"
+        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.drewreilly.wellspent.watchkitapp.widgets
+        PRODUCT_NAME: WellSpentWatchWidgets
+        SWIFT_EMIT_LOC_STRINGS: true
+        LOCALIZATION_PREFERS_STRING_CATALOGS: true
+        APPLICATION_EXTENSION_API_ONLY: true
+        CODE_SIGN_STYLE: Automatic
+        CODE_SIGN_ENTITLEMENTS: WellSpentWatchWidgets/WellSpentWatchWidgets.entitlements
+        GENERATE_INFOPLIST_FILE: false
+        SKIP_INSTALL: true
+        TARGETED_DEVICE_FAMILY: 4
+
+  WellSpentWatchTests:
+    type: bundle.unit-test
+    platform: watchOS
+    deploymentTarget: "26.0"
+    sources:
+      - path: WellSpentWatchTests
+      - path: WellSpentWatchContractTests
+    dependencies:
+      - target: WellSpentWatch
+      - target: WellSpentWatchContracts
+      - target: WellSpentWatchStore
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.drewreilly.wellspent.watchkitapp.tests
+        GENERATE_INFOPLIST_FILE: true
+        TARGETED_DEVICE_FAMILY: 4
+
+  WellSpentWatchContractTests:
+    type: bundle.unit-test
+    platform: auto
+    supportedDestinations:
+      - iOS
+      - watchOS
+    sources:
+      - path: WellSpentWatchContractTests
+    dependencies:
+      - target: WellSpentWatchContracts
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.drewreilly.wellspent.watchcontracts.tests
+        "TARGETED_DEVICE_FAMILY[sdk=watch*]": 4
+        GENERATE_INFOPLIST_FILE: true
+        TEST_HOST: ""
+
+  WellSpentWatchUITests:
+    type: bundle.ui-testing
+    platform: watchOS
+    deploymentTarget: "26.0"
+    sources:
+      - path: WellSpentWatchUITests
+    dependencies:
+      - target: WellSpentWatch
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.drewreilly.wellspent.watchkitapp.uitests
+        GENERATE_INFOPLIST_FILE: true
+        TARGETED_DEVICE_FAMILY: 4
+        TEST_TARGET_NAME: WellSpentWatch
+
+  WellSpentConnectivitySpikePhone:
+    type: application
+    platform: iOS
+    deploymentTarget: "26.0"
+    sources:
+      - path: Spikes/WatchConnectivity/Shared
+      - path: Spikes/WatchConnectivity/Phone
+    dependencies:
+      - target: WellSpentConnectivitySpikeWatch
+        embed: true
+        link: false
+        removeHeaders: true
+    info:
+      path: Spikes/WatchConnectivity/Phone/Info.plist
+      properties:
+        CFBundleDisplayName: WC Probe
+        CFBundleShortVersionString: "1.0"
+        CFBundleVersion: "2"
+        ITSAppUsesNonExemptEncryption: false
+        LSRequiresIPhoneOS: true
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.drewreilly.wellspent.connectivityspike
+        PRODUCT_NAME: WellSpentConnectivitySpikePhone
+        CODE_SIGN_STYLE: Automatic
+        ENABLE_DEBUG_DYLIB: false
+        GENERATE_INFOPLIST_FILE: false
+        TARGETED_DEVICE_FAMILY: 1
+
+  WellSpentConnectivitySpikeWatch:
+    type: application
+    platform: watchOS
+    deploymentTarget: "26.0"
+    sources:
+      - path: Spikes/WatchConnectivity/Shared
+      - path: Spikes/WatchConnectivity/Watch
+    info:
+      path: Spikes/WatchConnectivity/Watch/Info.plist
+      properties:
+        CFBundleDisplayName: WC Probe
+        CFBundleShortVersionString: "1.0"
+        CFBundleVersion: "2"
+        ITSAppUsesNonExemptEncryption: false
+        WKApplication: true
+        WKCompanionAppBundleIdentifier: com.drewreilly.wellspent.connectivityspike
+        WKRunsIndependentlyOfCompanionApp: false
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.drewreilly.wellspent.connectivityspike.watchkitapp
+        PRODUCT_NAME: WellSpentConnectivitySpikeWatch
+        CODE_SIGN_STYLE: Automatic
+        GENERATE_INFOPLIST_FILE: false
+        TARGETED_DEVICE_FAMILY: 4
+
+  WellSpentConnectivitySpikeTests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: "26.0"
+    sources:
+      - path: Spikes/WatchConnectivity/Shared/SpikeProtocol.swift
+      - path: Spikes/WatchConnectivity/Shared/SpikePersistence.swift
+      - path: Spikes/WatchConnectivity/Shared/SpikeReducers.swift
+      - path: Spikes/WatchConnectivity/Tests
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.drewreilly.wellspent.connectivityspike.tests
+        GENERATE_INFOPLIST_FILE: true
+        TEST_HOST: ""
+
+  WellSpentConnectivitySpikePhoneUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    deploymentTarget: "26.0"
+    sources:
+      - path: Spikes/WatchConnectivity/UITests/ConnectivitySpikePhoneUITests.swift
+    dependencies:
+      - target: WellSpentConnectivitySpikePhone
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.drewreilly.wellspent.connectivityspike.phoneuitests
+        GENERATE_INFOPLIST_FILE: true
+        TEST_TARGET_NAME: WellSpentConnectivitySpikePhone
+
+  WellSpentConnectivitySpikeWatchUITests:
+    type: bundle.ui-testing
+    platform: watchOS
+    deploymentTarget: "26.0"
+    sources:
+      - path: Spikes/WatchConnectivity/UITests/ConnectivitySpikeWatchUITests.swift
+    dependencies:
+      - target: WellSpentConnectivitySpikeWatch
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.drewreilly.wellspent.connectivityspike.watchkitapp.uitests
+        GENERATE_INFOPLIST_FILE: true
+        TEST_TARGET_NAME: WellSpentConnectivitySpikeWatch
+
 schemes:
+  WellSpentWatchContracts:
+    build:
+      targets:
+        WellSpentWatchContracts: all
+        WellSpentWatchContractTests: [test]
+    run:
+      config: Debug
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    test:
+      config: Debug
+      gatherCoverageData: true
+      targets:
+        - name: WellSpentWatchContractTests
+          parallelizable: false
+    archive:
+      config: Release
+
   WellSpent:
     build:
       targets:
@@ -174,6 +466,85 @@ schemes:
         WellSpentWidgets: all
     run:
       config: Debug
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
+
+  WellSpentWatch:
+    build:
+      targets:
+        WellSpentWatch: all
+        WellSpentWatchTests: [test]
+        WellSpentWatchUITests: [test]
+    run:
+      config: Debug
+      executable: WellSpentWatch
+    test:
+      config: Debug
+      gatherCoverageData: true
+      targets:
+        - name: WellSpentWatchTests
+          parallelizable: false
+        - name: WellSpentWatchUITests
+          parallelizable: false
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
+
+  WellSpentWatchWidgets:
+    build:
+      targets:
+        WellSpentWatchWidgets: all
+    run:
+      config: Debug
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
+
+  WellSpentConnectivitySpikePhone:
+    build:
+      targets:
+        WellSpentConnectivitySpikePhone: all
+        WellSpentConnectivitySpikeTests: [test]
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - name: WellSpentConnectivitySpikeTests
+          parallelizable: false
+        - name: WellSpentConnectivitySpikePhoneUITests
+          parallelizable: false
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
+
+  WellSpentConnectivitySpikeWatch:
+    build:
+      targets:
+        WellSpentConnectivitySpikeWatch: all
+        WellSpentConnectivitySpikePhone: [run]
+        WellSpentConnectivitySpikeWatchUITests: [test]
+    run:
+      config: Debug
+      executable: WellSpentConnectivitySpikeWatch
+    test:
+      config: Debug
+      targets:
+        - name: WellSpentConnectivitySpikeWatchUITests
+          parallelizable: false
     profile:
       config: Release
     analyze:

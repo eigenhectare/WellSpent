@@ -26,13 +26,10 @@ cleanup() {
 trap cleanup EXIT
 
 mkdir -p "${source_repository}"
-rsync -a \
-    --exclude '.git/' \
-    --exclude '.derivedData/' \
-    --exclude 'DerivedData/' \
-    --exclude 'xcuserdata/' \
-    "${repository_root}/" \
-    "${source_repository}/"
+# Copy the current source state, including untracked task work, but never local
+# ignored credentials, build products, simulator data, or signing files.
+git -C "${repository_root}" ls-files --cached --others --exclude-standard -z \
+    | rsync -a --from0 --files-from=- "${repository_root}/" "${source_repository}/"
 
 git -C "${source_repository}" init --quiet
 git -C "${source_repository}" add --all

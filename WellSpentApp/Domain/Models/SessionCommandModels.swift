@@ -26,4 +26,5 @@ enum SessionCommandError: Error, Equatable, Sendable {
     case activeSessionReviewRequired(activeSessionIDs: [UUID])
     case deletionRequiresConfirmation
     case activeSessionCannotBeDeleted(UUID)
+    case timerRunCommandRequired(UUID)
 }

@@ -5,7 +5,7 @@ enum WellSpentPersistence {
     static let storeName = "WellSpentLocal"
 
     static var schema: Schema {
-        Schema(versionedSchema: WellSpentSchemaV2.self)
+        Schema(versionedSchema: WellSpentSchemaV6.self)
     }
 
     static func makePersistentContainer(storeURL: URL? = nil) throws -> ModelContainer {
@@ -111,8 +111,55 @@ final class WellSpentLocalDataResetService {
 
     func deleteAllUserData() throws {
         do {
+            let resets = try context.fetch(FetchDescriptor<PhoneDataResetRecord>())
+            let generations =
+                try context.fetch(FetchDescriptor<PhoneSyncMetadataRecord>()).map(\.canonicalGeneration)
+                + resets.map(\.minimumAcceptedGeneration)
+            let lastGeneration = generations.max() ?? 0
+            guard lastGeneration < Int64.max - 1 else { throw CocoaError(.validationNumberTooLarge) }
+            for reset in resets { context.delete(reset) }
+            // Keep only a number, never user content or old device IDs. It prevents
+            // delayed pre-erase envelopes from restoring erased history.
+            context.insert(PhoneDataResetRecord(minimumAcceptedGeneration: lastGeneration + 1))
+            for tombstone in try context.fetch(FetchDescriptor<PhoneEntityTombstoneRecord>()) {
+                context.delete(tombstone)
+            }
+            for mutation in try context.fetch(FetchDescriptor<PhoneConflictMutationRecord>()) {
+                context.delete(mutation)
+            }
+            for conflict in try context.fetch(FetchDescriptor<PhoneTimerConflictRecord>()) {
+                context.delete(conflict)
+            }
+            for snapshot in try context.fetch(FetchDescriptor<PhoneCanonicalSnapshotRecord>()) {
+                context.delete(snapshot)
+            }
+            for receipt in try context.fetch(FetchDescriptor<PhoneSnapshotReceiptRecord>()) {
+                context.delete(receipt)
+            }
+            for acknowledgement in try context.fetch(
+                FetchDescriptor<PhoneAcknowledgementOutboxRecord>()
+            ) {
+                context.delete(acknowledgement)
+            }
+            for inbox in try context.fetch(FetchDescriptor<PhoneMutationInboxRecord>()) {
+                context.delete(inbox)
+            }
+            for metadata in try context.fetch(FetchDescriptor<PhoneSyncMetadataRecord>()) {
+                context.delete(metadata)
+            }
+            for assignment in try context.fetch(
+                FetchDescriptor<TimerRunTagAssignmentRecord>()
+            ) {
+                context.delete(assignment)
+            }
             for assignment in try context.fetch(FetchDescriptor<SessionTagAssignmentRecord>()) {
                 context.delete(assignment)
+            }
+            for run in try context.fetch(FetchDescriptor<TimerRunRecord>()) {
+                context.delete(run)
+            }
+            for origin in try context.fetch(FetchDescriptor<TimerOriginRecord>()) {
+                context.delete(origin)
             }
             for tag in try context.fetch(FetchDescriptor<SessionTagRecord>()) {
                 context.delete(tag)

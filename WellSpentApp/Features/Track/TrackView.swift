@@ -9,14 +9,41 @@ struct TrackView: View {
     var body: some View {
         NavigationStack {
             List {
-                if let activeSession = model.activeSession,
-                    let project = model.project(id: activeSession.projectID)
+                if let conflict = model.pendingWatchConflicts.first {
+                    Section {
+                        Label("Timer versions need review", systemImage: "exclamationmark.bubble.fill")
+                            .font(.headline)
+                        Text("Both versions are preserved. Choose which time should count before continuing.")
+                        Button("Review Preserved Time") {
+                            model.openConflictReview(id: conflict.snapshot.conflictID)
+                        }
+                        .accessibilityIdentifier("review-watch-conflict")
+                    }
+                } else if model.watchSyncOverview.hasWatchHistory {
+                    Section {
+                        Label(model.watchSyncStatusText, systemImage: "applewatch")
+                            .font(.footnote)
+                            .accessibilityIdentifier("phone-watch-sync-status")
+                    }
+                }
+                if let activeRun = model.activeRun,
+                    let project = model.project(id: activeRun.projectID)
                 {
-                    Section("Active timer") {
+                    Section(activeRun.state == .paused ? "Paused timer" : "Active timer") {
                         ActiveTimerCard(
                             project: project,
-                            session: activeSession,
-                            isStopping: model.isPerformingTimerCommand,
+                            run: activeRun,
+                            isBusy: model.isPerformingTimerCommand || model.timerCommandsBlocked,
+                            isWatchOrigin: model.isWatchOrigin(activeRun),
+                            pauseOrResume: {
+                                Task {
+                                    if activeRun.state == .paused {
+                                        await model.resumeActiveTimer()
+                                    } else {
+                                        await model.pauseActiveTimer()
+                                    }
+                                }
+                            },
                             stop: {
                                 Task { await model.stopActiveTimer() }
                             }
@@ -49,8 +76,8 @@ struct TrackView: View {
                         ForEach(model.activeProjects) { project in
                             ProjectTimerRow(
                                 project: project,
-                                activeSession: model.activeSession,
-                                isBusy: model.isPerformingTimerCommand
+                                activeRun: model.activeRun,
+                                isBusy: model.isPerformingTimerCommand || model.timerCommandsBlocked
                             ) {
                                 Task { await model.startOrSwitch(to: project.id) }
                             }
@@ -105,7 +132,7 @@ struct TrackView: View {
     }
 
     private var projectInstruction: String {
-        if model.activeSession != nil, model.activeProjects.count > 1 {
+        if model.activeRun != nil, model.activeProjects.count > 1 {
             "Tap another project to switch at one exact timestamp."
         } else {
             "Tap once to start. Only one timer runs at a time."
@@ -115,11 +142,11 @@ struct TrackView: View {
 
 private struct ProjectTimerRow: View {
     let project: ProjectSnapshot
-    let activeSession: TimeSessionSnapshot?
+    let activeRun: TimerRunSnapshot?
     let isBusy: Bool
     let action: () -> Void
 
-    private var isActive: Bool { activeSession?.projectID == project.id }
+    private var isActive: Bool { activeRun?.projectID == project.id }
 
     var body: some View {
         Button(action: action) {
@@ -133,9 +160,13 @@ private struct ProjectTimerRow: View {
                         .font(isActive ? .headline : .body)
                         .foregroundStyle(.primary)
                     if isActive {
-                        Label("Active", systemImage: "checkmark.circle.fill")
-                            .font(.caption.weight(.semibold))
-                            .foregroundStyle(.blue)
+                        Label(
+                            activeRun?.state == .paused ? "Paused" : "Active",
+                            systemImage: activeRun?.state == .paused
+                                ? "pause.circle.fill" : "checkmark.circle.fill"
+                        )
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(.blue)
                     }
                 }
                 Spacer()
@@ -155,47 +186,63 @@ private struct ProjectTimerRow: View {
     }
 
     private var actionTitle: String {
-        if isActive { return "Running" }
-        return activeSession == nil ? "Start" : "Switch"
+        if isActive { return activeRun?.state == .paused ? "Resume" : "Running" }
+        return activeRun == nil ? "Start" : "Switch"
     }
 
     private var accessibilityLabel: String {
-        if isActive { return "\(project.displayName), active timer" }
-        return activeSession == nil
+        if isActive {
+            return activeRun?.state == .paused
+                ? "Resume \(project.displayName) timer"
+                : "\(project.displayName), active timer"
+        }
+        return activeRun == nil
             ? "Start \(project.displayName) timer"
             : "Switch timer to \(project.displayName)"
     }
 
     private var accessibilityHint: String {
-        if isActive { return "Currently running." }
-        if activeSession == nil { return "Only one timer runs at a time." }
+        if isActive {
+            return activeRun?.state == .paused
+                ? "Continues the same timer with a new counted segment."
+                : "Currently running."
+        }
+        if activeRun == nil { return "Only one timer runs at a time." }
         return "Ends the current session and starts this project at the same timestamp."
     }
 }
 
 private struct ActiveTimerCard: View {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     let project: ProjectSnapshot
-    let session: TimeSessionSnapshot
-    let isStopping: Bool
+    let run: TimerRunSnapshot
+    let isBusy: Bool
+    let isWatchOrigin: Bool
+    let pauseOrResume: () -> Void
     let stop: () -> Void
 
     var body: some View {
         TimelineView(.periodic(from: .now, by: 1)) { context in
-            let elapsed = max(0, context.date.timeIntervalSince(session.startAt))
+            let elapsed = run.countedDuration(at: context.date)
             VStack(alignment: .leading, spacing: 16) {
                 HStack {
                     VStack(alignment: .leading, spacing: 4) {
                         HStack(alignment: .firstTextBaseline, spacing: 6) {
-                            Image(systemName: "timer")
+                            Image(systemName: run.state == .paused ? "pause.circle" : "timer")
                                 .foregroundStyle(.blue)
                                 .accessibilityHidden(true)
-                            Text("Active")
+                            Text(run.state == .paused ? "Paused" : "Active")
                                 .foregroundStyle(.primary)
                                 .fixedSize(horizontal: false, vertical: true)
                         }
                         .font(.caption.weight(.semibold))
                         Text(project.displayName)
                             .font(.title2.bold())
+                        if isWatchOrigin {
+                            Label("Started on Apple Watch", systemImage: "applewatch")
+                                .font(.caption).foregroundStyle(.secondary)
+                                .accessibilityIdentifier("timer-watch-origin")
+                        }
                     }
                     Spacer()
                     Circle()
@@ -212,23 +259,50 @@ private struct ActiveTimerCard: View {
                     .accessibilityLabel("Elapsed \(DurationPresentation.accessibility(elapsed))")
                     .accessibilityIdentifier("active-elapsed-time")
 
-                Button(role: .destructive, action: stop) {
-                    HStack(spacing: 8) {
-                        Image(systemName: "stop.fill")
-                        Text(isStopping ? "Stopping…" : "Stop")
+                let controlsLayout =
+                    dynamicTypeSize.isAccessibilitySize
+                    ? AnyLayout(VStackLayout(spacing: 12))
+                    : AnyLayout(HStackLayout(spacing: 12))
+                controlsLayout {
+                    Button(action: pauseOrResume) {
+                        HStack(spacing: 8) {
+                            Image(systemName: run.state == .paused ? "play.fill" : "pause.fill")
+                            Text(run.state == .paused ? "Resume" : "Pause")
+                        }
+                        .fixedSize(horizontal: false, vertical: true)
+                        .padding(.vertical, 8)
+                        .frame(maxWidth: .infinity, minHeight: 44)
+                        .accessibilityHidden(true)
                     }
-                    .fixedSize(horizontal: false, vertical: true)
-                    .padding(.vertical, 8)
-                    .frame(maxWidth: .infinity, minHeight: 44)
-                    .accessibilityHidden(true)
+                    .buttonStyle(.bordered)
+                    .tint(.primary)
+                    .disabled(isBusy)
+                    .accessibilityLabel(run.state == .paused ? "Resume timer" : "Pause timer")
+                    .accessibilityHint(
+                        run.state == .paused ? "Begins a new counted segment." : "Stops counting until you resume."
+                    )
+                    .accessibilityIdentifier(
+                        run.state == .paused ? "resume-active-timer" : "pause-active-timer"
+                    )
+
+                    Button(role: .destructive, action: stop) {
+                        HStack(spacing: 8) {
+                            Image(systemName: "stop.fill")
+                            Text(isBusy ? "Saving…" : "Stop")
+                        }
+                        .fixedSize(horizontal: false, vertical: true)
+                        .padding(.vertical, 8)
+                        .frame(maxWidth: .infinity, minHeight: 44)
+                        .accessibilityHidden(true)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(Color(red: 0.62, green: 0.02, blue: 0.06))
+                    .disabled(isBusy)
+                    .accessibilityLabel(
+                        "Stop \(project.displayName) timer, \(DurationPresentation.accessibility(elapsed)) elapsed"
+                    )
+                    .accessibilityIdentifier("stop-active-timer")
                 }
-                .buttonStyle(.borderedProminent)
-                .tint(Color(red: 0.62, green: 0.02, blue: 0.06))
-                .disabled(isStopping)
-                .accessibilityLabel(
-                    "Stop \(project.displayName) timer, \(DurationPresentation.accessibility(elapsed)) elapsed"
-                )
-                .accessibilityIdentifier("stop-active-timer")
             }
             .padding()
             .background(Color.blue.opacity(0.1), in: RoundedRectangle(cornerRadius: 18))

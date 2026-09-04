@@ -16,5 +16,13 @@ xcrun swift-format lint \
     WellSpentApp \
     WellSpentShared \
     WellSpentWidgets \
+    WellSpentWatch \
+    WellSpentWatchContracts \
+    WellSpentWatchIntents \
+    WellSpentWatchContractTests \
+    WellSpentWatchStore \
+    WellSpentWatchWidgets \
     WellSpentTests \
-    WellSpentUITests
+    WellSpentUITests \
+    WellSpentWatchTests \
+    WellSpentWatchUITests

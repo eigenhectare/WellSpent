@@ -65,6 +65,25 @@ final class WellSpentUITests: XCTestCase {
     }
 
     @MainActor
+    func testPauseAndResumeKeepOneTimerRunVisible() {
+        let app = launch("UITEST_SKIP_ONBOARDING", "UITEST_SEED_ACTIVE")
+        let pause = app.buttons["pause-active-timer"]
+        XCTAssertTrue(pause.waitForExistence(timeout: 5))
+
+        pause.tap()
+
+        let resume = app.buttons["resume-active-timer"]
+        XCTAssertTrue(resume.waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["Paused"].firstMatch.exists)
+        XCTAssertTrue(element("active-timer-card", in: app).exists)
+
+        resume.tap()
+
+        XCTAssertTrue(app.buttons["pause-active-timer"].waitForExistence(timeout: 5))
+        XCTAssertTrue(element("active-timer-card", in: app).exists)
+    }
+
+    @MainActor
     func testStartFailureNeverShowsFalseActiveState() {
         let app = launch(
             "UITEST_SKIP_ONBOARDING",
@@ -101,6 +120,8 @@ final class WellSpentUITests: XCTestCase {
         XCTAssertTrue(app.otherElements["session-completion-screen"].waitForExistence(timeout: 5))
 
         let note = app.textViews["completion-note"]
+        for _ in 0..<6 where !note.isHittable { app.swipeUp() }
+        XCTAssertTrue(note.isHittable)
         note.tap()
         note.typeText("Previous-session handoff")
         app.buttons["save-completion-note"].tap()
@@ -302,9 +323,7 @@ final class WellSpentUITests: XCTestCase {
         XCTAssertFalse(app.otherElements["onboarding-screen"].exists)
         confirmationButton.tap()
         XCTAssertTrue(confirmationButton.waitForNonExistence(timeout: 5))
-
-        app.tabBars.buttons["Track"].tap()
-        XCTAssertTrue(app.staticTexts["No Projects Yet"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.otherElements["onboarding-screen"].waitForExistence(timeout: 5))
 
         app.terminate()
         app.launchArguments = []

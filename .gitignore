@@ -11,6 +11,7 @@ xcuserdata/
 build/
 DerivedData/
 .derivedData/
+.derived-data/
 *.dSYM
 *.dSYM.zip
 *.ipa
@@ -43,3 +44,11 @@ playground.xcworkspace
 # Internal development documentation
 *.md
 !README.md
+!ACCESSIBILITY.md
+!APP-STORE-RELEASE.md
+!BETA-TESTING.md
+!PRIVACY.md
+!SUPPORT.md
+!APPLE-WATCH-PLAN.md
+!WATCH-TESTING-GUIDE.md
+!WAT-*.md

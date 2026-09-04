@@ -23,6 +23,56 @@ import WellSpentShared
 
             let context = ModelContext(modelContainer)
             if arguments.contains("UITEST_RESET_STORE") {
+                for reset in try context.fetch(FetchDescriptor<PhoneDataResetRecord>()) {
+                    context.delete(reset)
+                }
+                for tombstone in try context.fetch(
+                    FetchDescriptor<PhoneEntityTombstoneRecord>()
+                ) {
+                    context.delete(tombstone)
+                }
+                for mutation in try context.fetch(
+                    FetchDescriptor<PhoneConflictMutationRecord>()
+                ) {
+                    context.delete(mutation)
+                }
+                for conflict in try context.fetch(
+                    FetchDescriptor<PhoneTimerConflictRecord>()
+                ) {
+                    context.delete(conflict)
+                }
+                for snapshot in try context.fetch(
+                    FetchDescriptor<PhoneCanonicalSnapshotRecord>()
+                ) {
+                    context.delete(snapshot)
+                }
+                for receipt in try context.fetch(
+                    FetchDescriptor<PhoneSnapshotReceiptRecord>()
+                ) {
+                    context.delete(receipt)
+                }
+                for acknowledgement in try context.fetch(
+                    FetchDescriptor<PhoneAcknowledgementOutboxRecord>()
+                ) {
+                    context.delete(acknowledgement)
+                }
+                for inbox in try context.fetch(FetchDescriptor<PhoneMutationInboxRecord>()) {
+                    context.delete(inbox)
+                }
+                for metadata in try context.fetch(FetchDescriptor<PhoneSyncMetadataRecord>()) {
+                    context.delete(metadata)
+                }
+                for assignment in try context.fetch(
+                    FetchDescriptor<TimerRunTagAssignmentRecord>()
+                ) {
+                    context.delete(assignment)
+                }
+                for run in try context.fetch(FetchDescriptor<TimerRunRecord>()) {
+                    context.delete(run)
+                }
+                for origin in try context.fetch(FetchDescriptor<TimerOriginRecord>()) {
+                    context.delete(origin)
+                }
                 for assignment in try context.fetch(FetchDescriptor<SessionTagAssignmentRecord>()) {
                     context.delete(assignment)
                 }
@@ -58,6 +108,7 @@ import WellSpentShared
                 || arguments.contains("UITEST_SEED_COMPLETION")
                 || arguments.contains("UITEST_SEED_APP_STORE")
                 || arguments.contains("UITEST_SEED_APP_STORE_ACTIVE")
+                || arguments.contains(where: { $0.hasPrefix("UITEST_SEED_WATCH_") })
             {
                 try seed(into: context, arguments: arguments)
             }
@@ -112,27 +163,21 @@ import WellSpentShared
                     arguments.contains("UITEST_SEED_ACTIVE_LONG")
                     ? 9 * 3_600
                     : 3_661
-                context.insert(
-                    TimeSessionRecord(
-                        projectID: projectOneID,
-                        source: .timer,
-                        startAt: now.addingTimeInterval(-elapsed),
-                        startTimeZoneID: TimeZone.current.identifier,
-                        createdAt: now.addingTimeInterval(-elapsed),
-                        updatedAt: now.addingTimeInterval(-elapsed)
-                    )
+                insertActiveRun(
+                    into: context,
+                    runID: UUID(uuidString: "DDDDDDDD-DDDD-4DDD-8DDD-DDDDDDDDDDDD")!,
+                    segmentID: UUID(uuidString: "EEEEEEEE-EEEE-4EEE-8EEE-EEEEEEEEEEEE")!,
+                    projectID: projectOneID,
+                    startAt: now.addingTimeInterval(-elapsed)
                 )
 
                 if arguments.contains("UITEST_SEED_MALFORMED_ACTIVE") {
-                    context.insert(
-                        TimeSessionRecord(
-                            projectID: projectTwoID,
-                            source: .timer,
-                            startAt: now.addingTimeInterval(-1_800),
-                            startTimeZoneID: TimeZone.current.identifier,
-                            createdAt: now.addingTimeInterval(-1_800),
-                            updatedAt: now.addingTimeInterval(-1_800)
-                        )
+                    insertActiveRun(
+                        into: context,
+                        runID: UUID(uuidString: "F0F0F0F0-F0F0-40F0-80F0-F0F0F0F0F0F0")!,
+                        segmentID: UUID(uuidString: "ABABABAB-ABAB-4BAB-8BAB-ABABABABABAB")!,
+                        projectID: projectTwoID,
+                        startAt: now.addingTimeInterval(-1_800)
                     )
                 }
             }
@@ -189,6 +234,7 @@ import WellSpentShared
             }
 
             try context.save()
+            try WatchCompanionUITestFixture.seed(context: context, arguments: arguments, now: now)
         }
 
         private static func seedAppStore(
@@ -198,7 +244,6 @@ import WellSpentShared
         ) throws {
             let calendar = Calendar.autoupdatingCurrent
             let today = calendar.startOfDay(for: now)
-            let timeZoneID = TimeZone.current.identifier
             let projects = [
                 ProjectRecord(
                     id: projectOneID,
@@ -292,15 +337,12 @@ import WellSpentShared
             }
 
             if arguments.contains("UITEST_SEED_APP_STORE_ACTIVE") {
-                context.insert(
-                    TimeSessionRecord(
-                        projectID: projectTwoID,
-                        source: .timer,
-                        startAt: now.addingTimeInterval(-(3_600 + 12 * 60 + 34)),
-                        startTimeZoneID: timeZoneID,
-                        createdAt: now.addingTimeInterval(-(3_600 + 12 * 60 + 34)),
-                        updatedAt: now.addingTimeInterval(-(3_600 + 12 * 60 + 34))
-                    )
+                insertActiveRun(
+                    into: context,
+                    runID: UUID(uuidString: "DDDDDDDD-DDDD-4DDD-8DDD-DDDDDDDDDDDD")!,
+                    segmentID: UUID(uuidString: "EEEEEEEE-EEEE-4EEE-8EEE-EEEEEEEEEEEE")!,
+                    projectID: projectTwoID,
+                    startAt: now.addingTimeInterval(-(3_600 + 12 * 60 + 34))
                 )
             }
 
@@ -353,6 +395,43 @@ import WellSpentShared
                 note: note,
                 createdAt: startAt,
                 updatedAt: endAt
+            )
+        }
+
+        private static func insertActiveRun(
+            into context: ModelContext,
+            runID: UUID,
+            segmentID: UUID,
+            projectID: UUID,
+            startAt: Date
+        ) {
+            let zoneID = TimeZone.current.identifier
+            let originID = UUID(uuidString: "99999999-9999-4999-8999-999999999999")!
+            context.insert(
+                TimerRunRecord(
+                    id: runID,
+                    projectID: projectID,
+                    state: .running,
+                    startAt: startAt,
+                    startTimeZoneID: zoneID,
+                    originDeviceID: originID,
+                    revision: 1,
+                    createdAt: startAt,
+                    updatedAt: startAt,
+                    updatedTimeZoneID: zoneID
+                )
+            )
+            context.insert(
+                TimeSessionRecord(
+                    id: segmentID,
+                    projectID: projectID,
+                    source: .timer,
+                    timerRunID: runID,
+                    startAt: startAt,
+                    startTimeZoneID: zoneID,
+                    createdAt: startAt,
+                    updatedAt: startAt
+                )
             )
         }
     }

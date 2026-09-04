@@ -1,0 +1,2761 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "%@": {
+      "comment": "Verbatim user-provided entity name, never a localization key.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@"
+          }
+        }
+      }
+    },
+    "%@ left": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ left"
+          }
+        }
+      }
+    },
+    "%@ over": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ over"
+          }
+        }
+      }
+    },
+    "%@ short of goal": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ short of goal"
+          }
+        }
+      }
+    },
+    "%@, %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@, %2$@"
+          }
+        }
+      }
+    },
+    "%@, available project, open timer": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@, available project, open timer"
+          }
+        }
+      }
+    },
+    "%@, not selected": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@, not selected"
+          }
+        }
+      }
+    },
+    "%@, selected": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@, selected"
+          }
+        }
+      }
+    },
+    "%@. %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@. %2$@"
+          }
+        }
+      }
+    },
+    "%@: your billable time goal is complete. Your timer is still running.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@: your billable time goal is complete. Your timer is still running."
+          }
+        }
+      }
+    },
+    "%lld min": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld min"
+          }
+        }
+      }
+    },
+    "%lld minute time goal": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld minute time goal"
+          }
+        }
+      }
+    },
+    "%lld of %lld characters": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld of %2$lld characters"
+          }
+        }
+      }
+    },
+    "%lldm goal": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lldm goal"
+          }
+        }
+      }
+    },
+    "A timer change is being saved. Try again shortly.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A timer change is being saved. Try again shortly."
+          }
+        }
+      }
+    },
+    "Action": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Action"
+          }
+        }
+      }
+    },
+    "Action button": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Action button"
+          }
+        }
+      }
+    },
+    "Add WellSpent Timer from the system Control Center gallery. Choose a favorite project in its configuration, or use your most recent project.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add WellSpent Timer from the system Control Center gallery. Choose a favorite project in its configuration, or use your most recent project."
+          }
+        }
+      }
+    },
+    "Add optional note": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add optional note"
+          }
+        }
+      }
+    },
+    "Adds this tag.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adds this tag."
+          }
+        }
+      }
+    },
+    "Alerts follow counted time, not pauses. Delivery depends on your notification and Focus settings.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alerts follow counted time, not pauses. Delivery depends on your notification and Focus settings."
+          }
+        }
+      }
+    },
+    "Archived tag": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Archived tag"
+          }
+        }
+      }
+    },
+    "Archived tag %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Archived tag %lld"
+          }
+        }
+      }
+    },
+    "Asks before discarding the unsaved note or tag changes.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Asks before discarding the unsaved note or tag changes."
+          }
+        }
+      }
+    },
+    "Asks for confirmation before ending and saving this run.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Asks for confirmation before ending and saving this run."
+          }
+        }
+      }
+    },
+    "Billable": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Billable"
+          }
+        }
+      }
+    },
+    "Billable duration, %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Billable duration, %@"
+          }
+        }
+      }
+    },
+    "Billable elapsed, %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Billable elapsed, %@"
+          }
+        }
+      }
+    },
+    "Billable time": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Billable time"
+          }
+        }
+      }
+    },
+    "Billable timer": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Billable timer"
+          }
+        }
+      }
+    },
+    "Cache unavailable": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cache unavailable"
+          }
+        }
+      }
+    },
+    "Cached totals from iPhone, updated recently": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cached totals from iPhone, updated recently"
+          }
+        }
+      }
+    },
+    "Cached · %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cached · %@"
+          }
+        }
+      }
+    },
+    "Cancel": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "Choose Project": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose Project"
+          }
+        }
+      }
+    },
+    "Choose a different project. The old run ends exactly when the new run starts.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose a different project. The old run ends exactly when the new run starts."
+          }
+        }
+      }
+    },
+    "Choose a favorite project, or use the most recent project.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose a favorite project, or use the most recent project."
+          }
+        }
+      }
+    },
+    "Choose a time goal from 5 minutes to 8 hours.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose a time goal from 5 minutes to 8 hours."
+          }
+        }
+      }
+    },
+    "Choose an active project in WellSpent on your iPhone first.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose an active project in WellSpent on your iPhone first."
+          }
+        }
+      }
+    },
+    "Choose an open timer or a time goal to start immediately.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose an open timer or a time goal to start immediately."
+          }
+        }
+      }
+    },
+    "Choose what gets your time": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose what gets your time"
+          }
+        }
+      }
+    },
+    "Closes the current billable segment at one saved boundary.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Closes the current billable segment at one saved boundary."
+          }
+        }
+      }
+    },
+    "Controls": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Controls"
+          }
+        }
+      }
+    },
+    "Couldn’t end": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn’t end"
+          }
+        }
+      }
+    },
+    "Couldn’t pause": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn’t pause"
+          }
+        }
+      }
+    },
+    "Couldn’t request permission. Turn alerts off and on to try again. Time goals still work.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn’t request permission. Turn alerts off and on to try again. Time goals still work."
+          }
+        }
+      }
+    },
+    "Couldn’t resume": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn’t resume"
+          }
+        }
+      }
+    },
+    "Couldn’t save alert settings. Time tracking still works.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn’t save alert settings. Time tracking still works."
+          }
+        }
+      }
+    },
+    "Couldn’t save changes": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn’t save changes"
+          }
+        }
+      }
+    },
+    "Couldn’t save time goal": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn’t save time goal"
+          }
+        }
+      }
+    },
+    "Couldn’t schedule this alert. Time tracking still works. Try again.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn’t schedule this alert. Time tracking still works. Try again."
+          }
+        }
+      }
+    },
+    "Couldn’t start": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn’t start"
+          }
+        }
+      }
+    },
+    "Couldn’t switch": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn’t switch"
+          }
+        }
+      }
+    },
+    "Couldn’t update timer": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn’t update timer"
+          }
+        }
+      }
+    },
+    "Create another project on iPhone, or keep this run active.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create another project on iPhone, or keep this run active."
+          }
+        }
+      }
+    },
+    "Create or restore a project in WellSpent on your iPhone.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create or restore a project in WellSpent on your iPhone."
+          }
+        }
+      }
+    },
+    "Create your first project.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create your first project."
+          }
+        }
+      }
+    },
+    "Current": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Current"
+          }
+        }
+      }
+    },
+    "Custom…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Custom…"
+          }
+        }
+      }
+    },
+    "Discard Changes": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Discard Changes"
+          }
+        }
+      }
+    },
+    "Discard Edit": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Discard Edit"
+          }
+        }
+      }
+    },
+    "Done": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Done"
+          }
+        }
+      }
+    },
+    "End": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "End"
+          }
+        }
+      }
+    },
+    "End Run": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "End Run"
+          }
+        }
+      }
+    },
+    "End Timer": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "End Timer"
+          }
+        }
+      }
+    },
+    "End WellSpent Timer": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "End WellSpent Timer"
+          }
+        }
+      }
+    },
+    "End and save the current Watch run.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "End and save the current Watch run."
+          }
+        }
+      }
+    },
+    "End this run?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "End this run?"
+          }
+        }
+      }
+    },
+    "End with %@ of billable time?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "End with %@ of billable time?"
+          }
+        }
+      }
+    },
+    "Ended": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ended"
+          }
+        }
+      }
+    },
+    "Ending…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ending…"
+          }
+        }
+      }
+    },
+    "Ends the current run and starts this project at one exact boundary.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ends the current run and starts this project at one exact boundary."
+          }
+        }
+      }
+    },
+    "Favorite Project": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Favorite Project"
+          }
+        }
+      }
+    },
+    "Finish setup": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finish setup"
+          }
+        }
+      }
+    },
+    "Finish setup on iPhone": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finish setup on iPhone"
+          }
+        }
+      }
+    },
+    "From iPhone": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "From iPhone"
+          }
+        }
+      }
+    },
+    "Goal": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Goal"
+          }
+        }
+      }
+    },
+    "Goal alerts": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Goal alerts"
+          }
+        }
+      }
+    },
+    "Goal exceeded by %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Goal exceeded by %@"
+          }
+        }
+      }
+    },
+    "Goal met": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Goal met"
+          }
+        }
+      }
+    },
+    "Goal minutes": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Goal minutes"
+          }
+        }
+      }
+    },
+    "Goal reached": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Goal reached"
+          }
+        }
+      }
+    },
+    "Goal reached, %@ over": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Goal reached, %@ over"
+          }
+        }
+      }
+    },
+    "Keep Editing": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep Editing"
+          }
+        }
+      }
+    },
+    "Keeps tracking without a goal.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keeps tracking without a goal."
+          }
+        }
+      }
+    },
+    "Local cache ready": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Local cache ready"
+          }
+        }
+      }
+    },
+    "Local cache unavailable": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Local cache unavailable"
+          }
+        }
+      }
+    },
+    "Manage projects on iPhone": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manage projects on iPhone"
+          }
+        }
+      }
+    },
+    "Minutes": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minutes"
+          }
+        }
+      }
+    },
+    "New": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New"
+          }
+        }
+      }
+    },
+    "New project": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New project"
+          }
+        }
+      }
+    },
+    "No active projects": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No active projects"
+          }
+        }
+      }
+    },
+    "No active tags. Create tags on iPhone, or save this run without one.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No active tags. Create tags on iPhone, or save this run without one."
+          }
+        }
+      }
+    },
+    "No longer active": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No longer active"
+          }
+        }
+      }
+    },
+    "No other projects": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No other projects"
+          }
+        }
+      }
+    },
+    "No time goal": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No time goal"
+          }
+        }
+      }
+    },
+    "No timer was created. Try again or choose another project.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No timer was created. Try again or choose another project."
+          }
+        }
+      }
+    },
+    "None": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "None"
+          }
+        }
+      }
+    },
+    "Note": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Note"
+          }
+        }
+      }
+    },
+    "Note, %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Note, %@"
+          }
+        }
+      }
+    },
+    "Note, none": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Note, none"
+          }
+        }
+      }
+    },
+    "Notifications are off. Enable WellSpent notifications in your Watch notification settings. Time goals still work.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notifications are off. Enable WellSpent notifications in your Watch notification settings. Time goals still work."
+          }
+        }
+      }
+    },
+    "OK": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        }
+      }
+    },
+    "Observed State": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Observed State"
+          }
+        }
+      }
+    },
+    "Offline": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Offline"
+          }
+        }
+      }
+    },
+    "Offline · %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Offline · %@"
+          }
+        }
+      }
+    },
+    "Offline · up to date": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Offline · up to date"
+          }
+        }
+      }
+    },
+    "Offline. Cached projects remain available and new timers will sync later.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Offline. Cached projects remain available and new timers will sync later."
+          }
+        }
+      }
+    },
+    "Offline. Cached totals updated %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Offline. Cached totals updated %@"
+          }
+        }
+      }
+    },
+    "Offline. Run saved locally and will sync later": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Offline. Run saved locally and will sync later"
+          }
+        }
+      }
+    },
+    "Offline. Showing the timer saved on this Watch": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Offline. Showing the timer saved on this Watch"
+          }
+        }
+      }
+    },
+    "Offline. Timer saved locally and will sync later": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Offline. Timer saved locally and will sync later"
+          }
+        }
+      }
+    },
+    "On supported Apple Watch Ultra models, assign the WellSpent control using the system Action button settings. WellSpent does not take over the button or use workout shortcuts.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "On supported Apple Watch Ultra models, assign the WellSpent control using the system Action button settings. WellSpent does not take over the button or use workout shortcuts."
+          }
+        }
+      }
+    },
+    "On this Watch": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "On this Watch"
+          }
+        }
+      }
+    },
+    "Open": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open"
+          }
+        }
+      }
+    },
+    "Open Timer": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Timer"
+          }
+        }
+      }
+    },
+    "Open WellSpent": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open WellSpent"
+          }
+        }
+      }
+    },
+    "Open WellSpent on iPhone to refresh.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open WellSpent on iPhone to refresh."
+          }
+        }
+      }
+    },
+    "Open WellSpent on your Apple Watch and try again.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open WellSpent on your Apple Watch and try again."
+          }
+        }
+      }
+    },
+    "Open WellSpent on your iPhone and create your first project.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open WellSpent on your iPhone and create your first project."
+          }
+        }
+      }
+    },
+    "Open WellSpent on your iPhone, then try again.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open WellSpent on your iPhone, then try again."
+          }
+        }
+      }
+    },
+    "Open iPhone to review": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open iPhone to review"
+          }
+        }
+      }
+    },
+    "Open the app to continue.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open the app to continue."
+          }
+        }
+      }
+    },
+    "Opening local cache": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opening local cache"
+          }
+        }
+      }
+    },
+    "Opens a new billable segment at one saved boundary.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opens a new billable segment at one saved boundary."
+          }
+        }
+      }
+    },
+    "Opens system text entry with dictation, Scribble, or keyboard.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opens system text entry with dictation, Scribble, or keyboard."
+          }
+        }
+      }
+    },
+    "Opens time goal and optional alert settings.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opens time goal and optional alert settings."
+          }
+        }
+      }
+    },
+    "Opens timer setup. Does not start until you choose a timer.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opens timer setup. Does not start until you choose a timer."
+          }
+        }
+      }
+    },
+    "Optional note": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Optional note"
+          }
+        }
+      }
+    },
+    "Optional notification permission. Timers work without it.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Optional notification permission. Timers work without it."
+          }
+        }
+      }
+    },
+    "Optional notification when a time goal is reached.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Optional notification when a time goal is reached."
+          }
+        }
+      }
+    },
+    "Options": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Options"
+          }
+        }
+      }
+    },
+    "PAUSED": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PAUSED"
+          }
+        }
+      }
+    },
+    "Pause": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pause"
+          }
+        }
+      }
+    },
+    "Pause Timer": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pause Timer"
+          }
+        }
+      }
+    },
+    "Pause WellSpent Timer": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pause WellSpent Timer"
+          }
+        }
+      }
+    },
+    "Pause counted time for the current Watch timer.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pause counted time for the current Watch timer."
+          }
+        }
+      }
+    },
+    "Paused": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paused"
+          }
+        }
+      }
+    },
+    "Pausing…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pausing…"
+          }
+        }
+      }
+    },
+    "Pending": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pending"
+          }
+        }
+      }
+    },
+    "Pending sync": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pending sync"
+          }
+        }
+      }
+    },
+    "Pending sync (%lld)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pending sync (%lld)"
+          }
+        }
+      }
+    },
+    "Pending sync, %lld items. Cached projects remain available.": {
+      "comment": "The string catalog supplies singular and plural item forms.",
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Pending sync, %lld item. Cached projects remain available."
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Pending sync, %lld items. Cached projects remain available."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Permission is needed for alerts. Turn alerts off and on to ask. Time goals still work.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permission is needed for alerts. Turn alerts off and on to ask. Time goals still work."
+          }
+        }
+      }
+    },
+    "Private details hidden": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Private details hidden"
+          }
+        }
+      }
+    },
+    "Project": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Project"
+          }
+        }
+      }
+    },
+    "Project %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Project %lld"
+          }
+        }
+      }
+    },
+    "Project Identifier": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Project Identifier"
+          }
+        }
+      }
+    },
+    "Project identity hidden": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Project identity hidden"
+          }
+        }
+      }
+    },
+    "Project management is available in WellSpent on iPhone": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Project management is available in WellSpent on iPhone"
+          }
+        }
+      }
+    },
+    "Project names follow your iPhone Lock Screen privacy setting after sync. A goal never ends a timer.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Project names follow your iPhone Lock Screen privacy setting after sync. A goal never ends a timer."
+          }
+        }
+      }
+    },
+    "Project, %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Project, %@"
+          }
+        }
+      }
+    },
+    "Projects": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Projects"
+          }
+        }
+      }
+    },
+    "Quick control": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quick control"
+          }
+        }
+      }
+    },
+    "Reached": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reached"
+          }
+        }
+      }
+    },
+    "Recent goals": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recent goals"
+          }
+        }
+      }
+    },
+    "Recent project %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recent project %lld"
+          }
+        }
+      }
+    },
+    "Recent projects": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recent projects"
+          }
+        }
+      }
+    },
+    "Remove Time Goal": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove Time Goal"
+          }
+        }
+      }
+    },
+    "Removes this tag.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Removes this tag."
+          }
+        }
+      }
+    },
+    "Resume": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resume"
+          }
+        }
+      }
+    },
+    "Resume Timer": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resume Timer"
+          }
+        }
+      }
+    },
+    "Resume WellSpent Timer": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resume WellSpent Timer"
+          }
+        }
+      }
+    },
+    "Resume counted time for the paused Watch timer.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resume counted time for the paused Watch timer."
+          }
+        }
+      }
+    },
+    "Resuming…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resuming…"
+          }
+        }
+      }
+    },
+    "Returns to the project picker. A note and tags are optional.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Returns to the project picker. A note and tags are optional."
+          }
+        }
+      }
+    },
+    "Review": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Review"
+          }
+        }
+      }
+    },
+    "Review WellSpent timer": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Review WellSpent timer"
+          }
+        }
+      }
+    },
+    "Review on iPhone": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Review on iPhone"
+          }
+        }
+      }
+    },
+    "Review required": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Review required"
+          }
+        }
+      }
+    },
+    "Run": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Run"
+          }
+        }
+      }
+    },
+    "Run active": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Run active"
+          }
+        }
+      }
+    },
+    "Run paused": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Run paused"
+          }
+        }
+      }
+    },
+    "Run saved": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Run saved"
+          }
+        }
+      }
+    },
+    "Run saved locally and pending sync": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Run saved locally and pending sync"
+          }
+        }
+      }
+    },
+    "Run synced": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Run synced"
+          }
+        }
+      }
+    },
+    "Running": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Running"
+          }
+        }
+      }
+    },
+    "Save Changes": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save Changes"
+          }
+        }
+      }
+    },
+    "Save the current run and start a different project at one timestamp.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save the current run and start a different project at one timestamp."
+          }
+        }
+      }
+    },
+    "Saved": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saved"
+          }
+        }
+      }
+    },
+    "Saved offline": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saved offline"
+          }
+        }
+      }
+    },
+    "Saved on Watch": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saved on Watch"
+          }
+        }
+      }
+    },
+    "Saves this goal without changing counted time.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saves this goal without changing counted time."
+          }
+        }
+      }
+    },
+    "Saving…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saving…"
+          }
+        }
+      }
+    },
+    "See billable time, paused status, or recent projects. Names stay private by default.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "See billable time, paused status, or recent projects. Names stay private by default."
+          }
+        }
+      }
+    },
+    "Segments": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Segments"
+          }
+        }
+      }
+    },
+    "Select active tags or remove tags already assigned to this run.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Select active tags or remove tags already assigned to this run."
+          }
+        }
+      }
+    },
+    "Set up": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set up"
+          }
+        }
+      }
+    },
+    "Set up on iPhone": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set up on iPhone"
+          }
+        }
+      }
+    },
+    "Siri & Controls": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Siri & Controls"
+          }
+        }
+      }
+    },
+    "Siri & Shortcuts": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Siri & Shortcuts"
+          }
+        }
+      }
+    },
+    "Stale cached totals updated %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stale cached totals updated %@"
+          }
+        }
+      }
+    },
+    "Start ${project}": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start ${project}"
+          }
+        }
+      }
+    },
+    "Start Favorite": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start Favorite"
+          }
+        }
+      }
+    },
+    "Start Recent": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start Recent"
+          }
+        }
+      }
+    },
+    "Start Timer": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start Timer"
+          }
+        }
+      }
+    },
+    "Start WellSpent Timer": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start WellSpent Timer"
+          }
+        }
+      }
+    },
+    "Start a favorite or recent project, pause, or resume. Opens WellSpent to save your action.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start a favorite or recent project, pause, or resume. Opens WellSpent to save your action."
+          }
+        }
+      }
+    },
+    "Start a saved timer for a cached project on your Apple Watch.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start a saved timer for a cached project on your Apple Watch."
+          }
+        }
+      }
+    },
+    "Start immediately": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start immediately"
+          }
+        }
+      }
+    },
+    "Started": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Started"
+          }
+        }
+      }
+    },
+    "Starting": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starting"
+          }
+        }
+      }
+    },
+    "Starting sync": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starting sync"
+          }
+        }
+      }
+    },
+    "Starts a timer with no time goal.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starts a timer with no time goal."
+          }
+        }
+      }
+    },
+    "Starts and saves a timer with this goal.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starts and saves a timer with this goal."
+          }
+        }
+      }
+    },
+    "Starts and saves an untimed timer immediately.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starts and saves an untimed timer immediately."
+          }
+        }
+      }
+    },
+    "Swipe vertically or turn the Digital Crown to change metric pages. Swipe right for controls.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Swipe vertically or turn the Digital Crown to change metric pages. Swipe right for controls."
+          }
+        }
+      }
+    },
+    "Switch Project": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Switch Project"
+          }
+        }
+      }
+    },
+    "Switch WellSpent Project": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Switch WellSpent Project"
+          }
+        }
+      }
+    },
+    "Switch timer to %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Switch timer to %@"
+          }
+        }
+      }
+    },
+    "Switch to ${project}": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Switch to ${project}"
+          }
+        }
+      }
+    },
+    "Switching…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Switching…"
+          }
+        }
+      }
+    },
+    "Sync is starting. Cached projects remain available.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sync is starting. Cached projects remain available."
+          }
+        }
+      }
+    },
+    "Sync unavailable": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sync unavailable"
+          }
+        }
+      }
+    },
+    "Sync unavailable. Cached projects remain available and new timers will sync later.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sync unavailable. Cached projects remain available and new timers will sync later."
+          }
+        }
+      }
+    },
+    "Synced": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Synced"
+          }
+        }
+      }
+    },
+    "System project choices follow the project-name privacy setting on iPhone. Siri availability and permission are managed in system settings; the app works without Siri.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "System project choices follow the project-name privacy setting on iPhone. Siri availability and permission are managed in system settings; the app works without Siri."
+          }
+        }
+      }
+    },
+    "TIME": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TIME"
+          }
+        }
+      }
+    },
+    "Tag": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tag"
+          }
+        }
+      }
+    },
+    "Tags": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tags"
+          }
+        }
+      }
+    },
+    "Tags, %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tags, %@"
+          }
+        }
+      }
+    },
+    "The control starts a project, pauses a running timer, or resumes a paused timer. It opens WellSpent to save the change, including when your iPhone is offline.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The control starts a project, pauses a running timer, or resumes a paused timer. It opens WellSpent to save the change, including when your iPhone is offline."
+          }
+        }
+      }
+    },
+    "The ended run stays saved. Only this unsaved note and tag edit will be discarded.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The ended run stays saved. Only this unsaved note and tag edit will be discarded."
+          }
+        }
+      }
+    },
+    "The original run is unchanged. Try again or keep the current timer.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The original run is unchanged. Try again or keep the current timer."
+          }
+        }
+      }
+    },
+    "The run is unchanged.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The run is unchanged."
+          }
+        }
+      }
+    },
+    "The run is unchanged. Try again when you’re ready.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The run is unchanged. Try again when you’re ready."
+          }
+        }
+      }
+    },
+    "The timer and its previous goal are unchanged. Open Time Goal to try again.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The timer and its previous goal are unchanged. Open Time Goal to try again."
+          }
+        }
+      }
+    },
+    "The timer changed. Open WellSpent to see its current state.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The timer changed. Open WellSpent to see its current state."
+          }
+        }
+      }
+    },
+    "The timer could not be changed. Your saved time is unchanged.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The timer could not be changed. Your saved time is unchanged."
+          }
+        }
+      }
+    },
+    "The timer is already in that state. Your saved time is unchanged.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The timer is already in that state. Your saved time is unchanged."
+          }
+        }
+      }
+    },
+    "This Week": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This Week"
+          }
+        }
+      }
+    },
+    "Time Goal": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Time Goal"
+          }
+        }
+      }
+    },
+    "Time goal reached": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Time goal reached"
+          }
+        }
+      }
+    },
+    "Time goal, %@ remaining": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Time goal, %@ remaining"
+          }
+        }
+      }
+    },
+    "Timer options for %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Timer options for %@"
+          }
+        }
+      }
+    },
+    "Timer saved locally and pending sync": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Timer saved locally and pending sync"
+          }
+        }
+      }
+    },
+    "Timer saved on your Watch. Sync is pending.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Timer saved on your Watch. Sync is pending."
+          }
+        }
+      }
+    },
+    "Timer saved.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Timer saved."
+          }
+        }
+      }
+    },
+    "Today": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today"
+          }
+        }
+      }
+    },
+    "Totals": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Totals"
+          }
+        }
+      }
+    },
+    "Totals unavailable": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Totals unavailable"
+          }
+        }
+      }
+    },
+    "Totals, cached from iPhone and updated recently": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Totals, cached from iPhone and updated recently"
+          }
+        }
+      }
+    },
+    "Totals, offline cached values": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Totals, offline cached values"
+          }
+        }
+      }
+    },
+    "Totals, stale cached values": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Totals, stale cached values"
+          }
+        }
+      }
+    },
+    "Track billable time from your wrist.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Track billable time from your wrist."
+          }
+        }
+      }
+    },
+    "Tracking time": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tracking time"
+          }
+        }
+      }
+    },
+    "Try Again": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Try Again"
+          }
+        }
+      }
+    },
+    "Try Alert Again": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Try Alert Again"
+          }
+        }
+      }
+    },
+    "Try “Pause my timer in WellSpent” or “Resume my timer in WellSpent.” Start, Switch Project, and End are also available in Shortcuts.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Try “Pause my timer in WellSpent” or “Resume my timer in WellSpent.” Start, Switch Project, and End are also available in Shortcuts."
+          }
+        }
+      }
+    },
+    "Unsaved changes": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unsaved changes"
+          }
+        }
+      }
+    },
+    "Up to date": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Up to date"
+          }
+        }
+      }
+    },
+    "Update": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Update"
+          }
+        }
+      }
+    },
+    "Update WellSpent": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Update WellSpent"
+          }
+        }
+      }
+    },
+    "Update WellSpent on your iPhone and Apple Watch first.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Update WellSpent on your iPhone and Apple Watch first."
+          }
+        }
+      }
+    },
+    "Update WellSpent on your iPhone and Apple Watch to continue.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Update WellSpent on your iPhone and Apple Watch to continue."
+          }
+        }
+      }
+    },
+    "Update this run": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Update this run"
+          }
+        }
+      }
+    },
+    "Use": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use"
+          }
+        }
+      }
+    },
+    "Use %lld minute goal": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use %lld minute goal"
+          }
+        }
+      }
+    },
+    "Use Note": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use Note"
+          }
+        }
+      }
+    },
+    "Use Selected Tags": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use Selected Tags"
+          }
+        }
+      }
+    },
+    "Use dictation, Scribble, or the system keyboard.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use dictation, Scribble, or the system keyboard."
+          }
+        }
+      }
+    },
+    "WellSpent": {
+      "comment": "Brand name. Do not translate.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WellSpent"
+          }
+        }
+      }
+    },
+    "WellSpent Project": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WellSpent Project"
+          }
+        }
+      }
+    },
+    "WellSpent Timer": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WellSpent Timer"
+          }
+        }
+      }
+    },
+    "WellSpent Timer Control": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WellSpent Timer Control"
+          }
+        }
+      }
+    },
+    "WellSpent is open. Your saved time is unchanged.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WellSpent is open. Your saved time is unchanged."
+          }
+        }
+      }
+    },
+    "Your billable time goal is complete. Your timer is still running.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your billable time goal is complete. Your timer is still running."
+          }
+        }
+      }
+    },
+    "Your run is still saved.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your run is still saved."
+          }
+        }
+      }
+    },
+    "Your run is still saved. The note and tags were not changed.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your run is still saved. The note and tags were not changed."
+          }
+        }
+      }
+    },
+    "Your time is preserved.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your time is preserved."
+          }
+        }
+      }
+    },
+    "Your time is preserved. Open WellSpent on iPhone and choose Review Preserved Time. Handoff can take you to this review when available.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your time is preserved. Open WellSpent on iPhone and choose Review Preserved Time. Handoff can take you to this review when available."
+          }
+        }
+      }
+    },
+    "Your time is preserved. Review it in WellSpent on your iPhone.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your time is preserved. Review it in WellSpent on your iPhone."
+          }
+        }
+      }
+    },
+    "Your timer stays usable offline": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your timer stays usable offline"
+          }
+        }
+      }
+    },
+    "billable": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "billable"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

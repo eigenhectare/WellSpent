@@ -22,6 +22,10 @@ struct OnboardingView: View {
                         Text("One tap starts a project. One timer can be active at a time.")
                             .font(.title3)
                             .foregroundStyle(.secondary)
+                        Text(
+                            "Apple Watch is optional. Create projects here, then open WellSpent on your paired Watch to track offline."
+                        )
+                        .font(.footnote).foregroundStyle(.secondary)
                     }
 
                     explanation(

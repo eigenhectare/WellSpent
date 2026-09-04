@@ -351,6 +351,42 @@ final class SessionCommandServiceTests: XCTestCase {
         )
     }
 
+    func testLegacySessionCommandsCannotMutateOrDeleteTimerRunSegments() throws {
+        let now = Date(timeIntervalSince1970: 1_000)
+        let fixture = try SessionServiceFixture(now: now)
+        let project = ProjectRecord(name: "Client")
+        let runID = UUID()
+        let segment = TimeSessionRecord(
+            projectID: project.id,
+            source: .timer,
+            timerRunID: runID,
+            startAt: Date(timeIntervalSince1970: 100),
+            endAt: Date(timeIntervalSince1970: 200),
+            startTimeZoneID: "UTC",
+            endTimeZoneID: "UTC"
+        )
+        fixture.context.insert(project)
+        fixture.context.insert(segment)
+        try fixture.context.save()
+
+        XCTAssertThrowsError(
+            try fixture.commands.editCompleted(
+                sessionID: segment.id,
+                projectID: project.id,
+                startAt: segment.startAt,
+                endAt: try XCTUnwrap(segment.endAt),
+                note: "Bypass"
+            )
+        ) { error in
+            XCTAssertEqual(error as? SessionCommandError, .timerRunCommandRequired(runID))
+        }
+        XCTAssertThrowsError(try fixture.commands.delete(sessionID: segment.id, confirmed: true)) {
+            error in
+            XCTAssertEqual(error as? SessionCommandError, .timerRunCommandRequired(runID))
+        }
+        XCTAssertEqual(try fixture.context.fetchCount(FetchDescriptor<TimeSessionRecord>()), 1)
+    }
+
     func testCreateSaveFailureRollsBackInsertedSession() throws {
         let container = try WellSpentPersistence.makeInMemoryContainer()
         let context = ModelContext(container)

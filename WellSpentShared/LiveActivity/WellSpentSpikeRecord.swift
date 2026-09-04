@@ -118,7 +118,9 @@ public enum WellSpentSpikeStorage {
         suiteName: String = appGroupIdentifier
     ) throws {
         let defaults = try defaults(for: suiteName)
-        for key in defaults.dictionaryRepresentation().keys where key.hasPrefix(keyPrefix) {
+        let spikeKeys = defaults.dictionaryRepresentation().keys.filter { $0.hasPrefix(keyPrefix) }
+        guard !spikeKeys.isEmpty else { return }
+        for key in spikeKeys {
             defaults.removeObject(forKey: key)
         }
         try flush(defaults)

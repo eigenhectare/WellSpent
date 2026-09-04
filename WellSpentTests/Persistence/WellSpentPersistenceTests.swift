@@ -5,7 +5,7 @@ import XCTest
 @testable import WellSpent
 
 final class WellSpentPersistenceTests: XCTestCase {
-    func testV2SchemaInitializesWithProjectSessionAndTagEntities() throws {
+    func testV6SchemaInitializesWithProjectSessionRunOriginTagAndSyncEntities() throws {
         let container = try WellSpentPersistence.makeInMemoryContainer()
         let context = ModelContext(container)
 
@@ -36,10 +36,11 @@ final class WellSpentPersistenceTests: XCTestCase {
         XCTAssertTrue(container.configurations.allSatisfy(\.isStoredInMemoryOnly))
     }
 
-    func testV2SchemaAvoidsUniquenessConstraintsAndRelationships() {
+    func testV6SchemaAvoidsUniquenessConstraintsAndRelationships() {
         let entities = WellSpentPersistence.schema.entities
 
-        XCTAssertEqual(entities.count, 4)
+        XCTAssertEqual(entities.count, 16)
+        XCTAssertEqual(Schema(versionedSchema: WellSpentSchemaV5.self).entities.count, 15)
         XCTAssertTrue(entities.allSatisfy { $0.uniquenessConstraints.isEmpty })
         XCTAssertTrue(entities.allSatisfy { $0.relationships.isEmpty })
     }
@@ -99,14 +100,143 @@ final class WellSpentPersistenceTests: XCTestCase {
         XCTAssertTrue(try LocalStoragePrivacy.isExcludedFromBackup(fixture.storeURL))
     }
 
+    func testV3StoreMigratesThroughV5WithoutChangingDomainData() throws {
+        let fixture = try TemporaryStoreFixture()
+        defer { fixture.remove() }
+        let projectID = UUID()
+        let v3Schema = Schema(versionedSchema: WellSpentSchemaV3.self)
+        let v3Configuration = ModelConfiguration(
+            "V3Fixture",
+            schema: v3Schema,
+            url: fixture.storeURL,
+            allowsSave: true,
+            cloudKitDatabase: .none
+        )
+
+        do {
+            let container = try ModelContainer(
+                for: v3Schema,
+                configurations: [v3Configuration]
+            )
+            let context = ModelContext(container)
+            context.insert(
+                WellSpentSchemaV3.ProjectRecord(id: projectID, name: "Pre-sync project")
+            )
+            try context.save()
+        }
+
+        let migrated = try WellSpentPersistence.makePersistentContainer(
+            storeURL: fixture.storeURL
+        )
+        let context = ModelContext(migrated)
+
+        XCTAssertEqual(try context.fetch(FetchDescriptor<ProjectRecord>()).map(\.id), [projectID])
+        XCTAssertEqual(try context.fetchCount(FetchDescriptor<PhoneSyncMetadataRecord>()), 0)
+        XCTAssertEqual(try context.fetchCount(FetchDescriptor<PhoneMutationInboxRecord>()), 0)
+        XCTAssertEqual(
+            try context.fetchCount(FetchDescriptor<PhoneAcknowledgementOutboxRecord>()),
+            0
+        )
+        XCTAssertEqual(try context.fetchCount(FetchDescriptor<PhoneSnapshotReceiptRecord>()), 0)
+        XCTAssertEqual(try context.fetchCount(FetchDescriptor<PhoneCanonicalSnapshotRecord>()), 0)
+        XCTAssertEqual(try context.fetchCount(FetchDescriptor<PhoneTimerConflictRecord>()), 0)
+        XCTAssertEqual(try context.fetchCount(FetchDescriptor<PhoneConflictMutationRecord>()), 0)
+        XCTAssertEqual(try context.fetchCount(FetchDescriptor<PhoneEntityTombstoneRecord>()), 0)
+    }
+
+    func testV4StoreMigratesToV5WithoutChangingSyncJournal() throws {
+        let fixture = try TemporaryStoreFixture()
+        defer { fixture.remove() }
+        let mutationID = UUID()
+        let originID = UUID()
+        let v4Schema = Schema(versionedSchema: WellSpentSchemaV4.self)
+        let configuration = ModelConfiguration(
+            "V4Fixture",
+            schema: v4Schema,
+            url: fixture.storeURL,
+            allowsSave: true,
+            cloudKitDatabase: .none
+        )
+
+        do {
+            let container = try ModelContainer(for: v4Schema, configurations: [configuration])
+            let context = ModelContext(container)
+            context.insert(
+                WellSpentSchemaV4.PhoneMutationInboxRecord(
+                    mutationID: mutationID,
+                    originDeviceID: originID,
+                    originSequence: 7,
+                    payloadDigestHex: "fixture",
+                    envelopeData: Data([1, 2, 3]),
+                    receivedAt: Date(timeIntervalSince1970: 1_900_000_000)
+                )
+            )
+            try context.save()
+        }
+
+        let migrated = try WellSpentPersistence.makePersistentContainer(storeURL: fixture.storeURL)
+        let context = ModelContext(migrated)
+        let inbox = try XCTUnwrap(
+            context.fetch(FetchDescriptor<PhoneMutationInboxRecord>()).first
+        )
+        XCTAssertEqual(inbox.mutationID, mutationID)
+        XCTAssertEqual(inbox.originDeviceID, originID)
+        XCTAssertEqual(inbox.originSequence, 7)
+        XCTAssertEqual(try context.fetchCount(FetchDescriptor<PhoneTimerConflictRecord>()), 0)
+        XCTAssertEqual(try context.fetchCount(FetchDescriptor<PhoneEntityTombstoneRecord>()), 0)
+    }
+
+    @MainActor
+    func testV5MigratesToV6AndResetFenceSurvivesRelaunch() throws {
+        let fixture = try TemporaryStoreFixture()
+        defer { fixture.remove() }
+        let schema = Schema(versionedSchema: WellSpentSchemaV5.self)
+        let configuration = ModelConfiguration(
+            "V5Fixture", schema: schema, url: fixture.storeURL, cloudKitDatabase: .none)
+        do {
+            let container = try ModelContainer(for: schema, configurations: [configuration])
+            let context = ModelContext(container)
+            let metadata = PhoneSyncMetadataRecord(snapshotID: UUID(), updatedAt: .now)
+            metadata.canonicalGeneration = 42
+            context.insert(metadata)
+            context.insert(ProjectRecord(name: "Erase me"))
+            try context.save()
+        }
+        do {
+            let container = try WellSpentPersistence.makePersistentContainer(storeURL: fixture.storeURL)
+            let context = ModelContext(container)
+            XCTAssertEqual(try context.fetch(FetchDescriptor<PhoneSyncMetadataRecord>()).first?.canonicalGeneration, 42)
+            try WellSpentLocalDataResetService(context: context).deleteAllUserData()
+        }
+        let container = try WellSpentPersistence.makePersistentContainer(storeURL: fixture.storeURL)
+        let context = ModelContext(container)
+        XCTAssertEqual(try context.fetch(FetchDescriptor<PhoneDataResetRecord>()).first?.minimumAcceptedGeneration, 43)
+        XCTAssertEqual(try context.fetchCount(FetchDescriptor<ProjectRecord>()), 0)
+    }
+
     @MainActor
     func testLocalDataResetDeletesEveryPersistentEntity() throws {
         let container = try WellSpentPersistence.makeInMemoryContainer()
         let context = ModelContext(container)
         let project = ProjectRecord(name: "Confidential client")
+        let originID = UUID()
+        let run = TimerRunRecord(
+            projectID: project.id,
+            state: .ended,
+            startAt: Date(timeIntervalSince1970: 1_800_000_000),
+            endAt: Date(timeIntervalSince1970: 1_800_003_600),
+            startTimeZoneID: "UTC",
+            endTimeZoneID: "UTC",
+            originDeviceID: originID,
+            revision: 1,
+            createdAt: Date(timeIntervalSince1970: 1_800_000_000),
+            updatedAt: Date(timeIntervalSince1970: 1_800_003_600),
+            updatedTimeZoneID: "UTC"
+        )
         let session = TimeSessionRecord(
             projectID: project.id,
             source: .manual,
+            timerRunID: run.id,
             startAt: Date(timeIntervalSince1970: 1_800_000_000),
             endAt: Date(timeIntervalSince1970: 1_800_003_600),
             startTimeZoneID: "UTC",
@@ -119,10 +249,96 @@ final class WellSpentPersistenceTests: XCTestCase {
             tagID: tag.id,
             nameSnapshot: tag.name
         )
+        let runAssignment = TimerRunTagAssignmentRecord(
+            timerRunID: run.id,
+            tagID: tag.id,
+            nameSnapshot: tag.name,
+            createdAt: Date(timeIntervalSince1970: 1_800_000_000)
+        )
         context.insert(project)
+        context.insert(TimerOriginRecord(id: originID, createdAt: run.createdAt))
+        context.insert(run)
         context.insert(session)
         context.insert(tag)
         context.insert(assignment)
+        context.insert(runAssignment)
+        let mutationID = UUID()
+        context.insert(
+            PhoneSyncMetadataRecord(snapshotID: UUID(), updatedAt: run.updatedAt)
+        )
+        context.insert(
+            PhoneMutationInboxRecord(
+                mutationID: mutationID,
+                originDeviceID: originID,
+                originSequence: 1,
+                payloadDigestHex: "digest",
+                envelopeData: Data([1]),
+                receivedAt: run.updatedAt
+            )
+        )
+        context.insert(
+            PhoneAcknowledgementOutboxRecord(
+                acknowledgementID: UUID(),
+                mutationID: mutationID,
+                originDeviceID: originID,
+                canonicalGeneration: 1,
+                acknowledgementData: Data([2]),
+                createdAt: run.updatedAt
+            )
+        )
+        context.insert(
+            PhoneSnapshotReceiptRecord(
+                receiptID: UUID(),
+                originDeviceID: originID,
+                snapshotID: UUID(),
+                canonicalGeneration: 1,
+                receiptData: Data([3]),
+                receivedAt: run.updatedAt
+            )
+        )
+        context.insert(
+            PhoneCanonicalSnapshotRecord(
+                snapshotID: UUID(),
+                canonicalGeneration: 1,
+                snapshotData: Data([4]),
+                createdAt: run.updatedAt
+            )
+        )
+        let conflictID = UUID()
+        context.insert(
+            PhoneTimerConflictRecord(
+                conflictID: conflictID,
+                stateRawValue: PhoneTimerConflictStatus.awaitingPhoneReview.rawValue,
+                reasonCodeRawValue: "stale_causal_base",
+                canonicalHeadData: Data([5]),
+                canonicalSnapshotData: nil,
+                involvedRunIDsData: Data([6]),
+                involvedSegmentIDsData: Data([7]),
+                createdAt: run.updatedAt
+            )
+        )
+        context.insert(
+            PhoneConflictMutationRecord(
+                recordID: UUID(),
+                conflictID: conflictID,
+                mutationID: mutationID,
+                originDeviceID: originID,
+                originSequence: 1,
+                envelopeData: Data([8]),
+                reconstructedBranchData: nil,
+                receivedAt: run.updatedAt
+            )
+        )
+        context.insert(
+            PhoneEntityTombstoneRecord(
+                tombstoneID: UUID(),
+                entityTypeRawValue: "run",
+                entityID: run.id,
+                canonicalGeneration: 1,
+                deletedAt: run.updatedAt,
+                conflictID: conflictID
+            )
+        )
         try context.save()
 
         try WellSpentLocalDataResetService(context: context).deleteAllUserData()
@@ -134,6 +350,23 @@ final class WellSpentPersistenceTests: XCTestCase {
             try context.fetchCount(FetchDescriptor<SessionTagAssignmentRecord>()),
             0
         )
+        XCTAssertEqual(try context.fetchCount(FetchDescriptor<TimerRunRecord>()), 0)
+        XCTAssertEqual(
+            try context.fetchCount(FetchDescriptor<TimerRunTagAssignmentRecord>()),
+            0
+        )
+        XCTAssertEqual(try context.fetchCount(FetchDescriptor<TimerOriginRecord>()), 0)
+        XCTAssertEqual(try context.fetchCount(FetchDescriptor<PhoneSyncMetadataRecord>()), 0)
+        XCTAssertEqual(try context.fetchCount(FetchDescriptor<PhoneMutationInboxRecord>()), 0)
+        XCTAssertEqual(
+            try context.fetchCount(FetchDescriptor<PhoneAcknowledgementOutboxRecord>()),
+            0
+        )
+        XCTAssertEqual(try context.fetchCount(FetchDescriptor<PhoneSnapshotReceiptRecord>()), 0)
+        XCTAssertEqual(try context.fetchCount(FetchDescriptor<PhoneCanonicalSnapshotRecord>()), 0)
+        XCTAssertEqual(try context.fetchCount(FetchDescriptor<PhoneTimerConflictRecord>()), 0)
+        XCTAssertEqual(try context.fetchCount(FetchDescriptor<PhoneConflictMutationRecord>()), 0)
+        XCTAssertEqual(try context.fetchCount(FetchDescriptor<PhoneEntityTombstoneRecord>()), 0)
     }
 
     func testOldestShippedFixtureOpensThroughMigrationHarness() throws {

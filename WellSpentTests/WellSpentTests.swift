@@ -62,6 +62,27 @@ final class WellSpentTests: XCTestCase {
         )
     }
 
+    func testClearingEmptySpikeStorageIsAlreadySuccessful() throws {
+        let suiteName = "WellSpentTests.\(UUID().uuidString)"
+        defer { UserDefaults.standard.removePersistentDomain(forName: suiteName) }
+
+        XCTAssertNoThrow(try WellSpentSpikeStorage.clearSpikeData(suiteName: suiteName))
+    }
+
+    func testClearingSpikeStorageRemovesOnlySpikeKeys() throws {
+        let suiteName = "WellSpentTests.\(UUID().uuidString)"
+        defer { UserDefaults.standard.removePersistentDomain(forName: suiteName) }
+        let activityID = UUID()
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))
+        defaults.set("keep", forKey: "unrelated")
+        try WellSpentSpikeStorage.begin(activityID: activityID, at: .now, suiteName: suiteName)
+
+        try WellSpentSpikeStorage.clearSpikeData(suiteName: suiteName)
+
+        XCTAssertNil(try WellSpentSpikeStorage.record(activityID: activityID, suiteName: suiteName))
+        XCTAssertEqual(defaults.string(forKey: "unrelated"), "keep")
+    }
+
     func testCompletionDeepLinkRoundTripsActivityID() {
         let activityID = UUID()
         let url = WellSpentDeepLink.completionURL(for: activityID)

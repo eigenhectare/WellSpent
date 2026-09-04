@@ -149,11 +149,24 @@ struct ProjectStatusLabel: View {
 
 struct SessionFlagsView: View {
     let isActive: Bool
+    let stateLabel: String?
     let overlaps: Bool
+
+    init(isActive: Bool = false, stateLabel: String? = nil, overlaps: Bool) {
+        self.isActive = isActive
+        self.stateLabel = stateLabel
+        self.overlaps = overlaps
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
-            if isActive {
+            if let stateLabel {
+                sessionFlag(
+                    stateLabel,
+                    systemImage: stateLabel == "Paused" ? "pause.circle.fill" : "timer"
+                )
+                .accessibilityIdentifier("active-session-marker")
+            } else if isActive {
                 sessionFlag("Active", systemImage: "timer")
                     .accessibilityIdentifier("active-session-marker")
             }

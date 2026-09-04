@@ -30,6 +30,21 @@ run_rejected_fixture() {
 }
 
 run_rejected_fixture \
+    "HealthKit import" \
+    'import HealthKit' \
+    'fitness or extended-runtime API'
+
+run_rejected_fixture \
+    "WorkoutKit import" \
+    'import WorkoutKit' \
+    'fitness or extended-runtime API'
+
+run_rejected_fixture \
+    "Watch extended runtime" \
+    'import WatchKit; let session = WKExtendedRuntimeSession()' \
+    'fitness or extended-runtime API'
+
+run_rejected_fixture \
     "URLSession egress" \
     'import Foundation; let client = URLSession.shared' \
     'unexpected network, tracking, or diagnostics API'
@@ -38,6 +53,16 @@ run_rejected_fixture \
     "hard-coded remote URL" \
     'let endpoint = "https://example.com/upload"' \
     'hard-coded remote URL'
+
+run_rejected_fixture \
+    "notification API outside local Watch adapter" \
+    'import UserNotifications; let center = UNUserNotificationCenter.current()' \
+    'notification API found outside the local Watch goal adapter'
+
+run_rejected_fixture \
+    "remote notification registration" \
+    'UIApplication.shared.registerForRemoteNotifications()' \
+    'unexpected network, tracking, or diagnostics API'
 
 run_rejected_fixture \
     "interpolated crash data" \

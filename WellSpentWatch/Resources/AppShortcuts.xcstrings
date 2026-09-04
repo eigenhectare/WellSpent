@@ -1,0 +1,66 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "End my timer in ${applicationName}" : {
+      "localizations" : {
+        "en" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "End my timer in ${applicationName}"
+            ]
+          }
+        }
+      }
+    },
+    "Pause my timer in ${applicationName}" : {
+      "localizations" : {
+        "en" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Pause my timer in ${applicationName}"
+            ]
+          }
+        }
+      }
+    },
+    "Resume my timer in ${applicationName}" : {
+      "localizations" : {
+        "en" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Resume my timer in ${applicationName}"
+            ]
+          }
+        }
+      }
+    },
+    "Start a timer in ${applicationName}" : {
+      "localizations" : {
+        "en" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Start a timer in ${applicationName}"
+            ]
+          }
+        }
+      }
+    },
+    "Switch projects in ${applicationName}" : {
+      "localizations" : {
+        "en" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Switch projects in ${applicationName}"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

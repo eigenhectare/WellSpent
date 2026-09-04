@@ -32,7 +32,14 @@ final class SwiftDataProjectRepository: ProjectRepository {
     }
 
     func hasActiveTimedSession(projectID: UUID) throws -> Bool {
-        try context.fetch(FetchDescriptor<TimeSessionRecord>()).contains {
+        let hasNonEndedRun = try context.fetch(FetchDescriptor<TimerRunRecord>()).contains {
+            $0.projectID == projectID && $0.state != .ended
+        }
+        if hasNonEndedRun { return true }
+
+        // Compatibility for a pre-v3 row that has not yet been wrapped in a
+        // TimerRun (for example, an invalid fixture retained for review).
+        return try context.fetch(FetchDescriptor<TimeSessionRecord>()).contains {
             $0.projectID == projectID && $0.source == .timer && $0.endAt == nil
         }
     }

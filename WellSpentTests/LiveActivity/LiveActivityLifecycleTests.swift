@@ -7,6 +7,43 @@ import XCTest
 
 @MainActor
 final class LiveActivityLifecycleTests: XCTestCase {
+    func testTimerRunProjectionCarriesRevisionAndFreezesCountedTimeWhilePaused() {
+        let runID = UUID()
+        let startedAt = Date(timeIntervalSince1970: 100)
+        let requestedAt = Date(timeIntervalSince1970: 300)
+        let running = LiveActivityProjection(
+            sessionID: runID,
+            startedAt: startedAt,
+            projectName: "Client",
+            showsProjectName: true,
+            requestedAt: requestedAt,
+            phase: .running,
+            countedSeconds: 150,
+            currentSegmentStartedAt: Date(timeIntervalSince1970: 250),
+            revision: 4
+        ).contentState
+        XCTAssertEqual(running.phase, .running)
+        XCTAssertEqual(running.countedSeconds, 100)
+        XCTAssertEqual(running.revision, 4)
+        XCTAssertEqual(running.elapsed(at: Date(timeIntervalSince1970: 350), legacyStartedAt: startedAt), 200)
+
+        let paused = LiveActivityProjection(
+            sessionID: runID,
+            startedAt: startedAt,
+            projectName: "Client",
+            showsProjectName: true,
+            requestedAt: requestedAt,
+            phase: .paused,
+            countedSeconds: 150,
+            revision: 5
+        ).contentState
+        XCTAssertEqual(paused.phase, .paused)
+        XCTAssertEqual(paused.countedSeconds, 150)
+        XCTAssertNil(paused.currentSegmentStartedAt)
+        XCTAssertEqual(paused.revision, 5)
+        XCTAssertEqual(paused.elapsed(at: Date(timeIntervalSince1970: 999), legacyStartedAt: startedAt), 150)
+    }
+
     func testReconciliationPlanEndsStaleAndDuplicateActivitiesButKeepsOneExactMatch() {
         let active = LiveActivityProjection(
             sessionID: UUID(uuidString: "AAAAAAAA-AAAA-4AAA-BAAA-AAAAAAAAAAAA")!,
@@ -78,7 +115,7 @@ final class LiveActivityLifecycleTests: XCTestCase {
         let project = ProjectRecord(id: fixture.firstProjectID, name: "Confidential Client")
         fixture.context.insert(project)
         try fixture.context.save()
-        fixture.lifecycle.failure = .start
+        fixture.lifecycle.failure = .reconcile
         let model = fixture.makeModel()
 
         await model.startOrSwitch(to: project.id)
@@ -86,7 +123,7 @@ final class LiveActivityLifecycleTests: XCTestCase {
         let active = try XCTUnwrap(model.activeSession)
         XCTAssertEqual(active.projectID, project.id)
         XCTAssertNil(active.endAt)
-        XCTAssertEqual(fixture.lifecycle.calls, [.start(active.id)])
+        XCTAssertEqual(fixture.lifecycle.calls, [.reconcile(active.id)])
         XCTAssertNotNil(model.liveActivityRecoveryMessage)
     }
 
@@ -103,7 +140,7 @@ final class LiveActivityLifecycleTests: XCTestCase {
         fixture.context.insert(second)
         fixture.context.insert(oldSession)
         try fixture.context.save()
-        fixture.lifecycle.failure = .switchActivity
+        fixture.lifecycle.failure = .reconcile
         let model = fixture.makeModel()
 
         await model.startOrSwitch(to: second.id)
@@ -128,7 +165,7 @@ final class LiveActivityLifecycleTests: XCTestCase {
         fixture.context.insert(project)
         fixture.context.insert(session)
         try fixture.context.save()
-        fixture.lifecycle.failure = .stop
+        fixture.lifecycle.failure = .reconcile
         let model = fixture.makeModel()
 
         await model.stopActiveTimer()
@@ -240,7 +277,7 @@ final class LiveActivityLifecycleTests: XCTestCase {
         let project = ProjectRecord(id: fixture.firstProjectID, name: "Client")
         fixture.context.insert(project)
         try fixture.context.save()
-        fixture.lifecycle.failure = .start
+        fixture.lifecycle.failure = .reconcile
         let model = fixture.makeModel()
         await model.startOrSwitch(to: project.id)
         XCTAssertNotNil(model.liveActivityRecoveryMessage)
@@ -290,7 +327,11 @@ final class LiveActivityLifecycleTests: XCTestCase {
 
         XCTAssertTrue(model.projects.isEmpty)
         XCTAssertTrue(model.sessions.isEmpty)
+        XCTAssertTrue(model.runs.isEmpty)
+        XCTAssertTrue(model.requiresOnboardingAfterReset)
         XCTAssertFalse(model.sessionTags.contains { $0.name == "private" })
+        XCTAssertEqual(try fixture.context.fetchCount(FetchDescriptor<TimerRunRecord>()), 0)
+        XCTAssertEqual(try fixture.context.fetchCount(FetchDescriptor<TimerOriginRecord>()), 0)
         XCTAssertFalse(UserDefaults.standard.bool(forKey: AppPreferenceKeys.completedOnboarding))
         XCTAssertFalse(
             UserDefaults.standard.bool(forKey: AppPreferenceKeys.showProjectNamesOnLockScreen)
@@ -301,6 +342,91 @@ final class LiveActivityLifecycleTests: XCTestCase {
             ).isEmpty
         )
         XCTAssertEqual(fixture.lifecycle.calls.last, .reconcile(nil))
+    }
+    func testStopFromOlderRevisionCannotEndPausedRun() async throws {
+        let fixture = try LiveActivityModelFixture()
+        fixture.context.insert(ProjectRecord(id: fixture.firstProjectID, name: "Client"))
+        fixture.context.insert(
+            fixture.activeSession(
+                id: fixture.oldSessionID, projectID: fixture.firstProjectID,
+                startAt: fixture.now.addingTimeInterval(-600)))
+        try fixture.context.save()
+        let model = fixture.makeModel()
+        try WellSpentStopHandoff.persist(
+            sessionID: fixture.oldSessionID, endedAt: fixture.now,
+            endTimeZoneID: "UTC", expectedRevision: 1, suiteName: fixture.handoffSuiteName)
+
+        await model.pauseActiveTimer()
+        let paused = try XCTUnwrap(model.activeRun)
+        XCTAssertEqual(paused.revision, 2)
+        await model.retryLiveActivityProjection()
+
+        XCTAssertEqual(model.activeRun, paused)
+        XCTAssertTrue(try WellSpentStopHandoff.pendingRequests(suiteName: fixture.handoffSuiteName).isEmpty)
+        XCTAssertTrue(model.message?.contains("older timer state") == true)
+        XCTAssertNil(model.completionRoute)
+    }
+
+    func testRepeatedOldRunStopCannotEndSwitchedRun() async throws {
+        let fixture = try LiveActivityModelFixture()
+        fixture.context.insert(ProjectRecord(id: fixture.firstProjectID, name: "First"))
+        fixture.context.insert(ProjectRecord(id: fixture.secondProjectID, name: "Second"))
+        fixture.context.insert(
+            fixture.activeSession(
+                id: fixture.oldSessionID, projectID: fixture.firstProjectID,
+                startAt: fixture.now.addingTimeInterval(-600)))
+        try fixture.context.save()
+        let model = fixture.makeModel()
+        await model.startOrSwitch(to: fixture.secondProjectID)
+        let next = try XCTUnwrap(model.activeRun)
+        for _ in 0..<3 {
+            try WellSpentStopHandoff.persist(
+                sessionID: fixture.oldSessionID, endedAt: fixture.now.addingTimeInterval(30),
+                endTimeZoneID: "UTC", expectedRevision: 1, suiteName: fixture.handoffSuiteName)
+            await model.retryLiveActivityProjection()
+            XCTAssertEqual(model.activeRun, next)
+            XCTAssertEqual(model.run(id: fixture.oldSessionID)?.endAt, fixture.now)
+            XCTAssertEqual(fixture.lifecycle.desired.active?.sessionID, next.id)
+        }
+    }
+
+    func testProjectionSuccessCannotHideUnappliedStopRecovery() async throws {
+        let fixture = try LiveActivityModelFixture()
+        fixture.context.insert(ProjectRecord(id: fixture.firstProjectID, name: "Client"))
+        fixture.context.insert(
+            fixture.activeSession(
+                id: fixture.oldSessionID, projectID: fixture.firstProjectID,
+                startAt: fixture.now.addingTimeInterval(-600)))
+        try fixture.context.save()
+        let model = fixture.makeModel()
+        try WellSpentStopHandoff.persist(
+            sessionID: fixture.oldSessionID, endedAt: fixture.now.addingTimeInterval(-700),
+            endTimeZoneID: "UTC", expectedRevision: 1, suiteName: fixture.handoffSuiteName)
+
+        await model.retryLiveActivityProjection()
+
+        XCTAssertNotNil(model.activeRun)
+        XCTAssertEqual(try WellSpentStopHandoff.pendingRequests(suiteName: fixture.handoffSuiteName).count, 1)
+        XCTAssertTrue(model.liveActivityRecoveryMessage?.contains("safely queued") == true)
+    }
+
+    func testStopProjectsThePostSaveCountAndRevisionEvenWhenProjectionFails() async throws {
+        let fixture = try LiveActivityModelFixture()
+        fixture.context.insert(ProjectRecord(id: fixture.firstProjectID, name: "Client"))
+        fixture.context.insert(
+            fixture.activeSession(
+                id: fixture.oldSessionID, projectID: fixture.firstProjectID,
+                startAt: fixture.now.addingTimeInterval(-600)))
+        try fixture.context.save()
+        let model = fixture.makeModel()
+        fixture.lifecycle.failure = .reconcile
+        await model.stopActiveTimer()
+        let final = try XCTUnwrap(fixture.lifecycle.desired.completed.first).contentState
+        XCTAssertEqual(final.revision, model.run(id: fixture.oldSessionID)?.revision)
+        XCTAssertEqual(final.countedSeconds, 600)
+        XCTAssertEqual(final.endedAt, fixture.now)
+        XCTAssertEqual(final.phase, .stopped)
+        XCTAssertNil(model.activeRun)
     }
 }
 
@@ -332,19 +458,35 @@ private final class LiveActivityModelFixture {
                 now: now,
                 uuid: UUID(uuidString: "BBBBBBBB-BBBB-4BBB-BBBB-BBBBBBBBBBBB")!
             ),
-            startupReconciliation: .noActiveSession,
+            startupReconciliation: .noActiveRun,
             liveActivityLifecycle: lifecycle,
             stopHandoffSuiteName: handoffSuiteName,
             foregroundHandoffPollDelays: [],
+            makeWatchConnectivity: DependencyFixtures.disconnectedWatch,
             showsProjectNameOnLockScreen: { false }
         )
     }
 
     func activeSession(id: UUID, projectID: UUID, startAt: Date) -> TimeSessionRecord {
-        TimeSessionRecord(
+        context.insert(
+            TimerRunRecord(
+                id: id,
+                projectID: projectID,
+                state: .running,
+                startAt: startAt,
+                startTimeZoneID: "UTC",
+                originDeviceID: UUID(uuidString: "CCCCCCCC-CCCC-4CCC-8CCC-CCCCCCCCCCCC")!,
+                revision: 1,
+                createdAt: startAt,
+                updatedAt: startAt,
+                updatedTimeZoneID: "UTC"
+            )
+        )
+        return TimeSessionRecord(
             id: id,
             projectID: projectID,
             source: .timer,
+            timerRunID: id,
             startAt: startAt,
             startTimeZoneID: "UTC",
             createdAt: startAt,
@@ -356,43 +498,24 @@ private final class LiveActivityModelFixture {
 @MainActor
 private final class FakeLiveActivityLifecycle: LiveActivityLifecycle {
     enum Failure {
-        case start
-        case switchActivity
-        case stop
         case reconcile
     }
 
     enum Call: Equatable {
-        case start(UUID)
-        case switchActivity(UUID, UUID)
-        case stop(UUID)
         case reconcile(UUID?)
     }
 
     var activitiesEnabled = true
     var failure: Failure?
     private(set) var calls: [Call] = []
+    private(set) var desired = LiveActivityDesiredState(active: nil)
 
-    func start(_ projection: LiveActivityProjection) async throws {
-        calls.append(.start(projection.sessionID))
-        if failure == .start { throw LiveActivityLifecycleError.forcedTestFailure }
+    func setDesiredState(_ state: LiveActivityDesiredState) {
+        desired = state
     }
 
-    func switchActivity(
-        from previous: LiveActivityProjection,
-        to active: LiveActivityProjection
-    ) async throws {
-        calls.append(.switchActivity(previous.sessionID, active.sessionID))
-        if failure == .switchActivity { throw LiveActivityLifecycleError.forcedTestFailure }
-    }
-
-    func stop(_ projection: LiveActivityProjection, endedAt: Date) async throws {
-        calls.append(.stop(projection.sessionID))
-        if failure == .stop { throw LiveActivityLifecycleError.forcedTestFailure }
-    }
-
-    func reconcile(with active: LiveActivityProjection?) async throws {
-        calls.append(.reconcile(active?.sessionID))
+    func reconcile() async throws {
+        calls.append(.reconcile(desired.active?.sessionID))
         if failure == .reconcile { throw LiveActivityLifecycleError.forcedTestFailure }
     }
 }

@@ -3,6 +3,12 @@ import Foundation
 @testable import WellSpent
 
 enum DependencyFixtures {
+    @MainActor
+    static func disconnectedWatch(_ store: PhoneWatchSyncStore) -> IPhoneWatchConnectivityCoordinator {
+        IPhoneWatchConnectivityCoordinator(
+            syncStore: store, session: UITestDisconnectedWatchSession(), now: { fixedNow })
+    }
+
     static let fixedNow = Date(timeIntervalSince1970: 1_735_732_800.125)
     static let fixedLocale = Locale(identifier: "en_GB")
     static let fixedTimeZone = TimeZone(identifier: "Europe/London")!

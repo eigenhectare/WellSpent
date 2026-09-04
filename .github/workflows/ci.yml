@@ -18,7 +18,9 @@ jobs:
   build-and-test:
     name: Build and unit test
     runs-on: macos-26
-    timeout-minutes: 30
+    timeout-minutes: 45
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
 
     steps:
       - name: Check out source
@@ -32,7 +34,11 @@ jobs:
           xcrun swift --version
           xcodebuild -showsdks
 
+      - name: Install project generation and search tools
+        run: brew install xcodegen ripgrep
+
       - name: Run secrets-free pipeline
         env:
-          CI_SIMULATOR_DESTINATION: platform=iOS Simulator,name=iPhone 17 Pro,OS=latest
+          CI_SIMULATOR_DESTINATION: platform=iOS Simulator,name=iPhone 17 Pro Max,OS=26.5
+          CI_WATCH_SIMULATOR_DESTINATION: platform=watchOS Simulator,name=Apple Watch Series 11 (46mm),OS=26.5
         run: scripts/ci.sh

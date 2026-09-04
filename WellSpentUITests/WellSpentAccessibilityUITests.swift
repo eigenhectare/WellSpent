@@ -28,6 +28,7 @@ final class WellSpentAccessibilityUITests: XCTestCase {
         try performAccessibilityAudit(in: app)
 
         let stopButton = app.buttons["stop-active-timer"]
+        for _ in 0..<5 where !stopButton.isHittable { app.swipeUp() }
         XCTAssertTrue(stopButton.exists)
         stopButton.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
         XCTAssertTrue(element("session-completion-screen", in: app).waitForExistence(timeout: 5))

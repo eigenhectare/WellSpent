@@ -172,8 +172,3 @@ enum WellSpentSchemaV2: VersionedSchema {
         }
     }
 }
-
-typealias ProjectRecord = WellSpentSchemaV2.ProjectRecord
-typealias TimeSessionRecord = WellSpentSchemaV2.TimeSessionRecord
-typealias SessionTagRecord = WellSpentSchemaV2.SessionTagRecord
-typealias SessionTagAssignmentRecord = WellSpentSchemaV2.SessionTagAssignmentRecord

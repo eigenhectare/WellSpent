@@ -2,6 +2,7 @@ import Foundation
 import SwiftData
 import SwiftUI
 import WellSpentShared
+import WellSpentWatchContracts
 
 enum CompletionPresentationKind: Equatable, Sendable {
     case stopped
@@ -16,24 +17,37 @@ struct CompletionRoute: Identifiable, Equatable, Sendable {
     var id: UUID { sessionID }
 }
 
+struct ConflictReviewRoute: Identifiable {
+    let id: UUID
+}
+
 @MainActor
 final class WellSpentAppModel: ObservableObject {
     @Published private(set) var projects: [ProjectSnapshot] = []
     @Published private(set) var sessions: [TimeSessionSnapshot] = []
+    @Published private(set) var runs: [TimerRunSnapshot] = []
     @Published private(set) var sessionTags: [SessionTagSnapshot] = []
+    @Published private(set) var activeRun: TimerRunSnapshot?
     @Published private(set) var activeSession: TimeSessionSnapshot?
-    @Published private(set) var startupReconciliation: ActiveSessionReconciliationResult
+    @Published private(set) var startupReconciliation: ActiveTimerRunReconciliationResult
     @Published private(set) var isPerformingTimerCommand = false
     @Published private(set) var liveActivitiesEnabled = false
     @Published private(set) var liveActivityRecoveryMessage: String?
     @Published private(set) var isLongRunningSession = false
+    @Published private(set) var requiresOnboardingAfterReset = false
     @Published var completionRoute: CompletionRoute?
     @Published var message: String?
+    @Published private(set) var watchSyncOverview = PhoneWatchSyncOverview()
+    @Published private(set) var watchConnectionState: IPhoneWatchConnectivityState = .activating
+    @Published private(set) var watchSyncNeedsRetry = false
+    @Published private(set) var pendingWatchConflicts: [PhoneTimerConflict] = []
+    @Published var conflictReviewRoute: ConflictReviewRoute?
 
     private let dependencies: WellSpentDependencies
     private let projectCommands: ProjectCommandService
     private let projectQueries: ProjectQueryService
-    private let timerCommands: TimerCommandService
+    private let timerCommands: TimerRunCommandService
+    private let phoneWatchSyncStore: PhoneWatchSyncStore
     private let sessionCommands: SessionCommandService
     private let sessionRepository: any SessionRepository
     private let sessionTagCommands: SessionTagCommandService
@@ -43,22 +57,36 @@ final class WellSpentAppModel: ObservableObject {
     private let stopHandoffSuiteName: String
     private let foregroundHandoffPollDelays: [Duration]
     private let showsProjectNameOnLockScreen: () -> Bool
+    private let makeWatchConnectivity: (PhoneWatchSyncStore) -> IPhoneWatchConnectivityCoordinator
     private let reportingEngine = ReportingEngine()
+    private var watchConnectivity: IPhoneWatchConnectivityCoordinator?
+    private var liveActivityCanonicalStateAvailable = false
+    private var stopHandoffRecoveryMessage: String?
+    private var liveActivityOperationID: UUID?
 
     init(
         modelContainer: ModelContainer,
         dependencies: WellSpentDependencies,
-        startupReconciliation: ActiveSessionReconciliationResult,
+        startupReconciliation: ActiveTimerRunReconciliationResult,
         liveActivityLifecycle: (any LiveActivityLifecycle)? = nil,
         stopHandoffSuiteName: String = WellSpentStopHandoff.appGroupIdentifier,
         foregroundHandoffPollDelays: [Duration] = [.milliseconds(250), .milliseconds(500)],
+        makeWatchConnectivity: @escaping (PhoneWatchSyncStore) -> IPhoneWatchConnectivityCoordinator = {
+            #if DEBUG
+                if ProcessInfo.processInfo.arguments.contains(where: { $0.hasPrefix("UITEST_") }) {
+                    return IPhoneWatchConnectivityCoordinator(
+                        syncStore: $0, session: UITestDisconnectedWatchSession())
+                }
+            #endif
+            return IPhoneWatchConnectivityCoordinator(syncStore: $0)
+        },
         showsProjectNameOnLockScreen: @escaping () -> Bool = {
             UserDefaults.standard.bool(forKey: AppPreferenceKeys.showProjectNamesOnLockScreen)
         }
     ) {
         let context = ModelContext(modelContainer)
         let projectRepository = SwiftDataProjectRepository(context: context)
-        let timerRepository = SwiftDataTimerRepository(context: context)
+        let timerRepository = SwiftDataTimerRunRepository(context: context)
         let sessionRepository = SwiftDataSessionRepository(context: context)
         let sessionTagRepository = SwiftDataSessionTagRepository(context: context)
 
@@ -72,13 +100,21 @@ final class WellSpentAppModel: ObservableObject {
         self.stopHandoffSuiteName = stopHandoffSuiteName
         self.foregroundHandoffPollDelays = foregroundHandoffPollDelays
         self.showsProjectNameOnLockScreen = showsProjectNameOnLockScreen
+        self.makeWatchConnectivity = makeWatchConnectivity
         projectCommands = ProjectCommandService(
             repository: projectRepository,
             dependencies: dependencies
         )
         projectQueries = ProjectQueryService(repository: projectRepository)
-        timerCommands = TimerCommandService(
+        let timerCommands = TimerRunCommandService(
             repository: timerRepository,
+            dependencies: dependencies
+        )
+        self.timerCommands = timerCommands
+        phoneWatchSyncStore = PhoneWatchSyncStore(
+            context: context,
+            timerRepository: timerRepository,
+            timerCommands: timerCommands,
             dependencies: dependencies
         )
         sessionCommands = SessionCommandService(
@@ -113,7 +149,11 @@ final class WellSpentAppModel: ObservableObject {
     }
 
     func selectableSessionTags(sessionID: UUID?) -> [SessionTagSnapshot] {
-        let assignedIDs = Set(sessionID.flatMap { session(id: $0)?.tags.map(\.tagID) } ?? [])
+        let assignedIDs = Set(
+            sessionID.flatMap {
+                run(id: $0)?.tags.map(\.tagID) ?? session(id: $0)?.tags.map(\.tagID)
+            } ?? []
+        )
         return sessionTags.filter { $0.status == .active || assignedIDs.contains($0.id) }
     }
 
@@ -135,6 +175,12 @@ final class WellSpentAppModel: ObservableObject {
         sessions.first { $0.id == id }
     }
 
+    func run(id identity: UUID) -> TimerRunSnapshot? {
+        if let exact = runs.first(where: { $0.id == identity }) { return exact }
+        guard let runID = session(id: identity)?.timerRunID else { return nil }
+        return runs.first { $0.id == runID }
+    }
+
     func refresh() {
         do {
             projects = try projectQueries.allProjects()
@@ -150,17 +196,130 @@ final class WellSpentAppModel: ObservableObject {
                         .map(SessionTagAssignmentSnapshot.init(record:))
                 )
             }
+            runs = try timerCommands.allRuns()
             let reconciliation = try timerCommands.reconcileActiveState()
             startupReconciliation = reconciliation
             switch reconciliation {
-            case .noActiveSession:
+            case .noActiveRun:
+                activeRun = nil
                 activeSession = nil
-            case .active(let session), .reviewRequired(let session, _):
-                activeSession = session
+            case .running(let run, let openSegment):
+                activeRun = run
+                activeSession = openSegment
+            case .paused(let run):
+                activeRun = run
+                activeSession = nil
+            case .reviewRequired:
+                activeRun = nil
+                activeSession = nil
             }
             updateLiveActivityStatus()
+            liveActivityCanonicalStateAvailable = true
+            watchConnectivity?.publishLatestSnapshot()
+            refreshWatchStatus()
         } catch {
+            liveActivityCanonicalStateAvailable = false
+            updateLiveActivityDesiredState()
             present(error)
+        }
+    }
+
+    func activateWatchConnectivity() {
+        if let watchConnectivity {
+            watchConnectivity.retryPendingTransfers()
+            return
+        }
+        let coordinator = makeWatchConnectivity(phoneWatchSyncStore)
+        coordinator.onCanonicalMutationApplied = { [weak self] in
+            guard let self else { return }
+            self.refresh()
+            Task { @MainActor [weak self] in
+                await self?.reconcileLiveActivityProjection()
+            }
+        }
+        coordinator.onStatusChanged = { [weak self] in
+            self?.refreshWatchStatus()
+            Task { @MainActor [weak self] in
+                await self?.reconcileLiveActivityProjection()
+            }
+        }
+        watchConnectivity = coordinator
+        coordinator.activate()
+        coordinator.retryPendingTransfers()
+    }
+
+    var timerCommandsBlocked: Bool {
+        if !pendingWatchConflicts.isEmpty { return true }
+        if case .reviewRequired = startupReconciliation { return true }
+        return false
+    }
+
+    func isWatchOrigin(_ run: TimerRunSnapshot) -> Bool {
+        watchSyncOverview.watchOriginIDs.contains(run.originDeviceID)
+    }
+
+    var watchSyncStatusText: String {
+        if !pendingWatchConflicts.isEmpty { return "Review required" }
+        if watchSyncNeedsRetry { return "Sync needs retry" }
+        if watchSyncOverview.pendingAcknowledgements > 0 { return "Saved on iPhone · Watch confirmation pending" }
+        if watchSyncOverview.awaitingSnapshotReceipt { return "Saved on iPhone · Waiting for Watch" }
+        if watchSyncOverview.hasWatchHistory { return "Last saved changes confirmed by Watch" }
+        switch watchConnectionState {
+        case .available: return "Watch connected · Waiting for first confirmation"
+        case .activating: return "Checking for Apple Watch"
+        case .unavailable: return "No companion Watch available"
+        }
+    }
+
+    func refreshWatchStatus() {
+        do {
+            watchSyncOverview = try phoneWatchSyncStore.syncOverview()
+            pendingWatchConflicts = try phoneWatchSyncStore.pendingConflicts()
+            watchConnectionState = watchConnectivity?.state ?? .unavailable
+            watchSyncNeedsRetry = watchConnectivity?.lastDiagnosticCode != nil
+        } catch {
+            watchSyncNeedsRetry = true
+            liveActivityCanonicalStateAvailable = false
+        }
+        updateLiveActivityDesiredState()
+    }
+
+    func retryWatchSync() {
+        watchConnectivity?.retryPendingTransfers()
+        refreshWatchStatus()
+    }
+
+    func openConflictReview(id: UUID) {
+        refreshWatchStatus()
+        guard pendingWatchConflicts.contains(where: { $0.snapshot.conflictID == id }) else {
+            message = "This review is no longer pending. Your saved time is unchanged."
+            return
+        }
+        completionRoute = nil
+        conflictReviewRoute = ConflictReviewRoute(id: id)
+    }
+
+    func resolveWatchConflict(_ plan: PhoneConflictResolutionPlan) async -> String? {
+        guard !isPerformingTimerCommand else { return "Another change is still saving. Try again." }
+        isPerformingTimerCommand = true
+        defer { isPerformingTimerCommand = false }
+        do {
+            guard try phoneWatchSyncStore.pendingConflicts().contains(plan.conflict) else {
+                return
+                    "The conflict changed while you reviewed it. Close this confirmation and review the latest versions."
+            }
+            try throwForcedFailureIfRequested()
+            _ = try phoneWatchSyncStore.resolveConflict(
+                conflictID: plan.conflict.snapshot.conflictID, resolution: plan.payload,
+                capturedAt: plan.capturedAt, timeZoneID: plan.timeZoneID, mutationID: plan.id
+            )
+            refresh()
+            await reconcileLiveActivityProjection()
+            return nil
+        } catch {
+            refreshWatchStatus()
+            return
+                "The resolution could not be saved. Both versions are still preserved and timers remain blocked. Try again."
         }
     }
 
@@ -279,41 +438,31 @@ final class WellSpentAppModel: ObservableObject {
     }
 
     func startOrSwitch(to projectID: UUID) async {
-        guard !isPerformingTimerCommand else { return }
+        guard !isPerformingTimerCommand, !timerCommandsBlocked else { return }
         isPerformingTimerCommand = true
         defer { isPerformingTimerCommand = false }
 
         do {
             try throwForcedFailureIfRequested()
-            if let activeSession, activeSession.projectID != projectID {
-                let previousProjection = projection(for: activeSession)
+            if let activeRun, activeRun.projectID != projectID {
                 let result = try timerCommands.switchTimer(to: projectID)
                 refresh()
-                if case .switched(let completedSession, let newActiveSession) = result {
+                if case .switched(let completedRun, _) = result {
                     completionRoute = CompletionRoute(
-                        sessionID: completedSession.id,
+                        sessionID: completedRun.id,
                         kind: .switched
                     )
-                    if let previousProjection,
-                        let activeProjection = projection(for: newActiveSession)
-                    {
-                        await performLiveActivityOperation {
-                            try await self.liveActivityLifecycle.switchActivity(
-                                from: previousProjection,
-                                to: activeProjection
-                            )
-                        }
-                    }
+                    await reconcileLiveActivityProjection()
                 }
+            } else if let activeRun, activeRun.state == .paused {
+                _ = try timerCommands.resume(runID: activeRun.id)
+                refresh()
+                await reconcileLiveActivityProjection()
             } else {
                 let result = try timerCommands.start(projectID: projectID)
                 refresh()
-                if result.disposition == .started,
-                    let projection = projection(for: result.session)
-                {
-                    await performLiveActivityOperation {
-                        try await self.liveActivityLifecycle.start(projection)
-                    }
+                if result.disposition == .started {
+                    await reconcileLiveActivityProjection()
                 }
             }
         } catch {
@@ -323,21 +472,46 @@ final class WellSpentAppModel: ObservableObject {
     }
 
     func stopActiveTimer() async {
-        guard let sessionID = activeSession?.id, !isPerformingTimerCommand else { return }
-        let activeProjection = activeSession.flatMap { projection(for: $0) }
+        guard let runID = activeRun?.id, !isPerformingTimerCommand, !timerCommandsBlocked else { return }
         isPerformingTimerCommand = true
         defer { isPerformingTimerCommand = false }
 
         do {
             try throwForcedFailureIfRequested()
-            let result = try timerCommands.stop(sessionID: sessionID)
+            let result = try timerCommands.end(runID: runID)
             refresh()
-            completionRoute = CompletionRoute(sessionID: result.session.id, kind: .stopped)
-            if let activeProjection, let endedAt = result.session.endAt {
-                await performLiveActivityOperation {
-                    try await self.liveActivityLifecycle.stop(activeProjection, endedAt: endedAt)
-                }
-            }
+            completionRoute = CompletionRoute(sessionID: result.run.id, kind: .stopped)
+            await reconcileLiveActivityProjection()
+        } catch {
+            refresh()
+            present(error)
+        }
+    }
+
+    func pauseActiveTimer() async {
+        guard let runID = activeRun?.id, !isPerformingTimerCommand, !timerCommandsBlocked else { return }
+        isPerformingTimerCommand = true
+        defer { isPerformingTimerCommand = false }
+        do {
+            try throwForcedFailureIfRequested()
+            _ = try timerCommands.pause(runID: runID)
+            refresh()
+            await reconcileLiveActivityProjection()
+        } catch {
+            refresh()
+            present(error)
+        }
+    }
+
+    func resumeActiveTimer() async {
+        guard let runID = activeRun?.id, !isPerformingTimerCommand, !timerCommandsBlocked else { return }
+        isPerformingTimerCommand = true
+        defer { isPerformingTimerCommand = false }
+        do {
+            try throwForcedFailureIfRequested()
+            _ = try timerCommands.resume(runID: runID)
+            refresh()
+            await reconcileLiveActivityProjection()
         } catch {
             refresh()
             present(error)
@@ -355,21 +529,27 @@ final class WellSpentAppModel: ObservableObject {
         note: String,
         tagIDs: Set<UUID>?
     ) -> Bool {
-        guard let session = session(id: sessionID), let endAt = session.endAt else {
-            message = "That completed session is no longer available."
-            return false
-        }
-
         do {
             try throwForcedFailureIfRequested()
-            _ = try sessionCommands.editCompleted(
-                sessionID: sessionID,
-                projectID: session.projectID,
-                startAt: session.startAt,
-                endAt: endAt,
-                note: note,
-                tagIDs: tagIDs
-            )
+            if let run = run(id: sessionID), run.state == .ended {
+                _ = try timerCommands.annotate(
+                    runID: run.id,
+                    note: note,
+                    tagIDs: tagIDs ?? Set(run.tags.map(\.tagID))
+                )
+            } else if let session = session(id: sessionID), let endAt = session.endAt {
+                _ = try sessionCommands.editCompleted(
+                    sessionID: sessionID,
+                    projectID: session.projectID,
+                    startAt: session.startAt,
+                    endAt: endAt,
+                    note: note,
+                    tagIDs: tagIDs
+                )
+            } else {
+                message = "That completed session is no longer available."
+                return false
+            }
             refresh()
             return true
         } catch {
@@ -465,7 +645,11 @@ final class WellSpentAppModel: ObservableObject {
     func deleteSession(id: UUID) -> Bool {
         do {
             try throwForcedFailureIfRequested()
-            _ = try sessionCommands.delete(sessionID: id, confirmed: true)
+            if let run = run(id: id) {
+                try timerCommands.delete(runID: run.id, confirmed: true)
+            } else {
+                _ = try sessionCommands.delete(sessionID: id, confirmed: true)
+            }
             refresh()
             message = "Session deleted. Report totals were recalculated."
             return true
@@ -481,35 +665,47 @@ final class WellSpentAppModel: ObservableObject {
         isPerformingTimerCommand = true
         defer { isPerformingTimerCommand = false }
 
-        var liveActivityEnded = true
         do {
-            try await liveActivityLifecycle.reconcile(with: nil)
-        } catch {
-            liveActivityEnded = false
-        }
-
-        do {
-            try WellSpentStopHandoff.clear(suiteName: stopHandoffSuiteName)
-            try WellSpentSpikeStorage.clearSpikeData(suiteName: stopHandoffSuiteName)
+            do {
+                try WellSpentStopHandoff.clear(suiteName: stopHandoffSuiteName)
+            } catch WellSpentStopHandoffError.suiteUnavailable {
+                // An unavailable App Group has no shared container to erase.
+            }
+            do {
+                try WellSpentSpikeStorage.clearSpikeData(suiteName: stopHandoffSuiteName)
+            } catch WellSpentSpikeStorageError.suiteUnavailable {
+                // An unavailable App Group has no shared defaults to erase.
+            }
             try localDataResetService.deleteAllUserData()
             UserDefaults.standard.removeObject(forKey: AppPreferenceKeys.completedOnboarding)
             UserDefaults.standard.removeObject(
                 forKey: AppPreferenceKeys.showProjectNamesOnLockScreen
             )
+            requiresOnboardingAfterReset = true
             completionRoute = nil
+            conflictReviewRoute = nil
             liveActivityRecoveryMessage = nil
+            stopHandoffRecoveryMessage = nil
             try sessionTagCommands.seedBuiltInsIfNeeded()
             refresh()
-            message =
-                liveActivityEnded
-                ? "All WellSpent activity data was deleted from this iPhone."
-                : "All WellSpent activity data was deleted. iOS may briefly retain the old Lock Screen card."
+            message = nil
+            // Erasure, like a timer command, is authoritative before any
+            // asynchronous projection. refresh() synchronously fences old work.
+            await reconcileLiveActivityProjection()
+            if liveActivityRecoveryMessage != nil {
+                liveActivityRecoveryMessage =
+                    "All WellSpent activity data was deleted. iOS may briefly retain the old Lock Screen card."
+            }
             return true
         } catch {
             refresh()
             message = "All local data could not be deleted. No data was sent anywhere. Try again."
             return false
         }
+    }
+
+    func acknowledgeOnboardingAfterReset() {
+        requiresOnboardingAfterReset = false
     }
 
     func reportSegments(for selection: ReportSelection, now: Date? = nil) -> [ReportSegment] {
@@ -557,25 +753,36 @@ final class WellSpentAppModel: ObservableObject {
     }
 
     func handle(url: URL) async {
+        if let conflictID = WatchReviewLink.conflictID(from: url) {
+            openConflictReview(id: conflictID)
+            return
+        }
         guard let sessionID = WellSpentDeepLink.completionActivityID(from: url) else {
             message = "That link is not supported."
             return
         }
         _ = applyPendingStopRequests()
         refresh()
-        guard let session = session(id: sessionID), session.endAt != nil else {
+        await reconcileLiveActivityProjection()
+        if let run = run(id: sessionID), run.state == .ended {
+            completionRoute = CompletionRoute(sessionID: run.id, kind: .deepLink)
+        } else if session(id: sessionID)?.endAt != nil {
+            // A manual-session completion URL remains valid for compatibility
+            // with existing shortcuts and UI fixtures.
+            completionRoute = CompletionRoute(sessionID: sessionID, kind: .deepLink)
+        } else {
             message = "The linked completed session could not be found."
-            return
         }
-        completionRoute = CompletionRoute(sessionID: session.id, kind: .deepLink)
     }
 
     func applicationBecameActive() async {
+        activateWatchConnectivity()
+        watchConnectivity?.retryPendingTransfers()
         let appliedImmediately = applyPendingStopRequests()
         refresh()
         await reconcileLiveActivityProjection()
 
-        guard !appliedImmediately, activeSession != nil else { return }
+        guard !appliedImmediately, activeRun != nil else { return }
         for delay in foregroundHandoffPollDelays {
             try? await Task.sleep(for: delay)
             if applyPendingStopRequests() {
@@ -593,6 +800,7 @@ final class WellSpentAppModel: ObservableObject {
     }
 
     func updateLiveActivityPrivacy() async {
+        watchConnectivity?.publishLatestSnapshot()
         await reconcileLiveActivityProjection()
     }
 
@@ -604,35 +812,51 @@ final class WellSpentAppModel: ObservableObject {
         do {
             let result = try LiveActivityStopHandoffReconciler(
                 suiteName: stopHandoffSuiteName
-            ).applyPending { request in
-                try timerCommands.stop(
-                    sessionID: request.sessionID,
+            ).applyPendingRuns { request in
+                guard let run = try timerCommands.run(id: request.sessionID) else {
+                    throw LiveActivityStopRejection.obsolete
+                }
+                if run.state != .ended, let expectedRevision = request.expectedRevision,
+                    run.revision != expectedRevision
+                {
+                    throw LiveActivityStopRejection.obsolete
+                }
+                return try timerCommands.end(
+                    runID: request.sessionID,
                     capturedAt: request.endedAt,
-                    endTimeZoneID: request.endTimeZoneID
+                    timeZoneID: request.endTimeZoneID
                 )
             }
             if let lastApplied = result.appliedStops.last {
                 completionRoute = CompletionRoute(
-                    sessionID: lastApplied.session.id,
+                    sessionID: lastApplied.run.id,
                     kind: .deepLink
                 )
             }
             if !result.failedSessionIDs.isEmpty {
-                liveActivityRecoveryMessage =
+                stopHandoffRecoveryMessage =
                     "The Lock Screen stop is safely queued. Open the app and retry after reviewing timer recovery."
+            } else {
+                stopHandoffRecoveryMessage = nil
+            }
+            liveActivityRecoveryMessage = stopHandoffRecoveryMessage
+            if !result.rejectedRunIDs.isEmpty {
+                message =
+                    "That Lock Screen action referred to an older timer state. Your saved time is unchanged. Use the current timer controls."
             }
             return !result.appliedStops.isEmpty
         } catch {
-            liveActivityRecoveryMessage =
+            stopHandoffRecoveryMessage =
                 "The Lock Screen handoff is unavailable. Your in-app timer remains authoritative."
+            liveActivityRecoveryMessage = stopHandoffRecoveryMessage
             return false
         }
     }
 
     private func reconcileLiveActivityProjection() async {
-        let activeProjection = activeSession.flatMap { projection(for: $0) }
+        updateLiveActivityDesiredState()
         await performLiveActivityOperation {
-            try await self.liveActivityLifecycle.reconcile(with: activeProjection)
+            try await self.liveActivityLifecycle.reconcile()
         }
         updateLiveActivityStatus()
     }
@@ -640,34 +864,72 @@ final class WellSpentAppModel: ObservableObject {
     private func performLiveActivityOperation(
         _ operation: () async throws -> Void
     ) async {
+        let operationID = UUID()
+        liveActivityOperationID = operationID
         do {
             try await operation()
-            liveActivityRecoveryMessage = nil
+            guard liveActivityOperationID == operationID else { return }
+            liveActivityRecoveryMessage = stopHandoffRecoveryMessage
         } catch LiveActivityLifecycleError.activitiesDisabled {
+            guard liveActivityOperationID == operationID else { return }
             liveActivityRecoveryMessage =
                 "Your timer is saved, but Live Activities are disabled. Enable them in Settings or continue in the app."
+        } catch LiveActivityLifecycleError.foregroundRequired {
+            guard liveActivityOperationID == operationID else { return }
+            liveActivityRecoveryMessage =
+                "Your timer is saved. Open WellSpent on iPhone to show it on the Lock Screen."
         } catch {
+            guard liveActivityOperationID == operationID else { return }
             liveActivityRecoveryMessage =
                 "Your timer is saved, but the Lock Screen activity is out of date. Retry from the app."
         }
         updateLiveActivityStatus()
     }
 
-    private func projection(for session: TimeSessionSnapshot) -> LiveActivityProjection? {
-        guard let project = project(id: session.projectID) else { return nil }
+    private func updateLiveActivityDesiredState() {
+        let candidates = runs.filter { $0.state != .ended }
+        // A conflict with a single known canonical run can show a frozen review
+        // card. Multiple active runs must never be arbitrarily selected.
+        let current = activeRun ?? (timerCommandsBlocked && candidates.count == 1 ? candidates.first : nil)
+        liveActivityLifecycle.setDesiredState(
+            LiveActivityDesiredState(
+                active: current.map { projection(for: $0) },
+                completed: runs.filter { $0.state == .ended }.map { projection(for: $0) },
+                isCanonicalStateAvailable: liveActivityCanonicalStateAvailable
+            )
+        )
+    }
+
+    private func projection(for run: TimerRunSnapshot) -> LiveActivityProjection {
+        let requiresReview = timerCommandsBlocked && run.state != .ended
+        let requestedAt: Date
+        if requiresReview {
+            let reviewBoundary = pendingWatchConflicts.map(\.createdAt).min() ?? run.updatedAt
+            requestedAt = max(run.currentSegment?.startAt ?? run.startAt, reviewBoundary)
+        } else {
+            requestedAt = dependencies.now
+        }
         return LiveActivityProjection(
-            sessionID: session.id,
-            startedAt: session.startAt,
-            projectName: project.displayName,
+            sessionID: run.id,
+            startedAt: run.startAt,
+            projectName: project(id: run.projectID)?.displayName ?? "WellSpent timer",
             showsProjectName: showsProjectNameOnLockScreen(),
-            requestedAt: dependencies.now
+            requestedAt: requestedAt,
+            phase: run.state,
+            countedSeconds: run.countedDuration(at: requestedAt),
+            currentSegmentStartedAt: run.currentSegment?.startAt,
+            revision: run.revision,
+            endedAt: run.endAt,
+            requiresReview: requiresReview,
+            watchConfirmationPending: watchSyncOverview.pendingAcknowledgements > 0
+                || watchSyncOverview.awaitingSnapshotReceipt || watchSyncNeedsRetry
         )
     }
 
     private func updateLiveActivityStatus() {
         liveActivitiesEnabled = liveActivityLifecycle.activitiesEnabled
         isLongRunningSession =
-            activeSession.map {
+            activeRun.map {
                 dependencies.now.timeIntervalSince($0.startAt)
                     >= ActivityKitLiveActivityLifecycle.systemActiveLifetime
             } ?? false
@@ -695,6 +957,8 @@ final class WellSpentAppModel: ObservableObject {
 
     private func present(_ error: Error) {
         switch error {
+        case TimerRunCommandError.reviewRequired, PhoneConflictResolutionError.invalidResolution:
+            message = "Review the preserved timer versions before changing this run. Your saved time is unchanged."
         case ProjectCommandError.emptyName:
             message = "Enter a project name."
         case ProjectCommandError.invalidEmoji:

@@ -1,6 +1,7 @@
 import SwiftUI
 import UIKit
 import WellSpentShared
+import WellSpentWatchContracts
 
 struct RootView: View {
     private enum Tab: Hashable {
@@ -37,12 +38,13 @@ struct RootView: View {
         }
         .safeAreaInset(edge: .top, spacing: 0) {
             VStack(spacing: 0) {
-                if case .reviewRequired(_, let conflictingSessions) =
-                    model.startupReconciliation
+                if model.pendingWatchConflicts.isEmpty,
+                    case .reviewRequired(let runIDs, _, _) =
+                        model.startupReconciliation
                 {
                     Label(
-                        "Timer recovery needed: \(conflictingSessions.count) earlier "
-                            + "session\(conflictingSessions.count == 1 ? "" : "s") require review in Session History.",
+                        "Timer recovery needed: \(runIDs.count) "
+                            + "run\(runIDs.count == 1 ? "" : "s") require review in Session History.",
                         systemImage: "exclamationmark.triangle.fill"
                     )
                     .font(.footnote.weight(.semibold))
@@ -102,16 +104,25 @@ struct RootView: View {
         }
         .fullScreenCover(
             isPresented: Binding(
-                get: { !completedOnboarding },
-                set: { if !$0 { completedOnboarding = true } }
+                get: { !completedOnboarding || model.requiresOnboardingAfterReset },
+                set: {
+                    if !$0 {
+                        completedOnboarding = true
+                        model.acknowledgeOnboardingAfterReset()
+                    }
+                }
             )
         ) {
             OnboardingView(model: model) {
                 completedOnboarding = true
+                model.acknowledgeOnboardingAfterReset()
             }
         }
         .sheet(item: $model.completionRoute) { route in
             SessionCompletionView(model: model, route: route)
+        }
+        .sheet(item: $model.conflictReviewRoute) { route in
+            WatchConflictReviewView(model: model, conflictID: route.id)
         }
         .alert(
             "WellSpent",
@@ -155,6 +166,13 @@ struct RootView: View {
                 return
             }
             Task { await model.handle(url: url) }
+        }
+        .onContinueUserActivity(WatchReviewLink.activityType) { activity in
+            guard let value = activity.userInfo?[WatchReviewLink.conflictIDKey] as? String,
+                let id = UUID(uuidString: value)
+            else { return }
+            selectedTab = .track
+            model.openConflictReview(id: id)
         }
     }
 }

@@ -1,3 +1,4 @@
+import Darwin
 import Foundation
 
 /// A content-free, durable command handoff between the Live Activity intent
@@ -6,11 +7,13 @@ public struct WellSpentStopRequest: Codable, Equatable, Sendable {
     public let sessionID: UUID
     public let endedAt: Date
     public let endTimeZoneID: String
+    public let expectedRevision: Int64?
 
-    public init(sessionID: UUID, endedAt: Date, endTimeZoneID: String) {
+    public init(sessionID: UUID, endedAt: Date, endTimeZoneID: String, expectedRevision: Int64? = nil) {
         self.sessionID = sessionID
         self.endedAt = endedAt
         self.endTimeZoneID = endTimeZoneID
+        self.expectedRevision = expectedRevision
     }
 }
 
@@ -42,9 +45,10 @@ public enum WellSpentStopHandoff {
         sessionID: UUID,
         endedAt: Date,
         endTimeZoneID: String,
+        expectedRevision: Int64? = nil,
         suiteName: String = appGroupIdentifier
     ) throws -> WellSpentStopRequest {
-        try withLock {
+        try withLock(suiteName: suiteName) {
             let directoryURL = try storageDirectory(for: suiteName)
             try FileManager.default.createDirectory(
                 at: directoryURL,
@@ -59,7 +63,8 @@ public enum WellSpentStopHandoff {
             let persistedRequest = WellSpentStopRequest(
                 sessionID: sessionID,
                 endedAt: endedAt,
-                endTimeZoneID: endTimeZoneID
+                endTimeZoneID: endTimeZoneID,
+                expectedRevision: expectedRevision
             )
             try JSONEncoder().encode(persistedRequest).write(
                 to: fileURL,
@@ -73,7 +78,7 @@ public enum WellSpentStopHandoff {
     public static func pendingRequests(
         suiteName: String = appGroupIdentifier
     ) throws -> [WellSpentStopRequest] {
-        try withLock {
+        try withLock(suiteName: suiteName) {
             let directoryURL = try storageDirectory(for: suiteName)
             guard FileManager.default.fileExists(atPath: directoryURL.path) else {
                 return []
@@ -97,7 +102,7 @@ public enum WellSpentStopHandoff {
         sessionID: UUID,
         suiteName: String = appGroupIdentifier
     ) throws {
-        try withLock {
+        try withLock(suiteName: suiteName) {
             let directoryURL = try storageDirectory(for: suiteName)
             let fileURL = requestFileURL(for: sessionID, in: directoryURL)
             guard FileManager.default.fileExists(atPath: fileURL.path) else { return }
@@ -108,7 +113,7 @@ public enum WellSpentStopHandoff {
     public static func clear(
         suiteName: String = appGroupIdentifier
     ) throws {
-        try withLock {
+        try withLock(suiteName: suiteName) {
             let directoryURL = try storageDirectory(for: suiteName)
             guard FileManager.default.fileExists(atPath: directoryURL.path) else { return }
             for fileURL in try FileManager.default.contentsOfDirectory(
@@ -157,10 +162,26 @@ public enum WellSpentStopHandoff {
     }
 
     private static func withLock<Result>(
+        suiteName: String,
         _ operation: () throws -> Result
-    ) rethrows -> Result {
+    ) throws -> Result {
         lock.lock()
         defer { lock.unlock() }
+        // NSLock only coordinates this process. Intent execution and the app
+        // can overlap in different processes, so the first-write check and
+        // acknowledgement also share a protected advisory file lock.
+        let directory = try storageDirectory(for: suiteName)
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        try protectHandoffItem(directory)
+        let lockURL = directory.appendingPathComponent("handoff.lock")
+        let descriptor = open(lockURL.path, O_CREAT | O_RDWR | O_CLOEXEC, S_IRUSR | S_IWUSR)
+        guard descriptor >= 0 else { throw WellSpentStopHandoffError.persistenceFailed }
+        defer { close(descriptor) }
+        while flock(descriptor, LOCK_EX) != 0 {
+            guard errno == EINTR else { throw WellSpentStopHandoffError.persistenceFailed }
+        }
+        defer { flock(descriptor, LOCK_UN) }
+        try protectHandoffItem(lockURL)
         return try operation()
     }
 

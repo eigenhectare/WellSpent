@@ -7,88 +7,278 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02E4241289E7EF37B7540129 /* TimerRunCommandServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B777579CB477DAB23CAB2FDA /* TimerRunCommandServiceTests.swift */; };
+		03190D9B25B421780B5AB675 /* WellSpentWatchWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F4FE74F2542042107E5F80 /* WellSpentWatchWidgetBundle.swift */; };
+		0437B06C5F72BA23F92A6BA9 /* SpikePersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C0A893F07AEB6CB7600A5B /* SpikePersistence.swift */; };
+		046CE421A6315E0DA1F3AD95 /* WatchGoalSystemNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E53A36ABEE99C3E0F2401 /* WatchGoalSystemNotifications.swift */; };
+		04735E31B8E05AF2A1817E47 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 4E562BABD7E7607C4509F37B /* Localizable.xcstrings */; };
 		04AA65043C5505966B85DF27 /* WellSpentSpikeRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4CF8EA54D2A6EFE4FD3549 /* WellSpentSpikeRecord.swift */; };
+		054A15FAE281F0B4500DCB3A /* SpikeConnectivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C958D575C0323BCB6E5827C7 /* SpikeConnectivityController.swift */; };
 		05C8D3E56B87AE3B815BD301 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 6432A31BECFF30BA00CDB54F /* PrivacyInfo.xcprivacy */; };
+		067F92442B63BC8411E75B60 /* WatchWidgetLayoutUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582109BBABD9DE16BA812AE6 /* WatchWidgetLayoutUITests.swift */; };
+		08C569967859EF80288AF344 /* WatchGoalAlertPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681DB440A43CA39043E4E0F2 /* WatchGoalAlertPlan.swift */; };
 		090AB8C1E11F91490BE845E8 /* WellSpentDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60552D35C84141FA98F0E3A2 /* WellSpentDependencies.swift */; };
+		093508FAB6A2631382C83AF4 /* SpikeReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D0AF65B354ADFEA35FB587 /* SpikeReducers.swift */; };
 		0AEF52452078F728FE6491A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04D11B6456E491EA52A46A94 /* Assets.xcassets */; };
+		0B8647B3855A6FC014E09860 /* SpikePersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C0A893F07AEB6CB7600A5B /* SpikePersistence.swift */; };
 		0B901BD64603C68B85016B8B /* AppPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B03A5E0AAEF51E5CE1E7EAE /* AppPreferences.swift */; };
+		0B9FDF1FFB83A86CDE527E32 /* TransportModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299CEDF29BA5ADF186BA66F5 /* TransportModels.swift */; };
 		0D2240B1F730B4B2C598044F /* SessionOverlapDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F234D73070BC89EE8987E9B /* SessionOverlapDetectorTests.swift */; };
 		0EE036C3425B74075E00C70C /* SessionTagCommandService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9722C883781D3A9B63F0EF76 /* SessionTagCommandService.swift */; };
+		0F723FD89F401B6993584F4C /* WatchCompanionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303D5C3CD3AF994C8DD2F0A9 /* WatchCompanionUITests.swift */; };
+		1028C774DAF5E1DA98A73E15 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 368418D6775B4983C03AB477 /* PrivacyInfo.xcprivacy */; };
 		109F5BA89EB08ACD78099D8E /* ReportingEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D3505DEF536F3A8AAF91FD /* ReportingEngineTests.swift */; };
+		11758D339AD5BC311BCC6586 /* WellSpentWatchIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26C53982A8E7461F521BDFA /* WellSpentWatchIntents.swift */; };
 		122D24033A6D35D31D60C33B /* TimerStopCommandServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26421305C7F9D3FA646A3081 /* TimerStopCommandServiceTests.swift */; };
+		12EA398F77A96F0CB56885B4 /* TimerRunRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32F0CDD6C30E294DF22E4CC /* TimerRunRepository.swift */; };
+		13C0C21F51F92A38E154DC57 /* WatchGoalErrorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4DB537A4DB5F501E5F8AF9 /* WatchGoalErrorUITests.swift */; };
+		15301687BC17692C7CEE872F /* SnapshotModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40F08EC347972FCF09D5475 /* SnapshotModels.swift */; };
+		16677880F8970687AE9C8687 /* WellSpentWatchWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1FDE0923DC2B416036097726 /* WellSpentWatchWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		16FBB06314F1F3FC9B59B808 /* WatchContractTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DCC75939EBB492D5DE3212D /* WatchContractTests.swift */; };
+		17CB24A07AFD84A642FE2E22 /* TimerRunReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393B512C54836673F020A8C5 /* TimerRunReviewView.swift */; };
+		194F6F99597736236CE03958 /* WatchLocalizationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C458EC14A297D8A2D2D30C1C /* WatchLocalizationUITests.swift */; };
+		198E180DDFF9A4D2CA2D01AE /* WellSpentConnectivitySpikeWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 10186C5D22F73CABB115E0B7 /* WellSpentConnectivitySpikeWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		19B8101141737439932F3E20 /* WellSpentWatchShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA209536FED53C96FBD83AE2 /* WellSpentWatchShortcuts.swift */; };
+		19FC2087B03A1E5BB1A2DABF /* WatchSystemAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56151D12F05CB88F24F6275 /* WatchSystemAction.swift */; };
+		1A3378E6C03DA6963DB53B40 /* ContractVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFCFD66155AC11F02F7785E /* ContractVersion.swift */; };
+		1A567C87F25BE01821E3D1A8 /* WellSpentWatchRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3B927532FC1AE3C4DB1484 /* WellSpentWatchRuntime.swift */; };
+		1AA2FCF0959AE56BCE76EE11 /* LiveActivitySerializationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9904B17C119A13DE137EBF /* LiveActivitySerializationTests.swift */; };
+		1F4A9057E0AE608761BDCAD4 /* WatchConnectivityCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E45905788E2C15344289BFF /* WatchConnectivityCoordinator.swift */; };
 		2B0A7CA67B7D47538CE9E566 /* SessionCommandService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AF2A30F627E47ECB8B2B8E /* SessionCommandService.swift */; };
 		2BC6D030B58A31F628B9B877 /* TimerCommandService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCA28397E4567851DC495B0 /* TimerCommandService.swift */; };
 		2C11F8C1333A83ABE9CAD5A8 /* WellSpentPersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190B55B15B9F7D100EF3DF33 /* WellSpentPersistenceTests.swift */; };
 		2E82244728CA30C238400FFD /* ProjectCommandServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74C732C90E052820EF0C4AF /* ProjectCommandServiceTests.swift */; };
+		30D61612E21D88342EAB9159 /* PhoneConflictResolutionPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE000A33915C3C8829B6A970 /* PhoneConflictResolutionPlan.swift */; };
+		31DB6808F7DE6AF3F8460E68 /* WatchSystemActionsHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7B8802B71A6845035CF253 /* WatchSystemActionsHelpView.swift */; };
 		3251F9F82FABB345C26753C0 /* WellSpentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F447374C52F83C97EB3FD4FF /* WellSpentUITests.swift */; };
+		33B9D970D774F6A4B1A8249F /* WellSpentWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36A21C5957C0A61B3930399 /* WellSpentWatchApp.swift */; };
+		344CA591400E8549A775B276 /* TimerRunModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86FAFB235F93E158AC44231 /* TimerRunModels.swift */; };
+		34B5E89F3AB42292C68BE422 /* WatchFoundationErrorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C7EEFD97AE9C7C7145279F /* WatchFoundationErrorUITests.swift */; };
+		3502CE3EA7C9012302BEB3DC /* SpikeProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93CE5C1C0C68F95F28E0D53 /* SpikeProtocolTests.swift */; };
 		355BD975DE9019F8BE120072 /* SessionTagCommandServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78544992737A5EA51E09CD5C /* SessionTagCommandServiceTests.swift */; };
+		39DDA7B2062F4D7E2BEE3696 /* WatchTimerControlBoundary.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBDCFDCA0F59A1A5460DF80 /* WatchTimerControlBoundary.swift */; };
 		3A437A083832AFDE9B817FD8 /* WellSpentPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13988B3A60F42A7BD6F02D5A /* WellSpentPersistence.swift */; };
 		3CF92F403D176F6B2003C14F /* SessionOverlapDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E80DC0110D62AF9C7ADF134 /* SessionOverlapDetector.swift */; };
 		3F309365E0882D5665E55024 /* ReportingInvariantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC10A6D03EE6E83C058718 /* ReportingInvariantTests.swift */; };
+		3FF9A417E7AC87C0F915A272 /* ConnectivitySpikePhoneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BE3D7C81989FC068E9DDDD /* ConnectivitySpikePhoneUITests.swift */; };
 		42FA066A60577818288FFE29 /* WellSpentAppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7AF77E3DFFABDA64AF73FAF /* WellSpentAppModel.swift */; };
+		44D63BA0A17DC3C2C3BF5F0F /* WatchUITestFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8422E2C13D217512B91B9A48 /* WatchUITestFixture.swift */; };
+		492CD2765CDB282E6FA3A386 /* WellSpentWatchFoundationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2FA8B65027E5F0F1A4617B /* WellSpentWatchFoundationTests.swift */; };
+		4AE76D31E2CABFBA28A448A6 /* WellSpentWatchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4877083AFB93A76D5C09FC5 /* WellSpentWatchUITests.swift */; };
+		4BB520C63F0CB8A9D2763F19 /* WatchFoundationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5092C5656BE8B3BE5FEED225 /* WatchFoundationView.swift */; };
+		4CF812878C775518C4BCCDC9 /* RestartRecoveryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E80B95DF75F566375261B84 /* RestartRecoveryUITests.swift */; };
 		4D8BFF2807546CC2A7D6C3A2 /* WellSpentUITestBootstrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A3A37CCCEDD415EB2B6F66 /* WellSpentUITestBootstrap.swift */; };
 		4DCBCF786310D169D2945BB0 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA83BEE509AA3EF83A4C74C /* OnboardingView.swift */; };
+		4F173683519F6A4C3999EB5D /* WatchEndedTimerSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ABC73496873DD5A316A3FB7 /* WatchEndedTimerSummaryView.swift */; };
+		5115A4925930EE6FD1B784DA /* WatchPrivacyPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1FB7DA360A778BCB4F2741 /* WatchPrivacyPresentation.swift */; };
+		5125F437E8A47ECE469B4250 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 24D1A38AA196AD3516CEBEA3 /* PrivacyInfo.xcprivacy */; };
+		51980EE7FE05E3ED9AC9C471 /* WatchTimerControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177629CD277C48A9E794EB8A /* WatchTimerControlsView.swift */; };
+		52AAD59AF89D72F79FE3DD77 /* WatchUITestScrolling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A83C05032991A7875AA2C /* WatchUITestScrolling.swift */; };
+		52F92D6B2B84856A33855CDF /* WatchGoalAlertCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732AA1FE050894B4BD64CA34 /* WatchGoalAlertCoordinator.swift */; };
 		586BC39E48C2794E416BF589 /* DependencyFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203B6058026C044A52E2C39E /* DependencyFixtures.swift */; };
+		597EC3E20500CDD76FCDB6B3 /* WellSpentWatchStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363B2040DFC83AF99547D8D3 /* WellSpentWatchStore.swift */; };
 		5C77FA9647692C0BB7BE2881 /* TimerCommandServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71DBBE2045B37BEF521B51E /* TimerCommandServiceTests.swift */; };
+		5C7948B77951583F42AC5771 /* WatchTimerStartBoundary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B849AE28C732AC45E546F5 /* WatchTimerStartBoundary.swift */; };
+		5CF6937381C9FC230EC2EF29 /* WatchSystemCommandBoundary.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90FC96577E22C72DCDC8AEC /* WatchSystemCommandBoundary.swift */; };
 		5E5DD30A6D7AE0C811661E58 /* SessionReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E82337598F0CE16E5BC216 /* SessionReviewView.swift */; };
+		5FAEECD9151F55D00B17E228 /* WatchProjectPickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59F260D135503582582B45A /* WatchProjectPickerTests.swift */; };
 		601881FF3828B6A978C3A0AC /* SessionCompletionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9C44B2E475B1F85D34FACE /* SessionCompletionView.swift */; };
 		62A2EE9FC9BC5BD716743EA5 /* ProjectSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FD5E70EAF74BACB9FAC6DD /* ProjectSnapshot.swift */; };
+		63975179B02DC4A236557C78 /* WellSpentWatchContracts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E872F23BE20AE0C3F643830 /* WellSpentWatchContracts.framework */; };
 		6812BCE2E4E8FAA0548A4B9B /* WellSpentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0CC8C5053D236F3A8E0C21 /* WellSpentTests.swift */; };
 		69E34DCA2754A6B6212494E9 /* WellSpentStartup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5DD0A2E1047C33B3B6A735 /* WellSpentStartup.swift */; };
 		6C17EECBA45446A8C3E4464F /* ProjectCommandService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14B931BA04222F13C2881C9 /* ProjectCommandService.swift */; };
+		6DF2EDE077A4B202F847A75F /* TimerRunMigrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B6B632EFB7E7142F1E0BD8 /* TimerRunMigrationTests.swift */; };
+		6ED3A3065CDD92748B81B39F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98A8319E44F30E46C90A38C8 /* Assets.xcassets */; };
 		6FE9ED618579B665F87F6561 /* SessionTagRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4370C7ED12B4CA7303818E /* SessionTagRepository.swift */; };
+		6FF5FDA4AA0DC45088D0C4D8 /* WatchStorePersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBFE8187630DB7D3B2736D7 /* WatchStorePersistence.swift */; };
+		70452D0795171710743275D8 /* MutationModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C65798F65874332269A7C8 /* MutationModels.swift */; };
+		715545E0A1D17B8E71EF4C06 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 4E562BABD7E7607C4509F37B /* Localizable.xcstrings */; };
+		74A996F4E30E795C391CA9AE /* WatchStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0808DD30252A711C8FD6DE /* WatchStoreTests.swift */; };
+		74F9D742A8518BA5DB6B1B0D /* WatchStartedTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409CA8C8FACAAB116EF89A3D /* WatchStartedTimerView.swift */; };
 		7661AA7685E57CDC12417610 /* SessionTagSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE296DA432A2F6DD81E35AEC /* SessionTagSnapshot.swift */; };
+		76DD6B27A7DD23A0F0B9C207 /* WatchSystemAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56151D12F05CB88F24F6275 /* WatchSystemAction.swift */; };
+		771FD91F7FE8B6615B8C4B76 /* WatchTimerAnnotationBoundaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BE6BA1A9B5092976AB8856 /* WatchTimerAnnotationBoundaryTests.swift */; };
+		790BBD8DAE37C89379C4DEE5 /* TimerRunReconciler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E0DBD2EA51F089D0250291 /* TimerRunReconciler.swift */; };
 		797C5C5F52F2F6203467796E /* WellSpentActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CFB0359AE453E76144CC14 /* WellSpentActivityAttributes.swift */; };
+		79C8657CA54E58C1B43FE5F4 /* WatchResourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292689386E07D35E1FCF1CE2 /* WatchResourceTests.swift */; };
+		7A070E2FE6CC5C222A46017D /* WatchRestartRecoveryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AA30C712457758C4FF257C /* WatchRestartRecoveryUITests.swift */; };
+		7A0BE91D28F77D2C17FEA5B0 /* WatchTimerAnnotationBoundary.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FF84455CA96E155BE18899 /* WatchTimerAnnotationBoundary.swift */; };
+		7AC0DD8514E31C9A913B58CF /* SpikeReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D0AF65B354ADFEA35FB587 /* SpikeReducers.swift */; };
+		7D6B23EDFFCED3DC446C70A7 /* SpikeReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D0AF65B354ADFEA35FB587 /* SpikeReducers.swift */; };
+		7E654BCE1DF9C7DFB7EDA376 /* PhoneWatchSyncStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896A128B314A30711365CDE4 /* PhoneWatchSyncStore.swift */; };
+		7F536980F5F782730A4E1EBC /* WatchPrivacyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A592FAEFCA557CEDE7F8FC /* WatchPrivacyUITests.swift */; };
+		80F40D1E14D8B9E0198CFB66 /* ConnectivitySpikeWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0AA55CB186364966748725 /* ConnectivitySpikeWatchApp.swift */; };
+		818EF9C3874634446E657264 /* WellSpentWatchContracts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E872F23BE20AE0C3F643830 /* WellSpentWatchContracts.framework */; };
 		81B458A8891FD6E879AC117B /* TrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7540D684B423150E5505F7 /* TrackView.swift */; };
+		81B6BF7080632FCB1109F741 /* WatchSystemCommandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AA8D399DF35B70D7279F78 /* WatchSystemCommandTests.swift */; };
+		82D7E17B640B36C39177CEBA /* WatchRestartFaultFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DEA586847C36C4F9F5BC5C /* WatchRestartFaultFixture.swift */; };
 		83314E0A22031D661DFEC26C /* PresentationSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC21CF1F1B9EDA93B09F4B5 /* PresentationSupport.swift */; };
+		84CE2CAE101ED4DDB90ED228 /* WatchContractTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DCC75939EBB492D5DE3212D /* WatchContractTests.swift */; };
 		86A1675848162F35427F8780 /* WellSpentDependenciesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E0F549568DA4F9099A6D0D /* WellSpentDependenciesTests.swift */; };
 		86B16BFDF3260FBA9A8A523F /* LiveActivityLifecycleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1C9BB16DB72D70F2BCDFCB /* LiveActivityLifecycleTests.swift */; };
+		87116DDC1E764A61B03C8C13 /* WatchTimerStartBoundaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B482E6DE6AAB0D7A5F33F185 /* WatchTimerStartBoundaryTests.swift */; };
+		877C8895A750BB80AD9F93D9 /* WatchTimerControlBoundaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF96FDF92F3EE67985B9B271 /* WatchTimerControlBoundaryTests.swift */; };
+		899C2C689239CE010DFD200F /* WatchRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2215A5EC69E3F5878673F761 /* WatchRootView.swift */; };
 		8B13B76299F32B90B8B4A665 /* LiveActivityStopHandoffReconciler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54199F75EAFAC44B0866891 /* LiveActivityStopHandoffReconciler.swift */; };
 		8B6C23F7DD8F2572D7F3FFE1 /* SessionCommandServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970F774C1FD756414F545791 /* SessionCommandServiceTests.swift */; };
+		8E2383C506E2CB5D938E2094 /* SpikePersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C0A893F07AEB6CB7600A5B /* SpikePersistence.swift */; };
 		8EA24C098DF0C024F4F3B56F /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = B94C81C96484807D1AB75CE6 /* PrivacyInfo.xcprivacy */; };
 		8EB158709F1439984E065050 /* ManualSessionEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B3362AA65932EF8998B000 /* ManualSessionEditorView.swift */; };
+		8F30A0F7565BF33AFCA14806 /* PhoneWatchSyncStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B047EE14B0B2BF05400A54A0 /* PhoneWatchSyncStoreTests.swift */; };
+		927E47DC7B0B7294833D707F /* LiveActivityPresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCF2A5AE36BA81A259F1A22 /* LiveActivityPresentationTests.swift */; };
+		944359ABF1670F06DC333489 /* WatchAccessibilityPreviewSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661923A1516C15CB97384F42 /* WatchAccessibilityPreviewSupport.swift */; };
 		95AFE8679A08DA3BFBB5F2C8 /* ProjectManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8F526866E1379D54D75901 /* ProjectManagementView.swift */; };
+		96B873062CDCCB9037C289F6 /* WellSpentWatchStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F40DC650081EF684957262 /* WellSpentWatchStatusView.swift */; };
 		97767666AE74C9AB2D9CC37D /* WellSpentSchemaV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A776AAD0B4E75C059486D /* WellSpentSchemaV2.swift */; };
+		984E6FF4DAB2DB90D787428B /* SpikeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02283A4340B926E3D0FFE902 /* SpikeProtocol.swift */; };
+		9B0813BB824CF4919FE4C9A0 /* WatchTimerMetricsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19334C0DA8161A429266A10 /* WatchTimerMetricsTests.swift */; };
 		9CA5D230DDA21F04BC61C4AD /* LiveActivityLifecycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F772050E8BDD82FE095121 /* LiveActivityLifecycle.swift */; };
+		9CF5892A4CFE7EB0BA806730 /* WellSpentSchemaV5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2479DFBEECEDAC954F2618EC /* WellSpentSchemaV5.swift */; };
+		9DE4A71B932A0EC96706D963 /* WatchWidgetPreviewSurface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7EFBE97320EA85AB6FE043 /* WatchWidgetPreviewSurface.swift */; };
+		9EE7EF53F2723197660FC69B /* WatchStoreAssetDraftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243473B930AFFFF092ED7F11 /* WatchStoreAssetDraftUITests.swift */; };
+		9FAD04493C7304EB79496204 /* WatchGoalAlertTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF905C9CF724269B1547FC8 /* WatchGoalAlertTests.swift */; };
+		A1F6A31C8D95219D98CCFBE4 /* WatchAccessibilityPreferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551D4A9113C233D3F72F248D /* WatchAccessibilityPreferencesTests.swift */; };
+		A3D686E0CBA6C337B8FDA0B6 /* WellSpentWatchStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9181A70CE34A5DE2B87FDC5 /* WellSpentWatchStore.framework */; };
+		A49CA87A6066BB2A32927427 /* WatchSystemActionsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5AD3CD4B2D153D78FBD136 /* WatchSystemActionsUITests.swift */; };
+		A707B7DFA0F6BB847EE682E7 /* WatchAccessibilityPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2741CCF524673889741600B4 /* WatchAccessibilityPreferences.swift */; };
+		A766DD9F4AAEB0F168F734AF /* WellSpentWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = ED977871CFCE7058B7B2DD41 /* WellSpentWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A7D695111D86326B4AC64851 /* WellSpentAccessibilityUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AB98520E19B37B7A5786B /* WellSpentAccessibilityUITests.swift */; };
 		A7F0B0AAB77280CF260B877F /* SessionHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B80F19BE5DAB0DEB2E48A3 /* SessionHistoryView.swift */; };
+		ABE386AEDC5A6198B3A82D70 /* WatchControlErrorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A513727C9C5A817B3259F6AD /* WatchControlErrorUITests.swift */; };
+		B03893392D4BBD2C2CEC573B /* WatchCompanionUITestFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9622CAF5A9C6856D77F00C87 /* WatchCompanionUITestFixture.swift */; };
+		B1086A52AA3A39B9FD975AB4 /* AppShortcuts.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = EA74271254A3F78B4152E894 /* AppShortcuts.xcstrings */; };
+		B2A57DD3A333CEC0F20F1925 /* WatchConflictReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E164CBC3B1B0659302632862 /* WatchConflictReviewView.swift */; };
+		B52DD1F9172A84F20A47BA8E /* WellSpentWatchStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F40DC650081EF684957262 /* WellSpentWatchStatusView.swift */; };
+		B9F2F664D5CBBDBD3FC8FE53 /* WatchGoalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C0A559234F50C53FBE67A8 /* WatchGoalUITests.swift */; };
 		BC575BC92370AAA52B728FCE /* TimerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE52F65CB28E04A5AD929C44 /* TimerRepository.swift */; };
 		BCD7DE37A40C28118606D21C /* WellSpentShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 402A5AEA2A8ADF2FF3930A7C /* WellSpentShared.framework */; };
+		BDBCED06D4A92837E55AAB0A /* WatchStoreState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEDDE5F6D3B4525532B6437 /* WatchStoreState.swift */; };
+		BE20B3BD8F28CD0794220BBE /* WatchWidgetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCEE9F7C17759F9C70ADA9A /* WatchWidgetUITests.swift */; };
 		BF1E470860ADCF0C6FDD5264 /* WellSpentLiveActivityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8147B15FD1DAFB755409D1 /* WellSpentLiveActivityWidget.swift */; };
+		BF9FF57D15D47B9902A2321F /* WatchTimerMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE77706E57E278464909B8F /* WatchTimerMetrics.swift */; };
+		BFE7F55C12046E0C02E9A5B3 /* WatchStoreModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8452D2AE581A2FE592051765 /* WatchStoreModels.swift */; };
+		C13C2C5D49C15C1ABF013DDD /* SpikeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02283A4340B926E3D0FFE902 /* SpikeProtocol.swift */; };
+		C354627517E747F62E7340FD /* WellSpentWatchContracts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E872F23BE20AE0C3F643830 /* WellSpentWatchContracts.framework */; };
 		C4B843C97A09BE6FF1A0DFC7 /* SessionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2029D941C3A1F397AB6001 /* SessionRepository.swift */; };
+		C5DB2B28F5EABF5CFE3D114D /* WellSpentSchemaV4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147F22385D2A8904ED55226E /* WellSpentSchemaV4.swift */; };
 		C70FB4568EA656EDD90EEDF8 /* ReportsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF43AECCBC8722C06BDB1608 /* ReportsView.swift */; };
+		C7382C7BDDB3E2FB793B4272 /* WellSpentSchemaV3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40200DB477AE3EB3CC9DFE79 /* WellSpentSchemaV3.swift */; };
 		C92CE0D14E80A280E1DAEE21 /* WellSpentAppIntentsPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60083FF6CD2426CDEEAB36A1 /* WellSpentAppIntentsPackage.swift */; };
+		C986C21A3ACA4E772028E4F5 /* SpikeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02283A4340B926E3D0FFE902 /* SpikeProtocol.swift */; };
+		CA15E050DAD188CFB23E982A /* ConnectivitySpikePhoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A6FC4E47E323E3476BDA3F /* ConnectivitySpikePhoneApp.swift */; };
+		CA21235E403EC3291DB724C5 /* WatchGoalPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668AFD7461F738B20001A3A5 /* WatchGoalPreferences.swift */; };
 		CA71FD7E6BCB2880EAE1725C /* WellSpentWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 137F608F6902F1C6F94B4269 /* WellSpentWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CBE94B3304B6287951DF43A1 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390FBAFAB4DC9B71E2DB3E9F /* SettingsView.swift */; };
+		CD85994B86774D4BD955A265 /* WellSpentWatchStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9181A70CE34A5DE2B87FDC5 /* WellSpentWatchStore.framework */; };
+		CEFB1A4F3830873F7B895C7E /* WatchWidgetSnapshotReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5022FB950A9112082272AAD3 /* WatchWidgetSnapshotReader.swift */; };
 		D20CE05B1A1E280939A71013 /* WellSpentWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93EF667FC0DA607F25A71AD /* WellSpentWidgetBundle.swift */; };
 		D270B980BAD54F8942B34245 /* TimerSwitchCommandServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B69E0D213E34A3A9F0C0BE4 /* TimerSwitchCommandServiceTests.swift */; };
 		D4375C6196A6356073456292 /* WellSpentStopHandoff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8002EDE1EDC48B7A7C6DFB5E /* WellSpentStopHandoff.swift */; };
+		D7C70AC9108F92CFD100C4A1 /* SHA256Digest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E8E4907397BA3E4560EDCD /* SHA256Digest.swift */; };
+		D832A71952A88BC7F27F1D2E /* WellSpentSchemaV6.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F547D62813AB51D81D24489 /* WellSpentSchemaV6.swift */; };
 		D8E971EB75C8E045B1C8D5E2 /* WellSpentWidgetsAppIntentsPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC72C2BED800B45FC7AC2A49 /* WellSpentWidgetsAppIntentsPackage.swift */; };
+		D8F817BD3B4AC9519197511D /* WatchAccessibilityUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D029882831AFCDB9C930DB4 /* WatchAccessibilityUITests.swift */; };
 		DAB40D9DF44B08D59B879A3A /* WellSpentApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43A5A10607AF1EFE098F373 /* WellSpentApp.swift */; };
+		DB909A6CFFAD0035D3E197F7 /* UITestDisconnectedWatchSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4007F1C3F9730E0FBF6D9AE /* UITestDisconnectedWatchSession.swift */; };
+		DBF011CC22E27C19AA457550 /* PhoneRestartFaultFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9830FA82597E8B42CD2C86 /* PhoneRestartFaultFixture.swift */; };
 		DC52C7F3368C84CFC2A613F4 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C186F102F13DA0394675E9 /* RootView.swift */; };
+		DDEED5986038260CCDD12601 /* ActivityKitLiveActivityDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E0BD5060E68697917D2791 /* ActivityKitLiveActivityDriver.swift */; };
 		DE0BD16321E36D2A38CBCC3F /* WellSpentAppStoreScreenshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FE36EDB408D280E1F40BE1 /* WellSpentAppStoreScreenshotTests.swift */; };
 		DEAC02766AB65BB11F070A59 /* AppIntentsPackageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA5322EC582289BE125D9CA /* AppIntentsPackageTests.swift */; };
+		DECC3FBA319B177B5FE3E21F /* Reconciliation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EFC7F9C03151628CB3CBE6 /* Reconciliation.swift */; };
+		DED80A03FF8BF525C4B7598B /* WatchTimerGoalBoundary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4B0A4E6985C5E8FDABA0C6 /* WatchTimerGoalBoundary.swift */; };
+		DEF78D6A6A3F3ACE0E62E8BC /* WatchProjectPickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F05981BF1B64EA3B5BB356 /* WatchProjectPickerModel.swift */; };
+		E0D9B3AA7AF986945573EBFA /* TimerRunCommandService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C767F173929E5E3114A4014A /* TimerRunCommandService.swift */; };
 		E127CD5AEF35BE3670959EEB /* SessionCommandModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F89992EB04FA7C5EF8BBD26 /* SessionCommandModels.swift */; };
+		E18BB8287C4124CE55813D70 /* WellSpentWatchIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26C53982A8E7461F521BDFA /* WellSpentWatchIntents.swift */; };
 		E19717622E07A07398FEFAD8 /* WellSpentSchemaV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEEC857AD6CBFB521383C6E /* WellSpentSchemaV1.swift */; };
+		E210F74F4E7E66BBA2AC6DFB /* ContractWireCodec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A67D44D85AEF6E10356DC3 /* ContractWireCodec.swift */; };
 		E221C7B96256B3F725513BB9 /* WellSpentExternalLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67825CC81D0C3260BCFC399 /* WellSpentExternalLinks.swift */; };
+		E2D84BBDDA13FD628F655BFC /* WellSpentActivityPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB601591B45400175BC8AC1 /* WellSpentActivityPresentation.swift */; };
+		E44B81A01A83A74642A14342 /* WatchProjectionReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F0A80D51AE1591588FC2F0 /* WatchProjectionReducer.swift */; };
+		E4759A33E1B8736929C2C420 /* WatchLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5865A0BCB65F6B98439FD8D6 /* WatchLocalizationTests.swift */; };
 		E5F0D2471C67662A22DE7672 /* ActiveSessionReconciliationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE9A4431B068E1BF6EDE876 /* ActiveSessionReconciliationTests.swift */; };
 		E627DF062746CD0206768CD1 /* StopWellSpentTimerIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171EE71C5A73C6C78C2ED88E /* StopWellSpentTimerIntent.swift */; };
+		E762AF68B434D729880D4B16 /* WatchWidgetState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2EB0A5DCA5B3748F828D35 /* WatchWidgetState.swift */; };
+		E8A788FC3A3B09FB5764F34D /* WatchConnectivityCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF3725B3962ACF0C9E3B045 /* WatchConnectivityCoordinatorTests.swift */; };
+		E8ABEF5F841BCB8E37280B4E /* ConnectivitySpikeWatchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3558A095F7096A8EAF6ECD7 /* ConnectivitySpikeWatchUITests.swift */; };
 		E9203FC348948A5B9BC95EC8 /* TimeSessionSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF245EE92D6B4B3EE3AD8E5A /* TimeSessionSnapshot.swift */; };
 		EA9A3C1239867BA413823DFD /* WellSpentShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 402A5AEA2A8ADF2FF3930A7C /* WellSpentShared.framework */; };
 		ECC494C69A3BFA333AC153A5 /* WellSpentMigrationPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE477A8BBEB06E3612F6920 /* WellSpentMigrationPlan.swift */; };
 		ED265D914279C104C3998025 /* ReportingEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C8F01380685B1659A7D012 /* ReportingEngine.swift */; };
+		EE684A37637436492A327FAA /* WellSpentWatchContracts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E872F23BE20AE0C3F643830 /* WellSpentWatchContracts.framework */; };
 		EF9A03524544C41D9C52D7CE /* ProjectQueryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38484E2A88B2B7BA12128614 /* ProjectQueryService.swift */; };
+		EFB011442E957E7FA2FD8FD7 /* WatchWidgetStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FAE71E8974743BC3BBB26A /* WatchWidgetStateTests.swift */; };
+		F0E6D3102B797EB602FB14E3 /* WatchGoalSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B91644685C0A4D8379C1F94 /* WatchGoalSetupView.swift */; };
+		F21168EB661590D680520B6B /* WellSpentWatchStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9181A70CE34A5DE2B87FDC5 /* WellSpentWatchStore.framework */; };
+		F3A4623296C15612BE9F0505 /* WellSpentWatchTimerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A5A4394F8E62E981E51526 /* WellSpentWatchTimerControl.swift */; };
+		F3A7C539400A9D04F73F7377 /* WatchReviewLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE50135178C8C4422898EDF /* WatchReviewLink.swift */; };
 		F54F2B19EF9F53299DB7836F /* WellSpentSharedAppIntentsPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6108B62152B1B987075032EE /* WellSpentSharedAppIntentsPackage.swift */; };
+		F567CDD194E02831C86F97D2 /* WatchProjectPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FE933D1C58B74FBCE1FF0C /* WatchProjectPickerView.swift */; };
+		F6C677225F7DFF6108FB275D /* WellSpentWatchStatusWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A41D03FB7E6CBE49F1583EE /* WellSpentWatchStatusWidget.swift */; };
+		F6D72A640A32D6A196C35772 /* ConflictBranchReconciliation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16ADF5E86037D77B1CA474C /* ConflictBranchReconciliation.swift */; };
+		FA76146B108F0FF048053EE5 /* SpikeConnectivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C958D575C0323BCB6E5827C7 /* SpikeConnectivityController.swift */; };
 		FC2A4CA13969E53C93A34F1C /* ProjectRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6390ACE1C44AEA50CCE81A /* ProjectRepository.swift */; };
+		FC301933EB1DFD33FBE1776D /* IPhoneWatchConnectivityCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FD35403AA5783B8AD6BD9F /* IPhoneWatchConnectivityCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		05FE60E6EE8019F3018C7839 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92B76DAE9422749E386A4CD5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D155AECC74F4529B3C1E502F;
+			remoteInfo = WellSpentWatchStore;
+		};
+		0697A5BDE0F66D7CFDE25AD4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92B76DAE9422749E386A4CD5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5B8F9565841937AD988B3BB3;
+			remoteInfo = WellSpentConnectivitySpikeWatch;
+		};
+		2C478C6EA9E383EF9DEB2F16 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92B76DAE9422749E386A4CD5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FEF6EDF33D5AD790DD64A362;
+			remoteInfo = WellSpentWatchWidgets;
+		};
 		4DDA1C45F4EDD294BFE8FA54 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 92B76DAE9422749E386A4CD5 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = A64528016DA24E8DE6368C9D;
 			remoteInfo = WellSpentShared;
+		};
+		5CF98C95AE3240CAFA70EDAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92B76DAE9422749E386A4CD5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 14F28F0E433B79158D07643F;
+			remoteInfo = WellSpentWatchContracts;
+		};
+		79D187D1B180E33D48ACCA49 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92B76DAE9422749E386A4CD5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D155AECC74F4529B3C1E502F;
+			remoteInfo = WellSpentWatchStore;
+		};
+		7BEBCBAE32020E67CD1C8BB0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92B76DAE9422749E386A4CD5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 14F28F0E433B79158D07643F;
+			remoteInfo = WellSpentWatchContracts;
+		};
+		7F76944127442CF5995404C5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92B76DAE9422749E386A4CD5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7A94A77CE84567AEFBAE1FCE;
+			remoteInfo = WellSpentWatch;
 		};
 		850585671C03678998630851 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -97,12 +287,40 @@
 			remoteGlobalIDString = BC75FB58DC410DFF83E9B7C6;
 			remoteInfo = WellSpent;
 		};
+		ACF67127035D5B1C915FA3AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92B76DAE9422749E386A4CD5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 14F28F0E433B79158D07643F;
+			remoteInfo = WellSpentWatchContracts;
+		};
+		B05291586A8EC1C13CC2606B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92B76DAE9422749E386A4CD5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D155AECC74F4529B3C1E502F;
+			remoteInfo = WellSpentWatchStore;
+		};
+		BDA9960E564E9A802CD62F65 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92B76DAE9422749E386A4CD5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 14F28F0E433B79158D07643F;
+			remoteInfo = WellSpentWatchContracts;
+		};
 		C8E557B3B1B4FCED5EF582F4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 92B76DAE9422749E386A4CD5 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = A64528016DA24E8DE6368C9D;
 			remoteInfo = WellSpentShared;
+		};
+		C966515C7FF20FCEBA20B26F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92B76DAE9422749E386A4CD5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 825097CC422C76DEBC477699;
+			remoteInfo = WellSpentConnectivitySpikePhone;
 		};
 		CAB5EE921782AB1BA2A9C332 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -118,9 +336,70 @@
 			remoteGlobalIDString = BC75FB58DC410DFF83E9B7C6;
 			remoteInfo = WellSpent;
 		};
+		DCD1CFEC59A4A23E94FD45AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92B76DAE9422749E386A4CD5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5B8F9565841937AD988B3BB3;
+			remoteInfo = WellSpentConnectivitySpikeWatch;
+		};
+		F50E070EF29940806DEDA0E0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92B76DAE9422749E386A4CD5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7A94A77CE84567AEFBAE1FCE;
+			remoteInfo = WellSpentWatch;
+		};
+		F77E704B78339B6266EEF91C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92B76DAE9422749E386A4CD5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7A94A77CE84567AEFBAE1FCE;
+			remoteInfo = WellSpentWatch;
+		};
+		FF106ED3B8DEBF2EE6F422D9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92B76DAE9422749E386A4CD5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 14F28F0E433B79158D07643F;
+			remoteInfo = WellSpentWatchContracts;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		17CC4107097E48F9D7F6B1F2 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				16677880F8970687AE9C8687 /* WellSpentWatchWidgets.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4DDE360A2388C8DABEA5E8CA /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				198E180DDFF9A4D2CA2D01AE /* WellSpentConnectivitySpikeWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6CE9BE72DBE4CDE6CD552717 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				A766DD9F4AAEB0F168F734AF /* WellSpentWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B1F4AE8629651EE4D2972A8B /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -135,90 +414,235 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		01FAE71E8974743BC3BBB26A /* WatchWidgetStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchWidgetStateTests.swift; sourceTree = "<group>"; };
 		01FE36EDB408D280E1F40BE1 /* WellSpentAppStoreScreenshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentAppStoreScreenshotTests.swift; sourceTree = "<group>"; };
+		02283A4340B926E3D0FFE902 /* SpikeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpikeProtocol.swift; sourceTree = "<group>"; };
+		049BCB9D5A56A4F396B771C5 /* WellSpentConnectivitySpikeWatchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WellSpentConnectivitySpikeWatchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04D11B6456E491EA52A46A94 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0A1FB7DA360A778BCB4F2741 /* WatchPrivacyPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchPrivacyPresentation.swift; sourceTree = "<group>"; };
+		0A7EFBE97320EA85AB6FE043 /* WatchWidgetPreviewSurface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchWidgetPreviewSurface.swift; sourceTree = "<group>"; };
 		0BA5322EC582289BE125D9CA /* AppIntentsPackageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntentsPackageTests.swift; sourceTree = "<group>"; };
+		0C82039A14FAC17737C30B41 /* WellSpentConnectivitySpikePhoneUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = WellSpentConnectivitySpikePhoneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0CD5523067ADDCE1AF6CC909 /* WellSpentConnectivitySpikePhone.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = WellSpentConnectivitySpikePhone.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E4B0A4E6985C5E8FDABA0C6 /* WatchTimerGoalBoundary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchTimerGoalBoundary.swift; sourceTree = "<group>"; };
 		0E4CF8EA54D2A6EFE4FD3549 /* WellSpentSpikeRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentSpikeRecord.swift; sourceTree = "<group>"; };
+		0E80B95DF75F566375261B84 /* RestartRecoveryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestartRecoveryUITests.swift; sourceTree = "<group>"; };
+		0E872F23BE20AE0C3F643830 /* WellSpentWatchContracts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WellSpentWatchContracts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		10186C5D22F73CABB115E0B7 /* WellSpentConnectivitySpikeWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WellSpentConnectivitySpikeWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		137F608F6902F1C6F94B4269 /* WellSpentWidgets.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = WellSpentWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		13988B3A60F42A7BD6F02D5A /* WellSpentPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentPersistence.swift; sourceTree = "<group>"; };
+		147F22385D2A8904ED55226E /* WellSpentSchemaV4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentSchemaV4.swift; sourceTree = "<group>"; };
 		15C8F01380685B1659A7D012 /* ReportingEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportingEngine.swift; sourceTree = "<group>"; };
 		16C186F102F13DA0394675E9 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		171EE71C5A73C6C78C2ED88E /* StopWellSpentTimerIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWellSpentTimerIntent.swift; sourceTree = "<group>"; };
+		177629CD277C48A9E794EB8A /* WatchTimerControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchTimerControlsView.swift; sourceTree = "<group>"; };
 		190B55B15B9F7D100EF3DF33 /* WellSpentPersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentPersistenceTests.swift; sourceTree = "<group>"; };
+		1B91644685C0A4D8379C1F94 /* WatchGoalSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchGoalSetupView.swift; sourceTree = "<group>"; };
 		1F234D73070BC89EE8987E9B /* SessionOverlapDetectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionOverlapDetectorTests.swift; sourceTree = "<group>"; };
+		1F547D62813AB51D81D24489 /* WellSpentSchemaV6.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentSchemaV6.swift; sourceTree = "<group>"; };
+		1FDE0923DC2B416036097726 /* WellSpentWatchWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WellSpentWatchWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		203B6058026C044A52E2C39E /* DependencyFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyFixtures.swift; sourceTree = "<group>"; };
+		218A83C05032991A7875AA2C /* WatchUITestScrolling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchUITestScrolling.swift; sourceTree = "<group>"; };
+		2215A5EC69E3F5878673F761 /* WatchRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchRootView.swift; sourceTree = "<group>"; };
+		243473B930AFFFF092ED7F11 /* WatchStoreAssetDraftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchStoreAssetDraftUITests.swift; sourceTree = "<group>"; };
+		2479DFBEECEDAC954F2618EC /* WellSpentSchemaV5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentSchemaV5.swift; sourceTree = "<group>"; };
+		24D1A38AA196AD3516CEBEA3 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		24E0BD5060E68697917D2791 /* ActivityKitLiveActivityDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityKitLiveActivityDriver.swift; sourceTree = "<group>"; };
 		25EFA6A395587B95CBFFF120 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		26421305C7F9D3FA646A3081 /* TimerStopCommandServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerStopCommandServiceTests.swift; sourceTree = "<group>"; };
 		26A3A37CCCEDD415EB2B6F66 /* WellSpentUITestBootstrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentUITestBootstrap.swift; sourceTree = "<group>"; };
+		2741CCF524673889741600B4 /* WatchAccessibilityPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchAccessibilityPreferences.swift; sourceTree = "<group>"; };
+		28EFC7F9C03151628CB3CBE6 /* Reconciliation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reconciliation.swift; sourceTree = "<group>"; };
+		292689386E07D35E1FCF1CE2 /* WatchResourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchResourceTests.swift; sourceTree = "<group>"; };
+		299CEDF29BA5ADF186BA66F5 /* TransportModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportModels.swift; sourceTree = "<group>"; };
+		2AEDDE5F6D3B4525532B6437 /* WatchStoreState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchStoreState.swift; sourceTree = "<group>"; };
 		2B03A5E0AAEF51E5CE1E7EAE /* AppPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPreferences.swift; sourceTree = "<group>"; };
+		2B2EB0A5DCA5B3748F828D35 /* WatchWidgetState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchWidgetState.swift; sourceTree = "<group>"; };
+		2B9904B17C119A13DE137EBF /* LiveActivitySerializationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivitySerializationTests.swift; sourceTree = "<group>"; };
 		2C071B5C2E843509063F2C29 /* WellSpentTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = WellSpentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E45905788E2C15344289BFF /* WatchConnectivityCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectivityCoordinator.swift; sourceTree = "<group>"; };
 		2E80DC0110D62AF9C7ADF134 /* SessionOverlapDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionOverlapDetector.swift; sourceTree = "<group>"; };
+		303D5C3CD3AF994C8DD2F0A9 /* WatchCompanionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchCompanionUITests.swift; sourceTree = "<group>"; };
+		31BE3D7C81989FC068E9DDDD /* ConnectivitySpikePhoneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivitySpikePhoneUITests.swift; sourceTree = "<group>"; };
+		34C7EEFD97AE9C7C7145279F /* WatchFoundationErrorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchFoundationErrorUITests.swift; sourceTree = "<group>"; };
+		363B2040DFC83AF99547D8D3 /* WellSpentWatchStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentWatchStore.swift; sourceTree = "<group>"; };
+		368418D6775B4983C03AB477 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		37BDD578C80FD12585E63B18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		38484E2A88B2B7BA12128614 /* ProjectQueryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectQueryService.swift; sourceTree = "<group>"; };
 		390FBAFAB4DC9B71E2DB3E9F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		393B512C54836673F020A8C5 /* TimerRunReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRunReviewView.swift; sourceTree = "<group>"; };
 		39E82337598F0CE16E5BC216 /* SessionReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionReviewView.swift; sourceTree = "<group>"; };
 		3AEEC857AD6CBFB521383C6E /* WellSpentSchemaV1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentSchemaV1.swift; sourceTree = "<group>"; };
+		3D029882831AFCDB9C930DB4 /* WatchAccessibilityUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchAccessibilityUITests.swift; sourceTree = "<group>"; };
 		3D8147B15FD1DAFB755409D1 /* WellSpentLiveActivityWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentLiveActivityWidget.swift; sourceTree = "<group>"; };
 		3F2029D941C3A1F397AB6001 /* SessionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRepository.swift; sourceTree = "<group>"; };
+		40200DB477AE3EB3CC9DFE79 /* WellSpentSchemaV3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentSchemaV3.swift; sourceTree = "<group>"; };
 		402A5AEA2A8ADF2FF3930A7C /* WellSpentShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WellSpentShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		409CA8C8FACAAB116EF89A3D /* WatchStartedTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchStartedTimerView.swift; sourceTree = "<group>"; };
+		40BE6BA1A9B5092976AB8856 /* WatchTimerAnnotationBoundaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchTimerAnnotationBoundaryTests.swift; sourceTree = "<group>"; };
 		45DAB5C27AD9C87E659B93D4 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		46B849AE28C732AC45E546F5 /* WatchTimerStartBoundary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchTimerStartBoundary.swift; sourceTree = "<group>"; };
 		46E638E2AC5D37F357B2A605 /* WellSpentUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = WellSpentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CF3725B3962ACF0C9E3B045 /* WatchConnectivityCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectivityCoordinatorTests.swift; sourceTree = "<group>"; };
+		4E562BABD7E7607C4509F37B /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		4F0CC8C5053D236F3A8E0C21 /* WellSpentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentTests.swift; sourceTree = "<group>"; };
+		5022FB950A9112082272AAD3 /* WatchWidgetSnapshotReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchWidgetSnapshotReader.swift; sourceTree = "<group>"; };
+		5092C5656BE8B3BE5FEED225 /* WatchFoundationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchFoundationView.swift; sourceTree = "<group>"; };
+		551D4A9113C233D3F72F248D /* WatchAccessibilityPreferencesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchAccessibilityPreferencesTests.swift; sourceTree = "<group>"; };
 		574A776AAD0B4E75C059486D /* WellSpentSchemaV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentSchemaV2.swift; sourceTree = "<group>"; };
+		582109BBABD9DE16BA812AE6 /* WatchWidgetLayoutUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchWidgetLayoutUITests.swift; sourceTree = "<group>"; };
+		5865A0BCB65F6B98439FD8D6 /* WatchLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchLocalizationTests.swift; sourceTree = "<group>"; };
 		58FD5E70EAF74BACB9FAC6DD /* ProjectSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectSnapshot.swift; sourceTree = "<group>"; };
 		5A6390ACE1C44AEA50CCE81A /* ProjectRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectRepository.swift; sourceTree = "<group>"; };
+		5A7B8802B71A6845035CF253 /* WatchSystemActionsHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSystemActionsHelpView.swift; sourceTree = "<group>"; };
 		5BCA28397E4567851DC495B0 /* TimerCommandService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCommandService.swift; sourceTree = "<group>"; };
+		5BCF2A5AE36BA81A259F1A22 /* LiveActivityPresentationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityPresentationTests.swift; sourceTree = "<group>"; };
+		5CCEE9F7C17759F9C70ADA9A /* WatchWidgetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchWidgetUITests.swift; sourceTree = "<group>"; };
 		5D9C44B2E475B1F85D34FACE /* SessionCompletionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCompletionView.swift; sourceTree = "<group>"; };
+		5F53A44E1C66041E765A79AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		60083FF6CD2426CDEEAB36A1 /* WellSpentAppIntentsPackage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentAppIntentsPackage.swift; sourceTree = "<group>"; };
 		60552D35C84141FA98F0E3A2 /* WellSpentDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentDependencies.swift; sourceTree = "<group>"; };
 		6108B62152B1B987075032EE /* WellSpentSharedAppIntentsPackage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentSharedAppIntentsPackage.swift; sourceTree = "<group>"; };
 		635AB98520E19B37B7A5786B /* WellSpentAccessibilityUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentAccessibilityUITests.swift; sourceTree = "<group>"; };
 		6432A31BECFF30BA00CDB54F /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		661923A1516C15CB97384F42 /* WatchAccessibilityPreviewSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchAccessibilityPreviewSupport.swift; sourceTree = "<group>"; };
+		668AFD7461F738B20001A3A5 /* WatchGoalPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchGoalPreferences.swift; sourceTree = "<group>"; };
+		67FE933D1C58B74FBCE1FF0C /* WatchProjectPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchProjectPickerView.swift; sourceTree = "<group>"; };
+		681DB440A43CA39043E4E0F2 /* WatchGoalAlertPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchGoalAlertPlan.swift; sourceTree = "<group>"; };
 		68E39A7F208E148A4D580DA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		6D7A7211A8EF3C9D53BC4FEE /* WellSpentWatchContractTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = WellSpentWatchContractTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DCC75939EBB492D5DE3212D /* WatchContractTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchContractTests.swift; sourceTree = "<group>"; };
+		732AA1FE050894B4BD64CA34 /* WatchGoalAlertCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchGoalAlertCoordinator.swift; sourceTree = "<group>"; };
+		74DEA586847C36C4F9F5BC5C /* WatchRestartFaultFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchRestartFaultFixture.swift; sourceTree = "<group>"; };
+		74E0DBD2EA51F089D0250291 /* TimerRunReconciler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRunReconciler.swift; sourceTree = "<group>"; };
 		78544992737A5EA51E09CD5C /* SessionTagCommandServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTagCommandServiceTests.swift; sourceTree = "<group>"; };
+		789E53A36ABEE99C3E0F2401 /* WatchGoalSystemNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchGoalSystemNotifications.swift; sourceTree = "<group>"; };
 		78AF2A30F627E47ECB8B2B8E /* SessionCommandService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCommandService.swift; sourceTree = "<group>"; };
+		78B07501282C8D07718124AC /* WellSpentWatchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WellSpentWatchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7ABC73496873DD5A316A3FB7 /* WatchEndedTimerSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchEndedTimerSummaryView.swift; sourceTree = "<group>"; };
 		7B69E0D213E34A3A9F0C0BE4 /* TimerSwitchCommandServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSwitchCommandServiceTests.swift; sourceTree = "<group>"; };
+		7BBFE8187630DB7D3B2736D7 /* WatchStorePersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchStorePersistence.swift; sourceTree = "<group>"; };
+		7DA8094332671EF21456FF30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		7DF905C9CF724269B1547FC8 /* WatchGoalAlertTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchGoalAlertTests.swift; sourceTree = "<group>"; };
 		7EDC10A6D03EE6E83C058718 /* ReportingInvariantTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportingInvariantTests.swift; sourceTree = "<group>"; };
 		8002EDE1EDC48B7A7C6DFB5E /* WellSpentStopHandoff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentStopHandoff.swift; sourceTree = "<group>"; };
+		80AA30C712457758C4FF257C /* WatchRestartRecoveryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchRestartRecoveryUITests.swift; sourceTree = "<group>"; };
+		8422E2C13D217512B91B9A48 /* WatchUITestFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchUITestFixture.swift; sourceTree = "<group>"; };
+		8452D2AE581A2FE592051765 /* WatchStoreModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchStoreModels.swift; sourceTree = "<group>"; };
+		84850C34BB45A8F981D8B4C6 /* WellSpentWatchWidgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WellSpentWatchWidgets.entitlements; sourceTree = "<group>"; };
 		85D3505DEF536F3A8AAF91FD /* ReportingEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportingEngineTests.swift; sourceTree = "<group>"; };
+		85F4FE74F2542042107E5F80 /* WellSpentWatchWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentWatchWidgetBundle.swift; sourceTree = "<group>"; };
+		896A128B314A30711365CDE4 /* PhoneWatchSyncStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneWatchSyncStore.swift; sourceTree = "<group>"; };
+		89F0A80D51AE1591588FC2F0 /* WatchProjectionReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchProjectionReducer.swift; sourceTree = "<group>"; };
+		8A41D03FB7E6CBE49F1583EE /* WellSpentWatchStatusWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentWatchStatusWidget.swift; sourceTree = "<group>"; };
 		8B1C9BB16DB72D70F2BCDFCB /* LiveActivityLifecycleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityLifecycleTests.swift; sourceTree = "<group>"; };
 		8D7540D684B423150E5505F7 /* TrackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackView.swift; sourceTree = "<group>"; };
 		8DC21CF1F1B9EDA93B09F4B5 /* PresentationSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationSupport.swift; sourceTree = "<group>"; };
+		8F2FA8B65027E5F0F1A4617B /* WellSpentWatchFoundationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentWatchFoundationTests.swift; sourceTree = "<group>"; };
 		8F5DD0A2E1047C33B3B6A735 /* WellSpentStartup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentStartup.swift; sourceTree = "<group>"; };
+		91A592FAEFCA557CEDE7F8FC /* WatchPrivacyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchPrivacyUITests.swift; sourceTree = "<group>"; };
 		91CFB0359AE453E76144CC14 /* WellSpentActivityAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentActivityAttributes.swift; sourceTree = "<group>"; };
+		9622CAF5A9C6856D77F00C87 /* WatchCompanionUITestFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchCompanionUITestFixture.swift; sourceTree = "<group>"; };
 		970F774C1FD756414F545791 /* SessionCommandServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCommandServiceTests.swift; sourceTree = "<group>"; };
 		9722C883781D3A9B63F0EF76 /* SessionTagCommandService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTagCommandService.swift; sourceTree = "<group>"; };
+		989465EB2D1C9ECA36742B1D /* WellSpentConnectivitySpikeTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = WellSpentConnectivitySpikeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		98A5A4394F8E62E981E51526 /* WellSpentWatchTimerControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentWatchTimerControl.swift; sourceTree = "<group>"; };
+		98A8319E44F30E46C90A38C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		99AA8D399DF35B70D7279F78 /* WatchSystemCommandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSystemCommandTests.swift; sourceTree = "<group>"; };
+		9B9830FA82597E8B42CD2C86 /* PhoneRestartFaultFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneRestartFaultFixture.swift; sourceTree = "<group>"; };
+		9BE77706E57E278464909B8F /* WatchTimerMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchTimerMetrics.swift; sourceTree = "<group>"; };
 		9CE477A8BBEB06E3612F6920 /* WellSpentMigrationPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentMigrationPlan.swift; sourceTree = "<group>"; };
 		9F89992EB04FA7C5EF8BBD26 /* SessionCommandModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCommandModels.swift; sourceTree = "<group>"; };
 		A14B931BA04222F13C2881C9 /* ProjectCommandService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCommandService.swift; sourceTree = "<group>"; };
+		A16ADF5E86037D77B1CA474C /* ConflictBranchReconciliation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConflictBranchReconciliation.swift; sourceTree = "<group>"; };
+		A26C53982A8E7461F521BDFA /* WellSpentWatchIntents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentWatchIntents.swift; sourceTree = "<group>"; };
+		A2903D630C2894EC8FB4C7E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A513727C9C5A817B3259F6AD /* WatchControlErrorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchControlErrorUITests.swift; sourceTree = "<group>"; };
+		A9181A70CE34A5DE2B87FDC5 /* WellSpentWatchStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WellSpentWatchStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9F05981BF1B64EA3B5BB356 /* WatchProjectPickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchProjectPickerModel.swift; sourceTree = "<group>"; };
+		A9FF84455CA96E155BE18899 /* WatchTimerAnnotationBoundary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchTimerAnnotationBoundary.swift; sourceTree = "<group>"; };
 		AC72C2BED800B45FC7AC2A49 /* WellSpentWidgetsAppIntentsPackage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentWidgetsAppIntentsPackage.swift; sourceTree = "<group>"; };
 		ACE9A4431B068E1BF6EDE876 /* ActiveSessionReconciliationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveSessionReconciliationTests.swift; sourceTree = "<group>"; };
+		B047EE14B0B2BF05400A54A0 /* PhoneWatchSyncStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneWatchSyncStoreTests.swift; sourceTree = "<group>"; };
+		B0C0A893F07AEB6CB7600A5B /* SpikePersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpikePersistence.swift; sourceTree = "<group>"; };
+		B3A6FC4E47E323E3476BDA3F /* ConnectivitySpikePhoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivitySpikePhoneApp.swift; sourceTree = "<group>"; };
+		B4007F1C3F9730E0FBF6D9AE /* UITestDisconnectedWatchSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestDisconnectedWatchSession.swift; sourceTree = "<group>"; };
+		B482E6DE6AAB0D7A5F33F185 /* WatchTimerStartBoundaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchTimerStartBoundaryTests.swift; sourceTree = "<group>"; };
+		B5FD35403AA5783B8AD6BD9F /* IPhoneWatchConnectivityCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPhoneWatchConnectivityCoordinator.swift; sourceTree = "<group>"; };
 		B6F772050E8BDD82FE095121 /* LiveActivityLifecycle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityLifecycle.swift; sourceTree = "<group>"; };
+		B777579CB477DAB23CAB2FDA /* TimerRunCommandServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRunCommandServiceTests.swift; sourceTree = "<group>"; };
 		B7AF77E3DFFABDA64AF73FAF /* WellSpentAppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentAppModel.swift; sourceTree = "<group>"; };
 		B8B3362AA65932EF8998B000 /* ManualSessionEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualSessionEditorView.swift; sourceTree = "<group>"; };
 		B94C81C96484807D1AB75CE6 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		BB9558666C1126D285847D5D /* WellSpentWatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WellSpentWatch.entitlements; sourceTree = "<group>"; };
+		BBE50135178C8C4422898EDF /* WatchReviewLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchReviewLink.swift; sourceTree = "<group>"; };
 		BBEDFA99147F26A4384BA3FE /* WellSpentWidgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WellSpentWidgets.entitlements; sourceTree = "<group>"; };
+		C19334C0DA8161A429266A10 /* WatchTimerMetricsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchTimerMetricsTests.swift; sourceTree = "<group>"; };
+		C458EC14A297D8A2D2D30C1C /* WatchLocalizationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchLocalizationUITests.swift; sourceTree = "<group>"; };
 		C67825CC81D0C3260BCFC399 /* WellSpentExternalLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentExternalLinks.swift; sourceTree = "<group>"; };
+		C767F173929E5E3114A4014A /* TimerRunCommandService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRunCommandService.swift; sourceTree = "<group>"; };
 		C8E0F549568DA4F9099A6D0D /* WellSpentDependenciesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentDependenciesTests.swift; sourceTree = "<group>"; };
+		C958D575C0323BCB6E5827C7 /* SpikeConnectivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpikeConnectivityController.swift; sourceTree = "<group>"; };
+		CBFCFD66155AC11F02F7785E /* ContractVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractVersion.swift; sourceTree = "<group>"; };
+		CC4DB537A4DB5F501E5F8AF9 /* WatchGoalErrorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchGoalErrorUITests.swift; sourceTree = "<group>"; };
 		CD6E6E1CF428A57A1A78E207 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		CE296DA432A2F6DD81E35AEC /* SessionTagSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTagSnapshot.swift; sourceTree = "<group>"; };
+		CFB601591B45400175BC8AC1 /* WellSpentActivityPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentActivityPresentation.swift; sourceTree = "<group>"; };
+		D2C65798F65874332269A7C8 /* MutationModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutationModels.swift; sourceTree = "<group>"; };
+		D32F0CDD6C30E294DF22E4CC /* TimerRunRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRunRepository.swift; sourceTree = "<group>"; };
+		D40F08EC347972FCF09D5475 /* SnapshotModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotModels.swift; sourceTree = "<group>"; };
+		D4E8E4907397BA3E4560EDCD /* SHA256Digest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHA256Digest.swift; sourceTree = "<group>"; };
 		D7801B7EF6244BCBF97E86D4 /* WellSpent.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = WellSpent.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D90FC96577E22C72DCDC8AEC /* WatchSystemCommandBoundary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSystemCommandBoundary.swift; sourceTree = "<group>"; };
 		D9B80F19BE5DAB0DEB2E48A3 /* SessionHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionHistoryView.swift; sourceTree = "<group>"; };
 		DA8F526866E1379D54D75901 /* ProjectManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectManagementView.swift; sourceTree = "<group>"; };
+		DC5AD3CD4B2D153D78FBD136 /* WatchSystemActionsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSystemActionsUITests.swift; sourceTree = "<group>"; };
+		DE0AA55CB186364966748725 /* ConnectivitySpikeWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivitySpikeWatchApp.swift; sourceTree = "<group>"; };
 		DE52F65CB28E04A5AD929C44 /* TimerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRepository.swift; sourceTree = "<group>"; };
+		DEBDCFDCA0F59A1A5460DF80 /* WatchTimerControlBoundary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchTimerControlBoundary.swift; sourceTree = "<group>"; };
+		DF3B927532FC1AE3C4DB1484 /* WellSpentWatchRuntime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentWatchRuntime.swift; sourceTree = "<group>"; };
+		E164CBC3B1B0659302632862 /* WatchConflictReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConflictReviewView.swift; sourceTree = "<group>"; };
+		E2C0A559234F50C53FBE67A8 /* WatchGoalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchGoalUITests.swift; sourceTree = "<group>"; };
+		E36A21C5957C0A61B3930399 /* WellSpentWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentWatchApp.swift; sourceTree = "<group>"; };
+		E3A67D44D85AEF6E10356DC3 /* ContractWireCodec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractWireCodec.swift; sourceTree = "<group>"; };
+		E3D0AF65B354ADFEA35FB587 /* SpikeReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpikeReducers.swift; sourceTree = "<group>"; };
 		E43A5A10607AF1EFE098F373 /* WellSpentApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentApp.swift; sourceTree = "<group>"; };
+		E4877083AFB93A76D5C09FC5 /* WellSpentWatchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentWatchUITests.swift; sourceTree = "<group>"; };
 		E54199F75EAFAC44B0866891 /* LiveActivityStopHandoffReconciler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityStopHandoffReconciler.swift; sourceTree = "<group>"; };
 		E71DBBE2045B37BEF521B51E /* TimerCommandServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCommandServiceTests.swift; sourceTree = "<group>"; };
 		E73B0867138641CE37B2BB68 /* WellSpent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WellSpent.entitlements; sourceTree = "<group>"; };
+		E86FAFB235F93E158AC44231 /* TimerRunModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRunModels.swift; sourceTree = "<group>"; };
+		E9B6B632EFB7E7142F1E0BD8 /* TimerRunMigrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRunMigrationTests.swift; sourceTree = "<group>"; };
+		EA209536FED53C96FBD83AE2 /* WellSpentWatchShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentWatchShortcuts.swift; sourceTree = "<group>"; };
+		EA74271254A3F78B4152E894 /* AppShortcuts.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = AppShortcuts.xcstrings; sourceTree = "<group>"; };
+		EB0808DD30252A711C8FD6DE /* WatchStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchStoreTests.swift; sourceTree = "<group>"; };
+		ED69BB4CAA86077E067572F2 /* WellSpentWatchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WellSpentWatchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED977871CFCE7058B7B2DD41 /* WellSpentWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WellSpentWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF245EE92D6B4B3EE3AD8E5A /* TimeSessionSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSessionSnapshot.swift; sourceTree = "<group>"; };
 		EF43AECCBC8722C06BDB1608 /* ReportsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsView.swift; sourceTree = "<group>"; };
+		F3558A095F7096A8EAF6ECD7 /* ConnectivitySpikeWatchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivitySpikeWatchUITests.swift; sourceTree = "<group>"; };
 		F447374C52F83C97EB3FD4FF /* WellSpentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentUITests.swift; sourceTree = "<group>"; };
+		F4F40DC650081EF684957262 /* WellSpentWatchStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentWatchStatusView.swift; sourceTree = "<group>"; };
+		F56151D12F05CB88F24F6275 /* WatchSystemAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSystemAction.swift; sourceTree = "<group>"; };
+		F59F260D135503582582B45A /* WatchProjectPickerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchProjectPickerTests.swift; sourceTree = "<group>"; };
 		F74C732C90E052820EF0C4AF /* ProjectCommandServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCommandServiceTests.swift; sourceTree = "<group>"; };
+		F93CE5C1C0C68F95F28E0D53 /* SpikeProtocolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpikeProtocolTests.swift; sourceTree = "<group>"; };
 		F93EF667FC0DA607F25A71AD /* WellSpentWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellSpentWidgetBundle.swift; sourceTree = "<group>"; };
 		FBA83BEE509AA3EF83A4C74C /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		FD4370C7ED12B4CA7303818E /* SessionTagRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTagRepository.swift; sourceTree = "<group>"; };
+		FE000A33915C3C8829B6A970 /* PhoneConflictResolutionPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneConflictResolutionPlan.swift; sourceTree = "<group>"; };
+		FF96FDF92F3EE67985B9B271 /* WatchTimerControlBoundaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchTimerControlBoundaryTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		016058DBBA73C2213C4F2D12 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				818EF9C3874634446E657264 /* WellSpentWatchContracts.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2F82244E3F0F8C34216F2FC2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -227,17 +651,57 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		41877967830A23DBC4AA1B40 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F21168EB661590D680520B6B /* WellSpentWatchStore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		69AE3BA1D820E891527E48B3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C354627517E747F62E7340FD /* WellSpentWatchContracts.framework in Frameworks */,
+				A3D686E0CBA6C337B8FDA0B6 /* WellSpentWatchStore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B04467881C6A4D3A4AD04443 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				BCD7DE37A40C28118606D21C /* WellSpentShared.framework in Frameworks */,
+				63975179B02DC4A236557C78 /* WellSpentWatchContracts.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5A660AB40B653B602A4C182 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EE684A37637436492A327FAA /* WellSpentWatchContracts.framework in Frameworks */,
+				CD85994B86774D4BD955A265 /* WellSpentWatchStore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		09285A1D5980AD22B509F8E6 /* Goals */ = {
+			isa = PBXGroup;
+			children = (
+				732AA1FE050894B4BD64CA34 /* WatchGoalAlertCoordinator.swift */,
+				681DB440A43CA39043E4E0F2 /* WatchGoalAlertPlan.swift */,
+				668AFD7461F738B20001A3A5 /* WatchGoalPreferences.swift */,
+				1B91644685C0A4D8379C1F94 /* WatchGoalSetupView.swift */,
+				789E53A36ABEE99C3E0F2401 /* WatchGoalSystemNotifications.swift */,
+				0E4B0A4E6985C5E8FDABA0C6 /* WatchTimerGoalBoundary.swift */,
+			);
+			path = Goals;
+			sourceTree = "<group>";
+		};
 		0C5EBA1AD663EE27C89A0C6F /* WellSpentApp */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,6 +719,7 @@
 			isa = PBXGroup;
 			children = (
 				E4393EB320269C1386D228F3 /* LiveActivity */,
+				A4F783247FDCB1C8F00B8F9E /* WatchConnectivity */,
 			);
 			path = Integrations;
 			sourceTree = "<group>";
@@ -267,12 +732,36 @@
 			path = Navigation;
 			sourceTree = "<group>";
 		};
+		1570064ADAECD4B470D243F4 /* UITests */ = {
+			isa = PBXGroup;
+			children = (
+				31BE3D7C81989FC068E9DDDD /* ConnectivitySpikePhoneUITests.swift */,
+				F3558A095F7096A8EAF6ECD7 /* ConnectivitySpikeWatchUITests.swift */,
+			);
+			path = UITests;
+			sourceTree = "<group>";
+		};
 		16F0BE0BF048A6ED43696C14 /* Reporting */ = {
 			isa = PBXGroup;
 			children = (
 				15C8F01380685B1659A7D012 /* ReportingEngine.swift */,
 			);
 			path = Reporting;
+			sourceTree = "<group>";
+		};
+		17A1DE4E8B8E42300876BF57 /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				7ABC73496873DD5A316A3FB7 /* WatchEndedTimerSummaryView.swift */,
+				409CA8C8FACAAB116EF89A3D /* WatchStartedTimerView.swift */,
+				D90FC96577E22C72DCDC8AEC /* WatchSystemCommandBoundary.swift */,
+				A9FF84455CA96E155BE18899 /* WatchTimerAnnotationBoundary.swift */,
+				DEBDCFDCA0F59A1A5460DF80 /* WatchTimerControlBoundary.swift */,
+				177629CD277C48A9E794EB8A /* WatchTimerControlsView.swift */,
+				9BE77706E57E278464909B8F /* WatchTimerMetrics.swift */,
+				46B849AE28C732AC45E546F5 /* WatchTimerStartBoundary.swift */,
+			);
+			path = Timer;
 			sourceTree = "<group>";
 		};
 		23D2387FFEE3CC758BC92CBB /* Projects */ = {
@@ -287,8 +776,17 @@
 			isa = PBXGroup;
 			children = (
 				2E80DC0110D62AF9C7ADF134 /* SessionOverlapDetector.swift */,
+				74E0DBD2EA51F089D0250291 /* TimerRunReconciler.swift */,
 			);
 			path = Validation;
+			sourceTree = "<group>";
+		};
+		2DD55E324CD105D2A6B66B95 /* WellSpentWatchContractTests */ = {
+			isa = PBXGroup;
+			children = (
+				6DCC75939EBB492D5DE3212D /* WatchContractTests.swift */,
+			);
+			path = WellSpentWatchContractTests;
 			sourceTree = "<group>";
 		};
 		2E59CD4A811F4FB0BE21C6DE /* Domain */ = {
@@ -302,6 +800,24 @@
 			path = Domain;
 			sourceTree = "<group>";
 		};
+		2EF84F5A53FAA42B228E2FBB /* Watch */ = {
+			isa = PBXGroup;
+			children = (
+				DE0AA55CB186364966748725 /* ConnectivitySpikeWatchApp.swift */,
+				A2903D630C2894EC8FB4C7E0 /* Info.plist */,
+			);
+			path = Watch;
+			sourceTree = "<group>";
+		};
+		2FC7D1B1CD235FE8D4C2EAC4 /* WellSpentWatchIntents */ = {
+			isa = PBXGroup;
+			children = (
+				F56151D12F05CB88F24F6275 /* WatchSystemAction.swift */,
+				A26C53982A8E7461F521BDFA /* WellSpentWatchIntents.swift */,
+			);
+			path = WellSpentWatchIntents;
+			sourceTree = "<group>";
+		};
 		365E29C0957C0DC74141B0C8 /* Commands */ = {
 			isa = PBXGroup;
 			children = (
@@ -310,6 +826,7 @@
 				78AF2A30F627E47ECB8B2B8E /* SessionCommandService.swift */,
 				9722C883781D3A9B63F0EF76 /* SessionTagCommandService.swift */,
 				5BCA28397E4567851DC495B0 /* TimerCommandService.swift */,
+				C767F173929E5E3114A4014A /* TimerRunCommandService.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -319,6 +836,10 @@
 			children = (
 				3AEEC857AD6CBFB521383C6E /* WellSpentSchemaV1.swift */,
 				574A776AAD0B4E75C059486D /* WellSpentSchemaV2.swift */,
+				40200DB477AE3EB3CC9DFE79 /* WellSpentSchemaV3.swift */,
+				147F22385D2A8904ED55226E /* WellSpentSchemaV4.swift */,
+				2479DFBEECEDAC954F2618EC /* WellSpentSchemaV5.swift */,
+				1F547D62813AB51D81D24489 /* WellSpentSchemaV6.swift */,
 			);
 			path = SwiftDataModels;
 			sourceTree = "<group>";
@@ -372,10 +893,22 @@
 			isa = PBXGroup;
 			children = (
 				B8B3362AA65932EF8998B000 /* ManualSessionEditorView.swift */,
+				FE000A33915C3C8829B6A970 /* PhoneConflictResolutionPlan.swift */,
 				D9B80F19BE5DAB0DEB2E48A3 /* SessionHistoryView.swift */,
 				39E82337598F0CE16E5BC216 /* SessionReviewView.swift */,
+				393B512C54836673F020A8C5 /* TimerRunReviewView.swift */,
+				E164CBC3B1B0659302632862 /* WatchConflictReviewView.swift */,
 			);
 			path = SessionEditor;
+			sourceTree = "<group>";
+		};
+		6123EF1B321DFAFAA960FDBD /* Phone */ = {
+			isa = PBXGroup;
+			children = (
+				B3A6FC4E47E323E3476BDA3F /* ConnectivitySpikePhoneApp.swift */,
+				5F53A44E1C66041E765A79AF /* Info.plist */,
+			);
+			path = Phone;
 			sourceTree = "<group>";
 		};
 		6BBD974F0970BAA9B597108B /* Timer */ = {
@@ -383,6 +916,7 @@
 			children = (
 				ACE9A4431B068E1BF6EDE876 /* ActiveSessionReconciliationTests.swift */,
 				E71DBBE2045B37BEF521B51E /* TimerCommandServiceTests.swift */,
+				B777579CB477DAB23CAB2FDA /* TimerRunCommandServiceTests.swift */,
 				26421305C7F9D3FA646A3081 /* TimerStopCommandServiceTests.swift */,
 				7B69E0D213E34A3A9F0C0BE4 /* TimerSwitchCommandServiceTests.swift */,
 			);
@@ -394,6 +928,8 @@
 			children = (
 				0BA5322EC582289BE125D9CA /* AppIntentsPackageTests.swift */,
 				8B1C9BB16DB72D70F2BCDFCB /* LiveActivityLifecycleTests.swift */,
+				5BCF2A5AE36BA81A259F1A22 /* LiveActivityPresentationTests.swift */,
+				2B9904B17C119A13DE137EBF /* LiveActivitySerializationTests.swift */,
 			);
 			path = LiveActivity;
 			sourceTree = "<group>";
@@ -407,6 +943,22 @@
 				E73B0867138641CE37B2BB68 /* WellSpent.entitlements */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		77D9D8DDC0A31415BEC33857 /* WatchConnectivity */ = {
+			isa = PBXGroup;
+			children = (
+				B047EE14B0B2BF05400A54A0 /* PhoneWatchSyncStoreTests.swift */,
+			);
+			path = WatchConnectivity;
+			sourceTree = "<group>";
+		};
+		786F4624F3DF80B09C8505EE /* Connectivity */ = {
+			isa = PBXGroup;
+			children = (
+				2E45905788E2C15344289BFF /* WatchConnectivityCoordinator.swift */,
+			);
+			path = Connectivity;
 			sourceTree = "<group>";
 		};
 		7A6335D3A332870F9D5AD2AC /* Settings */ = {
@@ -441,9 +993,21 @@
 			path = WellSpentShared;
 			sourceTree = "<group>";
 		};
+		88A56B9A219B9772E6CE5A66 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				C958D575C0323BCB6E5827C7 /* SpikeConnectivityController.swift */,
+				B0C0A893F07AEB6CB7600A5B /* SpikePersistence.swift */,
+				02283A4340B926E3D0FFE902 /* SpikeProtocol.swift */,
+				E3D0AF65B354ADFEA35FB587 /* SpikeReducers.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		89820AC8BA6FACAA068DC027 /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
+				E9B6B632EFB7E7142F1E0BD8 /* TimerRunMigrationTests.swift */,
 				190B55B15B9F7D100EF3DF33 /* WellSpentPersistenceTests.swift */,
 			);
 			path = Persistence;
@@ -475,12 +1039,39 @@
 			path = Support;
 			sourceTree = "<group>";
 		};
+		918F3993BCA23411B302E03D /* WellSpentWatchStore */ = {
+			isa = PBXGroup;
+			children = (
+				89F0A80D51AE1591588FC2F0 /* WatchProjectionReducer.swift */,
+				8452D2AE581A2FE592051765 /* WatchStoreModels.swift */,
+				7BBFE8187630DB7D3B2736D7 /* WatchStorePersistence.swift */,
+				2AEDDE5F6D3B4525532B6437 /* WatchStoreState.swift */,
+				5022FB950A9112082272AAD3 /* WatchWidgetSnapshotReader.swift */,
+				2B2EB0A5DCA5B3748F828D35 /* WatchWidgetState.swift */,
+				363B2040DFC83AF99547D8D3 /* WellSpentWatchStore.swift */,
+			);
+			path = WellSpentWatchStore;
+			sourceTree = "<group>";
+		};
+		93D3E459A77E9939A7072023 /* WatchConnectivity */ = {
+			isa = PBXGroup;
+			children = (
+				6123EF1B321DFAFAA960FDBD /* Phone */,
+				88A56B9A219B9772E6CE5A66 /* Shared */,
+				B9C2F9B5B1578C5877DC5B0B /* Tests */,
+				1570064ADAECD4B470D243F4 /* UITests */,
+				2EF84F5A53FAA42B228E2FBB /* Watch */,
+			);
+			path = WatchConnectivity;
+			sourceTree = "<group>";
+		};
 		984863867FF9EA1A9E6466F3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				58FD5E70EAF74BACB9FAC6DD /* ProjectSnapshot.swift */,
 				9F89992EB04FA7C5EF8BBD26 /* SessionCommandModels.swift */,
 				CE296DA432A2F6DD81E35AEC /* SessionTagSnapshot.swift */,
+				E86FAFB235F93E158AC44231 /* TimerRunModels.swift */,
 				EF245EE92D6B4B3EE3AD8E5A /* TimeSessionSnapshot.swift */,
 			);
 			path = Models;
@@ -497,19 +1088,67 @@
 				F111BCA7F3F319E55B4B12C9 /* Sessions */,
 				91612F84C71E8863F8A96820 /* Support */,
 				6BBD974F0970BAA9B597108B /* Timer */,
+				77D9D8DDC0A31415BEC33857 /* WatchConnectivity */,
 				4F0CC8C5053D236F3A8E0C21 /* WellSpentTests.swift */,
 			);
 			path = WellSpentTests;
+			sourceTree = "<group>";
+		};
+		A368AB3668F8805E0DA9D51C /* App */ = {
+			isa = PBXGroup;
+			children = (
+				661923A1516C15CB97384F42 /* WatchAccessibilityPreviewSupport.swift */,
+				74DEA586847C36C4F9F5BC5C /* WatchRestartFaultFixture.swift */,
+				8422E2C13D217512B91B9A48 /* WatchUITestFixture.swift */,
+				0A7EFBE97320EA85AB6FE043 /* WatchWidgetPreviewSurface.swift */,
+				E36A21C5957C0A61B3930399 /* WellSpentWatchApp.swift */,
+				DF3B927532FC1AE3C4DB1484 /* WellSpentWatchRuntime.swift */,
+				EA209536FED53C96FBD83AE2 /* WellSpentWatchShortcuts.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		A4F783247FDCB1C8F00B8F9E /* WatchConnectivity */ = {
+			isa = PBXGroup;
+			children = (
+				B5FD35403AA5783B8AD6BD9F /* IPhoneWatchConnectivityCoordinator.swift */,
+				896A128B314A30711365CDE4 /* PhoneWatchSyncStore.swift */,
+			);
+			path = WatchConnectivity;
+			sourceTree = "<group>";
+		};
+		A8BC5A84DF92F0A664134CE7 /* WellSpentWatchWidgets */ = {
+			isa = PBXGroup;
+			children = (
+				37BDD578C80FD12585E63B18 /* Info.plist */,
+				24D1A38AA196AD3516CEBEA3 /* PrivacyInfo.xcprivacy */,
+				F4F40DC650081EF684957262 /* WellSpentWatchStatusView.swift */,
+				8A41D03FB7E6CBE49F1583EE /* WellSpentWatchStatusWidget.swift */,
+				98A5A4394F8E62E981E51526 /* WellSpentWatchTimerControl.swift */,
+				85F4FE74F2542042107E5F80 /* WellSpentWatchWidgetBundle.swift */,
+				84850C34BB45A8F981D8B4C6 /* WellSpentWatchWidgets.entitlements */,
+			);
+			path = WellSpentWatchWidgets;
 			sourceTree = "<group>";
 		};
 		A9763E2142E21746A9B1C412 = {
 			isa = PBXGroup;
 			children = (
 				D0EB123BAF8A1893C0F0CEBD /* Configurations */,
+				DB99C46A6A29E97C034987CF /* Spikes */,
 				0C5EBA1AD663EE27C89A0C6F /* WellSpentApp */,
 				87184451D07EC4BD825F59F9 /* WellSpentShared */,
 				9D337AF4B267B60868CEE7BD /* WellSpentTests */,
 				CD193D57C628CDB899A5ECDC /* WellSpentUITests */,
+				F1B131A6B908DE947AC5B77F /* WellSpentWatch */,
+				C7F9EF26480D2AC309E42771 /* WellSpentWatchContracts */,
+				2DD55E324CD105D2A6B66B95 /* WellSpentWatchContractTests */,
+				2FC7D1B1CD235FE8D4C2EAC4 /* WellSpentWatchIntents */,
+				C936FC63D3A53EF94DFC1393 /* WellSpentWatchLocalization */,
+				918F3993BCA23411B302E03D /* WellSpentWatchStore */,
+				D44879118AB264B11BB2D442 /* WellSpentWatchTests */,
+				E1766D2FBE8D144B00FF23BA /* WellSpentWatchUITests */,
+				A8BC5A84DF92F0A664134CE7 /* WellSpentWatchWidgets */,
 				3A895B7A379DBCCFAB4B481B /* WellSpentWidgets */,
 				AF927B4C3EB51BD067527E38 /* Products */,
 			);
@@ -519,12 +1158,47 @@
 			isa = PBXGroup;
 			children = (
 				D7801B7EF6244BCBF97E86D4 /* WellSpent.app */,
+				0CD5523067ADDCE1AF6CC909 /* WellSpentConnectivitySpikePhone.app */,
+				0C82039A14FAC17737C30B41 /* WellSpentConnectivitySpikePhoneUITests.xctest */,
+				989465EB2D1C9ECA36742B1D /* WellSpentConnectivitySpikeTests.xctest */,
+				10186C5D22F73CABB115E0B7 /* WellSpentConnectivitySpikeWatch.app */,
+				049BCB9D5A56A4F396B771C5 /* WellSpentConnectivitySpikeWatchUITests.xctest */,
 				402A5AEA2A8ADF2FF3930A7C /* WellSpentShared.framework */,
 				2C071B5C2E843509063F2C29 /* WellSpentTests.xctest */,
 				46E638E2AC5D37F357B2A605 /* WellSpentUITests.xctest */,
+				ED977871CFCE7058B7B2DD41 /* WellSpentWatch.app */,
+				0E872F23BE20AE0C3F643830 /* WellSpentWatchContracts.framework */,
+				6D7A7211A8EF3C9D53BC4FEE /* WellSpentWatchContractTests.xctest */,
+				A9181A70CE34A5DE2B87FDC5 /* WellSpentWatchStore.framework */,
+				ED69BB4CAA86077E067572F2 /* WellSpentWatchTests.xctest */,
+				78B07501282C8D07718124AC /* WellSpentWatchUITests.xctest */,
+				1FDE0923DC2B416036097726 /* WellSpentWatchWidgets.appex */,
 				137F608F6902F1C6F94B4269 /* WellSpentWidgets.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		B3D2A6C2B5B9A354A32AF7BD /* Projects */ = {
+			isa = PBXGroup;
+			children = (
+				A9F05981BF1B64EA3B5BB356 /* WatchProjectPickerModel.swift */,
+				67FE933D1C58B74FBCE1FF0C /* WatchProjectPickerView.swift */,
+				2215A5EC69E3F5878673F761 /* WatchRootView.swift */,
+				5A7B8802B71A6845035CF253 /* WatchSystemActionsHelpView.swift */,
+			);
+			path = Projects;
+			sourceTree = "<group>";
+		};
+		B3E77CE3688935EE1EC242C8 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				C449BEC6CAF9F710DCD69132 /* Foundation */,
+				09285A1D5980AD22B509F8E6 /* Goals */,
+				B3D2A6C2B5B9A354A32AF7BD /* Projects */,
+				B902FBF321571348EBCDE7A1 /* Shared */,
+				17A1DE4E8B8E42300876BF57 /* Timer */,
+			);
+			path = Features;
 			sourceTree = "<group>";
 		};
 		B7DBC7717B1422ABED7877D2 /* App */ = {
@@ -540,6 +1214,23 @@
 			path = App;
 			sourceTree = "<group>";
 		};
+		B902FBF321571348EBCDE7A1 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				2741CCF524673889741600B4 /* WatchAccessibilityPreferences.swift */,
+				0A1FB7DA360A778BCB4F2741 /* WatchPrivacyPresentation.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		B9C2F9B5B1578C5877DC5B0B /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				F93CE5C1C0C68F95F28E0D53 /* SpikeProtocolTests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
 		BEC6042A50ED2A5EA1A1DEE8 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
@@ -547,6 +1238,7 @@
 				3F2029D941C3A1F397AB6001 /* SessionRepository.swift */,
 				FD4370C7ED12B4CA7303818E /* SessionTagRepository.swift */,
 				DE52F65CB28E04A5AD929C44 /* TimerRepository.swift */,
+				D32F0CDD6C30E294DF22E4CC /* TimerRunRepository.swift */,
 				13988B3A60F42A7BD6F02D5A /* WellSpentPersistence.swift */,
 			);
 			path = Repositories;
@@ -557,11 +1249,44 @@
 			children = (
 				171EE71C5A73C6C78C2ED88E /* StopWellSpentTimerIntent.swift */,
 				91CFB0359AE453E76144CC14 /* WellSpentActivityAttributes.swift */,
+				CFB601591B45400175BC8AC1 /* WellSpentActivityPresentation.swift */,
 				6108B62152B1B987075032EE /* WellSpentSharedAppIntentsPackage.swift */,
 				0E4CF8EA54D2A6EFE4FD3549 /* WellSpentSpikeRecord.swift */,
 				8002EDE1EDC48B7A7C6DFB5E /* WellSpentStopHandoff.swift */,
 			);
 			path = LiveActivity;
+			sourceTree = "<group>";
+		};
+		C449BEC6CAF9F710DCD69132 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				5092C5656BE8B3BE5FEED225 /* WatchFoundationView.swift */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		C7F9EF26480D2AC309E42771 /* WellSpentWatchContracts */ = {
+			isa = PBXGroup;
+			children = (
+				A16ADF5E86037D77B1CA474C /* ConflictBranchReconciliation.swift */,
+				CBFCFD66155AC11F02F7785E /* ContractVersion.swift */,
+				E3A67D44D85AEF6E10356DC3 /* ContractWireCodec.swift */,
+				D2C65798F65874332269A7C8 /* MutationModels.swift */,
+				28EFC7F9C03151628CB3CBE6 /* Reconciliation.swift */,
+				D4E8E4907397BA3E4560EDCD /* SHA256Digest.swift */,
+				D40F08EC347972FCF09D5475 /* SnapshotModels.swift */,
+				299CEDF29BA5ADF186BA66F5 /* TransportModels.swift */,
+				BBE50135178C8C4422898EDF /* WatchReviewLink.swift */,
+			);
+			path = WellSpentWatchContracts;
+			sourceTree = "<group>";
+		};
+		C936FC63D3A53EF94DFC1393 /* WellSpentWatchLocalization */ = {
+			isa = PBXGroup;
+			children = (
+				4E562BABD7E7607C4509F37B /* Localizable.xcstrings */,
+			);
+			path = WellSpentWatchLocalization;
 			sourceTree = "<group>";
 		};
 		CB7F34A0454EB1E3B1C95B32 /* Reports */ = {
@@ -575,6 +1300,8 @@
 		CD193D57C628CDB899A5ECDC /* WellSpentUITests */ = {
 			isa = PBXGroup;
 			children = (
+				0E80B95DF75F566375261B84 /* RestartRecoveryUITests.swift */,
+				303D5C3CD3AF994C8DD2F0A9 /* WatchCompanionUITests.swift */,
 				635AB98520E19B37B7A5786B /* WellSpentAccessibilityUITests.swift */,
 				01FE36EDB408D280E1F40BE1 /* WellSpentAppStoreScreenshotTests.swift */,
 				F447374C52F83C97EB3FD4FF /* WellSpentUITests.swift */,
@@ -609,9 +1336,41 @@
 			path = Dependencies;
 			sourceTree = "<group>";
 		};
+		D44879118AB264B11BB2D442 /* WellSpentWatchTests */ = {
+			isa = PBXGroup;
+			children = (
+				551D4A9113C233D3F72F248D /* WatchAccessibilityPreferencesTests.swift */,
+				4CF3725B3962ACF0C9E3B045 /* WatchConnectivityCoordinatorTests.swift */,
+				7DF905C9CF724269B1547FC8 /* WatchGoalAlertTests.swift */,
+				5865A0BCB65F6B98439FD8D6 /* WatchLocalizationTests.swift */,
+				F59F260D135503582582B45A /* WatchProjectPickerTests.swift */,
+				292689386E07D35E1FCF1CE2 /* WatchResourceTests.swift */,
+				EB0808DD30252A711C8FD6DE /* WatchStoreTests.swift */,
+				99AA8D399DF35B70D7279F78 /* WatchSystemCommandTests.swift */,
+				40BE6BA1A9B5092976AB8856 /* WatchTimerAnnotationBoundaryTests.swift */,
+				FF96FDF92F3EE67985B9B271 /* WatchTimerControlBoundaryTests.swift */,
+				C19334C0DA8161A429266A10 /* WatchTimerMetricsTests.swift */,
+				B482E6DE6AAB0D7A5F33F185 /* WatchTimerStartBoundaryTests.swift */,
+				01FAE71E8974743BC3BBB26A /* WatchWidgetStateTests.swift */,
+				8F2FA8B65027E5F0F1A4617B /* WellSpentWatchFoundationTests.swift */,
+			);
+			path = WellSpentWatchTests;
+			sourceTree = "<group>";
+		};
+		DB99C46A6A29E97C034987CF /* Spikes */ = {
+			isa = PBXGroup;
+			children = (
+				93D3E459A77E9939A7072023 /* WatchConnectivity */,
+			);
+			path = Spikes;
+			sourceTree = "<group>";
+		};
 		DD767C8028999CED82255A3D /* Startup */ = {
 			isa = PBXGroup;
 			children = (
+				9B9830FA82597E8B42CD2C86 /* PhoneRestartFaultFixture.swift */,
+				B4007F1C3F9730E0FBF6D9AE /* UITestDisconnectedWatchSession.swift */,
+				9622CAF5A9C6856D77F00C87 /* WatchCompanionUITestFixture.swift */,
 				8F5DD0A2E1047C33B3B6A735 /* WellSpentStartup.swift */,
 				26A3A37CCCEDD415EB2B6F66 /* WellSpentUITestBootstrap.swift */,
 			);
@@ -624,6 +1383,27 @@
 				60552D35C84141FA98F0E3A2 /* WellSpentDependencies.swift */,
 			);
 			path = Dependencies;
+			sourceTree = "<group>";
+		};
+		E1766D2FBE8D144B00FF23BA /* WellSpentWatchUITests */ = {
+			isa = PBXGroup;
+			children = (
+				3D029882831AFCDB9C930DB4 /* WatchAccessibilityUITests.swift */,
+				A513727C9C5A817B3259F6AD /* WatchControlErrorUITests.swift */,
+				34C7EEFD97AE9C7C7145279F /* WatchFoundationErrorUITests.swift */,
+				CC4DB537A4DB5F501E5F8AF9 /* WatchGoalErrorUITests.swift */,
+				E2C0A559234F50C53FBE67A8 /* WatchGoalUITests.swift */,
+				C458EC14A297D8A2D2D30C1C /* WatchLocalizationUITests.swift */,
+				91A592FAEFCA557CEDE7F8FC /* WatchPrivacyUITests.swift */,
+				80AA30C712457758C4FF257C /* WatchRestartRecoveryUITests.swift */,
+				243473B930AFFFF092ED7F11 /* WatchStoreAssetDraftUITests.swift */,
+				DC5AD3CD4B2D153D78FBD136 /* WatchSystemActionsUITests.swift */,
+				218A83C05032991A7875AA2C /* WatchUITestScrolling.swift */,
+				582109BBABD9DE16BA812AE6 /* WatchWidgetLayoutUITests.swift */,
+				5CCEE9F7C17759F9C70ADA9A /* WatchWidgetUITests.swift */,
+				E4877083AFB93A76D5C09FC5 /* WellSpentWatchUITests.swift */,
+			);
+			path = WellSpentWatchUITests;
 			sourceTree = "<group>";
 		};
 		E182A3DF1F8BA5470F648CD4 /* Track */ = {
@@ -645,6 +1425,7 @@
 		E4393EB320269C1386D228F3 /* LiveActivity */ = {
 			isa = PBXGroup;
 			children = (
+				24E0BD5060E68697917D2791 /* ActivityKitLiveActivityDriver.swift */,
 				B6F772050E8BDD82FE095121 /* LiveActivityLifecycle.swift */,
 				E54199F75EAFAC44B0866891 /* LiveActivityStopHandoffReconciler.swift */,
 			);
@@ -661,9 +1442,201 @@
 			path = Sessions;
 			sourceTree = "<group>";
 		};
+		F1B131A6B908DE947AC5B77F /* WellSpentWatch */ = {
+			isa = PBXGroup;
+			children = (
+				A368AB3668F8805E0DA9D51C /* App */,
+				786F4624F3DF80B09C8505EE /* Connectivity */,
+				B3E77CE3688935EE1EC242C8 /* Features */,
+				F528778576AA84C4294C75AE /* Resources */,
+			);
+			path = WellSpentWatch;
+			sourceTree = "<group>";
+		};
+		F528778576AA84C4294C75AE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EA74271254A3F78B4152E894 /* AppShortcuts.xcstrings */,
+				98A8319E44F30E46C90A38C8 /* Assets.xcassets */,
+				7DA8094332671EF21456FF30 /* Info.plist */,
+				368418D6775B4983C03AB477 /* PrivacyInfo.xcprivacy */,
+				BB9558666C1126D285847D5D /* WellSpentWatch.entitlements */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		14F28F0E433B79158D07643F /* WellSpentWatchContracts */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1CE1D989BEA63F31324E27D5 /* Build configuration list for PBXNativeTarget "WellSpentWatchContracts" */;
+			buildPhases = (
+				C4E40881C5F008DBEBC42EBB /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WellSpentWatchContracts;
+			packageProductDependencies = (
+			);
+			productName = WellSpentWatchContracts;
+			productReference = 0E872F23BE20AE0C3F643830 /* WellSpentWatchContracts.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		3ABFB95D163EBA7945C1BE1C /* WellSpentWatchContractTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB80B2A6B16CD0D1DD2A3B81 /* Build configuration list for PBXNativeTarget "WellSpentWatchContractTests" */;
+			buildPhases = (
+				20A4985BF2671088363190AD /* Sources */,
+				016058DBBA73C2213C4F2D12 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				25233DBEA328268736F55355 /* PBXTargetDependency */,
+			);
+			name = WellSpentWatchContractTests;
+			packageProductDependencies = (
+			);
+			productName = WellSpentWatchContractTests;
+			productReference = 6D7A7211A8EF3C9D53BC4FEE /* WellSpentWatchContractTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3CA089B8D54AF394130EF7AA /* WellSpentConnectivitySpikeWatchUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 770CAC51F539DEB0A03F998E /* Build configuration list for PBXNativeTarget "WellSpentConnectivitySpikeWatchUITests" */;
+			buildPhases = (
+				BD14978510B45A7AB2915BC7 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6E232EEF1CD1DC7DD8196B06 /* PBXTargetDependency */,
+			);
+			name = WellSpentConnectivitySpikeWatchUITests;
+			packageProductDependencies = (
+			);
+			productName = WellSpentConnectivitySpikeWatchUITests;
+			productReference = 049BCB9D5A56A4F396B771C5 /* WellSpentConnectivitySpikeWatchUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		3E2BB950D9A9A3F27674797D /* WellSpentConnectivitySpikeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6828D5562F1AB6A939030A32 /* Build configuration list for PBXNativeTarget "WellSpentConnectivitySpikeTests" */;
+			buildPhases = (
+				5CBB9B5F5FFAA58C0B0D4540 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WellSpentConnectivitySpikeTests;
+			packageProductDependencies = (
+			);
+			productName = WellSpentConnectivitySpikeTests;
+			productReference = 989465EB2D1C9ECA36742B1D /* WellSpentConnectivitySpikeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		53216FA6EC8D30911BF03C42 /* WellSpentWatchTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 09D448CF195918080F55A4ED /* Build configuration list for PBXNativeTarget "WellSpentWatchTests" */;
+			buildPhases = (
+				CDF3B32548C705879F6622D4 /* Sources */,
+				69AE3BA1D820E891527E48B3 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C964C06276EB15DE306997BD /* PBXTargetDependency */,
+				372FB8DF5F697F3A43D11633 /* PBXTargetDependency */,
+				29015585726D544A336EFB5F /* PBXTargetDependency */,
+			);
+			name = WellSpentWatchTests;
+			packageProductDependencies = (
+			);
+			productName = WellSpentWatchTests;
+			productReference = ED69BB4CAA86077E067572F2 /* WellSpentWatchTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		5B8F9565841937AD988B3BB3 /* WellSpentConnectivitySpikeWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3A3E587D911C79EE6E4238E8 /* Build configuration list for PBXNativeTarget "WellSpentConnectivitySpikeWatch" */;
+			buildPhases = (
+				09804B86EE65D3D8E1141E6F /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WellSpentConnectivitySpikeWatch;
+			packageProductDependencies = (
+			);
+			productName = WellSpentConnectivitySpikeWatch;
+			productReference = 10186C5D22F73CABB115E0B7 /* WellSpentConnectivitySpikeWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7A94A77CE84567AEFBAE1FCE /* WellSpentWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AC774ACFC1A827B68374DB14 /* Build configuration list for PBXNativeTarget "WellSpentWatch" */;
+			buildPhases = (
+				2D0BE858FEB4A27770C267EA /* Sources */,
+				5C2BCE6687B757F197DB2A87 /* Resources */,
+				F5A660AB40B653B602A4C182 /* Frameworks */,
+				17CC4107097E48F9D7F6B1F2 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2BAF9BDA5390769B932A765E /* PBXTargetDependency */,
+				AA99D9DC94C4EFA34432F0E2 /* PBXTargetDependency */,
+				67CFD541B586AF1EF0B59C7B /* PBXTargetDependency */,
+			);
+			name = WellSpentWatch;
+			packageProductDependencies = (
+			);
+			productName = WellSpentWatch;
+			productReference = ED977871CFCE7058B7B2DD41 /* WellSpentWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
+		825097CC422C76DEBC477699 /* WellSpentConnectivitySpikePhone */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2DB9F648695C57C75EB06B2B /* Build configuration list for PBXNativeTarget "WellSpentConnectivitySpikePhone" */;
+			buildPhases = (
+				F510EBAD3C40036E4F855789 /* Sources */,
+				4DDE360A2388C8DABEA5E8CA /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A57F51248E09437162F2E319 /* PBXTargetDependency */,
+			);
+			name = WellSpentConnectivitySpikePhone;
+			packageProductDependencies = (
+			);
+			productName = WellSpentConnectivitySpikePhone;
+			productReference = 0CD5523067ADDCE1AF6CC909 /* WellSpentConnectivitySpikePhone.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8719F8A06B50633A7BC79655 /* WellSpentWatchUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 53760D51839924B3D783DD3F /* Build configuration list for PBXNativeTarget "WellSpentWatchUITests" */;
+			buildPhases = (
+				C4A279EF4CB58160E185FCAF /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				23E216BDBF93635946205012 /* PBXTargetDependency */,
+			);
+			name = WellSpentWatchUITests;
+			packageProductDependencies = (
+			);
+			productName = WellSpentWatchUITests;
+			productReference = 78B07501282C8D07718124AC /* WellSpentWatchUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		964E32DDAD063D861DBA9038 /* WellSpentWidgets */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AB78902DA7CA302CEBDF7C31 /* Build configuration list for PBXNativeTarget "WellSpentWidgets" */;
@@ -709,12 +1682,15 @@
 				FEF928D3E600698042B15F96 /* Resources */,
 				B04467881C6A4D3A4AD04443 /* Frameworks */,
 				B1F4AE8629651EE4D2972A8B /* Embed Foundation Extensions */,
+				6CE9BE72DBE4CDE6CD552717 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				A13F70ECC32351555F207D33 /* PBXTargetDependency */,
+				1C37D1F41676FB54FB8D3275 /* PBXTargetDependency */,
 				9838121AFA99D07FC2FF50ED /* PBXTargetDependency */,
+				35E21D69D82351C3AB11D21C /* PBXTargetDependency */,
 			);
 			name = WellSpent;
 			packageProductDependencies = (
@@ -741,6 +1717,42 @@
 			productReference = 2C071B5C2E843509063F2C29 /* WellSpentTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		D155AECC74F4529B3C1E502F /* WellSpentWatchStore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4BE759DE57CF657A87634D8A /* Build configuration list for PBXNativeTarget "WellSpentWatchStore" */;
+			buildPhases = (
+				DEA464053E236178E677449B /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D183962E97D858BA737005A1 /* PBXTargetDependency */,
+			);
+			name = WellSpentWatchStore;
+			packageProductDependencies = (
+			);
+			productName = WellSpentWatchStore;
+			productReference = A9181A70CE34A5DE2B87FDC5 /* WellSpentWatchStore.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		DF5BC631B1D88241157F443C /* WellSpentConnectivitySpikePhoneUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 892CE8B37417BD4AA1E95099 /* Build configuration list for PBXNativeTarget "WellSpentConnectivitySpikePhoneUITests" */;
+			buildPhases = (
+				AC8AC55B074FACE0A339CCF6 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2D0287155F82DC0AC801A055 /* PBXTargetDependency */,
+			);
+			name = WellSpentConnectivitySpikePhoneUITests;
+			packageProductDependencies = (
+			);
+			productName = WellSpentConnectivitySpikePhoneUITests;
+			productReference = 0C82039A14FAC17737C30B41 /* WellSpentConnectivitySpikePhoneUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		F0B0F34E21306CCEDD2B6522 /* WellSpentUITests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BA11F787378F2601683BA9DD /* Build configuration list for PBXNativeTarget "WellSpentUITests" */;
@@ -759,6 +1771,26 @@
 			productReference = 46E638E2AC5D37F357B2A605 /* WellSpentUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		FEF6EDF33D5AD790DD64A362 /* WellSpentWatchWidgets */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A766B9A434AA65AA1E0A83DF /* Build configuration list for PBXNativeTarget "WellSpentWatchWidgets" */;
+			buildPhases = (
+				12E06B59685B171C96BE3745 /* Sources */,
+				3343A26AB69C319740433280 /* Resources */,
+				41877967830A23DBC4AA1B40 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F5DC036ADA11E217D8421452 /* PBXTargetDependency */,
+			);
+			name = WellSpentWatchWidgets;
+			packageProductDependencies = (
+			);
+			productName = WellSpentWatchWidgets;
+			productReference = 1FDE0923DC2B416036097726 /* WellSpentWatchWidgets.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -768,6 +1800,38 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					14F28F0E433B79158D07643F = {
+						DevelopmentTeam = 68LEY459MW;
+					};
+					3ABFB95D163EBA7945C1BE1C = {
+						DevelopmentTeam = 68LEY459MW;
+					};
+					3CA089B8D54AF394130EF7AA = {
+						DevelopmentTeam = 68LEY459MW;
+						TestTargetID = 5B8F9565841937AD988B3BB3;
+					};
+					3E2BB950D9A9A3F27674797D = {
+						DevelopmentTeam = 68LEY459MW;
+					};
+					53216FA6EC8D30911BF03C42 = {
+						DevelopmentTeam = 68LEY459MW;
+					};
+					5B8F9565841937AD988B3BB3 = {
+						DevelopmentTeam = 68LEY459MW;
+						ProvisioningStyle = Automatic;
+					};
+					7A94A77CE84567AEFBAE1FCE = {
+						DevelopmentTeam = 68LEY459MW;
+						ProvisioningStyle = Automatic;
+					};
+					825097CC422C76DEBC477699 = {
+						DevelopmentTeam = 68LEY459MW;
+						ProvisioningStyle = Automatic;
+					};
+					8719F8A06B50633A7BC79655 = {
+						DevelopmentTeam = 68LEY459MW;
+						TestTargetID = 7A94A77CE84567AEFBAE1FCE;
+					};
 					964E32DDAD063D861DBA9038 = {
 						DevelopmentTeam = 68LEY459MW;
 						ProvisioningStyle = Automatic;
@@ -782,9 +1846,20 @@
 					C84F48F3F1AC07BF6D3231B6 = {
 						DevelopmentTeam = 68LEY459MW;
 					};
+					D155AECC74F4529B3C1E502F = {
+						DevelopmentTeam = 68LEY459MW;
+					};
+					DF5BC631B1D88241157F443C = {
+						DevelopmentTeam = 68LEY459MW;
+						TestTargetID = 825097CC422C76DEBC477699;
+					};
 					F0B0F34E21306CCEDD2B6522 = {
 						DevelopmentTeam = 68LEY459MW;
 						TestTargetID = BC75FB58DC410DFF83E9B7C6;
+					};
+					FEF6EDF33D5AD790DD64A362 = {
+						DevelopmentTeam = 68LEY459MW;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -803,9 +1878,21 @@
 			projectRoot = "";
 			targets = (
 				BC75FB58DC410DFF83E9B7C6 /* WellSpent */,
+				825097CC422C76DEBC477699 /* WellSpentConnectivitySpikePhone */,
+				DF5BC631B1D88241157F443C /* WellSpentConnectivitySpikePhoneUITests */,
+				3E2BB950D9A9A3F27674797D /* WellSpentConnectivitySpikeTests */,
+				5B8F9565841937AD988B3BB3 /* WellSpentConnectivitySpikeWatch */,
+				3CA089B8D54AF394130EF7AA /* WellSpentConnectivitySpikeWatchUITests */,
 				A64528016DA24E8DE6368C9D /* WellSpentShared */,
 				C84F48F3F1AC07BF6D3231B6 /* WellSpentTests */,
 				F0B0F34E21306CCEDD2B6522 /* WellSpentUITests */,
+				7A94A77CE84567AEFBAE1FCE /* WellSpentWatch */,
+				3ABFB95D163EBA7945C1BE1C /* WellSpentWatchContractTests */,
+				14F28F0E433B79158D07643F /* WellSpentWatchContracts */,
+				D155AECC74F4529B3C1E502F /* WellSpentWatchStore */,
+				53216FA6EC8D30911BF03C42 /* WellSpentWatchTests */,
+				8719F8A06B50633A7BC79655 /* WellSpentWatchUITests */,
+				FEF6EDF33D5AD790DD64A362 /* WellSpentWatchWidgets */,
 				964E32DDAD063D861DBA9038 /* WellSpentWidgets */,
 			);
 		};
@@ -817,6 +1904,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				8EA24C098DF0C024F4F3B56F /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3343A26AB69C319740433280 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				715545E0A1D17B8E71EF4C06 /* Localizable.xcstrings in Resources */,
+				5125F437E8A47ECE469B4250 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5C2BCE6687B757F197DB2A87 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1086A52AA3A39B9FD975AB4 /* AppShortcuts.xcstrings in Resources */,
+				6ED3A3065CDD92748B81B39F /* Assets.xcassets in Resources */,
+				04735E31B8E05AF2A1817E47 /* Localizable.xcstrings in Resources */,
+				1028C774DAF5E1DA98A73E15 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -842,15 +1949,53 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		09804B86EE65D3D8E1141E6F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80F40D1E14D8B9E0198CFB66 /* ConnectivitySpikeWatchApp.swift in Sources */,
+				FA76146B108F0FF048053EE5 /* SpikeConnectivityController.swift in Sources */,
+				0437B06C5F72BA23F92A6BA9 /* SpikePersistence.swift in Sources */,
+				C13C2C5D49C15C1ABF013DDD /* SpikeProtocol.swift in Sources */,
+				7AC0DD8514E31C9A913B58CF /* SpikeReducers.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		12E06B59685B171C96BE3745 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76DD6B27A7DD23A0F0B9C207 /* WatchSystemAction.swift in Sources */,
+				11758D339AD5BC311BCC6586 /* WellSpentWatchIntents.swift in Sources */,
+				B52DD1F9172A84F20A47BA8E /* WellSpentWatchStatusView.swift in Sources */,
+				F6C677225F7DFF6108FB275D /* WellSpentWatchStatusWidget.swift in Sources */,
+				F3A4623296C15612BE9F0505 /* WellSpentWatchTimerControl.swift in Sources */,
+				03190D9B25B421780B5AB675 /* WellSpentWatchWidgetBundle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		20A4985BF2671088363190AD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				16FBB06314F1F3FC9B59B808 /* WatchContractTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2CB662C2C4853EC3ABBDEFE4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDEED5986038260CCDD12601 /* ActivityKitLiveActivityDriver.swift in Sources */,
 				0B901BD64603C68B85016B8B /* AppPreferences.swift in Sources */,
+				FC301933EB1DFD33FBE1776D /* IPhoneWatchConnectivityCoordinator.swift in Sources */,
 				9CA5D230DDA21F04BC61C4AD /* LiveActivityLifecycle.swift in Sources */,
 				8B13B76299F32B90B8B4A665 /* LiveActivityStopHandoffReconciler.swift in Sources */,
 				8EB158709F1439984E065050 /* ManualSessionEditorView.swift in Sources */,
 				4DCBCF786310D169D2945BB0 /* OnboardingView.swift in Sources */,
+				30D61612E21D88342EAB9159 /* PhoneConflictResolutionPlan.swift in Sources */,
+				DBF011CC22E27C19AA457550 /* PhoneRestartFaultFixture.swift in Sources */,
+				7E654BCE1DF9C7DFB7EDA376 /* PhoneWatchSyncStore.swift in Sources */,
 				83314E0A22031D661DFEC26C /* PresentationSupport.swift in Sources */,
 				6C17EECBA45446A8C3E4464F /* ProjectCommandService.swift in Sources */,
 				95AFE8679A08DA3BFBB5F2C8 /* ProjectManagementView.swift in Sources */,
@@ -874,7 +2019,15 @@
 				E9203FC348948A5B9BC95EC8 /* TimeSessionSnapshot.swift in Sources */,
 				2BC6D030B58A31F628B9B877 /* TimerCommandService.swift in Sources */,
 				BC575BC92370AAA52B728FCE /* TimerRepository.swift in Sources */,
+				E0D9B3AA7AF986945573EBFA /* TimerRunCommandService.swift in Sources */,
+				344CA591400E8549A775B276 /* TimerRunModels.swift in Sources */,
+				790BBD8DAE37C89379C4DEE5 /* TimerRunReconciler.swift in Sources */,
+				12EA398F77A96F0CB56885B4 /* TimerRunRepository.swift in Sources */,
+				17CB24A07AFD84A642FE2E22 /* TimerRunReviewView.swift in Sources */,
 				81B458A8891FD6E879AC117B /* TrackView.swift in Sources */,
+				DB909A6CFFAD0035D3E197F7 /* UITestDisconnectedWatchSession.swift in Sources */,
+				B03893392D4BBD2C2CEC573B /* WatchCompanionUITestFixture.swift in Sources */,
+				B2A57DD3A333CEC0F20F1925 /* WatchConflictReviewView.swift in Sources */,
 				DAB40D9DF44B08D59B879A3A /* WellSpentApp.swift in Sources */,
 				C92CE0D14E80A280E1DAEE21 /* WellSpentAppIntentsPackage.swift in Sources */,
 				42FA066A60577818288FFE29 /* WellSpentAppModel.swift in Sources */,
@@ -884,8 +2037,51 @@
 				3A437A083832AFDE9B817FD8 /* WellSpentPersistence.swift in Sources */,
 				E19717622E07A07398FEFAD8 /* WellSpentSchemaV1.swift in Sources */,
 				97767666AE74C9AB2D9CC37D /* WellSpentSchemaV2.swift in Sources */,
+				C7382C7BDDB3E2FB793B4272 /* WellSpentSchemaV3.swift in Sources */,
+				C5DB2B28F5EABF5CFE3D114D /* WellSpentSchemaV4.swift in Sources */,
+				9CF5892A4CFE7EB0BA806730 /* WellSpentSchemaV5.swift in Sources */,
+				D832A71952A88BC7F27F1D2E /* WellSpentSchemaV6.swift in Sources */,
 				69E34DCA2754A6B6212494E9 /* WellSpentStartup.swift in Sources */,
 				4D8BFF2807546CC2A7D6C3A2 /* WellSpentUITestBootstrap.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D0BE858FEB4A27770C267EA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A707B7DFA0F6BB847EE682E7 /* WatchAccessibilityPreferences.swift in Sources */,
+				944359ABF1670F06DC333489 /* WatchAccessibilityPreviewSupport.swift in Sources */,
+				1F4A9057E0AE608761BDCAD4 /* WatchConnectivityCoordinator.swift in Sources */,
+				4F173683519F6A4C3999EB5D /* WatchEndedTimerSummaryView.swift in Sources */,
+				4BB520C63F0CB8A9D2763F19 /* WatchFoundationView.swift in Sources */,
+				52F92D6B2B84856A33855CDF /* WatchGoalAlertCoordinator.swift in Sources */,
+				08C569967859EF80288AF344 /* WatchGoalAlertPlan.swift in Sources */,
+				CA21235E403EC3291DB724C5 /* WatchGoalPreferences.swift in Sources */,
+				F0E6D3102B797EB602FB14E3 /* WatchGoalSetupView.swift in Sources */,
+				046CE421A6315E0DA1F3AD95 /* WatchGoalSystemNotifications.swift in Sources */,
+				5115A4925930EE6FD1B784DA /* WatchPrivacyPresentation.swift in Sources */,
+				DEF78D6A6A3F3ACE0E62E8BC /* WatchProjectPickerModel.swift in Sources */,
+				F567CDD194E02831C86F97D2 /* WatchProjectPickerView.swift in Sources */,
+				82D7E17B640B36C39177CEBA /* WatchRestartFaultFixture.swift in Sources */,
+				899C2C689239CE010DFD200F /* WatchRootView.swift in Sources */,
+				74F9D742A8518BA5DB6B1B0D /* WatchStartedTimerView.swift in Sources */,
+				19FC2087B03A1E5BB1A2DABF /* WatchSystemAction.swift in Sources */,
+				31DB6808F7DE6AF3F8460E68 /* WatchSystemActionsHelpView.swift in Sources */,
+				5CF6937381C9FC230EC2EF29 /* WatchSystemCommandBoundary.swift in Sources */,
+				7A0BE91D28F77D2C17FEA5B0 /* WatchTimerAnnotationBoundary.swift in Sources */,
+				39DDA7B2062F4D7E2BEE3696 /* WatchTimerControlBoundary.swift in Sources */,
+				51980EE7FE05E3ED9AC9C471 /* WatchTimerControlsView.swift in Sources */,
+				DED80A03FF8BF525C4B7598B /* WatchTimerGoalBoundary.swift in Sources */,
+				BF9FF57D15D47B9902A2321F /* WatchTimerMetrics.swift in Sources */,
+				5C7948B77951583F42AC5771 /* WatchTimerStartBoundary.swift in Sources */,
+				44D63BA0A17DC3C2C3BF5F0F /* WatchUITestFixture.swift in Sources */,
+				9DE4A71B932A0EC96706D963 /* WatchWidgetPreviewSurface.swift in Sources */,
+				33B9D970D774F6A4B1A8249F /* WellSpentWatchApp.swift in Sources */,
+				E18BB8287C4124CE55813D70 /* WellSpentWatchIntents.swift in Sources */,
+				1A567C87F25BE01821E3D1A8 /* WellSpentWatchRuntime.swift in Sources */,
+				19B8101141737439932F3E20 /* WellSpentWatchShortcuts.swift in Sources */,
+				96B873062CDCCB9037C289F6 /* WellSpentWatchStatusView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -893,9 +2089,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CF812878C775518C4BCCDC9 /* RestartRecoveryUITests.swift in Sources */,
+				0F723FD89F401B6993584F4C /* WatchCompanionUITests.swift in Sources */,
 				A7D695111D86326B4AC64851 /* WellSpentAccessibilityUITests.swift in Sources */,
 				DE0BD16321E36D2A38CBCC3F /* WellSpentAppStoreScreenshotTests.swift in Sources */,
 				3251F9F82FABB345C26753C0 /* WellSpentUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5CBB9B5F5FFAA58C0B0D4540 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E2383C506E2CB5D938E2094 /* SpikePersistence.swift in Sources */,
+				984E6FF4DAB2DB90D787428B /* SpikeProtocol.swift in Sources */,
+				3502CE3EA7C9012302BEB3DC /* SpikeProtocolTests.swift in Sources */,
+				093508FAB6A2631382C83AF4 /* SpikeReducers.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AC8AC55B074FACE0A339CCF6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3FF9A417E7AC87C0F915A272 /* ConnectivitySpikePhoneUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -905,9 +2122,77 @@
 			files = (
 				E627DF062746CD0206768CD1 /* StopWellSpentTimerIntent.swift in Sources */,
 				797C5C5F52F2F6203467796E /* WellSpentActivityAttributes.swift in Sources */,
+				E2D84BBDDA13FD628F655BFC /* WellSpentActivityPresentation.swift in Sources */,
 				F54F2B19EF9F53299DB7836F /* WellSpentSharedAppIntentsPackage.swift in Sources */,
 				04AA65043C5505966B85DF27 /* WellSpentSpikeRecord.swift in Sources */,
 				D4375C6196A6356073456292 /* WellSpentStopHandoff.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BD14978510B45A7AB2915BC7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8ABEF5F841BCB8E37280B4E /* ConnectivitySpikeWatchUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4A279EF4CB58160E185FCAF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8F817BD3B4AC9519197511D /* WatchAccessibilityUITests.swift in Sources */,
+				ABE386AEDC5A6198B3A82D70 /* WatchControlErrorUITests.swift in Sources */,
+				34B5E89F3AB42292C68BE422 /* WatchFoundationErrorUITests.swift in Sources */,
+				13C0C21F51F92A38E154DC57 /* WatchGoalErrorUITests.swift in Sources */,
+				B9F2F664D5CBBDBD3FC8FE53 /* WatchGoalUITests.swift in Sources */,
+				194F6F99597736236CE03958 /* WatchLocalizationUITests.swift in Sources */,
+				7F536980F5F782730A4E1EBC /* WatchPrivacyUITests.swift in Sources */,
+				7A070E2FE6CC5C222A46017D /* WatchRestartRecoveryUITests.swift in Sources */,
+				9EE7EF53F2723197660FC69B /* WatchStoreAssetDraftUITests.swift in Sources */,
+				A49CA87A6066BB2A32927427 /* WatchSystemActionsUITests.swift in Sources */,
+				52AAD59AF89D72F79FE3DD77 /* WatchUITestScrolling.swift in Sources */,
+				067F92442B63BC8411E75B60 /* WatchWidgetLayoutUITests.swift in Sources */,
+				BE20B3BD8F28CD0794220BBE /* WatchWidgetUITests.swift in Sources */,
+				4AE76D31E2CABFBA28A448A6 /* WellSpentWatchUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4E40881C5F008DBEBC42EBB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6D72A640A32D6A196C35772 /* ConflictBranchReconciliation.swift in Sources */,
+				1A3378E6C03DA6963DB53B40 /* ContractVersion.swift in Sources */,
+				E210F74F4E7E66BBA2AC6DFB /* ContractWireCodec.swift in Sources */,
+				70452D0795171710743275D8 /* MutationModels.swift in Sources */,
+				DECC3FBA319B177B5FE3E21F /* Reconciliation.swift in Sources */,
+				D7C70AC9108F92CFD100C4A1 /* SHA256Digest.swift in Sources */,
+				15301687BC17692C7CEE872F /* SnapshotModels.swift in Sources */,
+				0B9FDF1FFB83A86CDE527E32 /* TransportModels.swift in Sources */,
+				F3A7C539400A9D04F73F7377 /* WatchReviewLink.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CDF3B32548C705879F6622D4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1F6A31C8D95219D98CCFBE4 /* WatchAccessibilityPreferencesTests.swift in Sources */,
+				E8A788FC3A3B09FB5764F34D /* WatchConnectivityCoordinatorTests.swift in Sources */,
+				84CE2CAE101ED4DDB90ED228 /* WatchContractTests.swift in Sources */,
+				9FAD04493C7304EB79496204 /* WatchGoalAlertTests.swift in Sources */,
+				E4759A33E1B8736929C2C420 /* WatchLocalizationTests.swift in Sources */,
+				5FAEECD9151F55D00B17E228 /* WatchProjectPickerTests.swift in Sources */,
+				79C8657CA54E58C1B43FE5F4 /* WatchResourceTests.swift in Sources */,
+				74A996F4E30E795C391CA9AE /* WatchStoreTests.swift in Sources */,
+				81B6BF7080632FCB1109F741 /* WatchSystemCommandTests.swift in Sources */,
+				771FD91F7FE8B6615B8C4B76 /* WatchTimerAnnotationBoundaryTests.swift in Sources */,
+				877C8895A750BB80AD9F93D9 /* WatchTimerControlBoundaryTests.swift in Sources */,
+				9B0813BB824CF4919FE4C9A0 /* WatchTimerMetricsTests.swift in Sources */,
+				87116DDC1E764A61B03C8C13 /* WatchTimerStartBoundaryTests.swift in Sources */,
+				EFB011442E957E7FA2FD8FD7 /* WatchWidgetStateTests.swift in Sources */,
+				492CD2765CDB282E6FA3A386 /* WellSpentWatchFoundationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -919,6 +2204,9 @@
 				DEAC02766AB65BB11F070A59 /* AppIntentsPackageTests.swift in Sources */,
 				586BC39E48C2794E416BF589 /* DependencyFixtures.swift in Sources */,
 				86B16BFDF3260FBA9A8A523F /* LiveActivityLifecycleTests.swift in Sources */,
+				927E47DC7B0B7294833D707F /* LiveActivityPresentationTests.swift in Sources */,
+				1AA2FCF0959AE56BCE76EE11 /* LiveActivitySerializationTests.swift in Sources */,
+				8F30A0F7565BF33AFCA14806 /* PhoneWatchSyncStoreTests.swift in Sources */,
 				2E82244728CA30C238400FFD /* ProjectCommandServiceTests.swift in Sources */,
 				109F5BA89EB08ACD78099D8E /* ReportingEngineTests.swift in Sources */,
 				3F309365E0882D5665E55024 /* ReportingInvariantTests.swift in Sources */,
@@ -926,6 +2214,8 @@
 				0D2240B1F730B4B2C598044F /* SessionOverlapDetectorTests.swift in Sources */,
 				355BD975DE9019F8BE120072 /* SessionTagCommandServiceTests.swift in Sources */,
 				5C77FA9647692C0BB7BE2881 /* TimerCommandServiceTests.swift in Sources */,
+				02E4241289E7EF37B7540129 /* TimerRunCommandServiceTests.swift in Sources */,
+				6DF2EDE077A4B202F847A75F /* TimerRunMigrationTests.swift in Sources */,
 				122D24033A6D35D31D60C33B /* TimerStopCommandServiceTests.swift in Sources */,
 				D270B980BAD54F8942B34245 /* TimerSwitchCommandServiceTests.swift in Sources */,
 				86A1675848162F35427F8780 /* WellSpentDependenciesTests.swift in Sources */,
@@ -934,13 +2224,89 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DEA464053E236178E677449B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E44B81A01A83A74642A14342 /* WatchProjectionReducer.swift in Sources */,
+				BFE7F55C12046E0C02E9A5B3 /* WatchStoreModels.swift in Sources */,
+				6FF5FDA4AA0DC45088D0C4D8 /* WatchStorePersistence.swift in Sources */,
+				BDBCED06D4A92837E55AAB0A /* WatchStoreState.swift in Sources */,
+				CEFB1A4F3830873F7B895C7E /* WatchWidgetSnapshotReader.swift in Sources */,
+				E762AF68B434D729880D4B16 /* WatchWidgetState.swift in Sources */,
+				597EC3E20500CDD76FCDB6B3 /* WellSpentWatchStore.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F510EBAD3C40036E4F855789 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA15E050DAD188CFB23E982A /* ConnectivitySpikePhoneApp.swift in Sources */,
+				054A15FAE281F0B4500DCB3A /* SpikeConnectivityController.swift in Sources */,
+				0B8647B3855A6FC014E09860 /* SpikePersistence.swift in Sources */,
+				C986C21A3ACA4E772028E4F5 /* SpikeProtocol.swift in Sources */,
+				7D6B23EDFFCED3DC446C70A7 /* SpikeReducers.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		1C37D1F41676FB54FB8D3275 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 14F28F0E433B79158D07643F /* WellSpentWatchContracts */;
+			targetProxy = FF106ED3B8DEBF2EE6F422D9 /* PBXContainerItemProxy */;
+		};
 		21727400AC669887CB6D0E34 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A64528016DA24E8DE6368C9D /* WellSpentShared */;
 			targetProxy = C8E557B3B1B4FCED5EF582F4 /* PBXContainerItemProxy */;
+		};
+		23E216BDBF93635946205012 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7A94A77CE84567AEFBAE1FCE /* WellSpentWatch */;
+			targetProxy = F50E070EF29940806DEDA0E0 /* PBXContainerItemProxy */;
+		};
+		25233DBEA328268736F55355 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 14F28F0E433B79158D07643F /* WellSpentWatchContracts */;
+			targetProxy = BDA9960E564E9A802CD62F65 /* PBXContainerItemProxy */;
+		};
+		29015585726D544A336EFB5F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D155AECC74F4529B3C1E502F /* WellSpentWatchStore */;
+			targetProxy = B05291586A8EC1C13CC2606B /* PBXContainerItemProxy */;
+		};
+		2BAF9BDA5390769B932A765E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 14F28F0E433B79158D07643F /* WellSpentWatchContracts */;
+			targetProxy = ACF67127035D5B1C915FA3AD /* PBXContainerItemProxy */;
+		};
+		2D0287155F82DC0AC801A055 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 825097CC422C76DEBC477699 /* WellSpentConnectivitySpikePhone */;
+			targetProxy = C966515C7FF20FCEBA20B26F /* PBXContainerItemProxy */;
+		};
+		35E21D69D82351C3AB11D21C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7A94A77CE84567AEFBAE1FCE /* WellSpentWatch */;
+			targetProxy = F77E704B78339B6266EEF91C /* PBXContainerItemProxy */;
+		};
+		372FB8DF5F697F3A43D11633 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 14F28F0E433B79158D07643F /* WellSpentWatchContracts */;
+			targetProxy = 5CF98C95AE3240CAFA70EDAA /* PBXContainerItemProxy */;
+		};
+		67CFD541B586AF1EF0B59C7B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FEF6EDF33D5AD790DD64A362 /* WellSpentWatchWidgets */;
+			targetProxy = 2C478C6EA9E383EF9DEB2F16 /* PBXContainerItemProxy */;
+		};
+		6E232EEF1CD1DC7DD8196B06 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5B8F9565841937AD988B3BB3 /* WellSpentConnectivitySpikeWatch */;
+			targetProxy = DCD1CFEC59A4A23E94FD45AD /* PBXContainerItemProxy */;
 		};
 		9838121AFA99D07FC2FF50ED /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -952,19 +2318,79 @@
 			target = A64528016DA24E8DE6368C9D /* WellSpentShared */;
 			targetProxy = 4DDA1C45F4EDD294BFE8FA54 /* PBXContainerItemProxy */;
 		};
+		A57F51248E09437162F2E319 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5B8F9565841937AD988B3BB3 /* WellSpentConnectivitySpikeWatch */;
+			targetProxy = 0697A5BDE0F66D7CFDE25AD4 /* PBXContainerItemProxy */;
+		};
+		AA99D9DC94C4EFA34432F0E2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D155AECC74F4529B3C1E502F /* WellSpentWatchStore */;
+			targetProxy = 05FE60E6EE8019F3018C7839 /* PBXContainerItemProxy */;
+		};
 		ADB8D3217CE0B4E800F320E5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = BC75FB58DC410DFF83E9B7C6 /* WellSpent */;
 			targetProxy = DBD002E62847481661920FDD /* PBXContainerItemProxy */;
+		};
+		C964C06276EB15DE306997BD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7A94A77CE84567AEFBAE1FCE /* WellSpentWatch */;
+			targetProxy = 7F76944127442CF5995404C5 /* PBXContainerItemProxy */;
+		};
+		D183962E97D858BA737005A1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 14F28F0E433B79158D07643F /* WellSpentWatchContracts */;
+			targetProxy = 7BEBCBAE32020E67CD1C8BB0 /* PBXContainerItemProxy */;
 		};
 		E9CEB499FA2BDB68CF77D8F6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = BC75FB58DC410DFF83E9B7C6 /* WellSpent */;
 			targetProxy = 850585671C03678998630851 /* PBXContainerItemProxy */;
 		};
+		F5DC036ADA11E217D8421452 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D155AECC74F4529B3C1E502F /* WellSpentWatchStore */;
+			targetProxy = 79D187D1B180E33D48ACCA49 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		0049E22FD9FBA4B7C363C596 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent.connectivityspike.phoneuitests;
+				SDKROOT = iphoneos;
+				TEST_TARGET_NAME = WellSpentConnectivitySpikePhone;
+			};
+			name = Debug;
+		};
+		13770B92E9A82B5AE1100438 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = WellSpentWatch/Resources/WellSpentWatch.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = WellSpentWatch/Resources/Info.plist;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent.watchkitapp;
+				PRODUCT_NAME = WellSpentWatch;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Release;
+		};
 		16057598CDD7EB1C6E86E37E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -986,6 +2412,25 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		17C48E448911EF1F525BF688 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent.watchkitapp.tests;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WellSpentWatch.app/WellSpentWatch";
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
 			};
 			name = Debug;
 		};
@@ -1012,6 +2457,29 @@
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
+		};
+		2397C6F44B56DD0DAAC59807 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				MACH_O_TYPE = staticlib;
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent.watchstore;
+				PRODUCT_NAME = WellSpentWatchStore;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				VERSIONING_SYSTEM = "apple-generic";
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Debug;
 		};
 		40120F59CF498B4D65E0E2D4 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1092,6 +2560,57 @@
 			};
 			name = Release;
 		};
+		733888005D6016A27648A3A2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent.connectivityspike.phoneuitests;
+				SDKROOT = iphoneos;
+				TEST_TARGET_NAME = WellSpentConnectivitySpikePhone;
+			};
+			name = Release;
+		};
+		744A65C5D40FAF102CBB2B46 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent.connectivityspike.tests;
+				SDKROOT = iphoneos;
+				TEST_HOST = "";
+			};
+			name = Debug;
+		};
+		7450F40F53E1DC6084DDAD48 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent.watchkitapp.uitests;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = WellSpentWatch;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Debug;
+		};
 		75F1505CCD662970A4438BF6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1107,6 +2626,22 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WellSpent.app/WellSpent";
 			};
 			name = Debug;
+		};
+		8C07B7201BAE3691577E8220 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Spikes/WatchConnectivity/Watch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent.connectivityspike.watchkitapp;
+				PRODUCT_NAME = WellSpentConnectivitySpikeWatch;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Release;
 		};
 		8F98D0612D124CB0702F2198 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -1128,6 +2663,202 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent;
 				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		910A01384A55C909191A2E87 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_DEBUG_DYLIB = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Spikes/WatchConnectivity/Phone/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent.connectivityspike;
+				PRODUCT_NAME = WellSpentConnectivitySpikePhone;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		995EF2D82112B3B96A5D441E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = WellSpentWatchWidgets/WellSpentWatchWidgets.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = WellSpentWatchWidgets/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent.watchkitapp.widgets;
+				PRODUCT_NAME = WellSpentWatchWidgets;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Debug;
+		};
+		99D7C972F1EFF74CF23532E4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent.connectivityspike.tests;
+				SDKROOT = iphoneos;
+				TEST_HOST = "";
+			};
+			name = Release;
+		};
+		9CD691C94D5EADAA95286B06 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent.watchkitapp.uitests;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = WellSpentWatch;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Release;
+		};
+		A7B153EAA2D178EE7CD83942 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent.watchcontracts.tests;
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator watchos watchsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
+				"TARGETED_DEVICE_FAMILY[sdk=watch*]" = 4;
+				TEST_HOST = "";
+			};
+			name = Release;
+		};
+		AC0BED09F7E5E772107D02C6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent.watchcontracts;
+				PRODUCT_NAME = WellSpentWatchContracts;
+				SDKROOT = auto;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator watchos watchsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
+				"TARGETED_DEVICE_FAMILY[sdk=watch*]" = 4;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		B070C1948C372B97DE78F20A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent.watchcontracts;
+				PRODUCT_NAME = WellSpentWatchContracts;
+				SDKROOT = auto;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator watchos watchsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
+				"TARGETED_DEVICE_FAMILY[sdk=watch*]" = 4;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		BA34A23BBF0F889CAA27D022 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = WellSpentWatch/Resources/WellSpentWatch.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = WellSpentWatch/Resources/Info.plist;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent.watchkitapp;
+				PRODUCT_NAME = WellSpentWatch;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Debug;
+		};
+		C3BC6F80E79BA1602B761843 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent.watchkitapp.tests;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WellSpentWatch.app/WellSpentWatch";
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
 			};
 			name = Release;
 		};
@@ -1154,6 +2885,51 @@
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
+		};
+		D0DDD0416016F0E2B27F8B1B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = WellSpentWatchWidgets/WellSpentWatchWidgets.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = WellSpentWatchWidgets/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent.watchkitapp.widgets;
+				PRODUCT_NAME = WellSpentWatchWidgets;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Release;
+		};
+		D97699EC08878E0A777D6C9F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent.watchcontracts.tests;
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator watchos watchsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
+				"TARGETED_DEVICE_FAMILY[sdk=watch*]" = 4;
+				TEST_HOST = "";
+			};
+			name = Debug;
 		};
 		D9DE344F0E9E10ADE6070C79 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -1206,7 +2982,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 68LEY459MW;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1228,9 +3004,66 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Debug;
+		};
+		E07969D8D53E9F84C0F0643A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent.connectivityspike.watchkitapp.uitests;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TEST_TARGET_NAME = WellSpentConnectivitySpikeWatch;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Debug;
+		};
+		E579991C782DA7A76D3789A6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				MACH_O_TYPE = staticlib;
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent.watchstore;
+				PRODUCT_NAME = WellSpentWatchStore;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				VERSIONING_SYSTEM = "apple-generic";
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Release;
+		};
+		E7DDBC036EFCA8D61B500FCC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Spikes/WatchConnectivity/Watch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent.connectivityspike.watchkitapp;
+				PRODUCT_NAME = WellSpentConnectivitySpikeWatch;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
 			};
 			name = Debug;
 		};
@@ -1269,7 +3102,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 68LEY459MW;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1286,8 +3119,46 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
 				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Release;
+		};
+		FAC5CEF381A4938B139FD4C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent.connectivityspike.watchkitapp.uitests;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TEST_TARGET_NAME = WellSpentConnectivitySpikeWatch;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Release;
+		};
+		FE33D310538004F3D48CE610 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_DEBUG_DYLIB = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Spikes/WatchConnectivity/Phone/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewreilly.wellspent.connectivityspike;
+				PRODUCT_NAME = WellSpentConnectivitySpikePhone;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -1295,11 +3166,47 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		09D448CF195918080F55A4ED /* Build configuration list for PBXNativeTarget "WellSpentWatchTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				17C48E448911EF1F525BF688 /* Debug */,
+				C3BC6F80E79BA1602B761843 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		1CE1D989BEA63F31324E27D5 /* Build configuration list for PBXNativeTarget "WellSpentWatchContracts" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AC0BED09F7E5E772107D02C6 /* Debug */,
+				B070C1948C372B97DE78F20A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		2DB9F648695C57C75EB06B2B /* Build configuration list for PBXNativeTarget "WellSpentConnectivitySpikePhone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				910A01384A55C909191A2E87 /* Debug */,
+				FE33D310538004F3D48CE610 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		3621EB93C17BB43B3D507CC4 /* Build configuration list for PBXProject "WellSpent" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DE9BEF33767CD5515ADC5A45 /* Debug */,
 				F30FC53A6D9C044B72C994FD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		3A3E587D911C79EE6E4238E8 /* Build configuration list for PBXNativeTarget "WellSpentConnectivitySpikeWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E7DDBC036EFCA8D61B500FCC /* Debug */,
+				8C07B7201BAE3691577E8220 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -1313,6 +3220,51 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
+		4BE759DE57CF657A87634D8A /* Build configuration list for PBXNativeTarget "WellSpentWatchStore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2397C6F44B56DD0DAAC59807 /* Debug */,
+				E579991C782DA7A76D3789A6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		53760D51839924B3D783DD3F /* Build configuration list for PBXNativeTarget "WellSpentWatchUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7450F40F53E1DC6084DDAD48 /* Debug */,
+				9CD691C94D5EADAA95286B06 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		6828D5562F1AB6A939030A32 /* Build configuration list for PBXNativeTarget "WellSpentConnectivitySpikeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				744A65C5D40FAF102CBB2B46 /* Debug */,
+				99D7C972F1EFF74CF23532E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		770CAC51F539DEB0A03F998E /* Build configuration list for PBXNativeTarget "WellSpentConnectivitySpikeWatchUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E07969D8D53E9F84C0F0643A /* Debug */,
+				FAC5CEF381A4938B139FD4C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		892CE8B37417BD4AA1E95099 /* Build configuration list for PBXNativeTarget "WellSpentConnectivitySpikePhoneUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0049E22FD9FBA4B7C363C596 /* Debug */,
+				733888005D6016A27648A3A2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		93EFB25E8F52A03B7C13016F /* Build configuration list for PBXNativeTarget "WellSpent" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1322,11 +3274,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
+		A766B9A434AA65AA1E0A83DF /* Build configuration list for PBXNativeTarget "WellSpentWatchWidgets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				995EF2D82112B3B96A5D441E /* Debug */,
+				D0DDD0416016F0E2B27F8B1B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		AB78902DA7CA302CEBDF7C31 /* Build configuration list for PBXNativeTarget "WellSpentWidgets" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5D36FAFE54E74D62945A6B9B /* Debug */,
 				1A21A3BC003687383139EA02 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		AC774ACFC1A827B68374DB14 /* Build configuration list for PBXNativeTarget "WellSpentWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA34A23BBF0F889CAA27D022 /* Debug */,
+				13770B92E9A82B5AE1100438 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -1345,6 +3315,15 @@
 			buildConfigurations = (
 				75F1505CCD662970A4438BF6 /* Debug */,
 				6EAF681B569FB3EC78C24415 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		DB80B2A6B16CD0D1DD2A3B81 /* Build configuration list for PBXNativeTarget "WellSpentWatchContractTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D97699EC08878E0A777D6C9F /* Debug */,
+				A7B153EAA2D178EE7CD83942 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

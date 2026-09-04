@@ -48,7 +48,9 @@ struct SettingsView: View {
                 } header: {
                     Text("Lock Screen privacy")
                 } footer: {
-                    Text("The privacy-safe generic label is the default and persists after relaunch.")
+                    Text(
+                        "The generic label is the default. This preference also applies to Watch widgets after sync; an offline Watch keeps its last received preference."
+                    )
                 }
 
                 Section("Time accuracy") {
@@ -115,9 +117,11 @@ struct SettingsView: View {
                     )
                 }
 
+                watchSettings
+
                 Section("Privacy") {
                     Text(
-                        "WellSpent uses no account, server, analytics, tracking, or CloudKit sync. Activity data is excluded from device backups."
+                        "WellSpent uses no account, server, analytics, tracking, or CloudKit sync. Activity data is excluded from device backups. Your paired Watch receives project and tag choices and the timer data needed for tracking through Apple's device-to-device connectivity."
                     )
                     Text(
                         "This release does not request Calendar or notification access and does not export files."
@@ -165,7 +169,7 @@ struct SettingsView: View {
                     .accessibilityIdentifier("delete-all-local-data")
 
                     Text(
-                        "Deletes projects, sessions, notes, custom tags, preferences, and pending Lock Screen actions from this iPhone."
+                        "Deletes projects, sessions, notes, custom tags, preferences, conflict history, and pending Lock Screen actions from this iPhone. To erase the Watch cache and unsent work too, remove WellSpent from Apple Watch, then reinstall it after this erase. An offline Watch cannot be erased remotely."
                     )
                     .foregroundStyle(.secondary)
                 }
@@ -199,8 +203,26 @@ struct SettingsView: View {
                 Button("Cancel", role: .cancel) {}
             } message: {
                 Text(
-                    "This permanently deletes every project, session, note, custom tag, and preference. This action cannot be undone."
+                    "This permanently deletes this iPhone's projects, sessions, notes, tags, and conflict history. Remove WellSpent from Apple Watch to erase its separate cache and unsent work. This action cannot be undone."
                 )
+            }
+        }
+    }
+
+    private var watchSettings: some View {
+        Section("Apple Watch") {
+            LabeledContent("Status", value: model.watchSyncStatusText)
+                .accessibilityIdentifier("settings-watch-status")
+            Text(
+                "Open WellSpent on your paired Watch after creating a project here. Watch timers save locally while offline and sync directly with this iPhone when available. The phone cannot see changes that have not arrived yet."
+            )
+            .font(.footnote).foregroundStyle(.secondary)
+            if let conflict = model.pendingWatchConflicts.first {
+                Button("Review Preserved Time") { model.openConflictReview(id: conflict.snapshot.conflictID) }
+            }
+            if model.watchSyncOverview.hasWatchHistory || model.watchSyncNeedsRetry {
+                Button("Retry Watch Sync") { model.retryWatchSync() }
+                    .accessibilityIdentifier("retry-watch-sync")
             }
         }
     }

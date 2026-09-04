@@ -72,11 +72,14 @@ struct ProjectManagementView: View {
     private func projectRow(_ project: ProjectSnapshot) -> some View {
         HStack {
             ProjectStatusLabel(project: project)
-            if model.activeSession?.projectID == project.id {
-                Label("Timer active", systemImage: "timer")
-                    .font(.caption.weight(.semibold))
-                    .foregroundStyle(.blue)
-                    .accessibilityIdentifier("active-project-archive-warning")
+            if let activeRun = model.activeRun, activeRun.projectID == project.id {
+                Label(
+                    activeRun.state == .paused ? "Timer paused" : "Timer active",
+                    systemImage: activeRun.state == .paused ? "pause.circle" : "timer"
+                )
+                .font(.caption.weight(.semibold))
+                .foregroundStyle(.blue)
+                .accessibilityIdentifier("active-project-archive-warning")
             }
             Spacer()
             Menu {

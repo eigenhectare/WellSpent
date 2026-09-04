@@ -5,6 +5,7 @@ struct TimeSessionSnapshot: Identifiable, Equatable, Sendable {
     let workspaceID: UUID?
     let projectID: UUID
     let source: TimeSessionSource
+    let timerRunID: UUID?
     let startAt: Date
     let endAt: Date?
     let startTimeZoneID: String
@@ -19,6 +20,7 @@ struct TimeSessionSnapshot: Identifiable, Equatable, Sendable {
         workspaceID: UUID? = nil,
         projectID: UUID,
         source: TimeSessionSource,
+        timerRunID: UUID? = nil,
         startAt: Date,
         endAt: Date?,
         startTimeZoneID: String,
@@ -32,6 +34,7 @@ struct TimeSessionSnapshot: Identifiable, Equatable, Sendable {
         self.workspaceID = workspaceID
         self.projectID = projectID
         self.source = source
+        self.timerRunID = timerRunID
         self.startAt = startAt
         self.endAt = endAt
         self.startTimeZoneID = startTimeZoneID
@@ -50,6 +53,7 @@ struct TimeSessionSnapshot: Identifiable, Equatable, Sendable {
         workspaceID = record.workspaceID
         projectID = record.projectID
         source = record.source
+        timerRunID = record.timerRunID
         startAt = record.startAt
         endAt = record.endAt
         startTimeZoneID = record.startTimeZoneID

@@ -90,6 +90,7 @@ final class SessionCommandService {
         let timestamp = dependencies.now
         try validateCompletedInterval(startAt: startAt, endAt: endAt, now: timestamp)
         let session = try requiredSession(id: sessionID)
+        try requireStandaloneSession(session)
         guard session.endAt != nil else {
             throw SessionCommandError.completedSessionRequired(sessionID)
         }
@@ -156,6 +157,7 @@ final class SessionCommandService {
         let timestamp = dependencies.now
         try validateActiveStart(startAt, now: timestamp)
         let session = try requiredSession(id: sessionID)
+        try requireStandaloneSession(session)
         guard session.source == .timer, session.endAt == nil else {
             throw SessionCommandError.activeTimedSessionRequired(sessionID)
         }
@@ -196,6 +198,7 @@ final class SessionCommandService {
             throw SessionCommandError.deletionRequiresConfirmation
         }
         let session = try requiredSession(id: sessionID)
+        try requireStandaloneSession(session)
         guard session.endAt != nil else {
             throw SessionCommandError.activeSessionCannotBeDeleted(sessionID)
         }
@@ -228,6 +231,12 @@ final class SessionCommandService {
             throw SessionCommandError.sessionNotFound(id)
         }
         return session
+    }
+
+    private func requireStandaloneSession(_ session: TimeSessionRecord) throws {
+        if let timerRunID = session.timerRunID {
+            throw SessionCommandError.timerRunCommandRequired(timerRunID)
+        }
     }
 
     private func validateCompletedInterval(startAt: Date, endAt: Date, now: Date) throws {

@@ -12,10 +12,7 @@ struct SessionCompletionView: View {
     var body: some View {
         NavigationStack {
             Group {
-                if let session = model.session(id: route.sessionID),
-                    let endAt = session.endAt,
-                    let project = model.project(id: session.projectID)
-                {
+                if let completed = completedPresentation {
                     Form {
                         if route.kind == .switched {
                             Section {
@@ -29,23 +26,37 @@ struct SessionCompletionView: View {
                         }
 
                         Section("Saved session") {
-                            LabeledContent("Project", value: project.displayName)
+                            if let run = model.run(id: route.sessionID), model.isWatchOrigin(run) {
+                                Label("Started on Apple Watch", systemImage: "applewatch")
+                                Text(model.watchSyncStatusText).font(.footnote)
+                            }
+                            LabeledContent("Project", value: completed.projectName)
                             LabeledContent("Start") {
-                                Text(session.startAt, format: .dateTime.month().day().hour().minute().second())
+                                Text(completed.startAt, format: .dateTime.month().day().hour().minute().second())
                             }
                             LabeledContent("End") {
-                                Text(endAt, format: .dateTime.month().day().hour().minute().second())
+                                Text(completed.endAt, format: .dateTime.month().day().hour().minute().second())
                             }
                             LabeledContent(
                                 "Exact duration",
-                                value: DurationPresentation.exact(endAt.timeIntervalSince(session.startAt))
+                                value: DurationPresentation.exact(completed.countedDuration)
                             )
                             .accessibilityIdentifier("completed-session-duration")
+                            if let pausedDuration = completed.pausedDuration {
+                                LabeledContent(
+                                    "Paused time",
+                                    value: DurationPresentation.exact(pausedDuration)
+                                )
+                                LabeledContent(
+                                    "Counted segments",
+                                    value: String(completed.segmentCount ?? 0)
+                                )
+                            }
                         }
 
                         Section("Tags") {
                             SessionTagPicker(
-                                tags: model.selectableSessionTags(sessionID: session.id),
+                                tags: model.selectableSessionTags(sessionID: route.sessionID),
                                 selectedTagIDs: $selectedTagIDs
                             )
                             Text("Choose any tags that describe this session. Manage choices in Settings.")
@@ -66,8 +77,8 @@ struct SessionCompletionView: View {
                     }
                     .onAppear {
                         guard !didLoadNote else { return }
-                        note = session.note ?? ""
-                        selectedTagIDs = Set(session.tags.map(\.tagID))
+                        note = completed.note ?? ""
+                        selectedTagIDs = Set(completed.tags.map(\.tagID))
                         didLoadNote = true
                     }
                 } else {
@@ -96,10 +107,55 @@ struct SessionCompletionView: View {
                         }
                     }
                     .accessibilityIdentifier("save-completion-note")
+                    .disabled(model.timerCommandsBlocked)
                 }
             }
         }
         .interactiveDismissDisabled(false)
         .accessibilityIdentifier("session-completion-screen")
     }
+
+    private var completedPresentation: CompletedTimerPresentation? {
+        if let run = model.run(id: route.sessionID),
+            run.state == .ended,
+            let endAt = run.endAt,
+            let project = model.project(id: run.projectID)
+        {
+            return CompletedTimerPresentation(
+                projectName: project.displayName,
+                startAt: run.startAt,
+                endAt: endAt,
+                countedDuration: run.countedDuration(at: endAt),
+                pausedDuration: run.pausedDuration(at: endAt),
+                segmentCount: run.segments.count,
+                note: run.note,
+                tags: run.tags
+            )
+        }
+        guard let session = model.session(id: route.sessionID),
+            let endAt = session.endAt,
+            let project = model.project(id: session.projectID)
+        else { return nil }
+        return CompletedTimerPresentation(
+            projectName: project.displayName,
+            startAt: session.startAt,
+            endAt: endAt,
+            countedDuration: endAt.timeIntervalSince(session.startAt),
+            pausedDuration: nil,
+            segmentCount: nil,
+            note: session.note,
+            tags: session.tags
+        )
+    }
+}
+
+private struct CompletedTimerPresentation {
+    let projectName: String
+    let startAt: Date
+    let endAt: Date
+    let countedDuration: TimeInterval
+    let pausedDuration: TimeInterval?
+    let segmentCount: Int?
+    let note: String?
+    let tags: [SessionTagAssignmentSnapshot]
 }
