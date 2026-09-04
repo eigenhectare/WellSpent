@@ -1,13 +1,11 @@
 # WAT-26 — Joint release-candidate validation
 
-Status: In Progress. Inspection tooling and a clean-source-linked local
-development-signed Release archive and Xcode aggregate privacy report have
-passed the checks below. **No distribution-candidate privacy report, upload
-validation, or candidate device smoke has passed this issue.** No version/build
-was exported, uploaded or installed. App Store Connect confirmed on September
-4, 2026 that build 3 is unused for marketing version 0.1.0, and the working
-source now carries the approved candidate identity 0.1.0 (3). A clean source
-commit and candidate-bound CI/archive evidence are still required.
+Status: In Progress. Inspection tooling, clean candidate CI and a signed joint
+0.1.0 (4) archive have passed the checks below. **No successful App Store upload
+validation, processed-build confirmation, distribution-candidate privacy report,
+or candidate device smoke has passed this issue.** App Store Connect retained
+0.1.0 (3) as a failed upload after server-side Siri validation error 90626. The
+corrected build-4 source, CI and archive evidence is exact-candidate-bound.
 
 ## Read-only inspection workflow
 
@@ -301,7 +299,7 @@ with the final App Store Connect privacy answers before closing WAT-26.
 
 ## Candidate record and closure checklist
 
-### Approved build-3 candidate checkpoint — September 4
+### Superseded build-3 candidate checkpoint — September 4
 
 The owner-approved source checkpoint is commit
 `8ead2308259fa030abdd0d81ef3ba9ab0199c7b9`, tree
@@ -334,15 +332,42 @@ Accounts/Organizer workflow on an unlocked Mac, using this existing archive and
 without rebuilding. Export, the candidate privacy report, upload validation,
 processing, candidate installation and remaining physical gates are still open.
 
+Xcode Organizer subsequently uploaded this exact build. App Store Connect did
+not process it into an installable build: upload record 0.1.0 (3) failed with
+`90626: Invalid Siri Support` because the Start intent description contained
+the word `Apple`. The failed upload is preserved as evidence and build 3 will
+not be reused. No tester, review selection, submission or public version changed.
+
+### Corrected build-4 candidate checkpoint — September 4
+
+Commit `ad70ffc6c3f66510151c541e7316101e96f053ab`, tree
+`653f14c4f6ef529772d79e855dbaebf58c5c2ac0`, removes the rejected product-name
+reference from the Start intent description and increments the shared build to
+0.1.0 (4). `scripts/watch-intents-check.sh` now fails closed when a literal App
+Intent description contains the reserved word `Apple`. The compiled archive
+metadata reads `Start a saved timer for a cached project.`
+
+The exact commit passed all 13 clean CI stages and 381 tests with zero failures,
+skips or expected failures in `.derivedData/CI/run.xvkBr2/`. Its production
+source manifest is
+`9aecee796f0ef2803a135f05fc378e11995390c3ccd68182b61de88872f5a8b8`.
+The signed joint archive `.derivedData/WAT26-Build4Candidate1.xcarchive` passed
+strict inspection for all four aligned components, signatures, entitlements,
+architectures and dSYMs. Its product manifest is
+`3980c86f6394fdcd07694401b8bb35da4191c76633bcf8014d6f7b68e7ada260`;
+identifier-free binding evidence is in
+`.derivedData/WAT26-Build4Candidate1-Sanitized/summary.json`. The release branch
+containing this commit is pushed to GitHub. Organizer upload is pending an
+unlocked Mac; the Watch developer tunnel remains disconnected.
+
 For the eventual candidate, record actual values rather than pre-filling passes:
 
 - [x] Approved source commit, clean tree and full CI evidence, including the
   final WAT-23 changes. Remaining WAT-24/25 physical gates are tracked separately.
 - [x] Current external build history identified in authenticated App Store
-  Connect on September 4, 2026: version 0.1.0 contains builds 1 and 2 only;
-  build 2 is attached to the current Waiting for Review submission. The owner
-  approved 0.1.0 (3), and the shared working-source build number was incremented
-  once for this upload.
+  Connect on September 4, 2026: builds 1 and 2 are processed, build 2 is attached
+  to the current Waiting for Review submission, and build 3 is a failed upload
+  that will not be reused. The corrected candidate uses the next integer, 4.
 - [x] Signed joint archive path/date, all four IDs/versions, signatures,
   product/dSYM UUIDs and SHA-256 inventories retained in sanitized evidence.
 - [ ] Export the unchanged archive and reconcile distribution signatures,

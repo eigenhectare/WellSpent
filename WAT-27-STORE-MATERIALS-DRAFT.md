@@ -1,9 +1,10 @@
 # WAT-27 — Watch product and support materials
 
 Status: In Progress. **Draft only; integrated locally but not published or
-submission-ready.** Final signed-candidate captures, visual sign-off, retention
-evidence, App Store Connect warnings and independent clean-install review remain
-open.
+submission-ready.** Build 3's source-bound drafts remain visual-design evidence,
+but build 3 failed App Store processing and cannot be final submission evidence.
+Final build-4 captures, visual sign-off, retention evidence, App Store Connect
+warnings and independent install review remain open.
 
 ## Screenshot story and icon
 
@@ -233,3 +234,17 @@ and uninstall/unpair/backup cautions. The isolated clean commit is `3a9b9cb`
 Git credential is authenticated as an account without write access and the push
 was rejected with HTTP 403. Publish and visually review these exact pages using
 an authorized GitHub account before attaching their URLs to the submission.
+
+### Build-4 draft regeneration — September 4
+
+After build 3 failed App Store Siri validation, the five preferred-size screens
+were regenerated from build 4's unchanged production UI. The focused capture
+passed in 18.439 seconds and exported five opaque, unmodified 416 × 496 PNGs to
+`.derivedData/WAT27-Build4DraftAssets1/`. Visual review of Projects, Time Goal,
+active metrics, Controls and saved summary found no clipping, overlap or private
+data. The binding record at
+`.derivedData/WAT27-Build4AssetsCandidateBinding1/summary.json` ties the asset
+manifest to commit `ad70ffc6c3f66510151c541e7316101e96f053ab` and the build-4
+production-source manifest. It deliberately keeps `binaryCapture: false` and
+`submissionReady: false`; final processed-distribution captures and sign-off
+remain required.
