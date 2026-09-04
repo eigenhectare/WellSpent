@@ -4,13 +4,16 @@ Watch-candidate boundary: the historical iPhone readiness checks below are not
 sign-off for the paired app. Use WAT-26-ARCHIVE-VALIDATION.md,
 WAT-27-STORE-MATERIALS-DRAFT.md and WAT-28-BETA-RELEASE-RUNBOOK.md for the joint
 candidate. Watch copy/assets are drafts, and signed/device/distribution gates
-remain open. Do not publish the old iPhone-only retention wording for Watch.
+must be evaluated separately. The exact build-4 signed archive, local App Store
+distribution export, privacy report, validation, upload and processing now pass;
+physical-device and final-asset gates remain open. Do not publish the old
+iPhone-only retention wording for Watch.
 
 Product metadata, technical declarations, screenshot drafts, repository support
 copy, and the support contact are prepared for version 0.1.0. The remaining work
-includes physical retention/accessibility/resource gates, an exact signed
-candidate, candidate screenshots, public-page publication/review, and the App
-Store Connect upload/submission workflow.
+includes physical retention/accessibility/resource gates, final candidate
+screenshots, public-page publication/review, build selection and App Review
+submission.
 
 ## Current binary audit
 
@@ -28,10 +31,10 @@ Store Connect upload/submission workflow.
   `UserDefaults` (`1C8F.1`); the widget manifest declares App Group
   `UserDefaults` (`1C8F.1`) for its statically linked shared code.
 
-Based on the current binary, the proposed App Store Connect answer is **No, we
-do not collect data from this app**. Reconfirm this against Xcode's privacy
-report from the signed submission archive. A public privacy-policy URL is still
-required even when no data is collected.
+For exact candidate 0.1.0 (4), Xcode's aggregate privacy report is blank and all
+four archived/exported manifests match source. This agrees with the published
+App Store Connect answer **No, we do not collect data from this app**. A public
+privacy-policy URL is still required even when no data is collected.
 
 Apple references:
 
@@ -54,10 +57,27 @@ Apple references:
 ### Versioning
 
 - Marketing version: `0.1.0`
-- Current engineering build number: `2`; select a higher build for the next
-  TestFlight/App Store upload and never reuse it for different bytes
+- Current processed candidate build number: `4`; build 3 failed server-side Siri
+  validation and neither build number may be reused for different bytes
 - App and widget Info.plists inherit the same canonical settings.
 - Increase the build number for every TestFlight or App Store upload.
+
+### Exact candidate status — September 4, 2026
+
+- Source commit `ad70ffc6c3f66510151c541e7316101e96f053ab` passed all 13
+  clean-CI stages and 381 tests.
+- The four-component signed archive passed package, entitlement, architecture,
+  dSYM and privacy-manifest inspection.
+- A local App Store distribution export preserved 0.1.0 (4) with build-number
+  management disabled. Every component passed cloud-managed Apple Distribution
+  signature/profile checks, includes symbols, has `get-task-allow: false`, and
+  retains the required phone/Watch architectures.
+- Xcode validation/upload passed. App Store Connect records build 4 as Validated,
+  Complete and Ready to Submit, with iPhone + Apple Watch device family,
+  non-exempt encryption `No`, symbols `Yes`, and zero testers/groups.
+- The existing version remains Waiting for Review with build 2 attached. No
+  metadata, screenshot, build-selection or review-submission change has been
+  made for build 4.
 
 ## Metadata draft — English (U.S.)
 
@@ -201,12 +221,12 @@ the set:
 
 ### Before TestFlight
 
-- [ ] The verified candidate source is committed, pushed, and the tree is clean.
+- [x] The verified candidate source is committed, pushed, and the tree is clean.
 - [x] Version/build values match across app and widget.
 - [x] Strict lint, privacy audit, unit, UI, migration, and Release builds pass.
-- [ ] A signed archive embeds both privacy manifests in the expected bundles.
+- [x] A signed archive embeds all four privacy manifests in the expected bundles.
 - [ ] TestFlight beta information and sanitized contact details are complete.
-- [ ] Export-compliance answer matches the archived binary.
+- [x] Export-compliance answer matches the archived binary.
 
 ### Before App Review
 
@@ -215,7 +235,7 @@ the set:
       signed candidate after App Store processing.
 - [ ] Privacy Policy URL and Support URL are reviewed against the paired-product
       copy and confirmed live.
-- [ ] Xcode privacy report matches the App Store Connect privacy answers.
+- [x] Xcode privacy report matches the App Store Connect privacy answers.
 - [ ] Age rating questionnaire is complete.
 - [ ] Category, keywords, description, copyright, price, and availability are set.
 - [ ] Agreements, tax, banking, and regional compliance requirements are current.
@@ -226,9 +246,10 @@ the set:
 
 ### Submission and release
 
-- [ ] Upload a new build number and wait for processing.
-- [ ] Verify bundle identifiers, entitlements, embedded extension, version, and
-      privacy manifests in App Store Connect.
+- [x] Upload a new build number and wait for processing.
+- [x] Verify bundle identifiers, entitlements, embedded extension and version in
+      App Store Connect; reconcile privacy manifests through the exact export
+      and Xcode privacy report.
 - [ ] Attach the intended build to the version and complete the review contact.
 - [ ] Submit for review only with no unresolved metadata warning.
 - [ ] Use manual release unless a deliberate release date is approved.

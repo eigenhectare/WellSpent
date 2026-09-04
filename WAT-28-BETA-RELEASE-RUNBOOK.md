@@ -77,6 +77,13 @@ removes the term rejected by Apple's server. Xcode validation/upload passed and
 App Store Connect now records the exact build as Complete and Ready to Submit.
 Both tester cohorts remain false; no tester or external cohort was added.
 
+Authenticated build-metadata inspection independently reports build 4 as
+Validated, with symbols included, non-exempt encryption `No`, Watch-only `No`,
+and device family iPhone + Apple Watch. Its TestFlight page has zero groups,
+zero individual testers and blank What to Test, beta-description, feedback,
+URL, contact and review-note fields. Those fields remain unsent drafts; no Save,
+group, invitation or cohort action occurred.
+
 The local App Store distribution export preserves 0.1.0 (4), includes symbols,
 and passed signature, App Store profile, entitlement, package, architecture and
 privacy checks for all four components. Its IPA SHA-256 is
