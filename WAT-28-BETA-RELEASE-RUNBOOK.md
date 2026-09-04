@@ -2,9 +2,10 @@
 
 Status: In Progress for preparation. **No tester invited, submission updated,
 review approved, or version released.** Build 3 was uploaded but failed App
-Store processing; corrected build 4 is validated, uploaded, processed and Ready
-to Submit. WAT-26/27 and the open quality/device gates remain prerequisites. This
-runbook grants no authority to message testers or erase personal data.
+Store processing; corrected build 4 is distribution-export verified, validated,
+uploaded, processed and Ready to Submit. WAT-26/27 and the open quality/device
+gates remain prerequisites. This runbook grants no authority to message testers
+or erase personal data.
 
 ## Candidate ledger
 
@@ -17,7 +18,7 @@ or material capability change resets the affected archive and regression gates.
 
 ## Internal beta, then external beta
 
-- [ ] WAT-26's real signed/exported candidate and upload validation pass.
+- [x] WAT-26's real signed/exported candidate and upload validation pass.
 - [ ] Verify beta description, contact, encryption answers and What to Test.
   Obtain approval for the exact build, recipient cohort and invitation text.
 - [ ] Internal testers first: standard and Ultra display classes, oldest
@@ -75,6 +76,14 @@ strictly inspected four-component archive. Its compiled Start intent description
 removes the term rejected by Apple's server. Xcode validation/upload passed and
 App Store Connect now records the exact build as Complete and Ready to Submit.
 Both tester cohorts remain false; no tester or external cohort was added.
+
+The local App Store distribution export preserves 0.1.0 (4), includes symbols,
+and passed signature, App Store profile, entitlement, package, architecture and
+privacy checks for all four components. Its IPA SHA-256 is
+`93946e48f157576de8e41689276599806a7aba5ea93afcba6a3d21afe7db6fe0`; sanitized
+inspection evidence is at
+`.derivedData/WAT26-Build4DistributionExportInspection1/summary.json` and the
+beta package records the same binding.
 
 ### Repository beta-package integration — September 3
 

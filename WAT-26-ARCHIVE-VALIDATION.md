@@ -1,9 +1,10 @@
 # WAT-26 — Joint release-candidate validation
 
 Status: In Progress. Inspection tooling, clean candidate CI, a signed joint
-0.1.0 (4) archive, exact-candidate Xcode privacy report, Xcode validation/upload
-and App Store processing have passed the checks below. **No complete candidate
-device smoke has passed this issue.** App Store Connect retained
+0.1.0 (4) archive, exact App Store distribution export, exact-candidate Xcode
+privacy report, Xcode validation/upload and App Store processing have passed the
+checks below. **No complete candidate device smoke has passed this issue.** App
+Store Connect retained
 0.1.0 (3) as a failed upload after server-side Siri validation error 90626. The
 corrected build-4 source, CI and archive evidence is exact-candidate-bound.
 
@@ -15,6 +16,9 @@ bash scripts/watch-release-check.sh unsigned-device-app \
 
 bash scripts/watch-release-check.sh signed-archive \
   /absolute/path/WellSpent.xcarchive /absolute/path/new-archive-report
+
+bash scripts/watch-distribution-export-check.sh \
+  /absolute/path/xcode-export /absolute/path/new-sanitized-export-report
 ```
 
 The report parent must exist. The destination must be new and outside the input
@@ -372,6 +376,26 @@ categories, and the candidate has no third-party runtime. The identifier-free
 receipt in the same directory binds the PDF, four manifest hashes, source,
 archive, and the published App Store Connect `Data Not Collected` answer.
 
+Xcode then exported the selected unchanged archive locally with App Store Connect
+distribution settings, automatic cloud-managed distribution signing, symbol
+inclusion, and `manageAppVersionAndBuildNumber: false`. This preserved 0.1.0 (4)
+instead of Xcode's proposed build 5. The exact 8.5 MB IPA has SHA-256
+`93946e48f157576de8e41689276599806a7aba5ea93afcba6a3d21afe7db6fe0`.
+
+`scripts/watch-distribution-export-check.sh` independently unpacked that IPA and
+passed all four components through the existing package/privacy checks plus
+normal-context Apple Distribution signature trust, exact distribution
+entitlements, App Store profile authorization/expiry, absence of development
+device lists, symbol inclusion, aligned version/build, and exact architectures.
+All profiles expire June 10, 2027; every component has `get-task-allow: false`
+and `beta-reports-active: true`. The distribution product manifest is
+`3aff161de16991b2a7b54f263849e474d61362814663bd9ce9ed76b825a0a42b`;
+identifier-free evidence is retained at
+`.derivedData/WAT26-Build4DistributionExportInspection1/summary.json`. The
+checker also rejected three targeted invalid export-option fixtures: Xcode build
+number management enabled, a wrong export method, and symbols excluded. No
+second upload or device mutation occurred.
+
 For the eventual candidate, record actual values rather than pre-filling passes:
 
 - [x] Approved source commit, clean tree and full CI evidence, including the
@@ -382,7 +406,7 @@ For the eventual candidate, record actual values rather than pre-filling passes:
   that will not be reused. The corrected candidate uses the next integer, 4.
 - [x] Signed joint archive path/date, all four IDs/versions, signatures,
   product/dSYM UUIDs and SHA-256 inventories retained in sanitized evidence.
-- [ ] Export the unchanged archive and reconcile distribution signatures,
+- [x] Export the unchanged archive and reconcile distribution signatures,
   entitlements, profiles, validity, architectures and deployment support.
 - [x] Generate Xcode's privacy report; match required-reason APIs, manifests,
   optional local notifications and App Store privacy answers to this candidate.
