@@ -286,6 +286,23 @@ destination, with both exact production bundle IDs installed and aligned at
 state. It refreshes the execution prerequisite only; zero frozen matrix records
 are promoted by this inventory.
 
+### Nondestructive build-3 iPhone update — September 4
+
+The verified archive's embedded iPhone app was installed over the existing
+0.1.0 (2) app without uninstalling it or resetting its store. A read-only
+post-install query confirmed `com.drewreilly.wellspent` at 0.1.0 (3). The
+identifier-free partial record is retained at
+`.derivedData/WAT24-Build3Install1/summary.json` and binds the install to source
+commit `8ead2308259fa030abdd0d81ef3ba9ab0199c7b9` and archive product manifest
+`41871fef8b96022660696c0f8a51f9045a48d9c21b5565ef3df1d2e20eb51322`.
+
+This is not a paired-install or smoke-test pass. At the verification point the
+Watch remained paired but its developer tunnel was disconnected, so its version
+could not be checked. A later attempt to open the updated iPhone app was denied
+by the operating system because the iPhone had locked. Restore the unlocked
+iPhone/Watch prerequisites, verify the embedded Watch companion at 0.1.0 (3),
+and execute candidate-bound actions before promoting any row.
+
 ## Additional autonomous recovery evidence — September 3
 
 WAT-25's `WatchResourceTests` exercises the actual persistent store across
