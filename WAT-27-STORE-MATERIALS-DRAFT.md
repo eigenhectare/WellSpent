@@ -1,10 +1,12 @@
 # WAT-27 — Watch product and support materials
 
-Status: In Progress. **Draft only; integrated locally but not published or
-submission-ready.** Build 3's source-bound drafts remain visual-design evidence,
-but build 3 failed App Store processing and cannot be final submission evidence.
-Final build-4 captures, visual sign-off, retention evidence, App Store Connect
-warnings and independent install review remain open.
+Status: In Progress. **Draft copy/screenshots are integrated locally but not
+published or submission-ready.** Build 3's source-bound drafts remain
+visual-design evidence, but build 3 failed App Store processing and cannot be
+final submission evidence. Build 4's exact exported phone and Watch AppIcon
+catalogs pass binary integrity checks. Final build-4 capture acceptance,
+processed-icon visual sign-off, retention evidence, App Store Connect warnings
+and independent install review remain open.
 
 ## Screenshot story and icon
 
@@ -248,3 +250,16 @@ manifest to commit `ad70ffc6c3f66510151c541e7316101e96f053ab` and the build-4
 production-source manifest. It deliberately keeps `binaryCapture: false` and
 `submissionReady: false`; final processed-distribution captures and sign-off
 remain required.
+
+### Exact build-4 distribution icon integrity — September 4
+
+The locally retained App Store export of exact 0.1.0 (4) was unpacked and both
+compiled phone and Watch `Assets.car` catalogs passed Apple's structural bitmap,
+key-format, image-block and multisize-icon validators. Each app catalog contains
+exactly one opaque, 1024 × 1024, 8-bit sRGB `AppIcon` rendition. The sanitized
+binary receipt at
+`.derivedData/WAT26-Build4DistributionExportInspection2/summary.json` records
+distinct compiled-rendition digests without certificate, profile, account or
+device identifiers. This closes exported catalog integrity; it does not replace
+visual review of Apple's circular masking/processed icon or make the DEBUG
+screenshot fixtures submission-ready.

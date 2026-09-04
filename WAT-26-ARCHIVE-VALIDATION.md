@@ -391,7 +391,7 @@ All profiles expire June 10, 2027; every component has `get-task-allow: false`
 and `beta-reports-active: true`. The distribution product manifest is
 `3aff161de16991b2a7b54f263849e474d61362814663bd9ce9ed76b825a0a42b`;
 identifier-free evidence is retained at
-`.derivedData/WAT26-Build4DistributionExportInspection1/summary.json`. The
+`.derivedData/WAT26-Build4DistributionExportInspection2/summary.json`. The
 checker also rejected three targeted invalid export-option fixtures: Xcode build
 number management enabled, a wrong export method, and symbols excluded. No
 second upload or device mutation occurred.

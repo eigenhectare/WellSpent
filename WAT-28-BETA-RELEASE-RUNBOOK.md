@@ -89,7 +89,7 @@ and passed signature, App Store profile, entitlement, package, architecture and
 privacy checks for all four components. Its IPA SHA-256 is
 `93946e48f157576de8e41689276599806a7aba5ea93afcba6a3d21afe7db6fe0`; sanitized
 inspection evidence is at
-`.derivedData/WAT26-Build4DistributionExportInspection1/summary.json` and the
+`.derivedData/WAT26-Build4DistributionExportInspection2/summary.json` and the
 beta package records the same binding.
 
 ### Repository beta-package integration — September 3
