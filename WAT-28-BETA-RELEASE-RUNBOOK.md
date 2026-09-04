@@ -1,9 +1,9 @@
 # WAT-28 — Beta, release and incident runbook
 
-Status: In Progress for preparation. **No tester invited, build processed,
-submission updated, review approved, or version released.** Build 3 was uploaded
-but failed App Store processing; corrected build 4 is archived and pending
-upload. WAT-26/27 and the open quality/device gates remain prerequisites. This
+Status: In Progress for preparation. **No tester invited, submission updated,
+review approved, or version released.** Build 3 was uploaded but failed App
+Store processing; corrected build 4 is validated, uploaded, processed and Ready
+to Submit. WAT-26/27 and the open quality/device gates remain prerequisites. This
 runbook grants no authority to message testers or erase personal data.
 
 ## Candidate ledger
@@ -72,9 +72,9 @@ Invalid Siri Support; it never became an installable or selectable beta build.
 `.derivedData/WAT28-Build4BetaPackage1/` binds 0.1.0 (4) to pushed source commit
 `ad70ffc6c3f66510151c541e7316101e96f053ab`, the clean 381-test CI result and the
 strictly inspected four-component archive. Its compiled Start intent description
-removes the term rejected by Apple's server. The package truthfully records
-upload, processed-build confirmation and both tester cohorts as false. No tester
-or external cohort was added.
+removes the term rejected by Apple's server. Xcode validation/upload passed and
+App Store Connect now records the exact build as Complete and Ready to Submit.
+Both tester cohorts remain false; no tester or external cohort was added.
 
 ### Repository beta-package integration — September 3
 

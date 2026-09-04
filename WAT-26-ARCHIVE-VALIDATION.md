@@ -1,9 +1,9 @@
 # WAT-26 — Joint release-candidate validation
 
-Status: In Progress. Inspection tooling, clean candidate CI and a signed joint
-0.1.0 (4) archive have passed the checks below. **No successful App Store upload
-validation, processed-build confirmation, distribution-candidate privacy report,
-or candidate device smoke has passed this issue.** App Store Connect retained
+Status: In Progress. Inspection tooling, clean candidate CI, a signed joint
+0.1.0 (4) archive, exact-candidate Xcode privacy report, Xcode validation/upload
+and App Store processing have passed the checks below. **No complete candidate
+device smoke has passed this issue.** App Store Connect retained
 0.1.0 (3) as a failed upload after server-side Siri validation error 90626. The
 corrected build-4 source, CI and archive evidence is exact-candidate-bound.
 
@@ -357,8 +357,20 @@ architectures and dSYMs. Its product manifest is
 `3980c86f6394fdcd07694401b8bb35da4191c76633bcf8014d6f7b68e7ada260`;
 identifier-free binding evidence is in
 `.derivedData/WAT26-Build4Candidate1-Sanitized/summary.json`. The release branch
-containing this commit is pushed to GitHub. Organizer upload is pending an
-unlocked Mac; the Watch developer tunnel remains disconnected.
+containing this commit is pushed to GitHub. Xcode validation and upload passed;
+App Store Connect records 0.1.0 (4) as Complete and Ready to Submit. No tester
+was invited. The Watch developer tunnel remains disconnected.
+
+Xcode Organizer generated the exact archive's native privacy report at
+`.derivedData/WAT26-Build4PrivacyReport1/WellSpent-0.1.0-4-PrivacyReport.pdf`.
+It is an 807-byte, one-page letter-size report with SHA-256
+`92291df2d42fa52fcbba3f937a4c512b0fc5d042a2f971b1ed1b77109bd69f85`.
+The 150-dpi render is blank with no hidden or clipped content, and independent
+text extraction returns zero characters. This is expected because all four
+source/archive manifests match, declare no tracking, domains or collected-data
+categories, and the candidate has no third-party runtime. The identifier-free
+receipt in the same directory binds the PDF, four manifest hashes, source,
+archive, and the published App Store Connect `Data Not Collected` answer.
 
 For the eventual candidate, record actual values rather than pre-filling passes:
 
@@ -372,7 +384,7 @@ For the eventual candidate, record actual values rather than pre-filling passes:
   product/dSYM UUIDs and SHA-256 inventories retained in sanitized evidence.
 - [ ] Export the unchanged archive and reconcile distribution signatures,
   entitlements, profiles, validity, architectures and deployment support.
-- [ ] Generate Xcode's privacy report; match required-reason APIs, manifests,
+- [x] Generate Xcode's privacy report; match required-reason APIs, manifests,
   optional local notifications and App Store privacy answers to this candidate.
 - [ ] Inspect real compiled icons/assets and final screenshot/copy set (WAT-27).
 - [ ] Authorized dedicated-pair clean install and oldest-supported upgrade from
@@ -380,7 +392,7 @@ For the eventual candidate, record actual values rather than pre-filling passes:
 - [ ] Execute Start/Pause/Resume/Switch/End, detached offline acknowledgement,
   history/reports, complications/controls, optional goal alert and authorized
   erase scenarios. Preserve failures and do not erase personal stores.
-- [ ] Retain successful upload validation and the exact processed build identity.
+- [x] Retain successful upload validation and the exact processed build identity.
   Upload, tester invitations, submission and public release require their own
   explicit authorization; this checklist does not grant it.
 
