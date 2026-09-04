@@ -248,6 +248,27 @@ notification claims. Identifier-free evidence is retained at
 records `publicationPerformed: false`. Live rendering and link response remain
 post-publication gates.
 
+A local full-page browser audit then rendered the exact same clean commit while
+intercepting its stylesheet and favicon requests with the committed local files:
+
+```sh
+NODE_PATH=/path/to/node_modules node \
+  scripts/watch-support-site-render-check.cjs \
+  /path/to/support-site http://127.0.0.1:PORT/ /path/to/new-report
+```
+
+`.derivedData/WAT27-SupportSiteRenderInspection1/summary.json` records seven
+passed scenarios: root, support and privacy at 1440 CSS pixels; the same three at
+390 CSS pixels; and all 11 FAQ items expanded at 390 CSS pixels. Every response
+was HTTP 200, every document's scroll width equaled its viewport width, no
+element crossed either horizontal edge, and there were zero console or page
+errors. All seven full-page PNGs were visually reviewed: navigation, headings,
+cards, FAQ rows/content, disclosures, contact actions and footers are readable
+without clipping, collision or missing styling. Nothing was published. Earlier
+raw command-line mobile captures omitted an effective CSS-pixel viewport and
+were rejected as capture-harness evidence rather than misclassified as a site
+failure.
+
 ### Build-4 draft regeneration — September 4
 
 After build 3 failed App Store Siri validation, the five preferred-size screens
