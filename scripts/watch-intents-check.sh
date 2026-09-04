@@ -10,6 +10,10 @@ rg -q 'expectedContext' WellSpentWatch/Features/Timer/WatchSystemCommandBoundary
 rg -q 'performLocalCommand' WellSpentWatch/Features/Timer/WatchSystemCommandBoundary.swift || fail 'durable command boundary missing'
 rg -q 'WellSpentWatchTimerControl\(\)' WellSpentWatchWidgets/WellSpentWatchWidgetBundle.swift || fail 'control registration missing'
 rg -q 'readProjectChoices' WellSpentWatchIntents/WellSpentWatchIntents.swift || fail 'bounded project query missing'
+if rg -Uni --pcre2 'IntentDescription\(\s*"(?:[^"\\]|\\.)*\bapple\b' \
+    WellSpentWatchIntents WellSpentWatchWidgets WellSpentShared; then
+    fail 'an App Intent description contains Apple, which App Store Connect rejects as invalid Siri support'
+fi
 if rg -n '(ModelContainer|ModelContext|performLocalCommand|openDefault\()' WellSpentWatchIntents WellSpentWatchWidgets; then
     fail 'an intent/extension bypasses the app-owned writer'
 fi

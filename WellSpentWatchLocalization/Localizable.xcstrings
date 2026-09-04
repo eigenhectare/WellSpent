@@ -1995,12 +1995,12 @@
         }
       }
     },
-    "Start a saved timer for a cached project on your Apple Watch.": {
+    "Start a saved timer for a cached project.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Start a saved timer for a cached project on your Apple Watch."
+            "value": "Start a saved timer for a cached project."
           }
         }
       }

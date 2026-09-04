@@ -54,7 +54,7 @@ struct StartWellSpentWatchTimerIntent: WellSpentWatchActionIntent {
     static let supportedModes: IntentModes = .foreground
     static let authenticationPolicy: IntentAuthenticationPolicy = .requiresLocalDeviceAuthentication
     static let title: LocalizedStringResource = "Start WellSpent Timer"
-    static let description = IntentDescription("Start a saved timer for a cached project on your Apple Watch.")
+    static let description = IntentDescription("Start a saved timer for a cached project.")
     @Parameter(title: "Project") var project: WellSpentWatchProjectEntity
 
     static var parameterSummary: some ParameterSummary { Summary("Start \(\.$project)") }
