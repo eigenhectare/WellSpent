@@ -49,7 +49,7 @@ struct SettingsView: View {
                     Text("Lock Screen privacy")
                 } footer: {
                     Text(
-                        "The generic label is the default. This preference also applies to Watch widgets after sync; an offline Watch keeps its last received preference."
+                        "The generic label is the default. This preference also applies to Watch widgets, system project choices, and time-goal alerts after sync. An offline Watch keeps its last received preference."
                     )
                 }
 

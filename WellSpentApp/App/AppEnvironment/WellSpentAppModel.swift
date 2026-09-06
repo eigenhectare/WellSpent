@@ -694,12 +694,12 @@ final class WellSpentAppModel: ObservableObject {
             await reconcileLiveActivityProjection()
             if liveActivityRecoveryMessage != nil {
                 liveActivityRecoveryMessage =
-                    "All WellSpent activity data was deleted. iOS may briefly retain the old Lock Screen card."
+                    "WellSpent activity data on this iPhone was deleted. The Watch keeps its separate cache and unsent work. iOS may briefly retain the old Lock Screen card."
             }
             return true
         } catch {
             refresh()
-            message = "All local data could not be deleted. No data was sent anywhere. Try again."
+            message = "WellSpent could not finish deleting data from this iPhone. Try again. This action does not erase the Watch’s separate cache or unsent work."
             return false
         }
     }
