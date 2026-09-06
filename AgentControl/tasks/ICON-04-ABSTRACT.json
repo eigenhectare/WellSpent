@@ -3,7 +3,7 @@
   "taskId": "ICON-04-ABSTRACT",
   "title": "Simplify the hourglass icon using the Preview visual reference",
   "type": "feature",
-  "status": "ready",
+  "status": "in_progress",
   "risk": "low",
   "outcome": "Replace the detailed hourglass artwork with a simple abstract hourglass using broad shapes and restrained depth, with matching iOS light/dark and Watch variants.",
   "assignment": {
