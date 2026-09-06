@@ -3,7 +3,7 @@
   "taskId": "REL-10-ICON-GATE",
   "title": "Validate adaptive light and dark icons in distribution exports",
   "type": "chore",
-  "status": "ready",
+  "status": "in_progress",
   "risk": "medium",
   "outcome": "The distribution export gate verifies the declared light/dark iPhone icons and default Watch icon and rejects malformed or missing renditions.",
   "assignment": {
