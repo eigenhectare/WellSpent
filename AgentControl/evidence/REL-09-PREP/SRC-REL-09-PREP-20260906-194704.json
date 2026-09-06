@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "SRC-REL-09-PREP-20260906-194704",
+  "taskId": "REL-09-PREP",
+  "requirementId": "ER-1",
+  "evidenceClass": "source",
+  "result": "passed",
+  "producerRole": "verifier",
+  "producerId": "screen-design-audit",
+  "observedAt": "2026-09-06T19:47:04Z",
+  "source": {
+    "commit": "31538cee04c3bf1ddddc3be152ae5fa0da56cef1",
+    "tree": "a954ab56b998f62c61c536f042207c8d89b94d0f",
+    "clean": true,
+    "version": "0.2.0",
+    "build": "9"
+  },
+  "gate": {
+    "id": "release-source-receipt",
+    "exitCode": 0
+  },
+  "claims": [
+    "Independently reviewed the REL-09-PREP contract and complete base-to-candidate diff, including the formatting-only correction after initial build9 source ad36703.",
+    "Canonical independent source receipt and scope verification passed; the exact candidate is clean at version0.2.0 build9 and git diff --check passed.",
+    "The independent manifest covers143 production files and exactly matches both the archive producer and canonical CI source manifests, with SHA2565ed43d1afa5cf4e7b94ac94f2e81b76a481df1a645c84faac1287463532ba429.",
+    "Canonical CI generate and source-gates stages passed on this exact source, including XcodeGen2.46.0 parity and formatting/privacy/source checks; this verifier inspected their completed outputs without mutating the project.",
+    "The product changes after approved abstract artwork are disclosure string corrections, formatting and version/build allocation. No timer, erase, notification, persistence, wire-contract, privacy-manifest, bundle-identifier or signing behavior changed.",
+    "Settings accurately identifies Watch goal notifications as optional and local: preferences default off, only the explicit goal-alert toggle requests permission, and timer/goal persistence is independent of authorization.",
+    "The backup statement is scoped to this iPhone, consistent with authoritative-store backup exclusion. The synchronized project-name preference is used by Watch widgets, system project choices and goal-alert content, with an offline Watch retaining its received projection.",
+    "The erasure messages now scope deletion to this iPhone and acknowledge separate Watch cache/unsent work; the failed-erasure message no longer makes an unsupported no-transmission guarantee because refresh can publish a snapshot.",
+    "All three abstract hourglass source assets retain the exact reviewed ICON-04 hashes, and native default/dark registration remains unchanged.",
+    "The final formatting correction changes only assignment layout; all corrected user-visible wording is preserved exactly from ad36703."
+  ],
+  "artifacts": [
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/independent-source-31538ce/summary.json",
+      "sha256": "9aeaa9b6466d0aaa0aebade49b082ed312cd8260f98e9e574d5788d9b3a8e4a1"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/independent-source-31538ce/files.sha256",
+      "sha256": "5ed43d1afa5cf4e7b94ac94f2e81b76a481df1a645c84faac1287463532ba429"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/independent-source-31538ce/scope.log",
+      "sha256": "1a0ad62d155dc4a4b340a520d83b867df5ae7fadeea4dd5f28c4530a6b10e0bb"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/AbstractRelease9R2CI/run.oq8W3w/logs/generate.log",
+      "sha256": "cca4620c134a9e16e3bc8863b433dc98f2aa550eeba01a55ed999bcfcbafbabf"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/AbstractRelease9R2CI/run.oq8W3w/logs/source-gates.log",
+      "sha256": "4f0a8ed61f8bc3f866d07e396e04133f2cb5cbe5618508d44ab0eee8ad30efbb"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/AbstractRelease9R2CI/run.oq8W3w/source-provenance/summary.json",
+      "sha256": "9aeaa9b6466d0aaa0aebade49b082ed312cd8260f98e9e574d5788d9b3a8e4a1"
+    },
+    {
+      "kind": "repository",
+      "locator": "WellSpentApp/Features/Settings/SettingsView.swift",
+      "sha256": "039d38e7d4f5b5e288b6bd16204ac1639887b3f2430b26aff1736602208598d0"
+    },
+    {
+      "kind": "repository",
+      "locator": "WellSpentApp/App/AppEnvironment/WellSpentAppModel.swift",
+      "sha256": "a185c6fef743777229a0bd6280f9d0dddbd14fa08dd88ba1fbf683bb8a098d6b"
+    },
+    {
+      "kind": "repository",
+      "locator": "WellSpentWatch/Features/Goals/WatchGoalAlertCoordinator.swift",
+      "sha256": "12e88a3f5623c2a69f6f99e7c3e16dead7fa0899a971bab3fbf72bec00845e0c"
+    },
+    {
+      "kind": "repository",
+      "locator": "WellSpentWatch/Features/Goals/WatchGoalAlertPlan.swift",
+      "sha256": "a2173fe7e47f8dabb7aa67e824b933fc3d873e9121b0782235bfc1ca4b6bb7fd"
+    },
+    {
+      "kind": "repository",
+      "locator": "WellSpentWatchStore/WatchWidgetSnapshotReader.swift",
+      "sha256": "7d4a67ff81628dbb91050938ba417eb772baf53903f56e5c4eb3c13ff50cad64"
+    }
+  ],
+  "limitations": [
+    "This is source verification only. Full CI, signed archive, distribution export, store staging and physical acceptance remain separate requirements and are not closed by this receipt.",
+    "Build7 and build8 were deliberately superseded. Initial build9 source ad36703 failed formatting before the formatting-only31538ce correction; its earlier archive/source diagnostics remain prior-attempt evidence and are not relabeled.",
+    "The verifier did not open Xcode, mutate product source, build/sign/export/upload, rerun CI, query physical devices or operate simulators/devices."
+  ],
+  "authorityReference": {
+    "kind": "signed-record",
+    "reference": "REL-09-PREP records owner-authorized abstract-icon release preparation and bounded disclosure corrections; WAT-OWNER-DECISIONS.md section4 retains signing/upload authority. Physical actions and App Review/public release remain excluded until outstanding physical acceptance.",
+    "confirmedBy": "owner",
+    "confirmedAt": "2026-09-06",
+    "authorityIds": [
+      "repository-write",
+      "signing-upload"
+    ]
+  },
+  "publicReleaseApproved": false
+}

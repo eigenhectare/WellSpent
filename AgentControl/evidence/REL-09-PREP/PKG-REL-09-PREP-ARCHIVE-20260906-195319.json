@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "taskId": "REL-09-PREP",
+  "requirementId": "ER-3",
+  "evidenceClass": "signed-package",
+  "producerRole": "verifier",
+  "producerId": "screen-design-audit",
+  "observedAt": "2026-09-06T19:53:19Z",
+  "source": {
+    "commit": "31538cee04c3bf1ddddc3be152ae5fa0da56cef1",
+    "tree": "a954ab56b998f62c61c536f042207c8d89b94d0f",
+    "clean": true,
+    "version": "0.2.0",
+    "build": "9"
+  },
+  "authorityReference": {
+    "kind": "signed-record",
+    "reference": "REL-09-PREP records owner-authorized abstract-icon release preparation and bounded disclosure corrections; WAT-OWNER-DECISIONS.md section4 retains signing/upload authority. Physical actions and App Review/public release remain excluded until outstanding physical acceptance.",
+    "confirmedBy": "owner",
+    "confirmedAt": "2026-09-06",
+    "authorityIds": [
+      "repository-write",
+      "signing-upload"
+    ]
+  },
+  "publicReleaseApproved": false,
+  "receiptId": "PKG-REL-09-PREP-ARCHIVE-20260906-195319",
+  "result": "passed",
+  "gate": {
+    "id": "signed-archive-inspection",
+    "exitCode": 0
+  },
+  "claims": [
+    "Independently ran the canonical signed-archive inspection from the clean frozen 31538ce source against attempt-2/WellSpent-0.2.0-9.xcarchive; it passed without modifying source, package or device state.",
+    "All four components have expected bundle identifiers and version 0.2.0 (9), phone arm64 and Watch arm64 plus arm64_32 architectures, valid strict signatures, authorized entitlements, embedded profiles and matching dSYM UUIDs/architectures.",
+    "The archive uses Apple Development signing; App Store distribution signing is independently verified in a separate export receipt.",
+    "The entire archive contains 56 regular files and no symlinks. Its relative file manifest SHA256 is 78e6f569821acecdeccac15a8a708afa2195869ec6845a28e382b95bfd8e76be; the canonical product manifest SHA256 is 136aaff8f7d120ecd5c9183ac7fe49275999d36119590b0cce95665f3c3980e5.",
+    "All four compiled privacy manifests exactly match their source property lists: tracking is false, tracking domains and collected-data types are empty, and required-reason API declarations are preserved. Canonical source/capability/dependency/Release-binary privacy and production-fixture isolation audits pass.",
+    "The compiled declarations and audited local-only design are consistent with the coordinator-observed App Store Data Not Collected answer; this receipt independently establishes package facts, not the external App Store observation.",
+    "The phone Assets.car contains distinct default and UIAppearanceDark AppIcon renditions, each opaque 1024 by 1024, 8-bit RGB in sRGB; the Watch contains its single default rendition. The archive and distribution-export rendition records and digests match.",
+    "All five corrected privacy, optional Watch notification, synchronized preference and phone-only erasure disclosure fragments are present in the production phone executable. The obsolete No data was sent anywhere claim is absent.",
+    "The exported native default PNG was decoded losslessly and visibly shows the approved abstract two-plane hourglass. Dark artwork was inspected in the exact frozen source; compiled dark and Watch presence is established by asset inventories and source provenance."
+  ],
+  "artifacts": [
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/independent-archive-31538ce/summary.json",
+      "sha256": "f1fd9c2c138114af89da02dca6b9e7eee8fca0c4b8fd9bbeec480c73baa19e13"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/independent-archive-31538ce/product-files.sha256",
+      "sha256": "136aaff8f7d120ecd5c9183ac7fe49275999d36119590b0cce95665f3c3980e5"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/independent-archive-31538ce/privacy-audit.log",
+      "sha256": "f043033528ba5953c6a3b8b01f3327bd31008b07676adce76e063bc2f5863751"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/independent-archive-31538ce/fixture-audit.log",
+      "sha256": "5f28fa4e54133eb87a5c7cff6e248184ba95a9f5c694f88ea0e9488299038f11"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/independent-package-details-31538ce/archive-files.sha256",
+      "sha256": "78e6f569821acecdeccac15a8a708afa2195869ec6845a28e382b95bfd8e76be"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/independent-package-details-31538ce/summary.json",
+      "sha256": "bd67cc681e3c4b44bbda399053a9813618b765157eb041291705d5b06d1732f4"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/independent-package-details-31538ce/archive-phone-asset-info.json",
+      "sha256": "8b8bbb16676411d2b55e2faaa17723243b920136b836bafaaeef702c649b70b1"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/independent-package-details-31538ce/archive-watch-asset-info.json",
+      "sha256": "72262b5208df69224e37cb2fefa56fbd93d7c49a70301e169c4f163d7bb4d443"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/independent-package-details-31538ce/export-default-preview.png",
+      "sha256": "25dde66736807d5486a6b4f0637925e749edc24a689a7cd442c4843f8cbb807b"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/archive.log",
+      "sha256": "2d65b38c2eae9112bc9231e2b61054008107eeee63b3589d671a8d38642ae789"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/source-receipt/summary.json",
+      "sha256": "9aeaa9b6466d0aaa0aebade49b082ed312cd8260f98e9e574d5788d9b3a8e4a1"
+    }
+  ],
+  "limitations": [
+    "This passes only the signed-archive-inspection portion of ER-3. The canonical distribution-export gate initially failed because it assumes one phone icon rendition; its correction and independent rerun remain necessary.",
+    "The aggregate Xcode-generated privacy PDF has not been created because the Mac is locked. Manifest JSON inspection is not an Xcode privacy PDF.",
+    "Full CI, upload/processing, candidate screenshots, physical installation/upgrade/smoke, system appearance selection and App Review/public release remain separate evidence and authority boundaries.",
+    "No compiled dark or Watch pixels were extracted for independent visual comparison; their native rendition metadata and exact source provenance were inspected. The exported default PNG was visually inspected.",
+    "Historical superseded build 7, build 8 and initial build 9 artifacts remain separate and were not relabeled. This receipt binds only final attempt-2 source 31538ce."
+  ]
+}

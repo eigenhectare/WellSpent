@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "taskId": "REL-09-PREP",
+  "requirementId": "ER-3",
+  "evidenceClass": "signed-package",
+  "producerRole": "verifier",
+  "producerId": "screen-design-audit",
+  "observedAt": "2026-09-06T19:53:19Z",
+  "source": {
+    "commit": "31538cee04c3bf1ddddc3be152ae5fa0da56cef1",
+    "tree": "a954ab56b998f62c61c536f042207c8d89b94d0f",
+    "clean": true,
+    "version": "0.2.0",
+    "build": "9"
+  },
+  "authorityReference": {
+    "kind": "signed-record",
+    "reference": "REL-09-PREP records owner-authorized abstract-icon release preparation and bounded disclosure corrections; WAT-OWNER-DECISIONS.md section4 retains signing/upload authority. Physical actions and App Review/public release remain excluded until outstanding physical acceptance.",
+    "confirmedBy": "owner",
+    "confirmedAt": "2026-09-06",
+    "authorityIds": [
+      "repository-write",
+      "signing-upload"
+    ]
+  },
+  "publicReleaseApproved": false,
+  "receiptId": "PKG-REL-09-PREP-EXPORT-FAIL-20260906-195319",
+  "result": "failed",
+  "gate": {
+    "id": "distribution-export-inspection",
+    "exitCode": 1
+  },
+  "claims": [
+    "Independently ran the canonical distribution-export checker from frozen source 31538ce against the completed attempt-2 export; it exited 1 with phone compiled AppIcon rendition.",
+    "The failed predicate requires exactly one phone Icon Image. Independent assetutil inventory instead observes the two intentionally approved native renditions: default AppIcon.png with absent Appearance and AppIcon-Dark.png with UIAppearanceDark. Both have valid opaque 1024 by 1024, 8-bit RGB/sRGB metadata.",
+    "The IPA SHA256 is ce086d92fb86e9d3ef5be065b0f5789aa9cbf6a148c9e60949feef48580e128e. Manual supplemental inspection found valid strict Apple Distribution signatures on all four components, source-matching privacy manifests and corrected disclosure fragments, but does not override the failed canonical gate."
+  ],
+  "artifacts": [
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/independent-export-31538ce.log",
+      "sha256": "536e5510290e35ee51a4843983e55f6493b840772ceefbe93a22226ae3fd84a1"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/independent-package-details-31538ce/summary.json",
+      "sha256": "bd67cc681e3c4b44bbda399053a9813618b765157eb041291705d5b06d1732f4"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/independent-package-details-31538ce/export-phone-asset-info.json",
+      "sha256": "a7072b9ed572000c54b855127e9d484add379a00ad45eb6d8c6be49fed6c1124"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/independent-package-details-31538ce/export-watch-asset-info.json",
+      "sha256": "a3a46945cbc3dbbedefa1e09650db3d911816af11ccd213107b47337556cb30f"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/distribution-export/WellSpent.ipa",
+      "sha256": "ce086d92fb86e9d3ef5be065b0f5789aa9cbf6a148c9e60949feef48580e128e"
+    }
+  ],
+  "limitations": [
+    "Canonical export acceptance remains failed for this attempt. The coordinator owns the bounded verifier-tool correction; this verifier did not repair source or bypass the gate.",
+    "No upload, export, signing, simulator or physical-device action was performed by this verifier. A later successful corrected-gate receipt must be append-only and retain this failed attempt."
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "producerRole": "verifier",
+  "producerId": "screen-design-audit",
+  "observedAt": "2026-09-06T20:00:09Z",
+  "result": "passed",
+  "publicReleaseApproved": false,
+  "receiptId": "SRC-REL-10-ICON-GATE-20260906-200009",
+  "taskId": "REL-10-ICON-GATE",
+  "requirementId": "ER-1",
+  "evidenceClass": "source",
+  "source": {
+    "commit": "aafcf4adaa698dd3c2b939e3e3f1c129e70355d8",
+    "tree": "061bf963e605498658ed84d695e63f70095f6701",
+    "clean": true,
+    "version": "0.2.0",
+    "build": "9"
+  },
+  "gate": {
+    "id": "distribution-icon-regression",
+    "exitCode": 0
+  },
+  "claims": [
+    "Independently reviewed the main REL-10-ICON-GATE contract and complete three-script diff from 31538ce; the clean result changes no product source, artwork, version/build, signing or package bytes.",
+    "Canonical scope check passed for the exact base and tool commit; shell syntax and git diff --check passed.",
+    "Canonical regression accepts the intended phone default/dark and Watch default catalogs, including reordered input, and rejects all 76 malformed fixtures covering missing, duplicate and unknown appearances, missing fields, invalid metadata/digests and unsupported components.",
+    "The filter validates every actual icon rendition and compares the exact sorted appearance multiset, preventing duplicate or missing appearances from passing. The MultiSized Image container is intentionally excluded from pixel-rendition selection while assetutil still validates the whole catalog.",
+    "The legacy default digest remains a single stable value independent of assetutil ordering. Each validated appearance is separately recorded with rendition name, digest, dimensions, opacity, color metadata, scale and idiom.",
+    "The corrected tool independently passed the real completed 0.2.0 (9) distribution IPA gate. This corroborates integration of the helper into the export checker; the IPA remains bound to binary source 31538ce in a separate REL-09-PREP signed-package receipt."
+  ],
+  "artifacts": [
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/independent-icon-regression-aafcf4a.log",
+      "sha256": "115685477ca32ebc6ff2d34bf830be218ec7be03e2e0047cdbe7e8400857b5ce"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/independent-icon-scope-aafcf4a.log",
+      "sha256": "e96a6f247582aad20b853fe94a5d8378f62394461b4d0bd42d24af89a0bdb526"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/independent-export-aafcf4a/summary.json",
+      "sha256": "9ee95bec16531191819ac9c730669c8f6e0ace14ce2c19f14f0dfe7c49c92a08"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/independent-export-aafcf4a/inspection-provenance.json",
+      "sha256": "48254f89a16afab66aa1f1691042d016525f624f457338c30c7cce60f71398a1"
+    },
+    {
+      "kind": "repository",
+      "locator": "scripts/watch-distribution-export-check.sh",
+      "sha256": "d0142e1e2b091f509e505c1b87fa0cb0bff672a95fea5fb03daa047cd958fea0"
+    },
+    {
+      "kind": "repository",
+      "locator": "scripts/watch-distribution-icon-check.jq",
+      "sha256": "734b11c949a33677d1a171a3f6c48c5ac9a542c90a67c2262327a703df29ce52"
+    },
+    {
+      "kind": "repository",
+      "locator": "scripts/watch-distribution-icon-regression-tests.sh",
+      "sha256": "04f3f7bb9b2458124b06ddd9dd85a8093079d241de51ae2dbe1d0cb4b174e16f"
+    }
+  ],
+  "limitations": [
+    "This source-only receipt approves the bounded verification-tool change. It does not relabel the existing IPA or full CI as produced from this tool commit.",
+    "No binary rebuild, signing, export, upload, simulator or physical-device operation was performed by this verifier."
+  ],
+  "authorityReference": {
+    "kind": "signed-record",
+    "reference": "REL-10-ICON-GATE is the coordinator-authorized bounded correction to the distribution inspection tool, supporting the owner-authorized release preparation; product and external mutations are excluded.",
+    "confirmedBy": "owner",
+    "confirmedAt": "2026-09-06",
+    "authorityIds": [
+      "repository-write"
+    ]
+  }
+}
