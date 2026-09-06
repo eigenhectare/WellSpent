@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "taskId": "ICON-03-DEVICE",
+  "producerRole": "verifier",
+  "producerId": "native-watch-device-verifier",
+  "observedAt": "2026-09-06T19:09:02Z",
+  "authorityReference": null,
+  "publicReleaseApproved": false,
+  "receiptId": "SRC-ICON-03-DEVICE-20260906-190902",
+  "requirementId": "ER-2",
+  "evidenceClass": "source",
+  "result": "passed",
+  "source": {
+    "commit": "878482b93224c8ef420eac95588b6f8a6e7889c0",
+    "tree": "05d4d36c95dc1d7a61d638f52a8e88df253d6b20",
+    "clean": true,
+    "version": "0.2.0",
+    "build": "6"
+  },
+  "gate": {
+    "id": "agent-control",
+    "exitCode": 0
+  },
+  "claims": [
+    "Independently reviewed WAT-31-HOURGLASS-DEVICE-CHECK.md and ICON-03-DEVICE at clean documentation commit878482b93224c8ef420eac95588b6f8a6e7889c0; canonical agent-control validation passed.",
+    "The document distinguishes successful frozen engineering/archive evidence from the stopped Xcode Debug installation attempt and does not treat generic Finished running toolbar text as installation success.",
+    "All physical icon, counterpart, project-delivery and idle/paused/running complication observations remain blocked or not_run. The fresh independent canonical preflight corroborates the unclosed installation requirement.",
+    "The document preserves separate point-in-time clean, Xcode scheme rewrite, later catalog rewrite and restored-source observations. The actual nonempty scheme and catalog patch sizes and SHA256 values were independently verified.",
+    "The source commit, tree, production manifest, archive manifest and386-test description agree with the existing independent ICON-02-BUILD receipts; no previous candidate result is relabeled as physical build6 evidence.",
+    "The resume checklist retains the required wired route and owner device readiness, and keeps destructive retention, distribution, App Review and public-release gates separate."
+  ],
+  "artifacts": [
+    {
+      "kind": "repository",
+      "locator": "WAT-31-HOURGLASS-DEVICE-CHECK.md",
+      "sha256": "d8d89b1c0c69f98c2bfa1da24a21a1a75a4fac2d8fb6b92fb5f15b59fa051744"
+    },
+    {
+      "kind": "repository",
+      "locator": "AgentControl/tasks/ICON-03-DEVICE.json",
+      "sha256": "cc999ea35e3148e12d4fd0c8b69e58b93ce6577e4125ed1c0a44b55bed85dbd6"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/Icon03IndependentDeviceVerification-20260906T190404Z/agent-control-review.log",
+      "sha256": "e4a7415a4cad1da174c02a0fe49189b7295bded61d252af2fdbee259b156a5e3"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/Icon03IndependentDeviceVerification-20260906T190404Z/document-review-summary.json",
+      "sha256": "31e9ef4303d61a2097539f54855fc676b8c3fd2c3050cb83c9874bd199570fb3"
+    }
+  ],
+  "limitations": [
+    "The coordinator supplied the Xcode UI and owner-account observations; the verifier checked that they are attributed and not promoted into physical installation or workflow passes.",
+    "CI and archive descriptions were reconciled to existing independent ICON-02 receipts; the verifier did not rerun those gates.",
+    "Latest preflight corroborates the blocked row but remains a separate timestamped observation.",
+    "This receipt passes only the reporting requirement AC-2; it does not close the blocked physical requirement AC-1."
+  ]
+}

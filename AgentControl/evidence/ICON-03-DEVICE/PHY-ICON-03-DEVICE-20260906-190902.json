@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "taskId": "ICON-03-DEVICE",
+  "producerRole": "verifier",
+  "producerId": "native-watch-device-verifier",
+  "observedAt": "2026-09-06T19:09:02Z",
+  "authorityReference": null,
+  "publicReleaseApproved": false,
+  "receiptId": "PHY-ICON-03-DEVICE-20260906-190902",
+  "requirementId": "ER-1",
+  "evidenceClass": "physical-device",
+  "result": "blocked",
+  "source": {
+    "commit": "6c5f66f954ee3f891e4b7e438ecd4eba60d2fc29",
+    "tree": "22e8d45f8c80c1205a6e0b153d8a1548cdf49978",
+    "clean": true,
+    "version": "0.2.0",
+    "build": "6"
+  },
+  "gate": {
+    "id": "physical-device-preflight",
+    "exitCode": 1
+  },
+  "claims": [
+    "The corrected canonical production-device preflight completed against configured build0.2.0(6) at19:06:06UTC with exit1 and blocked status.",
+    "Both physical devices were booted, paired, in Developer Mode and tunnel-connected; the Watch appeared as an Xcode destination. The iPhone used localNetwork, so the required wired route did not pass.",
+    "Neither exact production bundle was installed in the canonical query. One successful complete inventory per device including distribution apps independently confirmed zero exact production matches at19:07:08UTC.",
+    "No successful paired installation, counterpart registration, physical icon appearance or complication workflow is claimed. The declared source is the configured candidate, not a verified installed binary.",
+    "The diagnostic device checkout was independently confirmed restored and clean at the frozen build6 commit after the coordinator preserved and restored the Xcode-generated catalog rewrite."
+  ],
+  "artifacts": [
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/Icon03IndependentDeviceVerification-20260906T190404Z/canonical-inventory-identifiers/summary.json",
+      "sha256": "5b021c943ba3ee2afbe6d84123455422f917691c7df7c99c1d0918d257ed4f0a"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/Icon03IndependentDeviceVerification-20260906T190404Z/complete-app-inventory-summary.json",
+      "sha256": "2b13feb8ccd7303c70f7d03041bb00f4cdccea7b1959dfb401f77893115f04c2"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/Icon03IndependentDeviceVerification-20260906T190404Z/sanitized-verification-summary.json",
+      "sha256": "01534634a139c6e40e29cfcab324a4d70fd420e92f99a131be19b8d9105e164c"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/Icon03IndependentDeviceVerification-20260906T190404Z/source-observation-correction.json",
+      "sha256": "18615d7dc38fa3100c99a05bd273461285f352f950cd4f2400e4fd9be1dbe1e6"
+    }
+  ],
+  "limitations": [
+    "Initial invocation used a detail-record identifier that CoreDevice rejected with error1011 before a valid lookup; it is not hardware evidence. The corrected canonical invocation used retained CoreDevice inventory identifiers.",
+    "Verifier first observed a dirty catalog after Xcode Run. Coordinator preserved and restored that catalog while the verifier captured a diagnostic diff, yielding an empty verifier patch. The coordinator actual nonempty patch and point-in-time before/after records are authoritative for this rewrite.",
+    "Current bundle absence does not inspect retained containers or personal data and does not establish that a canceled Xcode attempt installed a particular source.",
+    "No retry of unchanged hardware state, app launch, installation, device setting change, or app data access was performed by this verifier.",
+    "This blocked read-only receipt cannot close AC-1. Owner USB, worn/unlocked readiness and a successful single Xcode-owned paired install remain required.",
+    "The separate development-signed Release archive and the attempted Debug Run have different delivery boundaries; neither is represented as installed by this receipt."
+  ]
+}
