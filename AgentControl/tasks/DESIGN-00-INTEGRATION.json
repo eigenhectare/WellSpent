@@ -3,7 +3,7 @@
   "taskId": "DESIGN-00-INTEGRATION",
   "title": "Integrate and validate the native design release candidate",
   "type": "feature",
-  "status": "ready",
+  "status": "in_progress",
   "risk": "medium",
   "outcome": "Integrate the approved native visual port, guarantee state-aware Watch entry, and validate the combined candidate with source, build and simulator checks.",
   "assignment": {
