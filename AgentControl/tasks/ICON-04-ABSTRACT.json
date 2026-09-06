@@ -3,7 +3,7 @@
   "taskId": "ICON-04-ABSTRACT",
   "title": "Simplify the hourglass icon using the Preview visual reference",
   "type": "feature",
-  "status": "in_progress",
+  "status": "in_review",
   "risk": "low",
   "outcome": "Replace the detailed hourglass artwork with a simple abstract hourglass using broad shapes and restrained depth, with matching iOS light/dark and Watch variants.",
   "assignment": {
@@ -21,7 +21,8 @@
     "included": [
       "Inspect Apple Preview as a visual style reference and create original abstract hourglass artwork with fewer forms and no fine physical-object detail.",
       "Replace iPhone default and dark icons and the matching Watch icon while preserving native appearance registration.",
-      "Document prompts, reference, source validation and the separation from the previously archived build 6."
+      "Document prompts, reference, source validation and the separation from the previously archived build 6.",
+      "Coordinator-managed integration of the reviewed result, append-only evidence and task status; this contract revision adds the integration control scope before that phase."
     ],
     "excluded": [
       "Product behavior, signing, project structure, bundle identifiers and version/build allocation.",
@@ -33,9 +34,13 @@
     "paths": [
       "WellSpentApp/Resources/Assets.xcassets/AppIcon.appiconset",
       "WellSpentWatch/Resources/Assets.xcassets/AppIcon.appiconset",
-      "WAT-32-ABSTRACT-ICON.md"
+      "WAT-32-ABSTRACT-ICON.md",
+      "AgentControl"
     ],
-    "resources": []
+    "resources": [
+      "git-integration",
+      "release-status"
+    ]
   },
   "acceptanceCriteria": [
     {
@@ -68,5 +73,8 @@
     "WAT-OWNER-DECISIONS.md"
   ],
   "blocker": null,
-  "result": null
+  "result": {
+    "commit": "2859e89aa91c236cd4fa8ddebf2489f2c38544e1",
+    "tree": "22e3e9f5a596ce2a43c579569ab47645275fca26"
+  }
 }
