@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "taskId": "REL-11-DEVICE",
+  "title": "Validate build 9 on the connected physical pair",
+  "type": "chore",
+  "status": "in_progress",
+  "risk": "medium",
+  "outcome": "Install exact-source WellSpent 0.2.0 (9) through Xcode paired deployment and record feasible nondestructive physical icon, workflow and readiness checks without substituting them for distribution or broader device acceptance.",
+  "assignment": {
+    "role": "release-steward",
+    "id": "codex-device-operator"
+  },
+  "base": {
+    "branch": "codex/abstract-release-9-r2",
+    "commit": "31538cee04c3bf1ddddc3be152ae5fa0da56cef1"
+  },
+  "dependsOn": [
+    "ICON-04-ABSTRACT"
+  ],
+  "scope": {
+    "included": [
+      "Use the independently verified build9 source and a separate linked physical checkout so Xcode cannot modify frozen CI/archive source.",
+      "Read physical phone/Watch readiness, installed version and pairing; preserve installed data while updating through Xcode unified companion deployment.",
+      "Run feasible nondestructive icon, app and actual system-surface observations with fictitious records and record configuration, installation channel and owner observations precisely.",
+      "Record remaining owner-operated, long-duration, unavailable hardware and distribution requirements explicitly; preserve prior failures and evidence."
+    ],
+    "excluded": [
+      "Erase, uninstall, unpair, backup restore, replacement Watch, oldest-build upgrade case and inspection of unrelated personal content.",
+      "Automated test suites that reset the production iPhone store; synthetic fixture tests cannot certify real transport or system surfaces.",
+      "App Store mutations, public support/privacy edits, tester invitations, legal agreement acceptance, product code or version/signing identity changes."
+    ]
+  },
+  "writeScope": {
+    "paths": [
+      "AgentControl",
+      "WAT-34-CANDIDATE-DEVICE-SESSION.md",
+      "WellSpent.xcodeproj",
+      "AppStore/Abstract-0.2.0-9/device-session"
+    ],
+    "resources": [
+      "git-integration",
+      "paired-devices",
+      "project-generation",
+      "release-status",
+      "signing-archive",
+      "version-build"
+    ]
+  },
+  "acceptanceCriteria": [
+    {
+      "id": "AC-1",
+      "statement": "Physical readiness and installed 0.2.0(9) identity are independently recorded; an Xcode paired update preserves existing data and never substitutes independent bundle installs."
+    },
+    {
+      "id": "AC-2",
+      "statement": "Observed physical icon/workflow outcomes are distinguished from owner-operated, unobserved, distribution and broader acceptance gaps."
+    }
+  ],
+  "evidenceRequirements": [
+    {
+      "id": "ER-1",
+      "criterionIds": [
+        "AC-1"
+      ],
+      "evidenceClass": "physical-device",
+      "gateIds": [
+        "physical-device-preflight"
+      ],
+      "candidateBound": true
+    },
+    {
+      "id": "ER-2",
+      "criterionIds": [
+        "AC-2"
+      ],
+      "evidenceClass": "source",
+      "gateIds": [
+        "agent-control"
+      ],
+      "candidateBound": false
+    }
+  ],
+  "authorityRequirements": [
+    "repository-write",
+    "device-mutate",
+    "signing-upload"
+  ],
+  "legacyRefs": [
+    "WAT-OWNER-DECISIONS.md",
+    "WATCH-TESTING-GUIDE.md",
+    "WAT-33-UPDATE-RELEASE.md",
+    "WAT-05-ACCEPTANCE-MATRIX.md"
+  ],
+  "blocker": null,
+  "result": {
+    "commit": "31538cee04c3bf1ddddc3be152ae5fa0da56cef1",
+    "tree": "a954ab56b998f62c61c536f042207c8d89b94d0f"
+  }
+}
