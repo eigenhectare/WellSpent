@@ -15,7 +15,8 @@ struct WatchTimerControlsView: View {
             controls
             ScrollView { controls }
         }
-        .background(Color.black)
+        .foregroundStyle(WatchDesign.foreground)
+        .background(WatchDesign.canvas)
     }
 
     private var controls: some View {
@@ -38,7 +39,8 @@ struct WatchTimerControlsView: View {
                 WatchTimerControlButton(
                     title: "End",
                     symbol: "xmark",
-                    tint: Color(red: 0.62, green: 0.02, blue: 0.06),
+                    tint: WatchDesign.end,
+                    foreground: WatchDesign.foreground,
                     accessibilityHint: "Asks for confirmation before ending and saving this run.",
                     identifier: "watch.controls.end",
                     isBusy: isBusy,
@@ -48,7 +50,8 @@ struct WatchTimerControlsView: View {
                 WatchTimerControlButton(
                     title: runState == .paused ? "Resume" : "Pause",
                     symbol: runState == .paused ? "play.fill" : "pause.fill",
-                    tint: runState == .paused ? .green : .orange,
+                    tint: WatchDesign.amber,
+                    foreground: .black,
                     accessibilityHint: runState == .paused
                         ? "Opens a new billable segment at one saved boundary."
                         : "Closes the current billable segment at one saved boundary.",
@@ -63,7 +66,8 @@ struct WatchTimerControlsView: View {
             WatchTimerControlButton(
                 title: "New",
                 symbol: "arrow.triangle.2.circlepath",
-                tint: .blue,
+                tint: WatchDesign.panel,
+                foreground: WatchDesign.teal,
                 accessibilityHint:
                     "Choose a different project. The old run ends exactly when the new run starts.",
                 identifier: "watch.controls.new",
@@ -89,10 +93,10 @@ struct WatchTimerControlsView: View {
 }
 
 private struct WatchTimerControlButton: View {
-    @WatchAccessibilitySettings private var accessibilitySettings
     let title: LocalizedStringResource
     let symbol: String
     let tint: Color
+    let foreground: Color
     let accessibilityHint: LocalizedStringResource
     let identifier: String
     let isBusy: Bool
@@ -116,21 +120,8 @@ private struct WatchTimerControlButton: View {
             }
             .font(.system(.body, design: .rounded, weight: .semibold))
             .frame(maxWidth: .infinity, minHeight: compact ? 50 : 76)
-            .foregroundStyle(.white)
-            .background(
-                LinearGradient(
-                    colors: [tint.opacity(0.92), tint.opacity(0.58)],
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                ),
-                in: RoundedRectangle(cornerRadius: 18, style: .continuous)
-            )
-            .overlay {
-                RoundedRectangle(cornerRadius: 18, style: .continuous)
-                    .stroke(
-                        .white.opacity(accessibilitySettings.increaseContrast ? 0.8 : 0.16),
-                        lineWidth: accessibilitySettings.increaseContrast ? 1.5 : 0.75)
-            }
+            .foregroundStyle(foreground)
+            .watchPanel(fill: tint, cornerRadius: 18)
             .contentShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
         }
         .buttonStyle(.plain)
@@ -207,6 +198,8 @@ struct WatchSwitchProjectView: View {
                 .padding(.bottom, 8)
             }
             .scrollIndicators(.hidden)
+            .foregroundStyle(WatchDesign.foreground)
+            .background(WatchDesign.canvas)
             .watchPrivateScreen()
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -246,7 +239,7 @@ struct WatchSwitchProjectView: View {
             .padding(.horizontal, 10)
             .padding(.vertical, dynamicTypeSize.isAccessibilitySize ? 8 : 0)
             .frame(minHeight: 52)
-            .background(accent.opacity(0.16), in: RoundedRectangle(cornerRadius: 15))
+            .watchPanel()
         }
         .buttonStyle(.plain)
         .disabled(isBusy)

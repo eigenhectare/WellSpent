@@ -71,7 +71,8 @@ struct WatchStartedTimerView: View {
             .tabViewStyle(.page(indexDisplayMode: .never))
             .onChange(of: goalProgress, initial: true) { _, progress in goalAlerts.observe(progress) }
         }
-        .background(Color.black)
+        .foregroundStyle(WatchDesign.foreground)
+        .background(WatchDesign.canvas)
         .watchPrivacyFixtureToggle()
         .transaction { transaction in
             if accessibilitySettings.reduceMotion {
@@ -175,10 +176,6 @@ private struct WatchElapsedMetricPage: View {
     let redactsProjectIdentity: Bool
     let onConfigureGoal: () -> Void
 
-    private var accent: Color {
-        redactsProjectIdentity ? .gray : Color.watchTimerProjectToken(project?.colorToken)
-    }
-
     private var projectName: String {
         WatchProjectIdentity.displayName(
             project?.name,
@@ -199,9 +196,9 @@ private struct WatchElapsedMetricPage: View {
     private func content(compact: Bool) -> some View {
         VStack(spacing: compact ? 2 : 4) {
             HStack(spacing: 5) {
-                Circle()
-                    .fill(statusColor)
-                    .frame(width: 7, height: 7)
+                Image(systemName: run.state == .paused ? "pause.circle" : "stopwatch")
+                    .foregroundStyle(statusColor)
+                    .font(.caption.weight(.semibold))
                     .accessibilityHidden(true)
                 Text(statusTitle)
                     .font((compact ? Font.caption2 : Font.caption).weight(.semibold))
@@ -217,11 +214,11 @@ private struct WatchElapsedMetricPage: View {
             }
 
             Text(WatchDurationText.digital(metrics.billableSeconds))
-                .font(.system(size: compact ? 26 : 32, weight: .semibold, design: .rounded))
+                .font(.system(size: compact ? 28 : 36, weight: .semibold, design: .rounded))
                 .monospacedDigit()
                 .minimumScaleFactor(0.58)
                 .lineLimit(1)
-                .foregroundStyle(.primary)
+                .foregroundStyle(WatchDesign.foreground)
                 .accessibilityLabel(
                     "Billable elapsed, \(WatchDurationText.spoken(metrics.billableSeconds))"
                 )
@@ -238,9 +235,13 @@ private struct WatchElapsedMetricPage: View {
                 .accessibilitySortPriority(4)
 
             Button(action: onConfigureGoal) {
-                goalView.frame(maxWidth: .infinity, minHeight: 44).contentShape(Rectangle())
+                goalView
+                    .padding(.horizontal, 9)
+                    .padding(.vertical, metrics.goal == nil ? 0 : 6)
+                    .frame(maxWidth: .infinity, minHeight: 44)
+                    .contentShape(Rectangle())
             }
-            .buttonStyle(.plain)
+            .buttonStyle(WatchActionButtonStyle())
             .accessibilityHint("Opens time goal and optional alert settings.")
             .accessibilityIdentifier(metrics.goal == nil ? "watch.metrics.no-goal" : "watch.metrics.goal")
 
@@ -281,7 +282,7 @@ private struct WatchElapsedMetricPage: View {
         if let goal = metrics.goal {
             VStack(spacing: 4) {
                 ProgressView(value: goal.progress)
-                    .tint(goal.isReached ? .green : accent)
+                    .tint(goal.isReached ? WatchDesign.teal : WatchDesign.amber)
                     .accessibilityHidden(true)
                 ViewThatFits(in: .horizontal) {
                     HStack {
@@ -296,16 +297,17 @@ private struct WatchElapsedMetricPage: View {
                     }
                 }
                 .font(.caption2.weight(.medium))
-                .foregroundStyle(goal.isReached ? .green : .secondary)
+                .foregroundStyle(goal.isReached ? WatchDesign.teal : WatchDesign.muted)
             }
             .accessibilityElement(children: .ignore)
             .accessibilityLabel(goalAccessibilityLabel(goal))
             .accessibilityIdentifier("watch.metrics.goal")
             .accessibilitySortPriority(2)
         } else {
-            Text("No time goal")
-                .font(.caption)
-                .foregroundStyle(.secondary)
+            Text("Set a time goal")
+                .font(.caption.weight(.semibold))
+                .foregroundStyle(WatchDesign.amber)
+                .accessibilityLabel("No time goal")
                 .accessibilityIdentifier("watch.metrics.no-goal")
                 .accessibilitySortPriority(2)
         }
@@ -327,8 +329,8 @@ private struct WatchElapsedMetricPage: View {
 
     private var statusColor: Color {
         switch run.state {
-        case .running: .green
-        case .paused: .orange
+        case .running: WatchDesign.teal
+        case .paused: WatchDesign.amber
         case .ended: .secondary
         }
     }
@@ -439,7 +441,7 @@ private struct WatchMetricRow: View {
         .padding(.horizontal, 9)
         .padding(.vertical, verticalPadding)
         .frame(maxWidth: .infinity, minHeight: dynamicTypeSize.isAccessibilitySize ? 44 : 28, alignment: .leading)
-        .background(Color.white.opacity(0.07), in: RoundedRectangle(cornerRadius: 12))
+        .watchPanel(cornerRadius: 12)
         .contentShape(Rectangle())
         .accessibilityElement(children: .ignore)
         .accessibilityLabel("\(String(localized: title)), \(accessibilityValue)")
@@ -530,7 +532,7 @@ private struct WatchTotalsMetricPage: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal, 11)
         .padding(.vertical, verticalPadding)
-        .background(Color.blue.opacity(0.14), in: RoundedRectangle(cornerRadius: 14))
+        .watchPanel(cornerRadius: 14)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel("\(String(localized: title)), \(WatchDurationText.spoken(TimeInterval(seconds)))")
         .accessibilityIdentifier(identifier)
