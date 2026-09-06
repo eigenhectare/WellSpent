@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "CI-ICON-02-BUILD-INTERRUPTED-20260906-1822",
+  "taskId": "ICON-02-BUILD",
+  "requirementId": "ER-2",
+  "evidenceClass": "unit",
+  "result": "not_run",
+  "producerRole": "integrator",
+  "producerId": "codex-integrator",
+  "observedAt": "2026-09-06T18:22:58Z",
+  "source": {
+    "commit": "6c5f66f954ee3f891e4b7e438ecd4eba60d2fc29",
+    "tree": "22e8d45f8c80c1205a6e0b153d8a1548cdf49978",
+    "clean": false,
+    "version": "0.2.0",
+    "build": "6"
+  },
+  "gate": {
+    "id": "ci-full",
+    "exitCode": 143
+  },
+  "claims": [
+    "The first build-6 CI attempt started from the frozen source but was deliberately interrupted after Xcode automatically rewrote three shared Watch scheme files during project opening.",
+    "The attempt is not a full-CI acceptance pass. The actual rewrite diff and interruption record are preserved.",
+    "Only the automatically rewritten schemes were restored after closing Xcode; generated-project parity passed before a new independent CI attempt began."
+  ],
+  "artifacts": [
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/IconCI/xcode-opening-scheme-rewrite.patch",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/IconCI/run.cePXas/interruption.json",
+      "sha256": "ae731f102c1bb67b46b16f6389e3becb94950ddbff08e26280429cd61d44810c"
+    }
+  ],
+  "limitations": [
+    "No product-source, icon, privacy or version changes were introduced by the interrupted attempt.",
+    "The signed archive completed before Xcode opened the project and is independently inspected separately."
+  ],
+  "authorityReference": {
+    "kind": "user-message",
+    "reference": "September 6 owner request to replace the icon, rebuild, and perform physical checks.",
+    "confirmedBy": "owner",
+    "confirmedAt": "2026-09-06",
+    "authorityIds": [
+      "repository-write"
+    ]
+  },
+  "publicReleaseApproved": false
+}

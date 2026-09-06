@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "taskId": "ICON-02-BUILD",
+  "result": "passed",
+  "producerRole": "verifier",
+  "producerId": "screen-design-audit",
+  "observedAt": "2026-09-06T18:24:51Z",
+  "source": {
+    "commit": "6c5f66f954ee3f891e4b7e438ecd4eba60d2fc29",
+    "tree": "22e8d45f8c80c1205a6e0b153d8a1548cdf49978",
+    "clean": true,
+    "version": "0.2.0",
+    "build": "6"
+  },
+  "authorityReference": {
+    "kind": "signed-record",
+    "reference": "WAT-OWNER-DECISIONS.md section 4 records owner authority for archive/export for this and future WellSpent versions; the September 6 hourglass-icon request and ICON-02-BUILD authorize the bounded build 6 allocation and archive. Distribution export, upload, installation, submission and release are excluded from this task.",
+    "confirmedBy": "owner",
+    "confirmedAt": "2026-09-06",
+    "authorityIds": [
+      "repository-write",
+      "signing-upload"
+    ]
+  },
+  "publicReleaseApproved": false,
+  "receiptId": "PKG-ICON-02-BUILD-20260906-182451",
+  "requirementId": "ER-3",
+  "evidenceClass": "signed-package",
+  "gate": {
+    "id": "signed-archive-inspection",
+    "exitCode": 0
+  },
+  "claims": [
+    "Independently ran canonical signed-archive inspection from the frozen release worktree against the completed 0.2.0 (6) xcarchive; all four component checks passed with exit code 0.",
+    "The iPhone app, iPhone widget, dependent Watch app and Watch widget have matching version/build values, valid strict certificate-backed Apple Development signatures for the configured team, expected signed entitlements and embedded provisioning profiles.",
+    "All four dSYMs match their executable UUIDs and architectures; phone binaries contain arm64 and Watch binaries contain arm64 plus arm64_32.",
+    "Device platform/deployment metadata, Watch companion relationship, icon metadata, assets and extension points pass; embedded privacy manifests match source, the local-only privacy audit passes, and Release fixtures are absent.",
+    "Independent assetutil inspection confirms opaque RGB 1024-pixel phone AppIcon.png default and AppIcon-Dark.png UIAppearanceDark renditions with distinct compiled digests, plus the opaque RGB 1024-pixel Watch AppIcon.png rendition.",
+    "The actual compiled default phone 120-pixel PNG was decoded into a separate inspection image and visually confirmed as the new hourglass; the source/build provenance maps dark and Watch compiled catalog entries to the reviewed new artwork.",
+    "The exact frozen source retains the independently reviewed light SHA256 46f496e21e3e49d03022c21bd285c0260d9ae6463073ab65c927402afb096f7a, dark SHA256 618ed7b8671bf268b911f06d4af0dbc4e9ee712a8a901ce1e1939b1cf0471aea and byte-identical light Watch artwork.",
+    "The entire archive relative manifest covers 56 regular files with no symlinks and has SHA256 cd80baeb328c60450663997cfda705e4366e3655e6fe906efffbee2e8ac88ebd; the signed product manifest is 1918fb3ac89b74d318ac41ec303a3b3accb005c3ff526a22865446856f6d66da.",
+    "Archive creation metadata is 18:18:55 UTC and the successful build log completed at 18:18:56 UTC, before the coordinator-reported approximately 18:21 Xcode scheme rewrites; the build log identifies the frozen source asset catalogs.",
+    "Final independent source verification confirms clean commit 6c5f66f954ee3f891e4b7e438ecd4eba60d2fc29 and tree 22e8d45f8c80c1205a6e0b153d8a1548cdf49978 after scheme restoration; the verifier did not build, sign, modify product source or operate simulators/devices."
+  ],
+  "artifacts": [
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Hourglass-0.2.0-6/independent-inspection-6c5f66f/summary.json",
+      "sha256": "ad9ce389d01533c334f057f0b0742956bf59cf5ef87eb2e05f48037c4ad59b81"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Hourglass-0.2.0-6/independent-inspection-6c5f66f/archive-icon-identity.json",
+      "sha256": "8b7dc104baecba7179d839430f4ccd65a5bc6e9e13d0fdaae94b5c217049b78b"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Hourglass-0.2.0-6/independent-inspection-6c5f66f/archive-files.sha256",
+      "sha256": "cd80baeb328c60450663997cfda705e4366e3655e6fe906efffbee2e8ac88ebd"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Hourglass-0.2.0-6/independent-inspection-6c5f66f/product-files.sha256",
+      "sha256": "1918fb3ac89b74d318ac41ec303a3b3accb005c3ff526a22865446856f6d66da"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Hourglass-0.2.0-6/independent-inspection-6c5f66f/inspection-files.sha256",
+      "sha256": "cf12e1f70e6e18beb6371c6321f95aaac3afbab404cf951988c49a845d00f076"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Hourglass-0.2.0-6/independent-inspection-6c5f66f/phone-asset-info.json",
+      "sha256": "db73dee2c128e6bb5a7ced2737db931e54798197f96d9dee7ae5df9ffab9b4a3"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Hourglass-0.2.0-6/independent-inspection-6c5f66f/watch-asset-info.json",
+      "sha256": "631af1c29ef851a1e9b598ef57faa6b810a58a13aa9cec7bfdb70bb6a5714ec5"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Hourglass-0.2.0-6/independent-inspection-6c5f66f/phone-compiled-default.png",
+      "sha256": "4686b2b934a8fb6e43075c9bb0d68c300b6fa23ddbb5715762c60e63928cf28d"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Hourglass-0.2.0-6/WellSpent-0.2.0-6.xcarchive/Info.plist",
+      "sha256": "ead9f12c1073fef4870dd907b259a7b48c2dba8d1941927f96d754a53ec9862a"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Hourglass-0.2.0-6/archive.log",
+      "sha256": "e8063a82fd63733a5301dcfdbee8ee65bac7aa03e5755148bebbe0051ec52607"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Hourglass-0.2.0-6/independent-source-restored-6c5f66f/summary.json",
+      "sha256": "e66ab9c779ffd96c36747c4ae80f49b69fe1e29ba345075ad53c881f7c0e1912"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Hourglass-0.2.0-6/independent-source-restored-6c5f66f/files.sha256",
+      "sha256": "9680ce4d31c8a523209d838b9afc72bff873d9b31479b2c38392545ed4509e72"
+    }
+  ],
+  "limitations": [
+    "This is a development-signed Release archive, not a distribution-exported package; no export, upload validation, App Review, public release or installation was performed.",
+    "Compiled dark and Watch renditions were verified through assetutil catalog inventory and exact-source/build provenance, not through an installed-device appearance screenshot or a separate decoded-pixel comparison.",
+    "Physical iPhone light/dark/Auto selection and Watch launcher appearance remain separate observations; system selection behavior is not inferred from archive contents.",
+    "Full CI ER-2 remains a separate requirement; neither the earlier interrupted CI attempt nor the subsequent running attempt is marked passed here.",
+    "The canonical summary retains generic remaining release stages; exact source provenance is supplied separately by the clean source receipt and archive build log."
+  ]
+}

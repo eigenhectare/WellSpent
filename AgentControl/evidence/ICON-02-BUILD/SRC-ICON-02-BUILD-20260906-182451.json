@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "taskId": "ICON-02-BUILD",
+  "result": "passed",
+  "producerRole": "verifier",
+  "producerId": "screen-design-audit",
+  "observedAt": "2026-09-06T18:24:51Z",
+  "source": {
+    "commit": "6c5f66f954ee3f891e4b7e438ecd4eba60d2fc29",
+    "tree": "22e8d45f8c80c1205a6e0b153d8a1548cdf49978",
+    "clean": true,
+    "version": "0.2.0",
+    "build": "6"
+  },
+  "authorityReference": {
+    "kind": "signed-record",
+    "reference": "WAT-OWNER-DECISIONS.md section 4 records owner authority for archive/export for this and future WellSpent versions; the September 6 hourglass-icon request and ICON-02-BUILD authorize the bounded build 6 allocation and archive. Distribution export, upload, installation, submission and release are excluded from this task.",
+    "confirmedBy": "owner",
+    "confirmedAt": "2026-09-06",
+    "authorityIds": [
+      "repository-write",
+      "signing-upload"
+    ]
+  },
+  "publicReleaseApproved": false,
+  "receiptId": "SRC-ICON-02-BUILD-20260906-182451",
+  "requirementId": "ER-1",
+  "evidenceClass": "source",
+  "gate": {
+    "id": "release-source-receipt",
+    "exitCode": 0
+  },
+  "claims": [
+    "Independently read ICON-02-BUILD and reviewed the entire delta from independently verified icon commit 8c6ac8abe65441b5094da5aea5799fdf13cf4b96.",
+    "The three-file delta only allocates build 6 in project.yml and both generated configurations and appends the exact candidate and validation boundary to WAT-30; marketing version remains 0.2.0.",
+    "There are no behavior, asset, model, wire-contract, privacy, bundle-identifier or signing-identity changes after the icon review.",
+    "Canonical scope and git diff --check passed; independent XcodeGen 2.46.0 drift verification passed with exit code 0.",
+    "Canonical release-source-receipt passed for 143 production files and independently matched the archive producer manifest exactly: SHA256 9680ce4d31c8a523209d838b9afc72bff873d9b31479b2c38392545ed4509e72.",
+    "After the coordinator restored Xcode-generated scheme formatting changes, this verifier reran source, scope and generated-project checks and confirmed the exact commit/tree and clean worktree again.",
+    "The new light/dark and Watch icon source hashes remain exactly those independently reviewed under ICON-01-HOURGLASS; build 5 evidence remains unchanged."
+  ],
+  "artifacts": [
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Hourglass-0.2.0-6/independent-source-restored-6c5f66f/summary.json",
+      "sha256": "e66ab9c779ffd96c36747c4ae80f49b69fe1e29ba345075ad53c881f7c0e1912"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Hourglass-0.2.0-6/independent-source-restored-6c5f66f/files.sha256",
+      "sha256": "9680ce4d31c8a523209d838b9afc72bff873d9b31479b2c38392545ed4509e72"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/icon-review/release-6c5f66f-restored-source.log",
+      "sha256": "cdf15e438312d8792179ecd468aa3dc1db83cfc09ede7b9bf5ca0a5bb4cfd76f"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/icon-review/release-6c5f66f-restored-scope.log",
+      "sha256": "90141e66195205c09573d3ccf31a8eeefb7cf472c50a7a7bfcd232d19d7b50de"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/icon-review/release-6c5f66f-restored-drift.log",
+      "sha256": "cca4620c134a9e16e3bc8863b433dc98f2aa550eeba01a55ed999bcfcbafbabf"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/IconCI/xcode-opening-scheme-rewrite.patch",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "limitations": [
+    "This receipt provides source evidence only; full CI ER-2 is separate and no CI result is inferred.",
+    "The coordinator reported that opening Xcode after archive completion rewrote three shared scheme formatting/default attributes; those rewrites were preserved as diagnostics and restored before final independent clean-source checks.",
+    "This receipt does not provide compiled-icon, signed-package, simulator, installed-device or distribution evidence."
+  ]
+}
