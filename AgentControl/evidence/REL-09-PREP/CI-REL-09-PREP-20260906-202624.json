@@ -1,0 +1,199 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "CI-REL-09-PREP-20260906-202624",
+  "taskId": "REL-09-PREP",
+  "requirementId": "ER-2",
+  "evidenceClass": "unit",
+  "result": "passed",
+  "producerRole": "verifier",
+  "producerId": "screen-design-audit",
+  "observedAt": "2026-09-06T20:26:24Z",
+  "source": {
+    "commit": "31538cee04c3bf1ddddc3be152ae5fa0da56cef1",
+    "tree": "a954ab56b998f62c61c536f042207c8d89b94d0f",
+    "clean": true,
+    "version": "0.2.0",
+    "build": "9"
+  },
+  "gate": {
+    "id": "ci-full",
+    "exitCode": 0
+  },
+  "claims": [
+    "Independently verified the completed canonical scripts/ci.sh run.oq8W3w retained under main .derivedData/AbstractRelease9R2CI. All thirteen stages passed in the required order and the driver records final CI success.",
+    "The frozen source remains clean at commit 31538cee04c3bf1ddddc3be152ae5fa0da56cef1 and tree a954ab56b998f62c61c536f042207c8d89b94d0f, version 0.2.0 (9). Independently rehashed all 143 production files against the run manifest, SHA256 5ed43d1afa5cf4e7b94ac94f2e81b76a481df1a645c84faac1287463532ba429.",
+    "Toolchain evidence records Xcode 26.6 build 17F113, XcodeGen 2.46.0 and Swift 6.3.3. Generated-project parity, structural/source/privacy checks, Debug and Release simulator/device compilation, and exact unsigned release-product inspection all passed.",
+    "Re-extracted summaries and test trees directly from all five completed xcresult bundles without rerunning tests. They match the canonical extracted JSON byte-for-byte; independent canonical minimum and required-test checks passed.",
+    "All 386 tests passed with zero failures, skips or expected failures: golden iOS 19 of minimum 19; Watch unit 124 of minimum 123; phone unit 163 of minimum 161; Watch UI 62 of required 62; phone UI 18 of required 18.",
+    "All 23 Watch critical unit cases, 11 phone critical unit cases, 62 selected Watch UI cases and 18 selected phone UI cases were found as passed in the actual result trees. Coverage includes persist-first rollback/retry, migration and idempotent synchronization, privacy redaction, goal alert failures, failure recovery, expanded/large text, rectangular widgets and active/completion accessibility.",
+    "The required idle complication to picker before project-tap start, paused complication without resume, and warm navigation back to elapsed while preserving paused time cases all passed in the Watch UI results.",
+    "Total recorded stage duration is 2038 seconds (33 minutes 58 seconds), including Watch UI 1496 seconds (24 minutes 56 seconds) and phone UI 289 seconds (4 minutes 49 seconds). Actual result durations are retained separately in the sanitized verification summary.",
+    "Each complete xcresult bundle has an independently computed relative file manifest and SHA256. The run also binds the inspected unsigned four-component product manifest to the exact source commit/version; signed-package evidence remains separate.",
+    "Independently audited ten non-failing Watch UI runtime warnings. They are the same warning/test pairs in prior passed DesignCI source 53ec2e2 and IconCI source 6c5f66f, occur immediately after failure-dialog action taps, and are not associated with failed tests. The recovery tests preserve original state after cancel and verify successful retry; no new observable release regression is established by these results."
+  ],
+  "artifacts": [
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/AbstractRelease9R2CI/driver.log",
+      "sha256": "29712129274260dda4cc64eb403f75c4807127299e66596d54e89d4ae1912ae2"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/AbstractRelease9R2CI/run.oq8W3w/stages.tsv",
+      "sha256": "72d0265f6fe07dfbfd1f924090e2baf02970113aab5f669ccc1394b473975ed7"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/AbstractRelease9R2CI/run.oq8W3w/source-provenance/summary.json",
+      "sha256": "9aeaa9b6466d0aaa0aebade49b082ed312cd8260f98e9e574d5788d9b3a8e4a1"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/AbstractRelease9R2CI/run.oq8W3w/source-provenance/files.sha256",
+      "sha256": "5ed43d1afa5cf4e7b94ac94f2e81b76a481df1a645c84faac1287463532ba429"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/AbstractRelease9R2CI/run.oq8W3w/source-product-provenance.json",
+      "sha256": "e7b9c0d906bb251a596bfcaae1b356a7e3662f2788f37aec4d33166be49a301e"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/AbstractRelease9R2CI/run.oq8W3w/release-package-inspection/summary.json",
+      "sha256": "e1ebb85ecbcfd45aaaaaed760d8475c1f03f3bf4751fef570ad93a017379ac8b"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/AbstractRelease9R2CI/independent-verification-31538ce/summary.json",
+      "sha256": "7af367b43946e72fe78fea019189f975e3786ba7d245f32b712167dbfd023782"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/AbstractRelease9R2CI/independent-verification-31538ce/stage-logs.sha256",
+      "sha256": "b17eaa741c0855194aab483fbfa7f334fbb2689fc06cac2bc4390581dff3457f"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/AbstractRelease9R2CI/independent-verification-31538ce/runtime-warning-review.json",
+      "sha256": "af871698a0e4581728ca38130bde74429326f07a0701ff6ba710155bbe1b438e"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/AbstractRelease9R2CI/independent-verification-31538ce/golden-ios.summary.json",
+      "sha256": "36c41199aa6e6dc8df4740c50920014f3a4f67bc1f9d7ad3bc98c415e0cdeec3"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/AbstractRelease9R2CI/independent-verification-31538ce/golden-ios.tests.json",
+      "sha256": "062a1af1789e0824ba88768ec4c187ce0c7a53216cce3acdfa1f23521fc9bbbf"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/AbstractRelease9R2CI/independent-verification-31538ce/golden-ios.check.log",
+      "sha256": "470a4824897377c06022a7d5e860509b4d28ff9aa20844a5739a61a608219320"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/AbstractRelease9R2CI/independent-verification-31538ce/golden-ios.xcresult-files.sha256",
+      "sha256": "969afec6bbcc0fd6fb12ff09de1f29e18397f3ce085130a7bbaf9449ffbaa78c"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/AbstractRelease9R2CI/independent-verification-31538ce/watch-unit.summary.json",
+      "sha256": "baa5590b27a52cb69c5a5f954a0b48115ab0b3c9dd002c477baf518d9048cded"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/AbstractRelease9R2CI/independent-verification-31538ce/watch-unit.tests.json",
+      "sha256": "ac625138c2844a7655753bc5bd1a6d494892fd3143f1e60cf63b9b3d7e387fc7"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/AbstractRelease9R2CI/independent-verification-31538ce/watch-unit.check.log",
+      "sha256": "b83cd2461e1cbda3a249be43a99b98b0cc122841e9933432deec2ef1c7816ced"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/AbstractRelease9R2CI/independent-verification-31538ce/watch-unit.xcresult-files.sha256",
+      "sha256": "707852d8b3878952c3cd813744c0b043e78f023ecc21e8fb5451ec9fd2ad7711"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/AbstractRelease9R2CI/independent-verification-31538ce/phone-unit.summary.json",
+      "sha256": "441eabf9556b627a5c2cecf86e31ee5b04be270464bc1e5e11ec7605f21ca902"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/AbstractRelease9R2CI/independent-verification-31538ce/phone-unit.tests.json",
+      "sha256": "1278e636d1709b8711067fb41a93be343d031d592b0ddde3e09087933af8eb2f"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/AbstractRelease9R2CI/independent-verification-31538ce/phone-unit.check.log",
+      "sha256": "2b11011f099e7ea50e62801dd067c55f122e1f670e6821ce828a53382620821a"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/AbstractRelease9R2CI/independent-verification-31538ce/phone-unit.xcresult-files.sha256",
+      "sha256": "65a91396ed36820b3830dd263a8686149fc44219f2aba56de2a460fd5fa3a65b"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/AbstractRelease9R2CI/independent-verification-31538ce/watch-ui.summary.json",
+      "sha256": "952f7d9e2aaf8f1d2f44414025663e3c6cc7c282b1ac01df72607cc72c9f60b2"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/AbstractRelease9R2CI/independent-verification-31538ce/watch-ui.tests.json",
+      "sha256": "26041308c106f2569f6b1c1677db06c7e52caa3fac456639aa36f7afeca8c4e4"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/AbstractRelease9R2CI/independent-verification-31538ce/watch-ui.check.log",
+      "sha256": "8756d5a24683eb192f00e507161dd323f87c17995b8d9529c4220b29fb21d2ea"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/AbstractRelease9R2CI/independent-verification-31538ce/watch-ui.xcresult-files.sha256",
+      "sha256": "33d6ff45b15a0f61acb0bbf750ddadc31fd64297eadc91458e7e927f2c3896c2"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/AbstractRelease9R2CI/independent-verification-31538ce/phone-ui.summary.json",
+      "sha256": "6a59ff8815ed1c5674bcafe1ccbc22259b9a1a81fa64af81ed827343cd07fbea"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/AbstractRelease9R2CI/independent-verification-31538ce/phone-ui.tests.json",
+      "sha256": "fdfa3e822f850e262e71aab85378345ee0595dac8f23380f0004ac1be5c1842e"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/AbstractRelease9R2CI/independent-verification-31538ce/phone-ui.check.log",
+      "sha256": "19a83dd6da5c6ad017a768c1f9e9264b7c5ac830df7b5981b096980468674ce5"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/AbstractRelease9R2CI/independent-verification-31538ce/phone-ui.xcresult-files.sha256",
+      "sha256": "8de769fce8e54d007d91303b098fac1c0d39e781f437c06433534f0bfd68b538"
+    }
+  ],
+  "limitations": [
+    "The Watch UI result contains ten SwiftUI warnings: Publishing changes from within view updates is not allowed, this will cause undefined behavior. Source inspection suggests synchronous published-state clearing from alert dismissal bindings, but no stack or source URL is provided by the result and no console log is available. This is not proven framework-only or harmless; a focused follow-up and physical failure-recovery observation remain appropriate.",
+    "This is simulator and engineering CI evidence, not physical installation/upgrade/smoke, real WidgetKit delivery, App Store upload/processing, privacy PDF generation, App Review approval or public release authority. The warm URL case uses the debug app-hosted runtime route harness rather than actual WidgetKit delivery.",
+    "The default Watch CI destination is the 46 mm simulator. This receipt does not claim new smallest-Watch physical or device appearance observations.",
+    "The passed run binds only final build 9 attempt-2 source 31538ce. Superseded build 7/build 8 interrupted runs and initial build 9 formatting failure remain historical evidence; no earlier result is relabeled. The later REL-10 verification-tool commit was not this binary or CI source.",
+    "The verifier did not rerun tests, modify product source or task state, open Xcode, or query/operate simulators or physical devices. Read-only result extraction and unique evidence/report writes were the only verification actions."
+  ],
+  "authorityReference": {
+    "kind": "signed-record",
+    "reference": "REL-09-PREP records owner-authorized abstract-icon release preparation and bounded disclosure corrections; WAT-OWNER-DECISIONS.md section4 retains signing/upload authority. Physical actions and App Review/public release remain excluded until outstanding physical acceptance.",
+    "confirmedBy": "owner",
+    "confirmedAt": "2026-09-06",
+    "authorityIds": [
+      "repository-write",
+      "signing-upload"
+    ]
+  },
+  "publicReleaseApproved": false
+}

@@ -1,0 +1,272 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "SRC-REL-09-PREP-MATERIALS-20260906-202422",
+  "taskId": "REL-09-PREP",
+  "requirementId": "ER-4",
+  "evidenceClass": "source",
+  "result": "passed",
+  "producerRole": "verifier",
+  "producerId": "native-phone-materials-verifier",
+  "observedAt": "2026-09-06T20:24:22Z",
+  "source": {
+    "commit": "31538cee04c3bf1ddddc3be152ae5fa0da56cef1",
+    "tree": "a954ab56b998f62c61c536f042207c8d89b94d0f",
+    "clean": true,
+    "version": "0.2.0",
+    "build": "9"
+  },
+  "gate": {
+    "id": "store-materials-review",
+    "exitCode": 0
+  },
+  "claims": [
+    "Read the REL-09-PREP contract, candidate identity, WAT-33 preparation record and the staged materials; independently confirmed the frozen checkout is clean at the exact task result commit/tree and git diff --check exits zero.",
+    "Phone and Watch before/after capture source receipts all identify the same clean 0.2.0 (9) candidate, 143 production files and production manifest SHA-256 5ed43d1afa5cf4e7b94ac94f2e81b76a481df1a645c84faac1287463532ba429; independently recomputed each retained manifest digest.",
+    "Visually inspected all six selected iPhone store images plus the additional light Settings capture. The active light/dark timer, project picker, notes/tags, report and drill-down are readable and contain fictitious data. The displayed report segments 1:35:00, 1:30:00 and 1:25:00 sum to the displayed 4:30:00.",
+    "Independently verified all selected phone images and all six original light exports are 1320 by 2868 opaque 8-bit RGB PNGs. Every image matches its manifest digest and an unmodified raw xcresult export. The Settings capture shows 0.2.0 (9) and corrected optional Watch notification copy; it is not in the selected store set.",
+    "Visually inspected all five Watch images at native 416 by 496 resolution. Project selection, Open Timer and Options, goal presets, running elapsed/goal progress, End/Pause/New controls and saved billable/paused summary are readable. Scrollable screens continue below the viewport without obscuring their primary content.",
+    "Independently verified each Watch store image is an opaque 8-bit RGB PNG, matches its source-bound manifest digest and is byte-identical to the original DRAFT export and raw xcresult image. The original draftOnly=true and releaseCandidate=false manifest is preserved, and the friendly-name manifest retains those classifications.",
+    "Read the retained test summaries and screenshot test source: six light phone capture tests, one dark phone capture test and one Watch capture test passed; the Watch test creates five images from separate populated, active and ended Debug fixtures. This receipt reviews those retained results and does not claim to have rerun tests.",
+    "Reviewed all seven staged English metadata files against current source behavior. Name is WellSpent: Time Tracker; description and review instructions correctly describe paired exchange, optional Watch goal alerts, idle project selection and running/paused reentry without automatic start/resume. The new notes contain no inherited build-2 physical-video claim or claim of build-9 physical testing.",
+    "Reviewed the staged public-copy draft against the existing paired-data policy/support drafts and production behavior. It explains Watch Connectivity, optional local notifications, default private names and offline preferences, iPhone-scoped erase and unsynchronized Watch retention risks. Follow-up corrections explicitly make Watch optional and direct the name preference to WellSpent Settings on iPhone. The draft remains unpublished with its effective date deferred to actual publication.",
+    "Independently compared all four source privacy manifests with the retained signed archive and previously extracted distribution export: each component is semantically identical to its source manifest, declares NSPrivacyTracking=false and has an empty collected-data-types array. This is source/compiled-manifest reconciliation, not the Xcode aggregate privacy PDF.",
+    "Read the separate external-service blocked receipt. It records credentials blocking binary upload and browser-extension local-file access blocking screenshot upload, while the 0.2.0 draft metadata is staged. No successful processing, selected build, screenshot upload, App Review submission or public release is inferred.",
+    "This verifier changed no source, task state, screenshots, manifests, metadata or public content and queried no device, simulator, browser or external service; the only write is this unique append-only source-review receipt."
+  ],
+  "artifacts": [
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/screenshots/phone-store/manifest.json",
+      "sha256": "d091057300a12f3fd7ad4e64b865a236fce08337b75e02cc1caba91bebab7fe1"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/screenshots/phone-light/manifest.json",
+      "sha256": "d3381d3286d8bebd0712df4bd62c2ce898739de393f10a2379accf73bd31a2c3"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/screenshots/watch-store/manifest.json",
+      "sha256": "a3d3c1f04ea37ac0642338b27a94b8e52f1ef3f29375b9b9bd9ac0356a51123c"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/screenshots/watch-assets/manifest.json",
+      "sha256": "a57cfff319b2fe15a9c48899988e9b64be96abe37aafd40d524d530cd8e0ca8f"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/screenshots/phone-light.xcresult.summary.json",
+      "sha256": "982cce4f0cbbf4c6dad51291bc5866d060192d6adfeb0d50a16a9e932c61168e"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/screenshots/phone-dark.xcresult.summary.json",
+      "sha256": "bb52c45e0257230c0022132812891c3388d988e37c9eb74774c8e89ebfca88a4"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/screenshots/watch.xcresult.summary.json",
+      "sha256": "38469604b50f405329e542ecb013b684833a7292e3953d3e752a9b6932dff8e7"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/public-copy-draft.md",
+      "sha256": "4c3bc01ca9715997bcf5df145aefae52a588a2d33d95faaa1c5dc3dd26d3149e"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/screenshots/source-before/summary.json",
+      "sha256": "9aeaa9b6466d0aaa0aebade49b082ed312cd8260f98e9e574d5788d9b3a8e4a1"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/screenshots/source-before/files.sha256",
+      "sha256": "5ed43d1afa5cf4e7b94ac94f2e81b76a481df1a645c84faac1287463532ba429"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/screenshots/source-after-phone/summary.json",
+      "sha256": "9aeaa9b6466d0aaa0aebade49b082ed312cd8260f98e9e574d5788d9b3a8e4a1"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/screenshots/source-after-phone/files.sha256",
+      "sha256": "5ed43d1afa5cf4e7b94ac94f2e81b76a481df1a645c84faac1287463532ba429"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/screenshots/source-before-watch/summary.json",
+      "sha256": "9aeaa9b6466d0aaa0aebade49b082ed312cd8260f98e9e574d5788d9b3a8e4a1"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/screenshots/source-before-watch/files.sha256",
+      "sha256": "5ed43d1afa5cf4e7b94ac94f2e81b76a481df1a645c84faac1287463532ba429"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/screenshots/source-after-watch/summary.json",
+      "sha256": "9aeaa9b6466d0aaa0aebade49b082ed312cd8260f98e9e574d5788d9b3a8e4a1"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/screenshots/source-after-watch/files.sha256",
+      "sha256": "5ed43d1afa5cf4e7b94ac94f2e81b76a481df1a645c84faac1287463532ba429"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/screenshots/phone-store/01-active-timer.png",
+      "sha256": "ad1d101cd6de67603d25e53eb51ed3dfd9bb4610797dcf4a3e91fca31268dd65"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/screenshots/phone-store/02-projects.png",
+      "sha256": "8e2696999440955fcb2591cba13500029536c53ffb026d3c8dde36ca12214cab"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/screenshots/phone-store/03-notes-and-tags.png",
+      "sha256": "3d12c9744a2263240b092cb67aa638c387a711fc4e2f8b560c4c9e596741e7de"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/screenshots/phone-store/04-day-report.png",
+      "sha256": "c793bcb7ed02184e06b671cbf4f6e122a6c3ad07f49b0f806d066f765e2a6a07"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/screenshots/phone-store/05-exact-records.png",
+      "sha256": "a24b9bef3e77ab45027a6a4f098029af5a6403c37684c79d3ed4d156a9cd648e"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/screenshots/phone-store/06-dark-timer.png",
+      "sha256": "6f2deff64b3662137a92d2d117d8999e3206aab8b2b164a20793a2a4f4c8ffba"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/screenshots/watch-store/01-projects.png",
+      "sha256": "dc4f3ef1833a3aa9c5ec645eb68301c0bf07d9290931f01b981a830da8899e0e"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/screenshots/watch-store/02-goal-setup.png",
+      "sha256": "8461c290c09e8658d7127a3698c357a8c3385a8df48b20ef7476fa9af237bf97"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/screenshots/watch-store/03-active-metrics.png",
+      "sha256": "4d07805fa16582f56ed1ac22884180f5fb54d5d1a239496028fdc1cc21aeffd4"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/screenshots/watch-store/04-controls.png",
+      "sha256": "2ea4b15ffa1d769b1a372c6e7f3228b59bd97a1d8b3e195c0157caad84421a9b"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/screenshots/watch-store/05-summary.png",
+      "sha256": "532b0d97db51f61177cc71b6813afcf319106dec2050d5d094e077ce53e4a9ea"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/metadata/en-US/description.txt",
+      "sha256": "b8784b54b2e0025a5d62ab4d58cad04ad3cad2cfa3ed95086377b9a64758ed85"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/metadata/en-US/keywords.txt",
+      "sha256": "f7d21ff8941b3ca6c222bc7ae77fae86dcd2435f0a249767c6842a2a28ca1724"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/metadata/en-US/name.txt",
+      "sha256": "1571df98cc7575da2b2ccc7ab793076d39f3a2174fe5caffa599f6001fd45dd1"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/metadata/en-US/promotional_text.txt",
+      "sha256": "dbc308e6026999abd4e2470d037896b1985cff4be5a6bc8cb2744eb78c7c913d"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/metadata/en-US/review_notes.txt",
+      "sha256": "8f484b4cbd2d8f0f9410cdba1b6ab825826799c0e1370df57fea42228bf019e9"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/metadata/en-US/subtitle.txt",
+      "sha256": "24a7d72b1282584ae52340cc13715e6fd9b42cb4d2351f7bca5b6c9888301449"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/metadata/en-US/whats_new.txt",
+      "sha256": "3f8df24e0c9c0b7fa20ac26656d8e008c5b9a4aaacea1dc955e12b8a5934e5cb"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/independent-archive-31538ce/phone-privacy.json",
+      "sha256": "68d410a91d928b1580feeebb4a9357c0f939217e07561c76cf4fa20bf01ed70d"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/independent-archive-31538ce/phone-expected-privacy.json",
+      "sha256": "68d410a91d928b1580feeebb4a9357c0f939217e07561c76cf4fa20bf01ed70d"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/independent-archive-31538ce/phone-widget-privacy.json",
+      "sha256": "286a04a3fef792a821da525bd5854259d534f78eab8ebebe758de448d984f05e"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/independent-archive-31538ce/phone-widget-expected-privacy.json",
+      "sha256": "286a04a3fef792a821da525bd5854259d534f78eab8ebebe758de448d984f05e"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/independent-archive-31538ce/watch-privacy.json",
+      "sha256": "ba02bb66ecf872287c8c5c87b9d566757e0cc0122172a7c2e0d69acdd211cc93"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/independent-archive-31538ce/watch-expected-privacy.json",
+      "sha256": "ba02bb66ecf872287c8c5c87b9d566757e0cc0122172a7c2e0d69acdd211cc93"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/independent-archive-31538ce/watch-widget-privacy.json",
+      "sha256": "ba02bb66ecf872287c8c5c87b9d566757e0cc0122172a7c2e0d69acdd211cc93"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/independent-archive-31538ce/watch-widget-expected-privacy.json",
+      "sha256": "ba02bb66ecf872287c8c5c87b9d566757e0cc0122172a7c2e0d69acdd211cc93"
+    },
+    {
+      "kind": "repository",
+      "locator": "AgentControl/evidence/REL-09-PREP/EXT-REL-09-PREP-20260906-200500.json",
+      "sha256": "27fe893a3d190b97624848b1797fac3f73d2254ba339eb19c24084558c865df7"
+    }
+  ],
+  "limitations": [
+    "Passed applies only to REL-09-PREP ER-4 source/materials review. The task remains subject to separate CI, signed-package, external-service, physical and owner-authority gates; no submission-ready or public-release verdict is made.",
+    "All captured app views are Debug Simulator fixtures using fictitious local data from candidate source. They are not captures of the signed distribution executable, physical devices or one end-to-end paired transport session. The original Watch exporter draft classification remains authoritative.",
+    "The five Watch screenshots show native app views, not real watch-face complications, Smart Stack hosting or system widget interaction. Actual idle/running/paused reentry, Always On, haptics, notifications, accessibility and installed icon appearances still require the deferred physical acceptance.",
+    "The active Watch image faithfully displays whole-second truncation: elapsed 2:07 and remaining 27:52 can sum to 29:59 for a 30-minute goal because both fractional values are truncated. Underlying source calculations retain fractional values; this source review neither changes nor certifies time-accounting behavior.",
+    "A source/compiled-manifest match does not substitute for the pending Xcode aggregate privacy PDF, physical retention/privacy validation or verification of actual public-page publication.",
+    "External staging status is taken from the coordinator-produced blocked receipt, not a fresh browser observation by this verifier. Binary upload/processing, screenshot upload, review-contact confirmation and public-copy publication remain incomplete.",
+    "This verifier previously contributed iPhone design implementation and draft wording suggestions in separate earlier tasks. This receipt evaluates the final capture/export provenance, actual image contents and source-supported staged statements; it does not claim a new independent approval of those original design choices."
+  ],
+  "authorityReference": {
+    "kind": "user-message",
+    "reference": "September 6 owner requested preparation possible without physical iPhone or Watch access; the coordinator explicitly authorized one unique REL-09-PREP ER-4 verifier receipt after read-only phone, Watch and copy review.",
+    "confirmedBy": "owner via coordinator",
+    "confirmedAt": "2026-09-06",
+    "authorityIds": [
+      "repository-write"
+    ]
+  },
+  "publicReleaseApproved": false
+}

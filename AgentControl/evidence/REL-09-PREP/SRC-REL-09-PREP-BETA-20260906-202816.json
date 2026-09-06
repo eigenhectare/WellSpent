@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "SRC-REL-09-PREP-BETA-20260906-202816",
+  "taskId": "REL-09-PREP",
+  "requirementId": "ER-4",
+  "evidenceClass": "source",
+  "result": "passed",
+  "producerRole": "verifier",
+  "producerId": "native-phone-materials-verifier",
+  "observedAt": "2026-09-06T20:28:16Z",
+  "source": {
+    "commit": "31538cee04c3bf1ddddc3be152ae5fa0da56cef1",
+    "tree": "a954ab56b998f62c61c536f042207c8d89b94d0f",
+    "clean": true,
+    "version": "0.2.0",
+    "build": "9"
+  },
+  "gate": {
+    "id": "store-materials-review",
+    "exitCode": 0
+  },
+  "claims": [
+    "Supplement to SRC-REL-09-PREP-MATERIALS-20260906-202422 for three subsequently staged local beta text files only; the original source/materials receipt remains unchanged.",
+    "Read and hashed BetaDescription.txt, WhatToTest.txt and README.txt. They consistently identify proposed 0.2.0 (9), exact commit 31538cee04c3bf1ddddc3be152ae5fa0da56cef1 and tree a954ab56b998f62c61c536f042207c8d89b94d0f. The documented IPA digest ce086d92fb86e9d3ef5be065b0f5789aa9cbf6a148c9e60949feef48580e128e matches the earlier direct read/hash verification.",
+    "Beta description and instructions describe the implemented timer, goals, annotations, reports, paired exchange and private system surfaces without inventing accounts, subscriptions or a developer server. The corrected wording says refreshed Track screen and review Reports, without implying a separate Reports redesign.",
+    "Testing steps explicitly require idle complication navigation to Projects before deliberate selection/start and reopening an existing paused timer without automatic resume. Instructions preserve counted-time pause exclusion, exact project-switch boundary, saved history, offline acknowledgement and conflict-review behavior.",
+    "README references the exact independent passed CI receipt and matching SHA-256 f60baa2fc774aa3547de809697bf6a164ebde8e477a2ce5d661b5d923e7f28fc. Its all-thirteen-stages and 386-passed-tests statements match that receipt. The ten pre-existing non-failing SwiftUI warnings are retained as a follow-up rather than omitted or declared harmless.",
+    "The three beta files remain local drafts. They expressly authorize no tester invitation, cohort enrollment or destructive testing; direct testers to fictitious data and privacy-safe reports; retain actual public-build-2 upgrade provenance limits; and do not claim installation, physical acceptance, beta exit or successful Apple upload/processing.",
+    "Only this unique append-only supplement was written. Existing evidence, beta files, task states and product source were not changed. No devices, simulators, GUI, browser, external service or test run was used for this final read/hash review."
+  ],
+  "artifacts": [
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/beta/BetaDescription.txt",
+      "sha256": "95d69aa7ca0d8d954b6ce849ac398532e1f0aa22923141573bacbc1c888464cb"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/beta/WhatToTest.txt",
+      "sha256": "b0a99abd706c93b688c36c68db7ea9c2857206f7fb39b4026f0dfb472bb923d0"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/beta/README.txt",
+      "sha256": "84e5fd3f13ae3eb7e2a187d36c6df54d59c851b7af3875e3e0f2ef1c8444b9bd"
+    },
+    {
+      "kind": "repository",
+      "locator": "AgentControl/evidence/REL-09-PREP/CI-REL-09-PREP-20260906-202624.json",
+      "sha256": "f60baa2fc774aa3547de809697bf6a164ebde8e477a2ce5d661b5d923e7f28fc"
+    },
+    {
+      "kind": "repository",
+      "locator": "AgentControl/evidence/REL-09-PREP/SRC-REL-09-PREP-MATERIALS-20260906-202422.json",
+      "sha256": "072fbca4ad7ceb7bf91015879c77e01336cd9a3a5f5d320b99c15cf5109e6076"
+    }
+  ],
+  "limitations": [
+    "This supplement verifies local beta text preparation only. It does not authorize or record saving beta metadata externally, adding testers/groups, sending invitations, external beta review, App Review submission or public release.",
+    "CI assertions were reconciled with the independent passed receipt; tests were not rerun and warning behavior was not newly investigated. All physical, signed-package, external-service and existing materials limitations remain separate.",
+    "The clean candidate identity and completed source/materials gate are those independently verified in the original materials receipt and confirmed by the referenced CI receipt. No new build or source-state change is claimed.",
+    "Upload remains blocked pending Xcode account credentials. Public privacy/support publication, processed assets, review-contact confirmation and the deferred candidate-bound device session are still outstanding."
+  ],
+  "authorityReference": {
+    "kind": "user-message",
+    "reference": "The September 6 owner authorized preparation without physical devices; the coordinator explicitly requested final read/hash review of the three corrected local beta drafts and one unique ER-4 source supplement.",
+    "confirmedBy": "owner via coordinator",
+    "confirmedAt": "2026-09-06",
+    "authorityIds": [
+      "repository-write"
+    ]
+  },
+  "publicReleaseApproved": false
+}

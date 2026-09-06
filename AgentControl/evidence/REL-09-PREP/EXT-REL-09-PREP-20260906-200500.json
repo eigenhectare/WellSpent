@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "EXT-REL-09-PREP-20260906-200500",
+  "taskId": "REL-09-PREP",
+  "requirementId": "ER-5",
+  "evidenceClass": "external-service",
+  "result": "blocked",
+  "producerRole": "release-steward",
+  "producerId": "codex-release-steward",
+  "observedAt": "2026-09-06T20:05:00Z",
+  "source": {
+    "commit": "31538cee04c3bf1ddddc3be152ae5fa0da56cef1",
+    "tree": "a954ab56b998f62c61c536f042207c8d89b94d0f",
+    "clean": true,
+    "version": "0.2.0",
+    "build": "9"
+  },
+  "gate": {
+    "id": "app-store-staging",
+    "exitCode": 70
+  },
+  "claims": [
+    "Created version 0.2.0 Prepare for Submission and saved the new description, promotional text, release notes and build-9 review instructions with manual release retained.",
+    "Current live App Store Connect version 0.1.0 shows build 2 selected; uploaded build 4 remains a distinct TestFlight record.",
+    "Command-line distribution export succeeded and passed independent package inspection, but upload failed before success because Xcode account credentials were unavailable.",
+    "The new version inherited obsolete iPhone screenshots; these were cleared from its draft. Uploading six replacement files was blocked by browser-extension local-file access.",
+    "No physical devices were queried or mutated, no tester invitation was sent, and no App Review submission or public release occurred."
+  ],
+  "artifacts": [
+    {
+      "kind": "external",
+      "locator": "https://appstoreconnect.apple.com/apps/6807058949/distribution/ios/version/inflight",
+      "sha256": null
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/external-staging-observation.json",
+      "sha256": "0045062b378a46bdca89aab2bd5568396856865f94c8c802ddd604b074e66de8"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/attempt-2/upload.log",
+      "sha256": "94d2d5ffc9e56effb90f724b740d446cb79127026ef9eb031167169a7394d758"
+    }
+  ],
+  "limitations": [
+    "No successful upload validation, server processing, selected build or screenshot upload is claimed.",
+    "Xcode aggregate privacy PDF remains pending while the Mac is locked; compiled-manifest reconciliation is separate.",
+    "Review-contact field state could not be reliably confirmed through browser automation.",
+    "Public support/privacy pages remain unchanged and need the prepared Watch-aware copy before release.",
+    "Exact physical acceptance and any separately authorized destructive upgrade/retention cases remain pending."
+  ],
+  "authorityReference": {
+    "kind": "signed-record",
+    "reference": "WAT-OWNER-DECISIONS.md section 4 authorizes archive/export and submission-workflow upload. The September 6 user requested all nonphysical preparation and deferred physical iPhone/Watch tests.",
+    "confirmedBy": "owner",
+    "confirmedAt": "2026-09-06",
+    "authorityIds": [
+      "repository-write",
+      "signing-upload"
+    ]
+  },
+  "publicReleaseApproved": false
+}

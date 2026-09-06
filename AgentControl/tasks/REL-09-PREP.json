@@ -3,7 +3,7 @@
   "taskId": "REL-09-PREP",
   "title": "Prepare final abstract-icon update without physical devices",
   "type": "release",
-  "status": "in_progress",
+  "status": "blocked",
   "risk": "medium",
   "outcome": "Freeze WellSpent 0.2.0 (9), validate the exact candidate, and stage its App Store update while physical acceptance remains pending.",
   "assignment": {
@@ -145,7 +145,12 @@
     "WAT-27-STORE-MATERIALS-DRAFT.md",
     "WAT-28-BETA-RELEASE-RUNBOOK.md"
   ],
-  "blocker": null,
+  "blocker": {
+    "kind": "authentication",
+    "owner": "owner",
+    "reference": "WAT-33-UPDATE-RELEASE.md; AgentControl/evidence/REL-09-PREP/EXT-REL-09-PREP-20260906-200500.json",
+    "resumeEvent": "The Mac is unlocked and Xcode account access is restored for validation/upload and Organizer privacy report; Chrome local-file uploads are enabled or the owner manually uploads the prepared screenshots. Resume external staging, reviewer-contact confirmation and the separately authorized public-copy/physical acceptance steps."
+  },
   "result": {
     "commit": "31538cee04c3bf1ddddc3be152ae5fa0da56cef1",
     "tree": "a954ab56b998f62c61c536f042207c8d89b94d0f"

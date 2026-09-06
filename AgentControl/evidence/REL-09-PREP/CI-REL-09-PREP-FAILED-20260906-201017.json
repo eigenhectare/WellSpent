@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "CI-REL-09-PREP-FAILED-20260906-201017",
+  "taskId": "REL-09-PREP",
+  "requirementId": "ER-2",
+  "evidenceClass": "unit",
+  "result": "failed",
+  "producerRole": "release-steward",
+  "producerId": "codex-release-steward",
+  "observedAt": "2026-09-06T20:10:17Z",
+  "source": {
+    "commit": "ad367038b1a746933eb114b6fa724fcd40c6c9e3",
+    "tree": "9944e7cd958ceea669c9017ed09b560120034fdf",
+    "clean": true,
+    "version": "0.2.0",
+    "build": "9"
+  },
+  "gate": {
+    "id": "ci-full",
+    "exitCode": 1
+  },
+  "claims": [
+    "The initial frozen build-9 full-CI attempt failed in source-gates because the new privacy error assignment exceeded the formatting line-length limit.",
+    "No passed full-CI claim is made for this attempt. Its archive and logs remain at their original paths.",
+    "A formatting-only follow-up commit31538cee04c3bf1ddddc3be152ae5fa0da56cef1 was frozen in a new checkout and tested with a fresh CI directory and archive; this receipt does not assert that later result."
+  ],
+  "artifacts": [
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/AbstractRelease9CI/run.vSRKmq/stages.tsv",
+      "sha256": "6e0609fc5093248319faac80d8711e46a16509b6c5b34a43904bb1a06480dce5"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/AbstractRelease9CI/driver.log",
+      "sha256": "4cd3b8d13a2358dceb1febd010ce03aab39b9de95c2008612182c468db197f8b"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/source-receipt/summary.json",
+      "sha256": "edb898a0492542fd94f5439a4d676fbe26c9241264bdfe28845db560af6de0c3"
+    }
+  ],
+  "limitations": [
+    "This receipt records the failed attempt only; any later passed evidence must bind the later exact source.",
+    "Neither this attempt nor its source receipt provides physical-device, upload or App Review evidence."
+  ],
+  "authorityReference": {
+    "kind": "user-message",
+    "reference": "September 6 owner request to complete nonphysical App Store preparation.",
+    "confirmedBy": "owner",
+    "confirmedAt": "2026-09-06",
+    "authorityIds": [
+      "repository-write"
+    ]
+  },
+  "publicReleaseApproved": false
+}

@@ -1,5 +1,7 @@
 # REL-03 App Store release preparation
 
+Current update preparation: see [WAT-33-UPDATE-RELEASE.md](WAT-33-UPDATE-RELEASE.md) for 0.2.0 (9), its exact source, store staging and remaining physical/external gates. Earlier records below remain historical and are not evidence for the new candidate.
+
 Watch-candidate boundary: the historical iPhone readiness checks below are not
 sign-off for the paired app. Use WAT-26-ARCHIVE-VALIDATION.md,
 WAT-27-STORE-MATERIALS-DRAFT.md and WAT-28-BETA-RELEASE-RUNBOOK.md for the joint
