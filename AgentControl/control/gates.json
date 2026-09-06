@@ -248,6 +248,18 @@
       "resources": [
         "app-store-connect"
       ]
+    },
+    {
+      "id": "distribution-icon-regression",
+      "description": "Check adaptive compiled-icon appearance, metadata and digest validation against positive and negative fixtures.",
+      "tier": "focused",
+      "evidenceClass": "source",
+      "argv": [
+        "bash",
+        "scripts/watch-distribution-icon-regression-tests.sh"
+      ],
+      "arguments": [],
+      "resources": []
     }
   ]
 }

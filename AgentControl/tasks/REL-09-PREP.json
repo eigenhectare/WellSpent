@@ -146,5 +146,8 @@
     "WAT-28-BETA-RELEASE-RUNBOOK.md"
   ],
   "blocker": null,
-  "result": null
+  "result": {
+    "commit": "31538cee04c3bf1ddddc3be152ae5fa0da56cef1",
+    "tree": "a954ab56b998f62c61c536f042207c8d89b94d0f"
+  }
 }

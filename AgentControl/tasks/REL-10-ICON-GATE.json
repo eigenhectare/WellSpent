@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "taskId": "REL-10-ICON-GATE",
+  "title": "Validate adaptive light and dark icons in distribution exports",
+  "type": "chore",
+  "status": "ready",
+  "risk": "medium",
+  "outcome": "The distribution export gate verifies the declared light/dark iPhone icons and default Watch icon and rejects malformed or missing renditions.",
+  "assignment": {
+    "role": "implementer",
+    "id": "native-watch"
+  },
+  "base": {
+    "branch": "main",
+    "commit": "31538cee04c3bf1ddddc3be152ae5fa0da56cef1"
+  },
+  "dependsOn": [
+    "ICON-04-ABSTRACT"
+  ],
+  "scope": {
+    "included": [
+      "Update the stale single-icon distribution check for adaptive icon catalogs.",
+      "Add focused negative cases for missing/duplicate/unexpected appearances and invalid icon metadata."
+    ],
+    "excluded": [
+      "Product source, version/build, signing/export/upload, devices, simulator state and external tracker changes."
+    ]
+  },
+  "writeScope": {
+    "paths": [
+      "scripts/watch-distribution-export-check.sh",
+      "scripts/watch-distribution-icon-check.jq",
+      "scripts/watch-distribution-icon-regression-tests.sh"
+    ],
+    "resources": []
+  },
+  "acceptanceCriteria": [
+    {
+      "id": "AC-1",
+      "statement": "Valid default/dark iPhone and default Watch renditions pass; missing, duplicate or invalid renditions fail."
+    },
+    {
+      "id": "AC-2",
+      "statement": "Export report preserves a default rendition digest and records each validated appearance independently."
+    }
+  ],
+  "evidenceRequirements": [
+    {
+      "id": "ER-1",
+      "criterionIds": [
+        "AC-1",
+        "AC-2"
+      ],
+      "evidenceClass": "source",
+      "gateIds": [
+        "distribution-icon-regression",
+        "agent-scope"
+      ],
+      "candidateBound": true
+    }
+  ],
+  "authorityRequirements": [
+    "repository-write"
+  ],
+  "legacyRefs": [
+    "WAT-33-UPDATE-RELEASE.md"
+  ],
+  "blocker": null,
+  "result": null
+}
