@@ -1,29 +1,30 @@
 {
   "schemaVersion": 1,
-  "taskId": "REL-08-PREP",
-  "title": "Prepare corrected abstract-icon update without physical devices",
+  "taskId": "REL-09-PREP",
+  "title": "Prepare final abstract-icon update without physical devices",
   "type": "release",
-  "status": "cancelled",
+  "status": "ready",
   "risk": "medium",
-  "outcome": "Freeze WellSpent 0.2.0 (8), validate the exact candidate, and stage its App Store update while physical acceptance remains pending.",
+  "outcome": "Freeze WellSpent 0.2.0 (9), validate the exact candidate, and stage its App Store update while physical acceptance remains pending.",
   "assignment": {
     "role": "release-steward",
     "id": "codex-release-steward"
   },
   "base": {
     "branch": "main",
-    "commit": "aa4ac1eb2a7dea76ab50d22243c62fa880d2d371"
+    "commit": "95e04c1c9d574bdce6b432798b4dcd7886934d1e"
   },
   "dependsOn": [
     "ICON-04-ABSTRACT"
   ],
   "scope": {
     "included": [
-      "Allocate build 8, regenerate project and freeze exact source.",
+      "Allocate build 9, regenerate project and freeze exact source.",
       "Run full CI and inspect signed archive and distribution export, privacy report and upload validation.",
       "Capture candidate-source simulator store screenshots and stage accurate metadata and processed build in App Store Connect.",
       "Record source, simulator, signed-package and external-service evidence separately; prepare remaining physical checklist.",
-      "Correct the Settings privacy wording to acknowledge optional Watch notifications and scope the backup statement to iPhone, without changing privacy behavior."
+      "Correct the Settings privacy wording to acknowledge optional Watch notifications and scope the backup statement to iPhone, without changing privacy behavior.",
+      "Correct two iPhone erasure messages to reflect retained Watch data and remove the unsupported no-transmission guarantee; clarify the existing privacy preference applies to goal alerts."
     ],
     "excluded": [
       "Physical-device queries, installations, tests or data mutations.",
@@ -42,8 +43,9 @@
       "AppStore/submission-status.txt",
       "AppStore/metadata",
       "AppStore/screenshots",
-      "AppStore/Abstract-0.2.0-8",
-      "WellSpentApp/Features/Settings/SettingsView.swift"
+      "AppStore/Abstract-0.2.0-9",
+      "WellSpentApp/Features/Settings/SettingsView.swift",
+      "WellSpentApp/App/AppEnvironment/WellSpentAppModel.swift"
     ],
     "resources": [
       "app-store-connect",
@@ -59,7 +61,7 @@
   "acceptanceCriteria": [
     {
       "id": "AC-1",
-      "statement": "A clean exact-source receipt identifies 0.2.0 (8) and generated-project parity."
+      "statement": "A clean exact-source receipt identifies 0.2.0 (9) and generated-project parity."
     },
     {
       "id": "AC-2",
@@ -144,8 +146,5 @@
     "WAT-28-BETA-RELEASE-RUNBOOK.md"
   ],
   "blocker": null,
-  "result": {
-    "commit": "95e04c1c9d574bdce6b432798b4dcd7886934d1e",
-    "tree": "e4a8c469f9a9418d6e21c72c7ea14f4a54bb6951"
-  }
+  "result": null
 }
