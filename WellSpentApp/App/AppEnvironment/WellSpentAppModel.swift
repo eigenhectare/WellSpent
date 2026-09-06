@@ -699,7 +699,8 @@ final class WellSpentAppModel: ObservableObject {
             return true
         } catch {
             refresh()
-            message = "WellSpent could not finish deleting data from this iPhone. Try again. This action does not erase the Watch’s separate cache or unsent work."
+            message =
+                "WellSpent could not finish deleting data from this iPhone. Try again. This action does not erase the Watch’s separate cache or unsent work."
             return false
         }
     }
