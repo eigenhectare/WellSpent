@@ -195,21 +195,24 @@ private struct WatchElapsedMetricPage: View {
 
     private func content(compact: Bool) -> some View {
         VStack(spacing: compact ? 2 : 4) {
-            HStack(spacing: 5) {
-                Image(systemName: run.state == .paused ? "pause.circle" : "stopwatch")
-                    .foregroundStyle(statusColor)
-                    .font(.caption.weight(.semibold))
-                    .accessibilityHidden(true)
-                Text(statusTitle)
-                    .font((compact ? Font.caption2 : Font.caption).weight(.semibold))
-                    .fixedSize(horizontal: false, vertical: true)
-                    .foregroundStyle(statusColor)
-                    .accessibilityIdentifier("watch.metrics.elapsed")
-                    .accessibilitySortPriority(5)
-                Spacer(minLength: 4)
-                ViewThatFits(in: .horizontal) {
-                    syncStatus.fixedSize(horizontal: true, vertical: false)
-                    syncStatus.labelStyle(.iconOnly)
+            if dynamicTypeSize.isAccessibilitySize {
+                VStack(spacing: 4) {
+                    statusText(compact: compact)
+                    syncStatus.fixedSize(horizontal: false, vertical: true)
+                }
+                .multilineTextAlignment(.center)
+            } else {
+                HStack(spacing: 5) {
+                    Image(systemName: run.state == .paused ? "pause.circle" : "stopwatch")
+                        .foregroundStyle(statusColor)
+                        .font(.caption.weight(.semibold))
+                        .accessibilityHidden(true)
+                    statusText(compact: compact)
+                    Spacer(minLength: 4)
+                    ViewThatFits(in: .horizontal) {
+                        syncStatus.fixedSize(horizontal: true, vertical: false)
+                        syncStatus.labelStyle(.iconOnly)
+                    }
                 }
             }
 
@@ -249,6 +252,15 @@ private struct WatchElapsedMetricPage: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         .padding(.horizontal, 10)
         .padding(.vertical, compact ? 2 : 4)
+    }
+
+    private func statusText(compact: Bool) -> some View {
+        Text(statusTitle)
+            .font((compact ? Font.caption2 : Font.caption).weight(.semibold))
+            .fixedSize(horizontal: false, vertical: true)
+            .foregroundStyle(statusColor)
+            .accessibilityIdentifier("watch.metrics.elapsed")
+            .accessibilitySortPriority(5)
     }
 
     @ViewBuilder

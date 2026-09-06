@@ -272,10 +272,12 @@ private struct ActiveTimerCard: View {
                     ? AnyLayout(VStackLayout(alignment: contentAlignment, spacing: 10))
                     : AnyLayout(HStackLayout(spacing: 10))
                 headingLayout {
-                    Label(
-                        run.state == .paused ? "Paused" : "Running",
-                        systemImage: run.state == .paused ? "pause.circle.fill" : "timer"
-                    )
+                    HStack(spacing: 8) {
+                        Image(systemName: run.state == .paused ? "pause.circle.fill" : "timer")
+                            .accessibilityHidden(true)
+                        Text(run.state == .paused ? "Paused" : "Running")
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
                     .font(.subheadline.weight(.semibold))
                     .foregroundStyle(palette.accent)
                     .padding(.horizontal, 12)

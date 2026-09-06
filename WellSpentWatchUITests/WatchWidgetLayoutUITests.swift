@@ -75,7 +75,25 @@ final class WatchWidgetLayoutUITests: XCTestCase {
         // A Link with an explicit accessible name can be a single Button node;
         // its text children correctly disappear from the accessibility tree.
         XCTAssertFalse((texts + app.buttons.allElementsBoundByIndex).isEmpty)
-        for text in texts { assertInside(text, region: region) }
+        for text in texts {
+            let children = text.descendants(matching: .staticText).allElementsBoundByIndex
+            if text.identifier == "watch.widget-preview", !children.isEmpty {
+                // SwiftUI can expose a combined widget as a StaticText whose
+                // frame includes the harness's five-point outer padding.
+                // Verify that wrapper separately and measure every real text
+                // and image against the unchanged, unpadded proposal.
+                let wrapper = region.insetBy(dx: -5, dy: -5)
+                XCTAssertEqual(text.frame.minX, wrapper.minX, accuracy: 0.5)
+                XCTAssertEqual(text.frame.maxX, wrapper.maxX, accuracy: 0.5)
+                XCTAssertEqual(text.frame.minY, wrapper.minY, accuracy: 0.5)
+                XCTAssertEqual(text.frame.maxY, wrapper.maxY, accuracy: 0.5)
+                for child in children + text.descendants(matching: .image).allElementsBoundByIndex {
+                    assertInside(child, region: region)
+                }
+            } else {
+                assertInside(text, region: region)
+            }
+        }
         if recent {
             // The whole accessory is a single widgetURL destination. There
             // must be no nested project shortcut that bypasses the picker.
