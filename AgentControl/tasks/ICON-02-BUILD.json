@@ -106,5 +106,8 @@
     "WAT-30-HOURGLASS-ICON.md"
   ],
   "blocker": null,
-  "result": null
+  "result": {
+    "commit": "6c5f66f954ee3f891e4b7e438ecd4eba60d2fc29",
+    "tree": "22e8d45f8c80c1205a6e0b153d8a1548cdf49978"
+  }
 }
