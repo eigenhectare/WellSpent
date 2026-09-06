@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "taskId": "DESIGN-00-INTEGRATION",
+  "title": "Integrate and validate the native design release candidate",
+  "type": "feature",
+  "status": "ready",
+  "risk": "medium",
+  "outcome": "Integrate the approved native visual port, guarantee state-aware Watch entry, and validate the combined candidate with source, build and simulator checks.",
+  "assignment": {
+    "role": "integrator",
+    "id": "codex-integrator"
+  },
+  "base": {
+    "branch": "main",
+    "commit": "4483ae6c2134886437ff2d0476d6c04477d213b8"
+  },
+  "dependsOn": [],
+  "scope": {
+    "included": [
+      "Integrate the three bounded design results and record independent review.",
+      "Handle shared project generation and localization reconciliation, and correct integration findings.",
+      "Reset active Watch presentation to elapsed when entered from a complication without mutating the timer.",
+      "Run the full clean-source CI gate and preserve exact-candidate evidence."
+    ],
+    "excluded": [
+      "Persistence schema and cross-device protocol changes.",
+      "External publication and physical-device certification.",
+      "Version allocation and signed archive, handled by the release steward."
+    ]
+  },
+  "writeScope": {
+    "paths": [
+      "AgentControl",
+      "WellSpentApp/Features/Track/TrackView.swift",
+      "WellSpentApp/Features/Shared/PresentationSupport.swift",
+      "WellSpentApp/App/Navigation/RootView.swift",
+      "WellSpentWatch/Features",
+      "WellSpentWatch/Resources",
+      "WellSpentWatchLocalization/Localizable.xcstrings",
+      "WellSpentWatchWidgets/WellSpentWatchStatusView.swift",
+      "WellSpentWatchWidgets/WellSpentWatchStatusWidget.swift",
+      "WellSpentWatchStore/WatchWidgetState.swift",
+      "WellSpentWatchTests/WatchWidgetStateTests.swift",
+      "WellSpentWatchUITests/WatchWidgetUITests.swift",
+      "WellSpentWatchUITests/WatchWidgetLayoutUITests.swift",
+      "WellSpentUITests",
+      "scripts/ci-watch-ui-tests.txt",
+      "scripts/ci-phone-ui-tests.txt",
+      "WellSpent.xcodeproj"
+    ],
+    "resources": [
+      "git-integration",
+      "ios-simulator",
+      "project-generation",
+      "release-status",
+      "version-build",
+      "watch-simulator"
+    ]
+  },
+  "acceptanceCriteria": [
+    {
+      "id": "AC-1",
+      "statement": "The combined native visual port passes independent source review and project/localization reconciliation."
+    },
+    {
+      "id": "AC-2",
+      "statement": "Full CI passes on a clean candidate including state-aware idle and paused URL entry, timer accounting and privacy regression coverage."
+    }
+  ],
+  "evidenceRequirements": [
+    {
+      "id": "ER-1",
+      "criterionIds": [
+        "AC-1"
+      ],
+      "evidenceClass": "source",
+      "gateIds": [
+        "agent-control",
+        "xcodegen-drift",
+        "privacy-audit"
+      ],
+      "candidateBound": false
+    },
+    {
+      "id": "ER-2",
+      "criterionIds": [
+        "AC-2"
+      ],
+      "evidenceClass": "unit",
+      "gateIds": [
+        "ci-full"
+      ],
+      "candidateBound": true
+    }
+  ],
+  "authorityRequirements": [
+    "repository-write"
+  ],
+  "legacyRefs": [
+    "WAT-OWNER-DECISIONS.md"
+  ],
+  "blocker": null,
+  "result": null
+}

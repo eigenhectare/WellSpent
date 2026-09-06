@@ -3,7 +3,7 @@
   "taskId": "DESIGN-01-PHONE",
   "title": "Port the approved iPhone timer design",
   "type": "feature",
-  "status": "ready",
+  "status": "in_review",
   "risk": "medium",
   "outcome": "Port the approved iPhone timer design.",
   "assignment": {
@@ -65,5 +65,8 @@
     "WAT-OWNER-DECISIONS.md"
   ],
   "blocker": null,
-  "result": null
+  "result": {
+    "commit": "55325a616617ea7d69f599ec981804cd604bea7e",
+    "tree": "c2ed2c69c3819a4e42abfa74bf6886f439129e6e"
+  }
 }

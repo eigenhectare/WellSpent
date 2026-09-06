@@ -3,7 +3,7 @@
   "taskId": "DESIGN-03-WIDGET",
   "title": "Align Watch complication navigation and visual surfaces",
   "type": "feature",
-  "status": "ready",
+  "status": "in_review",
   "risk": "medium",
   "outcome": "Align Watch complication navigation and visual surfaces.",
   "assignment": {
@@ -69,5 +69,8 @@
     "WAT-OWNER-DECISIONS.md"
   ],
   "blocker": null,
-  "result": null
+  "result": {
+    "commit": "81e16018bbd3ddb7dad3e8937b340dae6a7e32d5",
+    "tree": "b556db6e66a6fb1d3c32f78ef9dad9d0efc5a331"
+  }
 }

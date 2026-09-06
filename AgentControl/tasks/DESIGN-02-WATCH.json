@@ -3,7 +3,7 @@
   "taskId": "DESIGN-02-WATCH",
   "title": "Port the approved native Watch app design",
   "type": "feature",
-  "status": "ready",
+  "status": "in_progress",
   "risk": "medium",
   "outcome": "Port the approved native Watch app design.",
   "assignment": {
