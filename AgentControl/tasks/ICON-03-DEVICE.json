@@ -3,7 +3,7 @@
   "taskId": "ICON-03-DEVICE",
   "title": "Install and preflight the hourglass candidate on the physical pair",
   "type": "chore",
-  "status": "backlog",
+  "status": "ready",
   "risk": "medium",
   "outcome": "Install WellSpent 0.2.0 (6) through Xcode's paired Watch destination and independently verify both installed components before the physical design walkthrough.",
   "assignment": {

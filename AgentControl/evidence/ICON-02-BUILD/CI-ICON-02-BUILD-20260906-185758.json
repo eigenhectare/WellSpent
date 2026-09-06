@@ -1,0 +1,172 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "CI-ICON-02-BUILD-20260906-185758",
+  "taskId": "ICON-02-BUILD",
+  "requirementId": "ER-2",
+  "evidenceClass": "unit",
+  "result": "passed",
+  "producerRole": "verifier",
+  "producerId": "screen-design-audit",
+  "observedAt": "2026-09-06T18:57:58Z",
+  "source": {
+    "commit": "6c5f66f954ee3f891e4b7e438ecd4eba60d2fc29",
+    "tree": "22e8d45f8c80c1205a6e0b153d8a1548cdf49978",
+    "clean": true,
+    "version": "0.2.0",
+    "build": "6"
+  },
+  "gate": {
+    "id": "ci-full",
+    "exitCode": 0
+  },
+  "claims": [
+    "The fresh canonical scripts/ci.sh run.P0vsMs completed all 13 expected stages with passed records and the final CI passed marker; the coordinator reported the owned CI process exited 0.",
+    "Independent verification read all five finalized xcresult bundles and reran the canonical minimum-count and required-test-manifest JSON checks for every suite.",
+    "All 386 test executions passed with no failures, skips or expected failures: 19 golden contracts, 124 Watch unit tests, 163 phone unit tests, 62 Watch UI tests and 18 phone UI tests.",
+    "The complete Watch UI manifest passed, including idle picker-before-start, paused reentry without resuming, warm reentry preserving paused time, all widget families and rectangular layout/privacy/localization matrices.",
+    "The complete iPhone UI manifest passed, including active/completion accessibility audits, timer persistence, companion conflict recovery, privacy opt-in, local-data confirmation and Live Activity error handling.",
+    "Toolchain evidence records XcodeGen 2.46.0 and Xcode 26.6; generated-project, source/privacy/localization gates, all four simulator/device build stages and unsigned release-product checks passed.",
+    "The fresh source and product provenance identify exactly 6c5f66f954ee3f891e4b7e438ecd4eba60d2fc29, tree 22e8d45f8c80c1205a6e0b153d8a1548cdf49978, version 0.2.0 build 6, and production manifest SHA256 9680ce4d31c8a523209d838b9afc72bff873d9b31479b2c38392545ed4509e72.",
+    "After completion, this verifier independently confirmed the frozen worktree is clean and every one of the 143 production source files still matches the CI source manifest.",
+    "The verifier only inspected completed outputs and wrote unique evidence artifacts; no tests were restarted and no build, source, simulator or device operations were performed by the verifier during this verification."
+  ],
+  "artifacts": [
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/IconCI/run.P0vsMs/stages.tsv",
+      "sha256": "93958951deed6160037abeb6b1f2b0c5bba1252771a0bc8cb7af35d07e3597e8"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/IconCI/driver-clean.log",
+      "sha256": "4348716ec734b8e2b7aa156d59133138252cc6977b59a01292d3819f131dfd52"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/IconCI/run.P0vsMs/logs/toolchain.log",
+      "sha256": "f4fbb7a88714aa78b0b30f0261cc53eb44139d6225e919fa402d100c4078fa41"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/IconCI/run.P0vsMs/logs/source-gates.log",
+      "sha256": "e05549c58b584e0e77dbaa69460af0f71f5656d753909741194f1188fa19e37c"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/IconCI/run.P0vsMs/source-provenance/summary.json",
+      "sha256": "e66ab9c779ffd96c36747c4ae80f49b69fe1e29ba345075ad53c881f7c0e1912"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/IconCI/run.P0vsMs/source-provenance/files.sha256",
+      "sha256": "9680ce4d31c8a523209d838b9afc72bff873d9b31479b2c38392545ed4509e72"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/IconCI/run.P0vsMs/source-product-provenance.json",
+      "sha256": "acc89c23dbe01f61cee3a9c13623e08e90b9790c3d2d76a0775d962503d49b3f"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/icon-review/ci-P0vsMs-independent-summary.json",
+      "sha256": "f35558d9a3d9f3a0f19c329b80372eae2bab11da935f8375df1314c0a64bcbf1"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/IconCI/run.P0vsMs/results/golden-ios.xcresult.summary.json",
+      "sha256": "e90861ff2833e007d53bbde2d25445d064c36c34691f4a253b0d820b4440bbfa"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/IconCI/run.P0vsMs/results/golden-ios.xcresult.tests.json",
+      "sha256": "8514640a916e4ddd7f1c70d5652aae0941d0ecd39a9923fcd7d4d7b1457ea430"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/icon-review/ci-P0vsMs-independent-golden-ios.log",
+      "sha256": "470a4824897377c06022a7d5e860509b4d28ff9aa20844a5739a61a608219320"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/IconCI/run.P0vsMs/results/watch-unit.xcresult.summary.json",
+      "sha256": "22781cda682dba7ca13f20b9d98eb3cfca3641aa3532bcccf56520e7e4cfca10"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/IconCI/run.P0vsMs/results/watch-unit.xcresult.tests.json",
+      "sha256": "7f65aacd77759da40f7f36b5be0bafd02818ef8d3e6ed82fa174f5441a9b05db"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/icon-review/ci-P0vsMs-independent-watch-unit.log",
+      "sha256": "b83cd2461e1cbda3a249be43a99b98b0cc122841e9933432deec2ef1c7816ced"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/IconCI/run.P0vsMs/results/phone-unit.xcresult.summary.json",
+      "sha256": "51082e6977da83628c6acaa1faa13ecbad8a7ed4a8914f00ced0c243e7b9d4f1"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/IconCI/run.P0vsMs/results/phone-unit.xcresult.tests.json",
+      "sha256": "1e3a3ad9d256c56c0bce1bf3e1edd9cb2d1391e88e9e123b0776fdb62a0fa00a"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/icon-review/ci-P0vsMs-independent-phone-unit.log",
+      "sha256": "2b11011f099e7ea50e62801dd067c55f122e1f670e6821ce828a53382620821a"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/IconCI/run.P0vsMs/results/watch-ui.xcresult.summary.json",
+      "sha256": "19b12334d39819c60b19fb1ab9fcc598f3c8921a5e33d23569f48b5640975d03"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/IconCI/run.P0vsMs/results/watch-ui.xcresult.tests.json",
+      "sha256": "45374047546fd6326098aa27e3f511aae492af4555b29b018a73a161f7de48ba"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/icon-review/ci-P0vsMs-independent-watch-ui.log",
+      "sha256": "8756d5a24683eb192f00e507161dd323f87c17995b8d9529c4220b29fb21d2ea"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/IconCI/run.P0vsMs/results/phone-ui.xcresult.summary.json",
+      "sha256": "3ca577b46a4dc7d9a22bf9ad565c0d0d7480a27ceaf7c9f8f6baae1879dbbcc8"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/IconCI/run.P0vsMs/results/phone-ui.xcresult.tests.json",
+      "sha256": "11b2fbf28ac297ea2afcb765a57e219747d97190c132867f3c69a0efc7b7fa8a"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/icon-review/ci-P0vsMs-independent-phone-ui.log",
+      "sha256": "19a83dd6da5c6ad017a768c1f9e9264b7c5ac830df7b5981b096980468674ce5"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/IconCI/xcode-opening-scheme-rewrite.patch",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "limitations": [
+    "Correction to SRC-ICON-02-BUILD-20260906-182451: the referenced xcode-opening-scheme-rewrite.patch is zero bytes with SHA256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855. Earlier prose that the scheme diff was preserved is not substantiated by that empty artifact; it cannot prove the content of the coordinator-reported Xcode changes.",
+    "The deliberately interrupted run.cePXas remains retained and is not acceptance evidence. The subsequent clean restoration was independently verified; only fresh run.P0vsMs is marked as the passed full CI run here.",
+    "This is engineering and simulator evidence. The app-hosted widget rendering and DEBUG production-handler reentry harness do not prove real WidgetKit tap delivery or physical Watch behavior.",
+    "This receipt does not provide installed Home Screen light/dark/Auto icon observations, physical-device smoke, distribution export, upload validation, App Review or public-release evidence; signed-package evidence is separate ER-3.",
+    "Prior build 5 and earlier design CI receipts remain bound to their original commits and are not relabeled as build 6 results."
+  ],
+  "authorityReference": {
+    "kind": "signed-record",
+    "reference": "The September 6 owner request for the hourglass icon and ICON-02-BUILD authorize build 6 and exact-candidate validation; WAT-OWNER-DECISIONS.md section 4 retains signing authority. This CI verification exercises repository validation authority only.",
+    "confirmedBy": "owner",
+    "confirmedAt": "2026-09-06",
+    "authorityIds": [
+      "repository-write"
+    ]
+  },
+  "publicReleaseApproved": false
+}

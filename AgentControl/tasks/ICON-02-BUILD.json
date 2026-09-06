@@ -3,7 +3,7 @@
   "taskId": "ICON-02-BUILD",
   "title": "Build and validate the hourglass icon candidate",
   "type": "release",
-  "status": "in_progress",
+  "status": "done",
   "risk": "medium",
   "outcome": "Freeze WellSpent 0.2.0 (6) with adaptive hourglass icons, run full clean-source CI, and independently inspect its signed Release archive.",
   "assignment": {
