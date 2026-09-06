@@ -121,10 +121,10 @@ struct SettingsView: View {
 
                 Section("Privacy") {
                     Text(
-                        "WellSpent uses no account, server, analytics, tracking, or CloudKit sync. Activity data is excluded from device backups. Your paired Watch receives project and tag choices and the timer data needed for tracking through Apple's device-to-device connectivity."
+                        "WellSpent uses no account, server, analytics, tracking, or CloudKit sync. Activity data on this iPhone is excluded from device backups. Your paired Watch receives project and tag choices and the timer data needed for tracking through Apple's device-to-device connectivity."
                     )
                     Text(
-                        "This release does not request Calendar or notification access and does not export files."
+                        "WellSpent does not request Calendar access or export files. On Apple Watch, you can enable optional local notifications for time goals. Timers work without notification permission."
                     )
                     .foregroundStyle(.secondary)
 
