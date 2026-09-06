@@ -1,28 +1,29 @@
 {
   "schemaVersion": 1,
-  "taskId": "REL-07-PREP",
-  "title": "Prepare abstract-icon update without physical devices",
+  "taskId": "REL-08-PREP",
+  "title": "Prepare corrected abstract-icon update without physical devices",
   "type": "release",
-  "status": "cancelled",
+  "status": "ready",
   "risk": "medium",
-  "outcome": "Freeze WellSpent 0.2.0 (7), validate the exact candidate, and stage its App Store update while physical acceptance remains pending.",
+  "outcome": "Freeze WellSpent 0.2.0 (8), validate the exact candidate, and stage its App Store update while physical acceptance remains pending.",
   "assignment": {
     "role": "release-steward",
     "id": "codex-release-steward"
   },
   "base": {
     "branch": "main",
-    "commit": "3a9ab8405a9b37576a6cf1bfa61c773e2b3091ea"
+    "commit": "aa4ac1eb2a7dea76ab50d22243c62fa880d2d371"
   },
   "dependsOn": [
     "ICON-04-ABSTRACT"
   ],
   "scope": {
     "included": [
-      "Allocate build 7, regenerate project and freeze exact source.",
+      "Allocate build 8, regenerate project and freeze exact source.",
       "Run full CI and inspect signed archive and distribution export, privacy report and upload validation.",
       "Capture candidate-source simulator store screenshots and stage accurate metadata and processed build in App Store Connect.",
-      "Record source, simulator, signed-package and external-service evidence separately; prepare remaining physical checklist."
+      "Record source, simulator, signed-package and external-service evidence separately; prepare remaining physical checklist.",
+      "Correct the Settings privacy wording to acknowledge optional Watch notifications and scope the backup statement to iPhone, without changing privacy behavior."
     ],
     "excluded": [
       "Physical-device queries, installations, tests or data mutations.",
@@ -41,7 +42,8 @@
       "AppStore/submission-status.txt",
       "AppStore/metadata",
       "AppStore/screenshots",
-      "AppStore/Abstract-0.2.0-7"
+      "AppStore/Abstract-0.2.0-8",
+      "WellSpentApp/Features/Settings/SettingsView.swift"
     ],
     "resources": [
       "app-store-connect",
@@ -57,7 +59,7 @@
   "acceptanceCriteria": [
     {
       "id": "AC-1",
-      "statement": "A clean exact-source receipt identifies 0.2.0 (7) and generated-project parity."
+      "statement": "A clean exact-source receipt identifies 0.2.0 (8) and generated-project parity."
     },
     {
       "id": "AC-2",
@@ -142,8 +144,5 @@
     "WAT-28-BETA-RELEASE-RUNBOOK.md"
   ],
   "blocker": null,
-  "result": {
-    "commit": "aa4ac1eb2a7dea76ab50d22243c62fa880d2d371",
-    "tree": "64a907b097ac72c8dc58d123dc75d997d08ab450"
-  }
+  "result": null
 }
