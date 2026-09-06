@@ -3,7 +3,7 @@
   "taskId": "DESIGN-05-BUILD",
   "title": "Build the next native design version",
   "type": "release",
-  "status": "in_progress",
+  "status": "done",
   "risk": "medium",
   "outcome": "Allocate WellSpent 0.2.0 (5) and build an exact-source signed archive of the redesigned iPhone and Watch apps.",
   "assignment": {
@@ -89,5 +89,8 @@
     "WAT-OWNER-DECISIONS.md"
   ],
   "blocker": null,
-  "result": null
+  "result": {
+    "commit": "ede79cbb979c6e609766166f7826bc03f1a34390",
+    "tree": "34e68aee402e226c5837f329551e27b139005387"
+  }
 }

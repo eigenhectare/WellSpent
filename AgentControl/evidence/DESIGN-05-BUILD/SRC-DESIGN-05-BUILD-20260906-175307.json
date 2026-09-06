@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "taskId": "DESIGN-05-BUILD",
+  "result": "passed",
+  "producerRole": "verifier",
+  "producerId": "screen-design-audit",
+  "observedAt": "2026-09-06T17:53:07Z",
+  "source": {
+    "commit": "ede79cbb979c6e609766166f7826bc03f1a34390",
+    "tree": "34e68aee402e226c5837f329551e27b139005387",
+    "clean": true,
+    "version": "0.2.0",
+    "build": "5"
+  },
+  "authorityReference": {
+    "kind": "signed-record",
+    "reference": "WAT-OWNER-DECISIONS.md section 4 records September 4 owner authority for distribution archive/export for this and future versions; the September 6 user request to port the approved native design and build the next version authorizes the bounded 0.2.0 (5) allocation. DESIGN-05-BUILD excludes upload, export, installation, submission, and release.",
+    "confirmedBy": "owner",
+    "confirmedAt": "2026-09-06",
+    "authorityIds": [
+      "repository-write",
+      "signing-upload"
+    ]
+  },
+  "publicReleaseApproved": false,
+  "receiptId": "SRC-DESIGN-05-BUILD-20260906-175307",
+  "requirementId": "ER-1",
+  "evidenceClass": "source",
+  "gate": {
+    "id": "release-source-receipt",
+    "exitCode": 0
+  },
+  "claims": [
+    "Independently read the authoritative DESIGN-05-BUILD contract and inspected the exact frozen clean commit and tree before and after verification.",
+    "The complete delta from validated engineering commit 53ec2e2bf462c70906ccd462791e022eb69c136a contains only version/build allocation in project.yml and the generated project plus WAT-29-DESIGN-REVISION.md.",
+    "The marketing version changes from 0.1.0 to 0.2.0 and the build from 4 to 5 in both generated configurations; no app behavior, persistence, wire contract, signing identity, bundle identifier, or privacy declaration changes.",
+    "Canonical task scope validation, git diff --check, Swift formatting lint, and XcodeGen 2.46.0 generated-project drift checks independently passed with exit code 0.",
+    "Canonical release-source-receipt passed for 142 production files; the independently computed manifest exactly matches the producer source receipt and has SHA256 e35ee905529df73221c201cc58e94cb359c5f357b86b9f45088ee9e184549050.",
+    "The test guide preserves idle picker-before-start, paused reentry without resuming, and running elapsed reentry, and explicitly separates app-hosted URL tests from actual WidgetKit delivery.",
+    "The guide accurately binds the 386-test full CI result to engineering commit 53ec2e2bf462c70906ccd462791e022eb69c136a at version 0.1.0 build 4; it does not relabel that run as release-candidate CI."
+  ],
+  "artifacts": [
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Design-0.2.0-5/independent-source-20260906-1752/summary.json",
+      "sha256": "36938f8ca7d1d6522843cedfedb71d9e235bd1591ce68e184ab2ad978012b16f"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Design-0.2.0-5/independent-source-20260906-1752/files.sha256",
+      "sha256": "e35ee905529df73221c201cc58e94cb359c5f357b86b9f45088ee9e184549050"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/design-review/release-ede79cb-source.log",
+      "sha256": "5689639069306891f8ea9de1a6394d258e0cbf4cbdf8921520911919202f8a23"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/design-review/release-ede79cb-drift.log",
+      "sha256": "cca4620c134a9e16e3bc8863b433dc98f2aa550eeba01a55ed999bcfcbafbabf"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/design-review/release-ede79cb-scope.log",
+      "sha256": "664c0658aab68a8523f37f3cde53d949746e1c68c64bb75516f933576898e1ac"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/design-review/release-ede79cb-lint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "limitations": [
+    "This is source verification for the version-only release candidate; full CI was not repeated on this commit and remains bound to 53ec2e2bf462c70906ccd462791e022eb69c136a.",
+    "This receipt does not provide simulator, signed-package, physical-device, upload, App Review, or public-release evidence."
+  ]
+}
