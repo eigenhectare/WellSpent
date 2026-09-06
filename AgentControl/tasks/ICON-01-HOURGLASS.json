@@ -3,7 +3,7 @@
   "taskId": "ICON-01-HOURGLASS",
   "title": "Replace WellSpent app icons with adaptive hourglass artwork",
   "type": "feature",
-  "status": "in_review",
+  "status": "done",
   "risk": "low",
   "outcome": "Replace the existing clock-check icon with a recognizable hourglass in iPhone light and dark appearances and the matching Watch identity.",
   "assignment": {
@@ -67,5 +67,8 @@
     "WAT-OWNER-DECISIONS.md"
   ],
   "blocker": null,
-  "result": null
+  "result": {
+    "commit": "8c6ac8abe65441b5094da5aea5799fdf13cf4b96",
+    "tree": "fe826444184555cfe4f3bb39245b91d1ad699954"
+  }
 }

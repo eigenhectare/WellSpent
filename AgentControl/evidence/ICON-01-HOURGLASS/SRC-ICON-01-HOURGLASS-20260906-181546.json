@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "SRC-ICON-01-HOURGLASS-20260906-181546",
+  "taskId": "ICON-01-HOURGLASS",
+  "requirementId": "ER-1",
+  "evidenceClass": "source",
+  "result": "passed",
+  "producerRole": "verifier",
+  "producerId": "screen-design-audit",
+  "observedAt": "2026-09-06T18:15:46Z",
+  "source": {
+    "commit": "8c6ac8abe65441b5094da5aea5799fdf13cf4b96",
+    "tree": "fe826444184555cfe4f3bb39245b91d1ad699954",
+    "clean": true,
+    "version": "0.2.0",
+    "build": "5"
+  },
+  "gate": {
+    "id": "agent-scope",
+    "exitCode": 0
+  },
+  "claims": [
+    "Independently read the ICON-01-HOURGLASS contract, confirmed its completed dependency, and inspected the complete five-file diff on the exact clean candidate.",
+    "Canonical agent-scope verification passed against base c3619da6b431398e70662458ba5605761e18fb20; git diff --check also passed. No product or task-status edits were made by the verifier.",
+    "All three shipped source images are 1024 by 1024 RGB PNGs without alpha; the Watch artwork is byte-identical to iPhone light and iPhone dark has a distinct digest.",
+    "The iPhone primary AppIcon catalog contains an Any/default image and a dark image selected by the native luminosity dark appearance; the Watch catalog retains one matching watchOS image.",
+    "Full-resolution inspection confirms coherent hourglass geometry, navy/slate caps, teal glass, amber sand and a centered stream, with a warm light background and charcoal dark background.",
+    "Independent source previews at 160, 60, 40 and 29 pixels retain a recognizable hourglass in both appearances; a circular Watch mask preserves the complete subject with safe space around its caps.",
+    "The shipped dark PNG has no checkerboard pattern or transparent corners; the rejected intermediate is not referenced or added by this change.",
+    "WAT-30 documents generation prompts, sips normalization, the rejected checkerboard intermediate, native appearance selection, and separate compilation, signed-package and physical-validation boundaries.",
+    "The diff changes only the two app-icon sets and provenance documentation; app behavior, signing, bundle identifiers, privacy declarations and version/build values remain unchanged."
+  ],
+  "artifacts": [
+    {
+      "kind": "repository",
+      "locator": "WellSpentApp/Resources/Assets.xcassets/AppIcon.appiconset/AppIcon.png",
+      "sha256": "46f496e21e3e49d03022c21bd285c0260d9ae6463073ab65c927402afb096f7a"
+    },
+    {
+      "kind": "repository",
+      "locator": "WellSpentApp/Resources/Assets.xcassets/AppIcon.appiconset/AppIcon-Dark.png",
+      "sha256": "618ed7b8671bf268b911f06d4af0dbc4e9ee712a8a901ce1e1939b1cf0471aea"
+    },
+    {
+      "kind": "repository",
+      "locator": "WellSpentWatch/Resources/Assets.xcassets/AppIcon.appiconset/AppIcon.png",
+      "sha256": "46f496e21e3e49d03022c21bd285c0260d9ae6463073ab65c927402afb096f7a"
+    },
+    {
+      "kind": "repository",
+      "locator": "WellSpentApp/Resources/Assets.xcassets/AppIcon.appiconset/Contents.json",
+      "sha256": "40724bfa5b059c2ce0e01a862ae94cb44bc58caef5c4354ad41231c43899b7b4"
+    },
+    {
+      "kind": "repository",
+      "locator": "WellSpentWatch/Resources/Assets.xcassets/AppIcon.appiconset/Contents.json",
+      "sha256": "ea024c2798278a0d714602390d5549cc35f2ab212905919038d2bb0f3736e65b"
+    },
+    {
+      "kind": "repository",
+      "locator": "WAT-30-HOURGLASS-ICON.md",
+      "sha256": "5f917795314ea5996b319376e5f163c373f05eab1f9edbfcd3abfa5fa49ac2bd"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/icon-review/source-metadata-8c6ac8a-20260906.json",
+      "sha256": "7265e9e5a883b6d6d554e9a56b87a53f4c432d0ad787cee61dfda198ca5cce56"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/icon-review/scaled-source-preview-8c6ac8a.png",
+      "sha256": "1907d7219f8542b0dae65d89e9fb86233310cc3a98072399882febdf4abb9a01"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/icon-review/scope-8c6ac8a-20260906.log",
+      "sha256": "edbbe849480f12af7ff602f8a655540a23502fee01450987704da771106ad99b"
+    }
+  ],
+  "limitations": [
+    "This receipt is bounded source and visual verification. It does not prove asset-catalog compilation, installed Home Screen appearance selection, Watch launcher rendering, signed packaging or physical-device behavior.",
+    "The scaled preview uses diagnostic resizing and illustrative masks; it is not a native device screenshot or compiled asset rendition.",
+    "Fine glass highlights and sand texture simplify at the smallest sizes while the hourglass silhouette remains recognizable.",
+    "The candidate retains version 0.2.0 build 5; subsequent version allocation and builds require their own exact-source evidence."
+  ],
+  "authorityReference": {
+    "kind": "user-message",
+    "reference": "2026-09-06 owner request to replace the existing app icon with the hourglass artwork and native iPhone light/dark appearances, as recorded in ICON-01-HOURGLASS and WAT-30-HOURGLASS-ICON.md.",
+    "confirmedBy": "owner",
+    "confirmedAt": "2026-09-06",
+    "authorityIds": [
+      "repository-write"
+    ]
+  },
+  "publicReleaseApproved": false
+}
