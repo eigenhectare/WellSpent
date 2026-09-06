@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "taskId": "REL-07-PREP",
+  "title": "Prepare abstract-icon update without physical devices",
+  "type": "release",
+  "status": "ready",
+  "risk": "medium",
+  "outcome": "Freeze WellSpent 0.2.0 (7), validate the exact candidate, and stage its App Store update while physical acceptance remains pending.",
+  "assignment": {
+    "role": "release-steward",
+    "id": "codex-release-steward"
+  },
+  "base": {
+    "branch": "main",
+    "commit": "3a9ab8405a9b37576a6cf1bfa61c773e2b3091ea"
+  },
+  "dependsOn": [
+    "ICON-04-ABSTRACT"
+  ],
+  "scope": {
+    "included": [
+      "Allocate build 7, regenerate project and freeze exact source.",
+      "Run full CI and inspect signed archive and distribution export, privacy report and upload validation.",
+      "Capture candidate-source simulator store screenshots and stage accurate metadata and processed build in App Store Connect.",
+      "Record source, simulator, signed-package and external-service evidence separately; prepare remaining physical checklist."
+    ],
+    "excluded": [
+      "Physical-device queries, installations, tests or data mutations.",
+      "App Review submission or public release before outstanding physical acceptance.",
+      "Tester invitations, external beta enrollment, public privacy/support copy changes, product behavior/schema/signing identity changes."
+    ]
+  },
+  "writeScope": {
+    "paths": [
+      "project.yml",
+      "WellSpent.xcodeproj",
+      "AgentControl",
+      "WAT-33-UPDATE-RELEASE.md",
+      "APP-STORE-RELEASE.md",
+      "AppStore/app-information.json",
+      "AppStore/submission-status.txt",
+      "AppStore/metadata",
+      "AppStore/screenshots",
+      "AppStore/Abstract-0.2.0-7"
+    ],
+    "resources": [
+      "app-store-connect",
+      "git-integration",
+      "ios-simulator",
+      "project-generation",
+      "release-status",
+      "signing-archive",
+      "version-build",
+      "watch-simulator"
+    ]
+  },
+  "acceptanceCriteria": [
+    {
+      "id": "AC-1",
+      "statement": "A clean exact-source receipt identifies 0.2.0 (7) and generated-project parity."
+    },
+    {
+      "id": "AC-2",
+      "statement": "Full thirteen-stage CI passes on the frozen candidate."
+    },
+    {
+      "id": "AC-3",
+      "statement": "Signed archive and distribution export pass four-component inspection and include the approved abstract icon variants."
+    },
+    {
+      "id": "AC-4",
+      "statement": "Accurate candidate-source screenshots, metadata and privacy reconciliation are ready, and App Store upload/processing status is recorded without claiming physical acceptance."
+    }
+  ],
+  "evidenceRequirements": [
+    {
+      "id": "ER-1",
+      "criterionIds": [
+        "AC-1"
+      ],
+      "evidenceClass": "source",
+      "gateIds": [
+        "release-source-receipt",
+        "xcodegen-drift"
+      ],
+      "candidateBound": true
+    },
+    {
+      "id": "ER-2",
+      "criterionIds": [
+        "AC-2"
+      ],
+      "evidenceClass": "unit",
+      "gateIds": [
+        "ci-full"
+      ],
+      "candidateBound": true
+    },
+    {
+      "id": "ER-3",
+      "criterionIds": [
+        "AC-3"
+      ],
+      "evidenceClass": "signed-package",
+      "gateIds": [
+        "signed-archive-inspection",
+        "distribution-export-inspection"
+      ],
+      "candidateBound": true
+    },
+    {
+      "id": "ER-4",
+      "criterionIds": [
+        "AC-4"
+      ],
+      "evidenceClass": "source",
+      "gateIds": [
+        "store-materials-review"
+      ],
+      "candidateBound": true
+    },
+    {
+      "id": "ER-5",
+      "criterionIds": [
+        "AC-4"
+      ],
+      "evidenceClass": "external-service",
+      "gateIds": [
+        "app-store-staging"
+      ],
+      "candidateBound": true
+    }
+  ],
+  "authorityRequirements": [
+    "repository-write",
+    "signing-upload"
+  ],
+  "legacyRefs": [
+    "WAT-OWNER-DECISIONS.md",
+    "WAT-32-ABSTRACT-ICON.md",
+    "WAT-27-STORE-MATERIALS-DRAFT.md",
+    "WAT-28-BETA-RELEASE-RUNBOOK.md"
+  ],
+  "blocker": null,
+  "result": null
+}

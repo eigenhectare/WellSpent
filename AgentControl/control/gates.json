@@ -197,6 +197,57 @@
       "resources": [
         "paired-devices"
       ]
+    },
+    {
+      "id": "distribution-export-inspection",
+      "description": "Inspect distribution-signed IPA, four components, provisioning and export settings.",
+      "tier": "full",
+      "evidenceClass": "signed-package",
+      "argv": [
+        "bash",
+        "scripts/watch-distribution-export-check.sh"
+      ],
+      "arguments": [
+        "export-directory",
+        "new-report-directory"
+      ],
+      "resources": [
+        "signing-archive",
+        "version-build"
+      ]
+    },
+    {
+      "id": "store-materials-review",
+      "description": "Independent review of source-bound screenshots, metadata and privacy reconciliation; not a physical acceptance gate.",
+      "tier": "impacted",
+      "evidenceClass": "source",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "arguments": [
+        "candidate-source",
+        "materials-manifest"
+      ],
+      "resources": []
+    },
+    {
+      "id": "app-store-staging",
+      "description": "Observe exact uploaded build processing and draft metadata in App Store Connect without submitting for review.",
+      "tier": "full",
+      "evidenceClass": "external-service",
+      "argv": [
+        "mcp__cua_repl",
+        "js"
+      ],
+      "arguments": [
+        "candidate-source",
+        "app-store-record"
+      ],
+      "resources": [
+        "app-store-connect"
+      ]
     }
   ]
 }
