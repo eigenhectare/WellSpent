@@ -11,6 +11,7 @@ struct RootView: View {
     }
 
     @ObservedObject var model: WellSpentAppModel
+    @Environment(\.colorScheme) private var colorScheme
     @Environment(\.openURL) private var openURL
     @Environment(\.scenePhase) private var scenePhase
     @AppStorage(AppPreferenceKeys.completedOnboarding) private var completedOnboarding = false
@@ -36,6 +37,7 @@ struct RootView: View {
                 }
                 .tag(Tab.settings)
         }
+        .tint(WellSpentPalette(colorScheme: colorScheme).accent)
         .safeAreaInset(edge: .top, spacing: 0) {
             VStack(spacing: 0) {
                 if model.pendingWatchConflicts.isEmpty,

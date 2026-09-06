@@ -1,5 +1,44 @@
 import SwiftUI
 
+struct WellSpentPalette {
+    let colorScheme: ColorScheme
+
+    var background: Color {
+        colorScheme == .dark
+            ? Color(red: 0.024, green: 0.122, blue: 0.180) : Color(red: 0.965, green: 0.953, blue: 0.929)
+    }
+
+    var surface: Color {
+        colorScheme == .dark ? Color(red: 0.055, green: 0.204, blue: 0.271) : Color(red: 1, green: 0.988, blue: 0.965)
+    }
+
+    var ink: Color {
+        colorScheme == .dark
+            ? Color(red: 0.976, green: 0.961, blue: 0.914) : Color(red: 0.035, green: 0.180, blue: 0.239)
+    }
+
+    var secondary: Color {
+        colorScheme == .dark
+            ? Color(red: 0.690, green: 0.776, blue: 0.812) : Color(red: 0.337, green: 0.431, blue: 0.459)
+    }
+
+    var accent: Color {
+        colorScheme == .dark ? Color(red: 1, green: 0.757, blue: 0.416) : Color(red: 0.039, green: 0.396, blue: 0.439)
+    }
+
+    var soft: Color {
+        colorScheme == .dark
+            ? Color(red: 0.157, green: 0.282, blue: 0.306) : Color(red: 0.890, green: 0.933, blue: 0.914)
+    }
+
+    var separator: Color {
+        colorScheme == .dark
+            ? Color(red: 0.157, green: 0.263, blue: 0.318) : Color(red: 0.863, green: 0.871, blue: 0.843)
+    }
+
+    var destructive: Color { Color(red: 0.651, green: 0.149, blue: 0.216) }
+}
+
 enum DurationPresentation {
     static func exact(_ duration: TimeInterval) -> String {
         let totalSeconds = max(0, Int(duration.rounded(.down)))

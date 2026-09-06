@@ -2,6 +2,9 @@ import SwiftUI
 
 struct TrackView: View {
     @ObservedObject var model: WellSpentAppModel
+    @Environment(\.colorScheme) private var colorScheme
+
+    private var palette: WellSpentPalette { WellSpentPalette(colorScheme: colorScheme) }
 
     @State private var showsCreateProject = false
     @State private var showsManualSession = false
@@ -19,17 +22,20 @@ struct TrackView: View {
                         }
                         .accessibilityIdentifier("review-watch-conflict")
                     }
+                    .listRowBackground(palette.surface)
                 } else if model.watchSyncOverview.hasWatchHistory {
                     Section {
                         Label(model.watchSyncStatusText, systemImage: "applewatch")
                             .font(.footnote)
+                            .foregroundStyle(palette.secondary)
                             .accessibilityIdentifier("phone-watch-sync-status")
                     }
+                    .listRowBackground(palette.surface)
                 }
                 if let activeRun = model.activeRun,
                     let project = model.project(id: activeRun.projectID)
                 {
-                    Section(activeRun.state == .paused ? "Paused timer" : "Active timer") {
+                    Section {
                         ActiveTimerCard(
                             project: project,
                             run: activeRun,
@@ -54,12 +60,6 @@ struct TrackView: View {
                 }
 
                 Section {
-                    Text("Projects")
-                        .font(.headline)
-                        .foregroundStyle(.primary)
-                        .accessibilityAddTraits(.isHeader)
-                        .listRowBackground(Color.clear)
-
                     if model.activeProjects.isEmpty {
                         ContentUnavailableView {
                             Label("No Projects Yet", systemImage: "folder.badge.plus")
@@ -82,16 +82,39 @@ struct TrackView: View {
                                 Task { await model.startOrSwitch(to: project.id) }
                             }
                         }
-
+                    }
+                } header: {
+                    HStack(alignment: .firstTextBaseline) {
+                        Text("Projects")
+                            .font(.headline)
+                            .foregroundStyle(palette.ink)
+                            .accessibilityAddTraits(.isHeader)
+                        Spacer()
+                        if !model.activeProjects.isEmpty {
+                            Text(model.activeProjects.count, format: .number)
+                                .font(.subheadline)
+                                .foregroundStyle(palette.secondary)
+                                .accessibilityLabel("\(model.activeProjects.count) projects")
+                        }
+                    }
+                    .textCase(nil)
+                } footer: {
+                    if !model.activeProjects.isEmpty {
                         Text(projectInstruction)
-                            .font(.body)
-                            .foregroundStyle(.primary)
+                            .font(.footnote)
+                            .foregroundStyle(palette.secondary)
                             .fixedSize(horizontal: false, vertical: true)
+                            .padding(.top, 6)
                             .accessibilityIdentifier("project-timer-instruction")
-                            .listRowBackground(Color.clear)
                     }
                 }
+                .listRowBackground(palette.surface)
             }
+            .listStyle(.insetGrouped)
+            .listSectionSpacing(24)
+            .scrollContentBackground(.hidden)
+            .background(palette.background)
+            .foregroundStyle(palette.ink)
             .navigationTitle("Track")
             .toolbar {
                 ToolbarItemGroup(placement: .primaryAction) {
@@ -141,45 +164,59 @@ struct TrackView: View {
 }
 
 private struct ProjectTimerRow: View {
+    @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
     let project: ProjectSnapshot
     let activeRun: TimerRunSnapshot?
     let isBusy: Bool
     let action: () -> Void
 
     private var isActive: Bool { activeRun?.projectID == project.id }
+    private var palette: WellSpentPalette { WellSpentPalette(colorScheme: colorScheme) }
 
     var body: some View {
         Button(action: action) {
-            HStack(spacing: 12) {
-                Circle()
-                    .fill(ProjectPalette.color(for: project.colorToken))
-                    .frame(width: 14, height: 14)
-                    .accessibilityHidden(true)
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(project.displayName)
-                        .font(isActive ? .headline : .body)
-                        .foregroundStyle(.primary)
-                    if isActive {
-                        Label(
-                            activeRun?.state == .paused ? "Paused" : "Active",
-                            systemImage: activeRun?.state == .paused
-                                ? "pause.circle.fill" : "checkmark.circle.fill"
-                        )
-                        .font(.caption.weight(.semibold))
-                        .foregroundStyle(.blue)
+            let rowLayout =
+                dynamicTypeSize.isAccessibilitySize
+                ? AnyLayout(VStackLayout(alignment: .leading, spacing: 12))
+                : AnyLayout(HStackLayout(spacing: 12))
+            rowLayout {
+                HStack(alignment: .firstTextBaseline, spacing: 12) {
+                    Circle()
+                        .fill(ProjectPalette.color(for: project.colorToken))
+                        .frame(width: 12, height: 12)
+                        .accessibilityHidden(true)
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text(project.displayName)
+                            .font(.body.weight(.medium))
+                            .foregroundStyle(palette.ink)
+                            .fixedSize(horizontal: false, vertical: true)
+                        if isActive {
+                            Label(
+                                activeRun?.state == .paused ? "Paused" : "Active",
+                                systemImage: activeRun?.state == .paused
+                                    ? "pause.circle.fill" : "checkmark.circle.fill"
+                            )
+                            .font(.caption.weight(.semibold))
+                            .foregroundStyle(palette.accent)
+                        }
                     }
                 }
-                Spacer()
+                .frame(maxWidth: .infinity, alignment: .leading)
+
                 Text(actionTitle)
                     .font(.subheadline.weight(.semibold))
-                    .foregroundStyle(isActive ? Color.secondary : Color.blue)
+                    .foregroundStyle(isActive && activeRun?.state != .paused ? palette.secondary : palette.accent)
+                    .fixedSize(horizontal: false, vertical: true)
             }
-            .padding(.vertical, 8)
+            .padding(.vertical, 14)
+            .frame(minHeight: 44)
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
         .disabled(isBusy)
-        .listRowBackground(isActive ? Color.blue.opacity(0.12) : Color.clear)
+        .listRowSeparatorTint(palette.separator)
         .accessibilityLabel(accessibilityLabel)
         .accessibilityHint(accessibilityHint)
         .accessibilityIdentifier("project-timer-\(project.id.uuidString)")
@@ -214,6 +251,8 @@ private struct ProjectTimerRow: View {
 
 private struct ActiveTimerCard: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @Environment(\.colorScheme) private var colorScheme
+    @ScaledMetric(relativeTo: .largeTitle) private var elapsedFontSize: CGFloat = 56
     let project: ProjectSnapshot
     let run: TimerRunSnapshot
     let isBusy: Bool
@@ -221,43 +260,72 @@ private struct ActiveTimerCard: View {
     let pauseOrResume: () -> Void
     let stop: () -> Void
 
+    private var palette: WellSpentPalette { WellSpentPalette(colorScheme: colorScheme) }
+    private var contentAlignment: HorizontalAlignment { colorScheme == .dark ? .center : .leading }
+
     var body: some View {
         TimelineView(.periodic(from: .now, by: 1)) { context in
             let elapsed = run.countedDuration(at: context.date)
-            VStack(alignment: .leading, spacing: 16) {
-                HStack {
-                    VStack(alignment: .leading, spacing: 4) {
-                        HStack(alignment: .firstTextBaseline, spacing: 6) {
-                            Image(systemName: run.state == .paused ? "pause.circle" : "timer")
-                                .foregroundStyle(.blue)
-                                .accessibilityHidden(true)
-                            Text(run.state == .paused ? "Paused" : "Active")
-                                .foregroundStyle(.primary)
-                                .fixedSize(horizontal: false, vertical: true)
-                        }
-                        .font(.caption.weight(.semibold))
-                        Text(project.displayName)
-                            .font(.title2.bold())
-                        if isWatchOrigin {
-                            Label("Started on Apple Watch", systemImage: "applewatch")
-                                .font(.caption).foregroundStyle(.secondary)
-                                .accessibilityIdentifier("timer-watch-origin")
-                        }
-                    }
-                    Spacer()
-                    Circle()
-                        .fill(ProjectPalette.color(for: project.colorToken))
-                        .frame(width: 18, height: 18)
-                        .accessibilityHidden(true)
-                }
+            VStack(alignment: contentAlignment, spacing: 20) {
+                let headingLayout =
+                    dynamicTypeSize.isAccessibilitySize
+                    ? AnyLayout(VStackLayout(alignment: contentAlignment, spacing: 10))
+                    : AnyLayout(HStackLayout(spacing: 10))
+                headingLayout {
+                    Label(
+                        run.state == .paused ? "Paused" : "Running",
+                        systemImage: run.state == .paused ? "pause.circle.fill" : "timer"
+                    )
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundStyle(palette.accent)
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 7)
+                    .background(palette.soft, in: Capsule())
+                    .fixedSize(horizontal: false, vertical: true)
 
-                Text(DurationPresentation.exact(elapsed))
-                    .font(.system(.largeTitle, design: .rounded, weight: .semibold))
-                    .monospacedDigit()
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.6)
-                    .accessibilityLabel("Elapsed \(DurationPresentation.accessibility(elapsed))")
-                    .accessibilityIdentifier("active-elapsed-time")
+                    if !dynamicTypeSize.isAccessibilitySize {
+                        Spacer(minLength: 0)
+                    }
+                    Text("Current session")
+                        .font(.footnote)
+                        .foregroundStyle(palette.secondary)
+                }
+                .frame(maxWidth: .infinity)
+
+                VStack(alignment: contentAlignment, spacing: 12) {
+                    HStack(alignment: .firstTextBaseline, spacing: 10) {
+                        Circle()
+                            .fill(ProjectPalette.color(for: project.colorToken))
+                            .frame(width: 12, height: 12)
+                            .accessibilityHidden(true)
+                        Text(project.displayName)
+                            .font(.title3.weight(.semibold))
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                    .multilineTextAlignment(colorScheme == .dark ? .center : .leading)
+
+                    if isWatchOrigin {
+                        Label("Started on Apple Watch", systemImage: "applewatch")
+                            .font(.caption)
+                            .foregroundStyle(palette.secondary)
+                            .accessibilityIdentifier("timer-watch-origin")
+                    }
+
+                    VStack(alignment: contentAlignment, spacing: 6) {
+                        Text(DurationPresentation.exact(elapsed))
+                            .font(.system(size: elapsedFontSize, weight: .medium, design: .rounded))
+                            .monospacedDigit()
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.35)
+                            .accessibilityLabel("Elapsed \(DurationPresentation.accessibility(elapsed))")
+                            .accessibilityIdentifier("active-elapsed-time")
+
+                        Text("Time tracked")
+                            .font(.footnote)
+                            .foregroundStyle(palette.secondary)
+                    }
+                    .frame(maxWidth: .infinity, alignment: colorScheme == .dark ? .center : .leading)
+                }
 
                 let controlsLayout =
                     dynamicTypeSize.isAccessibilitySize
@@ -271,11 +339,10 @@ private struct ActiveTimerCard: View {
                         }
                         .fixedSize(horizontal: false, vertical: true)
                         .padding(.vertical, 8)
-                        .frame(maxWidth: .infinity, minHeight: 44)
+                        .frame(maxWidth: .infinity, minHeight: 52)
                         .accessibilityHidden(true)
                     }
-                    .buttonStyle(.bordered)
-                    .tint(.primary)
+                    .buttonStyle(TrackTimerButtonStyle(foreground: palette.ink, background: palette.soft))
                     .disabled(isBusy)
                     .accessibilityLabel(run.state == .paused ? "Resume timer" : "Pause timer")
                     .accessibilityHint(
@@ -292,11 +359,10 @@ private struct ActiveTimerCard: View {
                         }
                         .fixedSize(horizontal: false, vertical: true)
                         .padding(.vertical, 8)
-                        .frame(maxWidth: .infinity, minHeight: 44)
+                        .frame(maxWidth: .infinity, minHeight: 52)
                         .accessibilityHidden(true)
                     }
-                    .buttonStyle(.borderedProminent)
-                    .tint(Color(red: 0.62, green: 0.02, blue: 0.06))
+                    .buttonStyle(TrackTimerButtonStyle(foreground: .white, background: palette.destructive))
                     .disabled(isBusy)
                     .accessibilityLabel(
                         "Stop \(project.displayName) timer, \(DurationPresentation.accessibility(elapsed)) elapsed"
@@ -304,14 +370,31 @@ private struct ActiveTimerCard: View {
                     .accessibilityIdentifier("stop-active-timer")
                 }
             }
-            .padding()
-            .background(Color.blue.opacity(0.1), in: RoundedRectangle(cornerRadius: 18))
-            .overlay {
-                RoundedRectangle(cornerRadius: 18)
-                    .stroke(Color.blue, lineWidth: 2)
-            }
+            .padding(colorScheme == .dark ? 20 : 0)
+            .padding(.vertical, colorScheme == .dark ? 0 : 8)
+            .background(
+                colorScheme == .dark ? palette.surface : Color.clear,
+                in: RoundedRectangle(cornerRadius: 22)
+            )
             .accessibilityElement(children: .contain)
             .accessibilityIdentifier("active-timer-card")
         }
+    }
+}
+
+private struct TrackTimerButtonStyle: ButtonStyle {
+    @Environment(\.isEnabled) private var isEnabled
+
+    let foreground: Color
+    let background: Color
+
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .font(.headline)
+            .foregroundStyle(foreground)
+            .padding(.horizontal, 12)
+            .background(background, in: RoundedRectangle(cornerRadius: 14))
+            .contentShape(RoundedRectangle(cornerRadius: 14))
+            .opacity(isEnabled ? (configuration.isPressed ? 0.8 : 1) : 0.45)
     }
 }
