@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "taskId": "ICON-01-HOURGLASS",
+  "title": "Replace WellSpent app icons with adaptive hourglass artwork",
+  "type": "feature",
+  "status": "ready",
+  "risk": "low",
+  "outcome": "Replace the existing clock-check icon with a recognizable hourglass in iPhone light and dark appearances and the matching Watch identity.",
+  "assignment": {
+    "role": "implementer",
+    "id": "codex-icon-implementer"
+  },
+  "base": {
+    "branch": "main",
+    "commit": "c3619da6b431398e70662458ba5605761e18fb20"
+  },
+  "dependsOn": [
+    "DESIGN-05-BUILD"
+  ],
+  "scope": {
+    "included": [
+      "Replace the iPhone app icon with opaque 1024-pixel light and dark hourglass assets using native asset-catalog appearances.",
+      "Replace the Watch app icon with the matching light hourglass identity, preserving circle-safe composition.",
+      "Document generated-art provenance, prompts, appearance behavior and validation boundaries."
+    ],
+    "excluded": [
+      "Timer behavior, persistence, wire contracts, signing configuration, bundle identifiers and version allocation.",
+      "Public support/privacy changes, App Store upload, submission and release."
+    ]
+  },
+  "writeScope": {
+    "paths": [
+      "WellSpentApp/Resources/Assets.xcassets/AppIcon.appiconset",
+      "WellSpentWatch/Resources/Assets.xcassets/AppIcon.appiconset",
+      "WAT-30-HOURGLASS-ICON.md"
+    ],
+    "resources": []
+  },
+  "acceptanceCriteria": [
+    {
+      "id": "AC-1",
+      "statement": "Native asset catalogs reference distinct recognizable light and dark hourglass artwork for iOS and a matching circle-safe Watch icon; all source images are 1024x1024 RGB PNGs."
+    },
+    {
+      "id": "AC-2",
+      "statement": "Independent review confirms coherent geometry, legibility at app-icon sizes, unchanged app behavior, and complete source/provenance documentation."
+    }
+  ],
+  "evidenceRequirements": [
+    {
+      "id": "ER-1",
+      "criterionIds": [
+        "AC-1",
+        "AC-2"
+      ],
+      "evidenceClass": "source",
+      "gateIds": [
+        "agent-scope"
+      ],
+      "candidateBound": false
+    }
+  ],
+  "authorityRequirements": [
+    "repository-write"
+  ],
+  "legacyRefs": [
+    "WAT-OWNER-DECISIONS.md"
+  ],
+  "blocker": null,
+  "result": null
+}
