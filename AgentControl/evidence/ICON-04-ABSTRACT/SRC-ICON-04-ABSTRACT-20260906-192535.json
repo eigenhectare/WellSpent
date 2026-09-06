@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "SRC-ICON-04-ABSTRACT-20260906-192535",
+  "taskId": "ICON-04-ABSTRACT",
+  "requirementId": "ER-1",
+  "evidenceClass": "source",
+  "result": "passed",
+  "producerRole": "verifier",
+  "producerId": "screen-design-audit",
+  "observedAt": "2026-09-06T19:25:35Z",
+  "source": {
+    "commit": "2859e89aa91c236cd4fa8ddebf2489f2c38544e1",
+    "tree": "22e3e9f5a596ce2a43c579569ab47645275fca26",
+    "clean": true,
+    "version": "0.2.0",
+    "build": "6"
+  },
+  "gate": {
+    "id": "agent-scope",
+    "exitCode": 0
+  },
+  "claims": [
+    "Independently read the ICON-04-ABSTRACT contract and its coordinator-managed integration-scope revision, confirmed its completed dependency, and reviewed the exact four-file implementation diff.",
+    "Canonical scope verification passed against the revised authoritative contract and exact base 0794fc60df2e113d71c04b5991da5eebe7b11bb2; git diff --check also passed and the implementation checkout remains clean.",
+    "Full-resolution visual inspection confirms a simplified upright hourglass formed by two broad rounded teal/blue planes and a narrow central waist, without the rejected detailed caps, glass rims, amber sand or falling stream.",
+    "The light and dark artwork retain coherent shape, scale and placement; the brighter dark lower plane stays visibly distinct from the deep navy background.",
+    "Independent diagnostic previews at 160, 60, 40 and 29 pixels retain a recognizable hourglass silhouette in both appearances. The Watch circular mask preserves the entire mark with clear margins.",
+    "All three source images are 1024 by 1024 opaque RGB PNGs. Watch artwork is byte-identical to the new light iPhone artwork; the dark asset has a distinct digest and no checkerboard background.",
+    "Native default and luminosity dark catalog registration is unchanged. The diff contains no app behavior, project structure, privacy, signing, bundle-identifier or version/build change.",
+    "WAT-32 records the Preview reference, original generation/edit prompts and normalization method; it explicitly distinguishes the revised artwork from the detailed-icon build 6 archive and 386-test CI result at 6c5f66f954ee3f891e4b7e438ecd4eba60d2fc29.",
+    "As bounded supplemental source evidence, independently inspected the coordinator-produced focused actool logs, summaries and assetutil inventories: both platforms report successful compilation, phone contains distinct default/UIAppearanceDark opaque 1024 sRGB renditions, Watch contains its opaque default rendition, and compiled Assets.car digests match the reports.",
+    "Independently viewed the decoded compiled default phone preview and confirmed the abstract hourglass. This focused compiler output is not treated as a built app, signed package or device observation.",
+    "No tracked source/assets or task status were edited by this verifier; only unique ignored diagnostic previews, metadata and this receipt were written."
+  ],
+  "artifacts": [
+    {
+      "kind": "repository",
+      "locator": "WellSpentApp/Resources/Assets.xcassets/AppIcon.appiconset/AppIcon.png",
+      "sha256": "9aaae20eb67d84e34112700f2745460ed755abc2e0ad4474761e43f5f6d60a9e"
+    },
+    {
+      "kind": "repository",
+      "locator": "WellSpentApp/Resources/Assets.xcassets/AppIcon.appiconset/AppIcon-Dark.png",
+      "sha256": "18e84e120648d19eceafae9204542e32a51a948bac5a45ff44b2622114676bac"
+    },
+    {
+      "kind": "repository",
+      "locator": "WellSpentWatch/Resources/Assets.xcassets/AppIcon.appiconset/AppIcon.png",
+      "sha256": "9aaae20eb67d84e34112700f2745460ed755abc2e0ad4474761e43f5f6d60a9e"
+    },
+    {
+      "kind": "repository",
+      "locator": "WellSpentApp/Resources/Assets.xcassets/AppIcon.appiconset/Contents.json",
+      "sha256": "40724bfa5b059c2ce0e01a862ae94cb44bc58caef5c4354ad41231c43899b7b4"
+    },
+    {
+      "kind": "repository",
+      "locator": "WellSpentWatch/Resources/Assets.xcassets/AppIcon.appiconset/Contents.json",
+      "sha256": "ea024c2798278a0d714602390d5549cc35f2ab212905919038d2bb0f3736e65b"
+    },
+    {
+      "kind": "repository",
+      "locator": "WAT-32-ABSTRACT-ICON.md",
+      "sha256": "3635cc25ba3d801c02fd561946d1d7a5ddcf6d60fb3f46b4c857ff948967f6ed"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/icon-review/scope-abstract-2859e89-revised.log",
+      "sha256": "8bdb001fe5e8c806b2e22723f8062e4533494949709694a0b4a6b94f6187b592"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/icon-review/abstract-source-metadata-2859e89.json",
+      "sha256": "582c1e7926eabe5d5ad6d6a0fb302991af1356fbacdebd424abf33a1ac8f5b39"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/icon-review/abstract-source-preview-2859e89.png",
+      "sha256": "6c2fcbc413106e4402910a873bc8d11d92f892eddd43b0335f42298ecfd3efca"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/AbstractIconCheck-2859e89/summary.json",
+      "sha256": "250b12394204ffb8e1b4e9b6b769bcef2b4edd614d90290a75e668ddba3f44b8"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/AbstractIconCheck-2859e89/phone-actool.log",
+      "sha256": "62df5a9798b33049b81c81c4058206df4bf7958abe75c133ad4f386e771382a0"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/AbstractIconCheck-2859e89/watch-actool.log",
+      "sha256": "a764bc760f7afa483e04aaffecfa461e84ac85b2c94dd2cf531034e21a50bb04"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/AbstractIconCheck-2859e89/phone-assetutil.json",
+      "sha256": "7f43336af7c2e876a527fadb5b065b605788d874f2f9fde8cfa8e44cf9266f4f"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/AbstractIconCheck-2859e89/watch-assetutil.json",
+      "sha256": "6400d9249c99ce140c97c64ea5bb16a80c514f5d1de558dbf34a25afd76d26d4"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/AbstractIconCheck-2859e89/compiled-phone-preview.png",
+      "sha256": "25dde66736807d5486a6b4f0637925e749edc24a689a7cd442c4843f8cbb807b"
+    }
+  ],
+  "limitations": [
+    "This is source/visual verification with focused asset-compilation outputs inspected as supplemental evidence. No full CI, app build, signed archive, simulator, physical-device or App Store operation was performed by the verifier.",
+    "The small-size contact sheet uses diagnostic resizing and illustrative masks; it is not an installed Home Screen or Watch launcher screenshot. Physical light/dark/Auto selection remains unobserved for this revision.",
+    "The project still carries pre-existing 0.2.0 build 6 values during the artwork pass. Earlier build 6 CI and archive evidence contains the rejected detailed artwork and does not validate this revised artwork; any release needs a fresh build and exact-source packaging/validation.",
+    "The provenance document records the coordinator generation history and reference interpretation; this verifier inspected the resulting assets and documentation rather than repeating artwork generation."
+  ],
+  "authorityReference": {
+    "kind": "user-message",
+    "reference": "2026-09-06 owner rejected the detailed AI-looking hourglass and requested an abstract iOS core-app-style icon using Preview as a visual reference, as recorded in ICON-04-ABSTRACT and WAT-32-ABSTRACT-ICON.md.",
+    "confirmedBy": "owner",
+    "confirmedAt": "2026-09-06",
+    "authorityIds": [
+      "repository-write"
+    ]
+  },
+  "publicReleaseApproved": false
+}
