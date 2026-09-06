@@ -3,7 +3,7 @@
   "taskId": "ICON-03-DEVICE",
   "title": "Install and preflight the hourglass candidate on the physical pair",
   "type": "chore",
-  "status": "in_progress",
+  "status": "blocked",
   "risk": "medium",
   "outcome": "Install WellSpent 0.2.0 (6) through Xcode's paired Watch destination and independently verify both installed components before the physical design walkthrough.",
   "assignment": {
@@ -89,7 +89,12 @@
     "WAT-29-DESIGN-REVISION.md",
     "WAT-30-HOURGLASS-ICON.md"
   ],
-  "blocker": null,
+  "blocker": {
+    "kind": "hardware",
+    "owner": "owner",
+    "reference": "WAT-31-HOURGLASS-DEVICE-CHECK.md; Xcode paired Run at 2026-09-06T19:02Z stopped at Watch preparation over the local network.",
+    "resumeEvent": "Owner connects the iPhone by data-capable USB and keeps the Watch nearby, worn, awake and unlocked; a fresh readiness observation reports a wired phone route and Xcode successfully prepares the physical Watch destination."
+  },
   "result": {
     "commit": "6c5f66f954ee3f891e4b7e438ecd4eba60d2fc29",
     "tree": "22e8d45f8c80c1205a6e0b153d8a1548cdf49978"
