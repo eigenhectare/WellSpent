@@ -1,0 +1,177 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "SRC-REL-11-DEVICE-LEDGER-20260906-231727",
+  "taskId": "REL-11-DEVICE",
+  "requirementId": "ER-2",
+  "evidenceClass": "source",
+  "result": "passed",
+  "producerRole": "verifier",
+  "producerId": "native-phone-ledger-verifier",
+  "observedAt": "2026-09-06T23:17:27Z",
+  "source": {
+    "commit": "31538cee04c3bf1ddddc3be152ae5fa0da56cef1",
+    "tree": "a954ab56b998f62c61c536f042207c8d89b94d0f",
+    "clean": true,
+    "version": "0.2.0",
+    "build": "9"
+  },
+  "gate": {
+    "id": "agent-control",
+    "exitCode": 0
+  },
+  "claims": [
+    "Independently reviewed the REL-11-DEVICE ER-2 contract and the exact WAT-34 revision indexed below against retained device-session summaries and the separate ER-1 physical readiness receipt. The ledger distinguishes observed results from remaining owner-operated and distribution acceptance work.",
+    "Initial preflight and exact-bundle queries report both apps absent; the intermediate preflight reports only the Watch installed; the independent 23:09:49 UTC preflight reports both production bundles as 0.2.0 (9), with all five readiness checks true. WAT-34 preserves the earlier failed states and does not describe this session as an upgrade from an installed public build.",
+    "All ten ER-1 artifact digests were independently recomputed and matched. The final physical and frozen release checkouts were independently clean at commit 31538cee04c3bf1ddddc3be152ae5fa0da56cef1 and tree a954ab56b998f62c61c536f042207c8d89b94d0f.",
+    "The three retained 143-file source manifests have identical SHA256 5ed43d1afa5cf4e7b94ac94f2e81b76a481df1a645c84faac1287463532ba429. The ledger preserves the intermediate Xcode normalization observation and subsequent clean restoration instead of overwriting that history.",
+    "The four-component local product summaries identify Debug Apple Development version 0.2.0 (9), strict signature success, development entitlements and three separate debug implementation libraries. The independently recomputed 47-file manifest digest is 59d50509e41d8cfe3febb4f771658bb3ae86a915dfc861f664954d52a80d5b64. WAT-34 accurately excludes Release archive, distribution IPA and TestFlight equivalence.",
+    "Both retained normal CoreDevice launch results report success, foreground activation, an empty argument list, no fixture environment variables, startStopped=false and terminateExistingInstances=false. The ledger correctly states that successful launch and relaunch alone do not establish counterpart registration or paired message exchange.",
+    "Independently viewed both retained 1024-by-1024 installed default icon renders and recomputed their recorded hashes. The abstract hourglass is fully visible inside the supplied rounded-square phone and circular Watch masks. WAT-34 correctly distinguishes these default icon retrievals from Home Screen screenshots and unobserved appearance switching.",
+    "The ledger leaves actual complication and Smart Stack registration/rendering, idle and paused navigation, timer accounting, real transport, accessibility, privacy, notifications, lifecycle, offline, long-duration, resource, upgrade and distribution checks open. Its next steps require fictitious data and no active real work before manipulating timers.",
+    "The ledger does not infer legal agreement acceptance, Xcode credentials, publication, App Review approval or public release from restored website sign-in or development installation. The task remains blocked at the owner-operated observation gap.",
+    "The canonical agent-control gate passed with 15 tasks and 32 receipts before this append-only receipt. The task authority requirements are lexically ordered in the reviewed contract; the earlier ordering correction does not expand scope or authority."
+  ],
+  "artifacts": [
+    {
+      "kind": "repository",
+      "locator": "WAT-34-CANDIDATE-DEVICE-SESSION.md",
+      "sha256": "f8d1bfb8a10c09f93825a9252c5dc8caba74ef103dc9a6764c934e62265664d5"
+    },
+    {
+      "kind": "repository",
+      "locator": "AgentControl/evidence/REL-11-DEVICE/PHY-REL-11-DEVICE-20260906-231132.json",
+      "sha256": "1f25640f89b85ee9fbf9633e9a0e249a9ea9484d8dc254633edefff43797aee1"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/device-session/preflight-before/summary.json",
+      "sha256": "4e211926dae8415974636a76e2efc7f9a311b76b7a6bd16fb01cd15439ae1995"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/device-session/preflight-after-watch-run/summary.json",
+      "sha256": "a113b07578e39f22a3fcc44e8ebd020bed1308be3185a6083a54eb35c4020dee"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/device-session/independent-preflight-after-deployment-31538ce/summary.json",
+      "sha256": "2beb0e6111165978fc2f1b5285d91b8102c4b84bcf48c574f34e62740005d9a4"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/device-session/installed-before-including-distribution.json",
+      "sha256": "e0789d81abb9150231c6b624133814724315e31ddbd8fd3374a89ed8ec2d0307"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/device-session/installed-before-exact-cli-scope.json",
+      "sha256": "feec6e678bf83d3d6f8adc966b7fdad87dbf7b60a0cde632058d5b8e78bd895b"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/device-session/source-before-run/summary.json",
+      "sha256": "9aeaa9b6466d0aaa0aebade49b082ed312cd8260f98e9e574d5788d9b3a8e4a1"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/device-session/source-before-run/files.sha256",
+      "sha256": "5ed43d1afa5cf4e7b94ac94f2e81b76a481df1a645c84faac1287463532ba429"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/device-session/source-after-build/summary.json",
+      "sha256": "9aeaa9b6466d0aaa0aebade49b082ed312cd8260f98e9e574d5788d9b3a8e4a1"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/device-session/source-after-build/files.sha256",
+      "sha256": "5ed43d1afa5cf4e7b94ac94f2e81b76a481df1a645c84faac1287463532ba429"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/device-session/source-after-deployment/summary.json",
+      "sha256": "9aeaa9b6466d0aaa0aebade49b082ed312cd8260f98e9e574d5788d9b3a8e4a1"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/device-session/source-after-deployment/files.sha256",
+      "sha256": "5ed43d1afa5cf4e7b94ac94f2e81b76a481df1a645c84faac1287463532ba429"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/device-session/development-product-before-install.json",
+      "sha256": "64724d97d4a04b34985829630e00a8b88c805d5285c4b3f7c7f35d1c1366cd8e"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/device-session/independent-development-product-31538ce/summary.json",
+      "sha256": "0a030d66a2df629bc221dab7b9838b8edfe786991ac5714dd8829f9f4e6da4e1"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/device-session/independent-development-product-31538ce/product-files.sha256",
+      "sha256": "59d50509e41d8cfe3febb4f771658bb3ae86a915dfc861f664954d52a80d5b64"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/device-session/independent-post-deployment-binding.json",
+      "sha256": "bbaf5086f15062c0332f5ecc9a312426dc008c990a206f5a1dd3c98981907512"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/device-session/xcode-localization-semantic-diff.json",
+      "sha256": "a4fd17b49783410618f3fb3507c982a75243e711ac9d329c37e8cf7dbde78d7b"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/device-session/installed-icon-observation.json",
+      "sha256": "d404e53b050749a1a9e2173274a00e43f5878e04fcf1891b5594ca06ecacf5fc"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/device-session/iPhone-installed-icon.png",
+      "sha256": "63761b99843d665734da55d82c5538326e2fc6863adbb3133fff3d9abf65e3c0"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/device-session/appleWatch-installed-icon.png",
+      "sha256": "c661cec9876cd2be09b367df9500d90c696261490ded752761dcea91185da781"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/device-session/phone-normal-launch-private.json",
+      "sha256": "241857529c4f5c4e1fa74d9183c1f62c509e9a837d3a8112878d466a929fb8c0"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/device-session/watch-normal-launch-private.json",
+      "sha256": "69a11e4ea70af630d39167a8a93f2457380671ee65670da27cb9ec29a2261033"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/device-session/lock-state-before-run.json",
+      "sha256": "028b7e1f90af771eff3b2792d69be8d612a873738a559b1c59caf8f749b33cb1"
+    }
+  ],
+  "limitations": [
+    "This is an ER-2 source and observation-ledger review. This verifier issued no physical-device, simulator, browser or GUI commands and did not operate Xcode installation, launch, app data, timers or system surfaces.",
+    "The Xcode two-scheme deployment sequence and absence of destructive actions or personal-data mutation are coordinator observations, not independently replayed or exhaustively proven by these selected logs. Readiness and version queries cannot cryptographically identify installed binaries, inspect installed extensions, prove automatic companion installation or establish existing-data preservation.",
+    "Both apps were initially absent. There is no evidence here of an in-place upgrade, preservation of a prior store or migration from the public 0.1.0 build 2. No broader AC-1 preservation claim is certified by this ER-2 receipt.",
+    "Source manifests and product signatures bind retained local material. This verifier recomputed manifest and artifact digests and checked current Git identity/cleanliness; the 143 individual source-file and 47 individual product-file rehashes are the separate ER-1 verifier observations.",
+    "Normal launch options exclude fixture arguments and paused debugger startup, but do not constitute exhaustive process instrumentation evidence. The app workflows and actual physical system-surface behavior remain unverified.",
+    "The supplied icon renders show default masking only. Light, dark, Automatic, tinted appearance selection and actual Home Screen or Watch app-screen presentation remain unobserved.",
+    "The source.clean field refers to the exact candidate checkouts. WAT-34 was reviewed as a new integration document in main and is bound to its artifact digest; this receipt does not claim that the documentation integration was already committed or clean.",
+    "The verifier previously contributed phone design implementation and release-copy preparation. This review concerns the later coordinator-authored physical observation ledger and independent ER-1 artifacts; it does not independently approve those earlier implementation changes.",
+    "No full CI was rerun for this documentation/evidence review. The source gate does not substitute for physical workflow acceptance, signed distribution validation, external service readiness, human legal action or public release approval."
+  ],
+  "authorityReference": {
+    "kind": "user-message",
+    "reference": "The coordinator explicitly delegated an independent REL-11-DEVICE ER-2 read-only ledger audit and one unique append-only sanitized evidence receipt. Existing owner-authorized release preparation supplies bounded repository-write authority; this verifier exercised no device, signing, external publication or release action.",
+    "confirmedBy": "coordinator",
+    "confirmedAt": "2026-09-06",
+    "authorityIds": [
+      "repository-write"
+    ]
+  },
+  "publicReleaseApproved": false
+}

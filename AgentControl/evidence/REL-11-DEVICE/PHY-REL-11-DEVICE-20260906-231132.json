@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "PHY-REL-11-DEVICE-20260906-231132",
+  "taskId": "REL-11-DEVICE",
+  "requirementId": "ER-1",
+  "evidenceClass": "physical-device",
+  "result": "passed",
+  "producerRole": "verifier",
+  "producerId": "screen-design-audit",
+  "observedAt": "2026-09-06T23:11:32Z",
+  "source": {
+    "commit": "31538cee04c3bf1ddddc3be152ae5fa0da56cef1",
+    "tree": "a954ab56b998f62c61c536f042207c8d89b94d0f",
+    "clean": true,
+    "version": "0.2.0",
+    "build": "9"
+  },
+  "gate": {
+    "id": "physical-device-preflight",
+    "exitCode": 0
+  },
+  "claims": [
+    "Independently ran one canonical read-only physical-device-preflight after the coordinator completed Xcode installations and normal launches. The exact pair was selected from private inventory without exposing identifiers or inspecting application data; the gate exited 0 at 2026-09-06T23:09:49Z.",
+    "The iPhone 17 Pro Max on iOS 26.6.1 and Apple Watch Ultra 2 on watchOS 26.6 are booted, paired, in Developer Mode and connected through CoreDevice tunnels; the phone has a wired route and the Watch is an available Xcode destination.",
+    "The exact production iPhone and Watch bundle identifiers are installed and both report version 0.2.0, build 9. All five canonical readiness checks are true and no reason codes are present.",
+    "The separate device checkout is restored and independently clean at exact source 31538ce/tree a954ab5. All 143 production-source files were rehashed against the source-after-deployment manifest and match SHA256 5ed43d1afa5cf4e7b94ac94f2e81b76a481df1a645c84faac1287463532ba429.",
+    "The intended installation channel is the coordinator-operated Xcode paired Debug development deployment. The actual four-component development product previously passed independent version/executable/signature checks with Apple Development signing and get-task-allow=true; all 47 product-file hashes remain unchanged after deployment, including three separate debug implementation libraries.",
+    "The development product manifest SHA256 is 59d50509e41d8cfe3febb4f771658bb3ae86a915dfc861f664954d52a80d5b64. This binds the local development product only; it is not the Release archive or App Store distribution IPA.",
+    "Independently viewed the two coordinator-supplied device-rendered default-icon PNGs: the abstract teal/blue hourglass remains fully visible within the iPhone rounded-square and Watch circular masks, with no visible glyph clipping in those supplied renders.",
+    "The earlier independent product report records transient Xcode scheme normalization accurately. This later clean-source checkpoint confirms restoration without overwriting the earlier observation."
+  ],
+  "artifacts": [
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/device-session/independent-preflight-after-deployment-31538ce/summary.json",
+      "sha256": "2beb0e6111165978fc2f1b5285d91b8102c4b84bcf48c574f34e62740005d9a4"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/device-session/independent-preflight-after-deployment-31538ce.log",
+      "sha256": "86a213b49ecc2a7f90b9ef70901cbfb811f093c2bc4b57288e253f72c09b2ec6"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/device-session/independent-post-deployment-binding.json",
+      "sha256": "bbaf5086f15062c0332f5ecc9a312426dc008c990a206f5a1dd3c98981907512"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/device-session/source-after-deployment/summary.json",
+      "sha256": "9aeaa9b6466d0aaa0aebade49b082ed312cd8260f98e9e574d5788d9b3a8e4a1"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/device-session/source-after-deployment/files.sha256",
+      "sha256": "5ed43d1afa5cf4e7b94ac94f2e81b76a481df1a645c84faac1287463532ba429"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/device-session/development-product-before-install.json",
+      "sha256": "64724d97d4a04b34985829630e00a8b88c805d5285c4b3f7c7f35d1c1366cd8e"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/device-session/independent-development-product-31538ce/summary.json",
+      "sha256": "0a030d66a2df629bc221dab7b9838b8edfe786991ac5714dd8829f9f4e6da4e1"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/device-session/independent-development-product-31538ce/product-files.sha256",
+      "sha256": "59d50509e41d8cfe3febb4f771658bb3ae86a915dfc861f664954d52a80d5b64"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/device-session/iPhone-installed-icon.png",
+      "sha256": "63761b99843d665734da55d82c5538326e2fc6863adbb3133fff3d9abf65e3c0"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/device-session/appleWatch-installed-icon.png",
+      "sha256": "c661cec9876cd2be09b367df9500d90c696261490ded752761dcea91185da781"
+    }
+  ],
+  "limitations": [
+    "This gate proves readiness and installed version/build only. It does not establish WatchConnectivity counterpart registration, real transport, application workflows, timer accounting, actual WidgetKit/App Intent/Live Activity delivery, accessibility, energy, long-duration behavior or physical failure-recovery acceptance.",
+    "The coordinator operated the Xcode installations and launches; this verifier performed only the authorized read-only preflight and local artifact inspection. The preflight does not by itself prove the installation sequence or preservation of prior application data.",
+    "The device queries do not cryptographically hash installed binaries or inspect installed extension contents. Source/product binding uses clean provenance, the coordinator deployment record and unchanged local development-product hashes.",
+    "The reviewed icon PNGs demonstrate supplied default masking only. They are not Home Screen screenshots or evidence of light/dark/Auto/tinted appearance selection on either device.",
+    "Debug development signing and behavior are distinct from the independently inspected Release archive and App Store distribution IPA; no equivalence or public-release approval is claimed.",
+    "No install, launch, build, test, source repair, app-data read/write, erase, uninstall, unpair, simulator operation or App Store action was performed by this verifier. Earlier failed/pre-sequencing observations remain preserved."
+  ],
+  "authorityReference": {
+    "kind": "user-message",
+    "reference": "On 2026-09-06 the owner returned and authorized connected iPhone testing. REL-11-DEVICE records the bounded nondestructive paired deployment and verification scope; the coordinator delegated this single read-only pair preflight after completing Xcode deployment and restoring source.",
+    "confirmedBy": "owner",
+    "confirmedAt": "2026-09-06",
+    "authorityIds": [
+      "repository-write",
+      "device-mutate",
+      "signing-upload"
+    ]
+  },
+  "publicReleaseApproved": false
+}

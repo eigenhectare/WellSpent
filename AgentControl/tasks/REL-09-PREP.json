@@ -146,10 +146,10 @@
     "WAT-28-BETA-RELEASE-RUNBOOK.md"
   ],
   "blocker": {
-    "kind": "authentication",
+    "kind": "human-input",
     "owner": "owner",
-    "reference": "WAT-33-UPDATE-RELEASE.md; AgentControl/evidence/REL-09-PREP/EXT-REL-09-PREP-20260906-200500.json",
-    "resumeEvent": "The Mac is unlocked and Xcode account access is restored for validation/upload and Organizer privacy report; Chrome local-file uploads are enabled or the owner manually uploads the prepared screenshots. Resume external staging, reviewer-contact confirmation and the separately authorized public-copy/physical acceptance steps."
+    "reference": "WAT-33-UPDATE-RELEASE.md; AgentControl/evidence/REL-09-PREP/EXT-REL-09-PREP-RESUME-20260906-231547.json",
+    "resumeEvent": "Owner unlocks the Mac and resolves the updated Apple Developer Program agreement request. Resume native screenshot selection and Organizer privacy report/validation/upload with separately verified Xcode account access, then confirm contact and processed assets/build."
   },
   "result": {
     "commit": "31538cee04c3bf1ddddc3be152ae5fa0da56cef1",

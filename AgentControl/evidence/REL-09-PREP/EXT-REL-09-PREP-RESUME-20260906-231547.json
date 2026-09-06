@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "EXT-REL-09-PREP-RESUME-20260906-231547",
+  "taskId": "REL-09-PREP",
+  "requirementId": "ER-5",
+  "evidenceClass": "external-service",
+  "result": "blocked",
+  "producerRole": "release-steward",
+  "producerId": "codex-release-steward",
+  "observedAt": "2026-09-06T23:15:47Z",
+  "source": {
+    "commit": "31538cee04c3bf1ddddc3be152ae5fa0da56cef1",
+    "tree": "a954ab56b998f62c61c536f042207c8d89b94d0f",
+    "clean": true,
+    "version": "0.2.0",
+    "build": "9"
+  },
+  "gate": {
+    "id": "app-store-staging",
+    "exitCode": null
+  },
+  "claims": [
+    "Website sign-in is restored. Saved 0.2.0 draft text and manual release were read directly; no build attachment and zero images were observed in the inspected 6.5-inch and 6.9-inch iPhone screenshot slots.",
+    "Current Apps page requires Account Holder review/acceptance of an updated Developer Program License Agreement for app updates. Owner was asked; no acceptance is claimed.",
+    "Native screenshot selection was attempted from the correct 6.9-inch slot but the Mac had locked; the native picker could not be operated. No new screenshot upload or App Store mutation was confirmed.",
+    "Independent local reconciliation found no original/archive-copy file drift and confirmed the retained distribution IPA digest. No new upload or Organizer validation/report generation occurred."
+  ],
+  "artifacts": [
+    {
+      "kind": "external",
+      "locator": "https://appstoreconnect.apple.com/apps/6807058949/distribution/ios/version/inflight",
+      "sha256": null
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/resumed-staging/external-staging-resume-observation.json",
+      "sha256": "0c7951e5a4aa5559d5ee48918ea4aa1c6d1c0f78875c66069e0f415e9c7d6e69"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/resumed-staging/independent-archive-reconciliation-31538ce/summary.json",
+      "sha256": "2e8d64b9a773a2732fa97df14967c10b9ca6ca04a741866dc0487029d976b330"
+    }
+  ],
+  "limitations": [
+    "App Store metadata processing, upload/processing, build attachment, aggregate Xcode privacy PDF and screenshot uploads remain incomplete.",
+    "Browser login does not prove Xcode credential availability. Review-contact phone/email values remain unconfirmed.",
+    "Physical readiness/installation is recorded separately under REL-11-DEVICE; no transport/workflow acceptance or distribution-binary equivalence is inferred.",
+    "Public copy publication, applicable physical acceptance and owner agreement resolution remain gates."
+  ],
+  "authorityReference": {
+    "kind": "signed-record",
+    "reference": "WAT-OWNER-DECISIONS.md section 4 authorizes archive/export and submission-workflow upload; current owner message reports restored website sign-in. No legal acceptance authority is inferred.",
+    "confirmedBy": "owner",
+    "confirmedAt": "2026-09-06",
+    "authorityIds": [
+      "repository-write",
+      "signing-upload"
+    ]
+  },
+  "publicReleaseApproved": false
+}

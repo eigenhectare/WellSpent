@@ -3,7 +3,7 @@
   "taskId": "REL-11-DEVICE",
   "title": "Validate build 9 on the connected physical pair",
   "type": "chore",
-  "status": "in_progress",
+  "status": "blocked",
   "risk": "medium",
   "outcome": "Install exact-source WellSpent 0.2.0 (9) through Xcode paired deployment and record feasible nondestructive physical icon, workflow and readiness checks without substituting them for distribution or broader device acceptance.",
   "assignment": {
@@ -81,8 +81,8 @@
     }
   ],
   "authorityRequirements": [
-    "repository-write",
     "device-mutate",
+    "repository-write",
     "signing-upload"
   ],
   "legacyRefs": [
@@ -91,7 +91,12 @@
     "WAT-33-UPDATE-RELEASE.md",
     "WAT-05-ACCEPTANCE-MATRIX.md"
   ],
-  "blocker": null,
+  "blocker": {
+    "kind": "human-input",
+    "owner": "owner",
+    "reference": "WAT-34-CANDIDATE-DEVICE-SESSION.md",
+    "resumeEvent": "Owner reports the new fictitious phone project on the unlocked Watch and can operate actual complication/Smart Stack and icon appearance checks, or iPhone Mirroring connectivity is restored. Resume nondestructive observations; installation/readiness evidence remains valid only for its recorded state."
+  },
   "result": {
     "commit": "31538cee04c3bf1ddddc3be152ae5fa0da56cef1",
     "tree": "a954ab56b998f62c61c536f042207c8d89b94d0f"
