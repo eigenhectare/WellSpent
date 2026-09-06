@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "taskId": "REL-03-APPROVAL",
+  "title": "Bind the approved App Store binary to exact source",
+  "type": "release",
+  "status": "done",
+  "risk": "critical",
+  "outcome": "Record App Review approval for WellSpent 0.1.0 (4) against exact source without implying public release.",
+  "assignment": {
+    "role": "release-steward",
+    "id": "codex-release-steward"
+  },
+  "base": {
+    "branch": "codex/wellspent-watch-resubmission",
+    "commit": "ad70ffc6c3f66510151c541e7316101e96f053ab"
+  },
+  "dependsOn": [],
+  "scope": {
+    "included": [
+      "Bind the App Store-approved binary to its exact commit, tree, version, build, and production-source digest.",
+      "Record the owner's App Review outcome attestation.",
+      "Create an immutable annotated version/build source tag."
+    ],
+    "excluded": [
+      "Public App Store release.",
+      "Public storefront availability verification.",
+      "Public-binary installation or smoke testing.",
+      "Unperformed physical-device gates."
+    ]
+  },
+  "writeScope": {
+    "paths": [
+      "APP-STORE-RELEASE.md",
+      "WAT-26-ARCHIVE-VALIDATION.md",
+      "WAT-27-STORE-MATERIALS-DRAFT.md",
+      "WAT-28-BETA-RELEASE-RUNBOOK.md",
+      "WAT-EXECUTION-STATUS.md",
+      "WAT-OWNER-DECISIONS.md",
+      "scripts/watch-distribution-export-check.sh",
+      "scripts/watch-support-site-check.sh",
+      "scripts/watch-support-site-render-check.cjs"
+    ],
+    "resources": [
+      "app-store-connect",
+      "git-integration",
+      "release-status",
+      "version-build"
+    ]
+  },
+  "acceptanceCriteria": [
+    {
+      "id": "AC-1",
+      "statement": "The approved binary is bound to its exact source commit, tree, version, build, and production-source digest."
+    },
+    {
+      "id": "AC-2",
+      "statement": "Owner-confirmed submission and App Review approval are recorded separately from public release and public-binary smoke."
+    },
+    {
+      "id": "AC-3",
+      "statement": "An annotated version/build tag resolves to the exact approved-binary source commit."
+    }
+  ],
+  "evidenceRequirements": [
+    {
+      "id": "ER-1",
+      "criterionIds": [
+        "AC-1"
+      ],
+      "evidenceClass": "source",
+      "gateIds": [
+        "release-source-receipt"
+      ],
+      "candidateBound": true
+    },
+    {
+      "id": "ER-2",
+      "criterionIds": [
+        "AC-2"
+      ],
+      "evidenceClass": "human-approval",
+      "gateIds": [
+        "owner-attestation"
+      ],
+      "candidateBound": true
+    },
+    {
+      "id": "ER-3",
+      "criterionIds": [
+        "AC-3"
+      ],
+      "evidenceClass": "source",
+      "gateIds": [
+        "release-tag-binding"
+      ],
+      "candidateBound": true
+    }
+  ],
+  "authorityRequirements": [
+    "app-store-submit",
+    "repository-write"
+  ],
+  "legacyRefs": [
+    "APP-STORE-RELEASE.md",
+    "WAT-26-ARCHIVE-VALIDATION.md",
+    "WAT-27-STORE-MATERIALS-DRAFT.md",
+    "WAT-28-BETA-RELEASE-RUNBOOK.md",
+    "WAT-EXECUTION-STATUS.md",
+    "WAT-OWNER-DECISIONS.md"
+  ],
+  "blocker": null,
+  "result": {
+    "commit": "de9cfba270893e7efcbafdb9d5dfb337ceb3df5d",
+    "tree": "f35229a1c5f28030e47eca033373bf063ac518b5"
+  }
+}

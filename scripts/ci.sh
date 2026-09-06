@@ -30,6 +30,8 @@ toolchain() {
 
 structural_checks() {
     bash -n "${script_directory}"/*.sh
+    bash "${script_directory}/agent-control-check.sh"
+    bash "${script_directory}/agent-control-regression-tests.sh"
     bash "${script_directory}/ci-guard-regression-tests.sh"
     bash "${script_directory}/lint.sh"
     bash "${script_directory}/privacy-audit.sh"

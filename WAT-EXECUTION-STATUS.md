@@ -17,9 +17,9 @@ recommended next-phase reply.
 | WAT-23 | In Review; autonomous accessibility/layout/privacy work, current-source 381-test clean CI and a five-screen physical Ultra fixture smoke are verified | Actual VoiceOver/system accessibility settings, Always On, haptic, dictation and WidgetKit placement checks; see WAT-23-ACCESSIBILITY-AUDIT.md |
 | WAT-24 | In Progress; 31-case/55-record manifest and validator pass; prior aligned 0.1.0 (2) foreground diagnostic is verified; superseded build 3 was installed nondestructively on iPhone and version-checked, but the disconnected Watch prevented companion verification; zero matrix rows are promoted | Restore the Watch developer tunnel, upload/install corrected 0.1.0 (4) without reset, verify both components, then execute frozen debugger-detached rows; reinstall/unpair/upgrade/replacement retain separate gates; see WAT-24-PAIRED-DEVICE-MATRIX.md |
 | WAT-25 | In Progress; source/binary guards, Simulator storage and CPU/memory regression reporting, physical file protection/backup-exclusion, four isolated physical storage workloads and a refreshed 1.56 MB physical storage inventory are verified; owner accepted the resource/privacy budget | Debugger-detached battery/reload/wakeup/memory, network and restart-before-unlock evidence; backup/restore remains separately gated; see WAT-25-RESOURCE-PRIVACY-AUDIT.md |
-| WAT-26 | In Progress; build 3 upload failed App Store Siri validation 90626 and will not be reused; corrected pushed commit `ad70ffc` passed all 13 CI stages/381 tests; its signed four-component 0.1.0 (4) archive, App Store distribution export, Xcode privacy report, validation/upload and processing all passed, status Ready to Submit | Restore the Watch tunnel and complete physical candidate gates; see WAT-26-ARCHIVE-VALIDATION.md |
-| WAT-27 | In Progress; build-4-bound five-screen 416×496 draft passed visual review; exact exported phone/Watch icon catalogs pass binary integrity; clean local site commit `3a9b9cb` passes copy/link and seven-scenario desktop/mobile render QA but is not published | Publish after action-time confirmation; verify live pages, processed icon and final build-4 candidate screenshots; see WAT-27-STORE-MATERIALS-DRAFT.md |
-| WAT-28 | In Progress; identifier-free build-4 beta package binds pushed source/CI/archive/distribution export/upload/processing; App Store binary metadata is verified; beta information remains unsent and no testers/cohort were used | Complete authorized review/manual release and public-binary smoke; see WAT-28-BETA-RELEASE-RUNBOOK.md |
+| WAT-26 | In Progress; build 3 failed App Store Siri validation 90626 and will not be reused; owner-confirmed approved-binary source `de9cfba` has the same 142-file production manifest as CI-validated `ad70ffc`; version 0.1.0 (4) was submitted and approved by App Review | Preserve the historical `ad70ffc` archive evidence separately; restore the Watch tunnel and complete still-open physical candidate gates; see WAT-26-ARCHIVE-VALIDATION.md |
+| WAT-27 | In Progress; build-4-bound five-screen draft and exported icon catalogs passed the recorded engineering checks; submitted materials were accepted by App Review, but the repository still lacks independent final-capture/live-page closure evidence | Verify the live pages, exact submitted assets and processed icon without promoting the historical DEBUG drafts; see WAT-27-STORE-MATERIALS-DRAFT.md |
+| WAT-28 | In Progress; owner confirms exact-source 0.1.0 (4) was submitted and approved by App Review; no beta tester/cohort was used or inferred | Confirm public-release state, then complete public-binary smoke and closeout; see WAT-28-BETA-RELEASE-RUNBOOK.md |
 
 User decisions retained: immediate Start with no countdown; simulator-first
 development; physical verification is a separate, focused gate; the
@@ -27,6 +27,17 @@ nondestructive physical session, resource/privacy budget, App Store submission
 and manual public release are approved. Personal-data erase/unpair,
 backup/restore, replacement/upgrade, and tester invitations remain separately
 gated as recorded in `WAT-OWNER-DECISIONS.md`.
+
+App Review outcome update (September 5): the owner confirms that 0.1.0 (4) was
+built from commit `de9cfba270893e7efcbafdb9d5dfb337ceb3df5d`, tree
+`f35229a1c5f28030e47eca033373bf063ac518b5`, submitted and approved. Its
+142-file production-source digest is
+`9aecee796f0ef2803a135f05fc378e11995390c3ccd68182b61de88872f5a8b8`,
+byte-identical to the retained `ad70ffc` validation source. Annotated tag
+`v0.1.0-build.4` resolves to that exact source; the canonical sanitized records
+are under `AgentControl/tasks/REL-03-APPROVAL.json` and
+`AgentControl/evidence/REL-03-APPROVAL/`. Public release and public-binary smoke
+remain unverified.
 
 Resolved tooling interruption (September 3): Linear reads and authorized local
 execution work again. Preserve the failed HTTP-404/restricted-context artifacts
@@ -133,13 +144,15 @@ to continue development or ordinary issue status updates.
 - WAT-23 corrected-form clean CI passed build/unit/product gates but finished
   38/39 Watch UI cases. Its lazy-list pre-scroll assertion is corrected and
   retested; the failed bundle remains retained, separate from the passed retry.
-- WAT-26 preparation: unsigned joint-device inspection and 21 rejection guards
-  passed. The report distinguishes unchecked signatures from release approval;
-  no genuine signed archive has been validated. Version/build remain unchanged.
-- WAT-27/28: five native 422×514 fictitious-data draft captures and the existing
-  opaque 1024px icon were inspected. Store/support/privacy/accessibility/review
-  copy and beta/crash-triage/manual-release/containment procedures are drafted.
-  Nothing was published, submitted, uploaded or sent to testers.
+- WAT-26 early preparation checkpoint: unsigned joint-device inspection and 21
+  rejection guards passed. The report distinguishes unchecked signatures from
+  release approval; no genuine signed archive has been validated. Version/build
+  remain unchanged.
+- WAT-27/28 early preparation checkpoint: five native 422×514 fictitious-data
+  draft captures and the existing opaque 1024px icon were inspected.
+  Store/support/privacy/accessibility/review copy and beta/crash-triage/manual-
+  release/containment procedures are drafted. At that checkpoint nothing was
+  published, submitted, uploaded or sent to testers.
 - Final clean CI: all 13 stages passed, **358 tests** with no failures/skips
   (19 golden, 122 Watch units, 161 phone units, 39 Watch UI, 17 phone UI).
   Exact snapshot and paths are in WAT-23-ACCESSIBILITY-AUDIT.md. Later additional

@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "TAG-20260905-001",
+  "taskId": "REL-03-APPROVAL",
+  "requirementId": "ER-3",
+  "evidenceClass": "source",
+  "result": "passed",
+  "producerRole": "verifier",
+  "producerId": "codex-tag-verifier",
+  "observedAt": "2026-09-05T19:53:32-04:00",
+  "source": {
+    "commit": "de9cfba270893e7efcbafdb9d5dfb337ceb3df5d",
+    "tree": "f35229a1c5f28030e47eca033373bf063ac518b5",
+    "clean": true,
+    "version": "0.1.0",
+    "build": "4"
+  },
+  "gate": {
+    "id": "release-tag-binding",
+    "exitCode": 0
+  },
+  "claims": [
+    "Annotated tag v0.1.0-build.4 has tag object 67fc7b3d7afaf9840ab3e81b2039aad5219c5bbf.",
+    "The tag peels to exact approved-binary source commit de9cfba270893e7efcbafdb9d5dfb337ceb3df5d.",
+    "The tag subject is WellSpent 0.1.0 (4) — App Store approved."
+  ],
+  "artifacts": [
+    {
+      "kind": "repository",
+      "locator": "refs/tags/v0.1.0-build.4",
+      "sha256": null
+    }
+  ],
+  "limitations": [],
+  "authorityReference": null,
+  "publicReleaseApproved": false
+}

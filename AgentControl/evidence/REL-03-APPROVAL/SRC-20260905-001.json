@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "SRC-20260905-001",
+  "taskId": "REL-03-APPROVAL",
+  "requirementId": "ER-1",
+  "evidenceClass": "source",
+  "result": "passed",
+  "producerRole": "verifier",
+  "producerId": "release-closeout-reviewer",
+  "observedAt": "2026-09-05T20:18:07-04:00",
+  "source": {
+    "commit": "de9cfba270893e7efcbafdb9d5dfb337ceb3df5d",
+    "tree": "f35229a1c5f28030e47eca033373bf063ac518b5",
+    "clean": true,
+    "version": "0.1.0",
+    "build": "4"
+  },
+  "gate": {
+    "id": "release-source-receipt",
+    "exitCode": 0
+  },
+  "claims": [
+    "The clean source receipt identified version 0.1.0 build 4 at commit de9cfba270893e7efcbafdb9d5dfb337ceb3df5d and tree f35229a1c5f28030e47eca033373bf063ac518b5.",
+    "The production receipt contains 142 files with manifest SHA-256 9aecee796f0ef2803a135f05fc378e11995390c3ccd68182b61de88872f5a8b8.",
+    "The production-source set is byte-identical to the retained ad70ffc6c3f66510151c541e7316101e96f053ab validation source."
+  ],
+  "artifacts": [
+    {
+      "kind": "repository",
+      "locator": "scripts/watch-release-source-receipt.sh",
+      "sha256": null
+    },
+    {
+      "kind": "repository",
+      "locator": "project.yml",
+      "sha256": null
+    }
+  ],
+  "limitations": [
+    "Exact archive, export, and IPA digests produced from de9cfba are unavailable; retained artifact hashes remain bound to ad70ffc."
+  ],
+  "authorityReference": null,
+  "publicReleaseApproved": false
+}

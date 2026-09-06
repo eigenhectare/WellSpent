@@ -1,11 +1,10 @@
 # WAT-28 — Beta, release and incident runbook
 
-Status: In Progress for preparation. **No tester invited, submission updated,
-review approved, or version released.** Build 3 was uploaded but failed App
-Store processing; corrected build 4 is distribution-export verified, validated,
-uploaded, processed and Ready to Submit. WAT-26/27 and the open quality/device
-gates remain prerequisites. This runbook grants no authority to message testers
-or erase personal data.
+Status: In Progress for release closure. No tester was invited. Build 3 failed
+App Store processing; version 0.1.0 (4) was submitted and approved by App Review,
+as confirmed by the owner on September 5, 2026. Public release, public-binary
+smoke and still-open quality/device gates are not inferred from review approval.
+This runbook grants no authority to message testers or erase personal data.
 
 ## Candidate ledger
 
@@ -73,16 +72,17 @@ Invalid Siri Support; it never became an installable or selectable beta build.
 `.derivedData/WAT28-Build4BetaPackage1/` binds 0.1.0 (4) to pushed source commit
 `ad70ffc6c3f66510151c541e7316101e96f053ab`, the clean 381-test CI result and the
 strictly inspected four-component archive. Its compiled Start intent description
-removes the term rejected by Apple's server. Xcode validation/upload passed and
-App Store Connect now records the exact build as Complete and Ready to Submit.
-Both tester cohorts remain false; no tester or external cohort was added.
+removes the term rejected by Apple's server. Xcode validation/upload passed and,
+at that checkpoint, App Store Connect recorded the exact build as Complete and
+Ready to Submit. Both tester cohorts remained false; no tester or external cohort
+was added.
 
-Authenticated build-metadata inspection independently reports build 4 as
-Validated, with symbols included, non-exempt encryption `No`, Watch-only `No`,
-and device family iPhone + Apple Watch. Its TestFlight page has zero groups,
-zero individual testers and blank What to Test, beta-description, feedback,
-URL, contact and review-note fields. Those fields remain unsent drafts; no Save,
-group, invitation or cohort action occurred.
+The September 4 authenticated build-metadata inspection independently reported
+build 4 as Validated, with symbols included, non-exempt encryption `No`,
+Watch-only `No`, and device family iPhone + Apple Watch. Its TestFlight page had
+zero groups, zero individual testers and blank What to Test, beta-description,
+feedback, URL, contact and review-note fields. No Save, group, invitation or
+cohort action occurred during that inspection.
 
 The local App Store distribution export preserves 0.1.0 (4), includes symbols,
 and passed signature, App Store profile, entitlement, package, architecture and
@@ -91,6 +91,23 @@ privacy checks for all four components. Its IPA SHA-256 is
 inspection evidence is at
 `.derivedData/WAT26-Build4DistributionExportInspection2/summary.json` and the
 beta package records the same binding.
+
+### App Review outcome — September 5
+
+The owner confirms that the submitted and approved 0.1.0 (4) binary was produced
+from commit `de9cfba270893e7efcbafdb9d5dfb337ceb3df5d`, tree
+`f35229a1c5f28030e47eca033373bf063ac518b5`. Its 142-file production-source
+manifest SHA-256 is
+`9aecee796f0ef2803a135f05fc378e11995390c3ccd68182b61de88872f5a8b8`,
+byte-identical to the `ad70ffc` production set associated with the historical
+beta-package and archive receipts. Those earlier artifact hashes remain bound to
+their original commit and are not relabeled. Annotated tag
+`v0.1.0-build.4` resolves to the exact approved source.
+
+The owner also confirms that build 4 was attached and submitted and that App
+Review approved it. The exact Apple approval timestamp and review identifier are
+not retained here. Approval does not establish storefront availability or a
+public-binary smoke pass.
 
 ### Repository beta-package integration — September 3
 
@@ -130,10 +147,14 @@ public page was changed by this local preparation.
 - [ ] WAT-26 and WAT-27 are complete for the same candidate; beta exit approved.
 - [ ] Confirm the processed build, Watch assets, iOS copy, support/privacy URLs,
   review contact, accessibility declarations, price/availability and compliance.
-- [ ] Select manual release; retain a reviewable submission summary. Obtain
-  approval before Add for Review / Submit for Review and before sending replies.
+- [ ] Confirm the selected release option and retain a reviewable submission
+  summary. Public release remains a separate action.
 - [ ] Resolve review questions with evidence. A capability/metadata mismatch may
   require a new build and a fresh signed-candidate gate.
+- [x] Exercise the existing authority to attach version 0.1.0 (4) and submit it
+  for App Review.
+- [x] Receive App Review approval for that version/build; confirmed by the owner
+  on September 5, 2026.
 - [ ] After approval, confirm Pending Developer Release and obtain explicit
   approval for that version/build before Release This Version.
 
@@ -175,5 +196,5 @@ downgrade of the local store. Preserve user records and pending changes.
 - Keep the previous source/candidate, incident timeline and support response.
   A prior binary is diagnostic context, not an automatically safe rollback.
 
-WAT-28 remains open until beta, review, authorized release and public-binary
-verification have actually happened. Preparation alone cannot close it.
+WAT-28 remains open until authorized release and public-binary verification have
+actually happened. No beta cohort was used or is retroactively claimed.

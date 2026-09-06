@@ -3,17 +3,16 @@
 Watch-candidate boundary: the historical iPhone readiness checks below are not
 sign-off for the paired app. Use WAT-26-ARCHIVE-VALIDATION.md,
 WAT-27-STORE-MATERIALS-DRAFT.md and WAT-28-BETA-RELEASE-RUNBOOK.md for the joint
-candidate. Watch copy/assets are drafts, and signed/device/distribution gates
-must be evaluated separately. The exact build-4 signed archive, local App Store
-distribution export, privacy report, validation, upload and processing now pass;
-physical-device and final-asset gates remain open. Do not publish the old
-iPhone-only retention wording for Watch.
+candidate. The owner confirmed on September 5, 2026 that version 0.1.0 (4) was
+submitted and approved by App Review. Physical-device and repository evidence
+gates remain separate; review approval is not evidence of public release or a
+public-binary smoke pass. Do not publish the old iPhone-only retention wording
+for Watch.
 
-Product metadata, technical declarations, screenshot drafts, repository support
-copy, and the support contact are prepared for version 0.1.0. The remaining work
-includes physical retention/accessibility/resource gates, final candidate
-screenshots, public-page publication/review, build selection and App Review
-submission.
+Product metadata, technical declarations, screenshots and review information for
+version 0.1.0 were submitted and accepted by App Review. Repository-only gaps
+remain around physical retention/accessibility/resource evidence, independent
+final-asset and live-page verification, public release, and public-binary smoke.
 
 ## Current binary audit
 
@@ -62,22 +61,31 @@ Apple references:
 - App and widget Info.plists inherit the same canonical settings.
 - Increase the build number for every TestFlight or App Store upload.
 
-### Exact candidate status — September 4, 2026
+### Exact candidate status — September 4–5, 2026
 
-- Source commit `ad70ffc6c3f66510151c541e7316101e96f053ab` passed all 13
-  clean-CI stages and 381 tests.
-- The four-component signed archive passed package, entitlement, architecture,
-  dSYM and privacy-manifest inspection.
-- A local App Store distribution export preserved 0.1.0 (4) with build-number
+- The owner identifies commit `de9cfba270893e7efcbafdb9d5dfb337ceb3df5d`,
+  tree `f35229a1c5f28030e47eca033373bf063ac518b5`, as the exact source
+  used to produce the App Store-approved 0.1.0 (4) binary. Annotated tag
+  `v0.1.0-build.4` (tag object `67fc7b3d7afaf9840ab3e81b2039aad5219c5bbf`)
+  resolves to that exact commit.
+- Its 142-file production-source manifest has SHA-256
+  `9aecee796f0ef2803a135f05fc378e11995390c3ccd68182b61de88872f5a8b8`
+  and is byte-identical to commit `ad70ffc6c3f66510151c541e7316101e96f053ab`,
+  which passed all 13 clean-CI stages and 381 tests.
+- The historically retained `ad70ffc` four-component signed archive passed
+  package, entitlement, architecture, dSYM and privacy-manifest inspection.
+- Its local App Store distribution export preserved 0.1.0 (4) with build-number
   management disabled. Every component passed cloud-managed Apple Distribution
   signature/profile checks, includes symbols, has `get-task-allow: false`, and
   retains the required phone/Watch architectures.
-- Xcode validation/upload passed. App Store Connect records build 4 as Validated,
-  Complete and Ready to Submit, with iPhone + Apple Watch device family,
-  non-exempt encryption `No`, symbols `Yes`, and zero testers/groups.
-- The existing version remains Waiting for Review with build 2 attached. No
-  metadata, screenshot, build-selection or review-submission change has been
-  made for build 4.
+- The retained archive/export receipts predate `de9cfba` and remain historical
+  evidence bound to `ad70ffc`; their hashes are not relabeled as HEAD artifacts.
+- Xcode validation/upload passed. The owner confirmed on September 5 that build
+  4 was selected, submitted, and approved by App Review. The exact Apple approval
+  timestamp and public storefront state are not recorded in this repository.
+- Canonical sanitized task and evidence records are under
+  `AgentControl/tasks/REL-03-APPROVAL.json` and
+  `AgentControl/evidence/REL-03-APPROVAL/`.
 
 ## Metadata draft — English (U.S.)
 
@@ -250,7 +258,9 @@ the set:
 - [x] Verify bundle identifiers, entitlements, embedded extension and version in
       App Store Connect; reconcile privacy manifests through the exact export
       and Xcode privacy report.
-- [ ] Attach the intended build to the version and complete the review contact.
-- [ ] Submit for review only with no unresolved metadata warning.
+- [x] Attach the intended build to the version and complete the review contact.
+- [x] Submit for review only with no unresolved metadata warning.
+- [x] App Review approved version 0.1.0 (4), confirmed by the owner on September
+      5, 2026.
 - [ ] Use manual release unless a deliberate release date is approved.
 - [ ] After release, install from the App Store and repeat the core smoke test.

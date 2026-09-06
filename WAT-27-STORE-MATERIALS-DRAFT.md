@@ -1,12 +1,12 @@
 # WAT-27 — Watch product and support materials
 
-Status: In Progress. **Draft copy/screenshots are integrated locally but not
-published or submission-ready.** Build 3's source-bound drafts remain
-visual-design evidence, but build 3 failed App Store processing and cannot be
-final submission evidence. Build 4's exact exported phone and Watch AppIcon
-catalogs pass binary integrity checks. Final build-4 capture acceptance,
-processed-icon visual sign-off, live-page review, retention evidence, App Store
-Connect warnings and independent install review remain open.
+Status: In Progress. The owner confirmed on September 5, 2026 that version 0.1.0
+(4) was submitted and approved by App Review. The repository's copy/screenshots
+remain historical draft evidence rather than proof of the exact submitted set.
+Build 3's source-bound drafts cannot be final evidence; build 4's exported phone
+and Watch AppIcon catalogs passed the recorded integrity checks. Independent
+exact-submission, processed-icon, live-page, retention and install verification
+remain open.
 
 ## Screenshot story and icon
 
@@ -206,10 +206,12 @@ work remains visibly pending until acknowledged. Conflicts are reviewed on
 iPhone. Project names are private on glanceable system surfaces by default.
 The app does not use HealthKit, Workout Processing or extended runtime sessions.
 
-Before submission: replace draft screenshots with exact-candidate captures,
-proof every asset after processing, reconcile privacy/support claims, have a
-reviewer follow these steps unaided, and verify there are no unresolved App Store
-Connect warnings. No public page, metadata field or review message has been sent.
+The pre-submission requirement was to replace draft screenshots with
+exact-candidate captures, proof every asset after processing, reconcile
+privacy/support claims, have a reviewer follow these steps unaided, and verify
+there were no unresolved App Store Connect warnings. The owner now confirms that
+the app was submitted and approved, but the repository does not contain enough
+new evidence to retroactively mark each of those independent checks complete.
 
 ## Build-3 source binding and public-page correction — September 4
 
@@ -295,3 +297,17 @@ distinct compiled-rendition digests without certificate, profile, account or
 device identifiers. This closes exported catalog integrity; it does not replace
 visual review of Apple's circular masking/processed icon or make the DEBUG
 screenshot fixtures submission-ready.
+
+### App Review outcome — September 5
+
+The owner identifies commit `de9cfba270893e7efcbafdb9d5dfb337ceb3df5d`, tree
+`f35229a1c5f28030e47eca033373bf063ac518b5`, as the source used to produce
+the approved 0.1.0 (4) binary. Its 142-file production-source digest is
+`9aecee796f0ef2803a135f05fc378e11995390c3ccd68182b61de88872f5a8b8`,
+byte-identical to the `ad70ffc` source used by the retained validation receipts.
+Annotated tag `v0.1.0-build.4` resolves to that exact source commit.
+
+App Review's approval establishes acceptance of the submitted materials; it does
+not convert the historical DEBUG draft captures into exact-binary evidence or
+prove that the locally corrected support-site commit was published. Public
+release and public-binary visual smoke remain separately open.

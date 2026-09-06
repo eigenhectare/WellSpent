@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "APR-20260905-001",
+  "taskId": "REL-03-APPROVAL",
+  "requirementId": "ER-2",
+  "evidenceClass": "human-approval",
+  "result": "passed",
+  "producerRole": "owner",
+  "producerId": "repository-owner",
+  "observedAt": "2026-09-05T19:53:32-04:00",
+  "source": {
+    "commit": "de9cfba270893e7efcbafdb9d5dfb337ceb3df5d",
+    "tree": "f35229a1c5f28030e47eca033373bf063ac518b5",
+    "clean": true,
+    "version": "0.1.0",
+    "build": "4"
+  },
+  "gate": {
+    "id": "owner-attestation",
+    "exitCode": null
+  },
+  "claims": [
+    "The repository owner confirmed that the most recent commit produced the submitted WellSpent 0.1.0 (4) App Store binary.",
+    "The repository owner confirmed that App Review approved the submitted version and build.",
+    "The owner asked for the release-state reconciliation and repository agent-control changes recorded by this closeout.",
+    "The owner did not attest to public storefront availability or a public-binary smoke pass."
+  ],
+  "artifacts": [
+    {
+      "kind": "repository",
+      "locator": "APP-STORE-RELEASE.md",
+      "sha256": null
+    }
+  ],
+  "limitations": [
+    "The exact Apple approval timestamp and review identifier were not provided.",
+    "App Review approval does not establish public release."
+  ],
+  "authorityReference": {
+    "kind": "user-message",
+    "reference": "Recorded September 4 submission authority plus the September 5 owner attestation and repository-reconciliation request.",
+    "confirmedBy": "repository owner",
+    "confirmedAt": "2026-09-05",
+    "authorityIds": [
+      "app-store-submit",
+      "repository-write"
+    ]
+  },
+  "publicReleaseApproved": false
+}

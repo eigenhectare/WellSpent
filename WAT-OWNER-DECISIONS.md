@@ -24,11 +24,11 @@ Owner record:
 
 ## 2. Release-candidate identity — WAT-26
 
-Repository evidence shows all four configured product components at marketing
+Initial repository evidence showed all four configured product components at marketing
 version `0.1.0`, build `2`. Commit history says build 2 was prepared for App
-Store review, but the repository has no release tag or authoritative App Store
-Connect/TestFlight history. Therefore it cannot prove which build number is
-available externally.
+Store review, but at that checkpoint the repository had no release tag or
+authoritative App Store Connect/TestFlight history. Therefore it could not prove
+which build number was available externally.
 
 Recommendation: keep marketing version `0.1.0` and increment the shared build to
 `3` **only if App Store Connect confirms build 3 is unused for 0.1.0**. Otherwise
@@ -48,6 +48,21 @@ Owner record:
 - Approved source checkpoint/commit creation: approved after the build-number
   check, with all release evidence bound to that exact source/version/build.
 - Decided by/date: Drew Reilly, September 4, 2026.
+
+Outcome update — September 5, 2026:
+
+- Build 3 failed App Store server validation and was not reused. Version 0.1.0
+  build 4 became the submitted and App Review-approved binary.
+- Drew Reilly confirms that the approved binary was produced from commit
+  `de9cfba270893e7efcbafdb9d5dfb337ceb3df5d`, tree
+  `f35229a1c5f28030e47eca033373bf063ac518b5`.
+- Its 142-file production-source manifest SHA-256 is
+  `9aecee796f0ef2803a135f05fc378e11995390c3ccd68182b61de88872f5a8b8`,
+  byte-identical to the retained `ad70ffc` validation source. Historical archive
+  and export hashes remain bound to `ad70ffc`; they are not relabeled.
+- Annotated tag `v0.1.0-build.4` resolves to this exact source.
+- Public release and public-binary smoke remain unconfirmed and are not granted
+  by this source/review attestation.
 
 ## 3. Physical-test authority — WAT-23–25
 
@@ -119,6 +134,14 @@ release. Approval of an earlier step never implies approval of a later one.
   submit and publish WellSpent. It does not waive factual preflight checks,
   Apple authentication, legally required agreements, or separately gated
   tester invitations and external-beta enrollment.
+
+Execution update — September 5, 2026:
+
+- The App Review submission authority was exercised for version 0.1.0 build 4.
+- Drew Reilly confirms that App Review approved that submitted version/build.
+- This records the external review outcome only. Storefront release state,
+  public-binary installation/smoke and destructive physical cases remain
+  separately evidenced actions.
 
 ## Recorded reply and remaining owner decisions
 

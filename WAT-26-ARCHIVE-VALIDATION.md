@@ -1,12 +1,12 @@
 # WAT-26 — Joint release-candidate validation
 
 Status: In Progress. Inspection tooling, clean candidate CI, a signed joint
-0.1.0 (4) archive, exact App Store distribution export, exact-candidate Xcode
-privacy report, Xcode validation/upload and App Store processing have passed the
-checks below. **No complete candidate device smoke has passed this issue.** App
-Store Connect retained
-0.1.0 (3) as a failed upload after server-side Siri validation error 90626. The
-corrected build-4 source, CI and archive evidence is exact-candidate-bound.
+0.1.0 (4) archive, App Store distribution export, Xcode privacy report,
+validation/upload and processing passed the historical checks below. The owner
+confirmed on September 5, 2026 that 0.1.0 (4), built from `de9cfba`, was submitted
+and approved by App Review. **No complete candidate device smoke has passed this
+issue, and public release is not established.** App Store Connect retained 0.1.0
+(3) as a failed upload after server-side Siri validation error 90626.
 
 ## Read-only inspection workflow
 
@@ -342,7 +342,7 @@ not process it into an installable build: upload record 0.1.0 (3) failed with
 the word `Apple`. The failed upload is preserved as evidence and build 3 will
 not be reused. No tester, review selection, submission or public version changed.
 
-### Corrected build-4 candidate checkpoint — September 4
+### Historical corrected build-4 validation checkpoint — September 4
 
 Commit `ad70ffc6c3f66510151c541e7316101e96f053ab`, tree
 `653f14c4f6ef529772d79e855dbaebf58c5c2ac0`, removes the rejected product-name
@@ -364,6 +364,26 @@ identifier-free binding evidence is in
 containing this commit is pushed to GitHub. Xcode validation and upload passed;
 App Store Connect records 0.1.0 (4) as Complete and Ready to Submit. No tester
 was invited. The Watch developer tunnel remains disconnected.
+
+### Approved App Store source reconciliation — September 5
+
+The owner confirms that the binary later submitted and approved by App Review
+was produced from commit `de9cfba270893e7efcbafdb9d5dfb337ceb3df5d`, tree
+`f35229a1c5f28030e47eca033373bf063ac518b5`, at version 0.1.0 (4). Its
+142-file production-source manifest SHA-256 is
+`9aecee796f0ef2803a135f05fc378e11995390c3ccd68182b61de88872f5a8b8`.
+That production set is byte-identical to the `ad70ffc` source validated above;
+the intervening commits changed release documentation and validation tooling,
+not the production-source receipt scope.
+
+The archive, export and IPA hashes below were captured before `de9cfba` and
+remain historical evidence bound to `ad70ffc`. They are not relabeled as hashes
+of the later HEAD-produced artifact. Annotated source tag `v0.1.0-build.4` (tag
+object `67fc7b3d7afaf9840ab3e81b2039aad5219c5bbf`) resolves to `de9cfba`. Sanitized
+closeout receipts are retained under `AgentControl/evidence/REL-03-APPROVAL/`;
+the exact App Store review identifier and HEAD-produced artifact hashes remain
+unavailable. App Review approval is confirmed; public storefront availability
+and public-binary smoke are not.
 
 Xcode Organizer generated the exact archive's native privacy report at
 `.derivedData/WAT26-Build4PrivacyReport1/WellSpent-0.1.0-4-PrivacyReport.pdf`.
@@ -400,10 +420,10 @@ For the eventual candidate, record actual values rather than pre-filling passes:
 
 - [x] Approved source commit, clean tree and full CI evidence, including the
   final WAT-23 changes. Remaining WAT-24/25 physical gates are tracked separately.
-- [x] Current external build history identified in authenticated App Store
-  Connect on September 4, 2026: builds 1 and 2 are processed, build 2 is attached
-  to the current Waiting for Review submission, and build 3 is a failed upload
-  that will not be reused. The corrected candidate uses the next integer, 4.
+- [x] External build history identified in authenticated App Store Connect on
+  September 4, 2026: builds 1 and 2 were processed, build 2 was attached to the
+  then-current Waiting for Review submission, and build 3 was a failed upload
+  that would not be reused. The corrected candidate used the next integer, 4.
 - [x] Signed joint archive path/date, all four IDs/versions, signatures,
   product/dSYM UUIDs and SHA-256 inventories retained in sanitized evidence.
 - [x] Export the unchanged archive and reconcile distribution signatures,
@@ -417,7 +437,11 @@ For the eventual candidate, record actual values rather than pre-filling passes:
   history/reports, complications/controls, optional goal alert and authorized
   erase scenarios. Preserve failures and do not erase personal stores.
 - [x] Retain successful upload validation and the exact processed build identity.
-  Upload, tester invitations, submission and public release require their own
-  explicit authorization; this checklist does not grant it.
+  That evidence did not itself authorize tester invitations, submission or
+  public release; submission was separately authorized and completed.
+- [x] Version 0.1.0 (4) was attached, submitted and approved by App Review;
+  confirmed by the owner on September 5, 2026 against source `de9cfba`.
+- [ ] Verify public storefront availability and complete the public-binary smoke
+  from the App Store-distributed phone and Watch components.
 
 Keep WAT-26 In Progress until its complete acceptance criteria are verified.

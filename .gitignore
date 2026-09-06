@@ -43,6 +43,8 @@ playground.xcworkspace
 
 # Internal development documentation
 *.md
+!AGENTS.md
+!AgentControl/README.md
 !README.md
 !ACCESSIBILITY.md
 !APP-STORE-RELEASE.md
@@ -52,3 +54,6 @@ playground.xcworkspace
 !APPLE-WATCH-PLAN.md
 !WATCH-TESTING-GUIDE.md
 !WAT-*.md
+
+# Runtime coordination shared by linked worktrees; never commit live leases.
+/.agent-locks/

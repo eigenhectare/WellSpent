@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "resources": [
+    {
+      "id": "app-store-connect",
+      "mode": "exclusive",
+      "description": "App Store Connect build selection, metadata, submission, review, and release state.",
+      "paths": []
+    },
+    {
+      "id": "git-integration",
+      "mode": "exclusive",
+      "description": "Target-branch mutation, tag creation, and cross-task integration.",
+      "paths": [".git"]
+    },
+    {
+      "id": "ios-simulator",
+      "mode": "exclusive",
+      "description": "The configured iOS Simulator and its shared runtime state.",
+      "paths": [".derivedData"]
+    },
+    {
+      "id": "paired-devices",
+      "mode": "exclusive",
+      "description": "Authorized physical iPhone/Watch pair and its retained data.",
+      "paths": []
+    },
+    {
+      "id": "project-generation",
+      "mode": "exclusive",
+      "description": "XcodeGen source and checked-in generated project.",
+      "paths": ["project.yml", "WellSpent.xcodeproj"]
+    },
+    {
+      "id": "release-status",
+      "mode": "exclusive",
+      "description": "Canonical release receipts and generated status views.",
+      "paths": ["AgentControl/evidence", "APP-STORE-RELEASE.md", "WAT-EXECUTION-STATUS.md"]
+    },
+    {
+      "id": "signing-archive",
+      "mode": "exclusive",
+      "description": "Signing identity, archive, export, and distribution-profile operations.",
+      "paths": ["Configurations", "project.yml"]
+    },
+    {
+      "id": "swiftdata-schema",
+      "mode": "exclusive",
+      "description": "SwiftData schemas, migrations, and persistence bootstrapping.",
+      "paths": ["WellSpentApp/Data/Migrations", "WellSpentApp/Data/SwiftDataModels"]
+    },
+    {
+      "id": "version-build",
+      "mode": "exclusive",
+      "description": "Marketing version and build-number allocation across all product components.",
+      "paths": ["project.yml", "WellSpent.xcodeproj"]
+    },
+    {
+      "id": "watch-simulator",
+      "mode": "exclusive",
+      "description": "The configured watchOS Simulator and paired simulator state.",
+      "paths": [".derivedData"]
+    },
+    {
+      "id": "watch-wire-contract",
+      "mode": "exclusive",
+      "description": "Cross-device schemas, codecs, mutations, receipts, and reconciliation rules.",
+      "paths": ["WellSpentWatchContracts", "WellSpentApp/Integrations/WatchConnectivity", "WellSpentWatch/Connectivity"]
+    }
+  ]
+}
