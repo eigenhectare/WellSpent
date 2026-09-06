@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "taskId": "ICON-04-ABSTRACT",
+  "title": "Simplify the hourglass icon using the Preview visual reference",
+  "type": "feature",
+  "status": "ready",
+  "risk": "low",
+  "outcome": "Replace the detailed hourglass artwork with a simple abstract hourglass using broad shapes and restrained depth, with matching iOS light/dark and Watch variants.",
+  "assignment": {
+    "role": "implementer",
+    "id": "codex-icon-implementer"
+  },
+  "base": {
+    "branch": "main",
+    "commit": "0794fc60df2e113d71c04b5991da5eebe7b11bb2"
+  },
+  "dependsOn": [
+    "ICON-02-BUILD"
+  ],
+  "scope": {
+    "included": [
+      "Inspect Apple Preview as a visual style reference and create original abstract hourglass artwork with fewer forms and no fine physical-object detail.",
+      "Replace iPhone default and dark icons and the matching Watch icon while preserving native appearance registration.",
+      "Document prompts, reference, source validation and the separation from the previously archived build 6."
+    ],
+    "excluded": [
+      "Product behavior, signing, project structure, bundle identifiers and version/build allocation.",
+      "Physical-device actions, App Store operations and public support/privacy changes.",
+      "Reusing build 6 archive or CI evidence for the revised artwork."
+    ]
+  },
+  "writeScope": {
+    "paths": [
+      "WellSpentApp/Resources/Assets.xcassets/AppIcon.appiconset",
+      "WellSpentWatch/Resources/Assets.xcassets/AppIcon.appiconset",
+      "WAT-32-ABSTRACT-ICON.md"
+    ],
+    "resources": []
+  },
+  "acceptanceCriteria": [
+    {
+      "id": "AC-1",
+      "statement": "Native catalogs consume matching 1024x1024 opaque RGB light/dark hourglass PNGs and a circle-safe Watch variant, with no behavior or identity changes."
+    },
+    {
+      "id": "AC-2",
+      "statement": "Independent visual/source review confirms a bold simplified hourglass silhouette, coherent geometry across appearances, readable small-size rendering and accurate provenance and validation boundaries."
+    }
+  ],
+  "evidenceRequirements": [
+    {
+      "id": "ER-1",
+      "criterionIds": [
+        "AC-1",
+        "AC-2"
+      ],
+      "evidenceClass": "source",
+      "gateIds": [
+        "agent-scope"
+      ],
+      "candidateBound": false
+    }
+  ],
+  "authorityRequirements": [
+    "repository-write"
+  ],
+  "legacyRefs": [
+    "WAT-OWNER-DECISIONS.md"
+  ],
+  "blocker": null,
+  "result": null
+}
