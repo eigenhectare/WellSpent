@@ -3,7 +3,7 @@
   "taskId": "REL-07-PREP",
   "title": "Prepare abstract-icon update without physical devices",
   "type": "release",
-  "status": "ready",
+  "status": "in_progress",
   "risk": "medium",
   "outcome": "Freeze WellSpent 0.2.0 (7), validate the exact candidate, and stage its App Store update while physical acceptance remains pending.",
   "assignment": {
