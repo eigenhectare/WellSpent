@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "taskId": "DESIGN-02-WATCH",
+  "title": "Port the approved native Watch app design",
+  "type": "feature",
+  "status": "ready",
+  "risk": "medium",
+  "outcome": "Port the approved native Watch app design.",
+  "assignment": {
+    "role": "implementer",
+    "id": "design-02-watch"
+  },
+  "base": {
+    "branch": "main",
+    "commit": "950fe8832f0fc56fa7adffac3fa521846f5f839c"
+  },
+  "dependsOn": [],
+  "scope": {
+    "included": [
+      "Native Watch picker, timer, controls, goal and summary screens adopt the approved navy, amber and teal visual language.",
+      "Existing persist-first commands, exact time, goal semantics, Crown paging, privacy redaction, accessibility identifiers and large text accommodations are preserved."
+    ],
+    "excluded": [
+      "Persistence, wire contracts, signing and version allocation.",
+      "App Store upload or release."
+    ]
+  },
+  "writeScope": {
+    "paths": [
+      "WellSpentWatch/Features/Projects/WatchProjectPickerView.swift",
+      "WellSpentWatch/Features/Timer/WatchStartedTimerView.swift",
+      "WellSpentWatch/Features/Timer/WatchTimerControlsView.swift",
+      "WellSpentWatch/Features/Timer/WatchEndedTimerSummaryView.swift",
+      "WellSpentWatch/Features/Goals/WatchGoalSetupView.swift",
+      "WellSpentWatch/Features/Shared/WatchAccessibilityPreferences.swift"
+    ],
+    "resources": []
+  },
+  "acceptanceCriteria": [
+    {
+      "id": "AC-1",
+      "statement": "Native Watch picker, timer, controls, goal and summary screens adopt the approved navy, amber and teal visual language."
+    },
+    {
+      "id": "AC-2",
+      "statement": "Existing persist-first commands, exact time, goal semantics, Crown paging, privacy redaction, accessibility identifiers and large text accommodations are preserved."
+    }
+  ],
+  "evidenceRequirements": [
+    {
+      "id": "ER-1",
+      "criterionIds": [
+        "AC-1",
+        "AC-2"
+      ],
+      "evidenceClass": "source",
+      "gateIds": [
+        "lint",
+        "agent-scope"
+      ],
+      "candidateBound": false
+    }
+  ],
+  "authorityRequirements": [
+    "repository-write"
+  ],
+  "legacyRefs": [
+    "WAT-OWNER-DECISIONS.md"
+  ],
+  "blocker": null,
+  "result": null
+}

@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "taskId": "DESIGN-01-PHONE",
+  "title": "Port the approved iPhone timer design",
+  "type": "feature",
+  "status": "ready",
+  "risk": "medium",
+  "outcome": "Port the approved iPhone timer design.",
+  "assignment": {
+    "role": "implementer",
+    "id": "design-01-phone"
+  },
+  "base": {
+    "branch": "main",
+    "commit": "950fe8832f0fc56fa7adffac3fa521846f5f839c"
+  },
+  "dependsOn": [],
+  "scope": {
+    "included": [
+      "The Track screen adopts the approved warm light and navy dark visual language with clear exact elapsed time, project selection and primary timer controls.",
+      "Existing command handlers, busy and conflict states, navigation, accessibility identifiers and Dynamic Type behavior remain available."
+    ],
+    "excluded": [
+      "Persistence, wire contracts, signing and version allocation.",
+      "App Store upload or release."
+    ]
+  },
+  "writeScope": {
+    "paths": [
+      "WellSpentApp/Features/Track/TrackView.swift",
+      "WellSpentApp/Features/Shared/PresentationSupport.swift",
+      "WellSpentApp/App/Navigation/RootView.swift"
+    ],
+    "resources": []
+  },
+  "acceptanceCriteria": [
+    {
+      "id": "AC-1",
+      "statement": "The Track screen adopts the approved warm light and navy dark visual language with clear exact elapsed time, project selection and primary timer controls."
+    },
+    {
+      "id": "AC-2",
+      "statement": "Existing command handlers, busy and conflict states, navigation, accessibility identifiers and Dynamic Type behavior remain available."
+    }
+  ],
+  "evidenceRequirements": [
+    {
+      "id": "ER-1",
+      "criterionIds": [
+        "AC-1",
+        "AC-2"
+      ],
+      "evidenceClass": "source",
+      "gateIds": [
+        "lint",
+        "agent-scope"
+      ],
+      "candidateBound": false
+    }
+  ],
+  "authorityRequirements": [
+    "repository-write"
+  ],
+  "legacyRefs": [
+    "WAT-OWNER-DECISIONS.md"
+  ],
+  "blocker": null,
+  "result": null
+}

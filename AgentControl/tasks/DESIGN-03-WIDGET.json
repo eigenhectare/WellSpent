@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "taskId": "DESIGN-03-WIDGET",
+  "title": "Align Watch complication navigation and visual surfaces",
+  "type": "feature",
+  "status": "ready",
+  "risk": "medium",
+  "outcome": "Align Watch complication navigation and visual surfaces.",
+  "assignment": {
+    "role": "implementer",
+    "id": "design-03-widget"
+  },
+  "base": {
+    "branch": "main",
+    "commit": "950fe8832f0fc56fa7adffac3fa521846f5f839c"
+  },
+  "dependsOn": [],
+  "scope": {
+    "included": [
+      "Every idle complication and Smart Stack status widget opens the project picker without starting a timer; running and paused taps reopen the current timer.",
+      "Accessory surfaces adopt the approved design, remain private by default and respect system rendering and reduced luminance; regression coverage represents the requested navigation."
+    ],
+    "excluded": [
+      "Persistence, wire contracts, signing and version allocation.",
+      "App Store upload or release."
+    ]
+  },
+  "writeScope": {
+    "paths": [
+      "WellSpentWatchWidgets/WellSpentWatchStatusView.swift",
+      "WellSpentWatchWidgets/WellSpentWatchStatusWidget.swift",
+      "WellSpentWatchStore/WatchWidgetState.swift",
+      "WellSpentWatchTests/WatchWidgetStateTests.swift",
+      "WellSpentWatchUITests/WatchWidgetUITests.swift",
+      "WellSpentWatchUITests/WatchWidgetLayoutUITests.swift",
+      "scripts/ci-watch-ui-tests.txt"
+    ],
+    "resources": []
+  },
+  "acceptanceCriteria": [
+    {
+      "id": "AC-1",
+      "statement": "Every idle complication and Smart Stack status widget opens the project picker without starting a timer; running and paused taps reopen the current timer."
+    },
+    {
+      "id": "AC-2",
+      "statement": "Accessory surfaces adopt the approved design, remain private by default and respect system rendering and reduced luminance; regression coverage represents the requested navigation."
+    }
+  ],
+  "evidenceRequirements": [
+    {
+      "id": "ER-1",
+      "criterionIds": [
+        "AC-1",
+        "AC-2"
+      ],
+      "evidenceClass": "source",
+      "gateIds": [
+        "lint",
+        "agent-scope"
+      ],
+      "candidateBound": false
+    }
+  ],
+  "authorityRequirements": [
+    "repository-write"
+  ],
+  "legacyRefs": [
+    "WAT-OWNER-DECISIONS.md"
+  ],
+  "blocker": null,
+  "result": null
+}
