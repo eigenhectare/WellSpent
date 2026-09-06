@@ -38,8 +38,33 @@ jobs:
       - name: Install project generation and search tools
         run: brew install xcodegen ripgrep
 
+      - name: Resolve Watch simulator
+        env:
+          CI_WATCH_SIMULATOR_NAME: Apple Watch Series 11 (46mm)
+          CI_WATCH_SIMULATOR_OS: "26.5"
+        run: |
+          set -euo pipefail
+          runtime_suffix="watchOS-${CI_WATCH_SIMULATOR_OS//./-}"
+          watch_id="$(xcrun simctl list devices available --json | jq -er \
+            --arg name "${CI_WATCH_SIMULATOR_NAME}" \
+            --arg runtime_suffix "${runtime_suffix}" '
+              [
+                .devices
+                | to_entries[]
+                | select(.key | endswith($runtime_suffix))
+                | .value[]
+                | select(.isAvailable and .name == $name)
+                | .udid
+              ]
+              | unique
+              | if length == 1 then .[0]
+                else error("expected exactly one matching Watch simulator")
+                end
+            ')"
+          printf 'CI_WATCH_SIMULATOR_DESTINATION=platform=watchOS Simulator,id=%s\n' \
+            "${watch_id}" >> "${GITHUB_ENV}"
+
       - name: Run secrets-free pipeline
         env:
           CI_SIMULATOR_DESTINATION: platform=iOS Simulator,name=iPhone 17 Pro Max,OS=26.5
-          CI_WATCH_SIMULATOR_DESTINATION: platform=watchOS Simulator,name=Apple Watch Series 11 (46mm),OS=26.5
         run: scripts/ci.sh
