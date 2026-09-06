@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "taskId": "ICON-02-BUILD",
+  "title": "Build and validate the hourglass icon candidate",
+  "type": "release",
+  "status": "backlog",
+  "risk": "medium",
+  "outcome": "Freeze WellSpent 0.2.0 (6) with adaptive hourglass icons, run full clean-source CI, and independently inspect its signed Release archive.",
+  "assignment": {
+    "role": "release-steward",
+    "id": "codex-release-steward"
+  },
+  "base": {
+    "branch": "codex/hourglass-icon",
+    "commit": "8c6ac8abe65441b5094da5aea5799fdf13cf4b96"
+  },
+  "dependsOn": [
+    "ICON-01-HOURGLASS"
+  ],
+  "scope": {
+    "included": [
+      "Allocate build 6 without reusing build 5, preserving version 0.2.0 and all product identities.",
+      "Regenerate the project, freeze exact source and run full CI on the new candidate.",
+      "Create and independently inspect a new signed Release archive with the new icon variants.",
+      "Record coordinator-managed task and evidence integration."
+    ],
+    "excluded": [
+      "Product behavior changes, model/wire migrations and signing-identity changes.",
+      "App Store upload, distribution export, submission, public release and tester invitations.",
+      "Device mutation, which is a separate task after packaging."
+    ]
+  },
+  "writeScope": {
+    "paths": [
+      "project.yml",
+      "WellSpent.xcodeproj",
+      "WAT-30-HOURGLASS-ICON.md",
+      "AgentControl"
+    ],
+    "resources": [
+      "git-integration",
+      "ios-simulator",
+      "project-generation",
+      "release-status",
+      "signing-archive",
+      "version-build",
+      "watch-simulator"
+    ]
+  },
+  "acceptanceCriteria": [
+    {
+      "id": "AC-1",
+      "statement": "A clean exact-source receipt identifies 0.2.0 (6), with no changes beyond version allocation, generated-project parity and documentation after icon review."
+    },
+    {
+      "id": "AC-2",
+      "statement": "Full thirteen-stage CI passes on the frozen 0.2.0 (6) source."
+    },
+    {
+      "id": "AC-3",
+      "statement": "The signed archive passes four-component inspection and contains the new light/dark iPhone icon and matching Watch icon."
+    }
+  ],
+  "evidenceRequirements": [
+    {
+      "id": "ER-1",
+      "criterionIds": [
+        "AC-1"
+      ],
+      "evidenceClass": "source",
+      "gateIds": [
+        "release-source-receipt",
+        "xcodegen-drift"
+      ],
+      "candidateBound": true
+    },
+    {
+      "id": "ER-2",
+      "criterionIds": [
+        "AC-2"
+      ],
+      "evidenceClass": "unit",
+      "gateIds": [
+        "ci-full"
+      ],
+      "candidateBound": true
+    },
+    {
+      "id": "ER-3",
+      "criterionIds": [
+        "AC-3"
+      ],
+      "evidenceClass": "signed-package",
+      "gateIds": [
+        "signed-archive-inspection"
+      ],
+      "candidateBound": true
+    }
+  ],
+  "authorityRequirements": [
+    "repository-write",
+    "signing-upload"
+  ],
+  "legacyRefs": [
+    "WAT-OWNER-DECISIONS.md",
+    "WAT-30-HOURGLASS-ICON.md"
+  ],
+  "blocker": null,
+  "result": null
+}
