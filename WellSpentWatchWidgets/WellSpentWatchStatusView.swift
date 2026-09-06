@@ -14,6 +14,7 @@ struct WellSpentWatchStatusEntry: TimelineEntry {
 
 struct WellSpentWatchStatusView: View {
     @Environment(\.widgetFamily) private var widgetFamily
+    @Environment(\.widgetRenderingMode) private var renderingMode
     @Environment(\.isLuminanceReduced) private var isLuminanceReduced
     @Environment(\.redactionReasons) private var redactionReasons
     let entry: WellSpentWatchStatusEntry
@@ -25,6 +26,11 @@ struct WellSpentWatchStatusView: View {
     private var state: WatchWidgetState? { entry.state }
     private var isActive: Bool { state?.runID != nil }
 
+    private var accent: Color {
+        renderingMode == .fullColor
+            ? Color(red: 1, green: 0.76, blue: 0.42) : .primary
+    }
+
     var body: some View {
         Group {
             switch family {
@@ -33,6 +39,7 @@ struct WellSpentWatchStatusView: View {
             case .accessoryCorner:
                 Image(systemName: statusSymbol)
                     .font(.title2)
+                    .foregroundStyle(accent)
                     .widgetAccentable()
                     .widgetLabel {
                         if isActive { elapsed } else { Text(statusLabel) }
@@ -53,18 +60,24 @@ struct WellSpentWatchStatusView: View {
         // of letting SwiftUI redact the entire generic status/link label too.
         .unredacted()
         .widgetURL((state?.route ?? .projects).url)
+        .accessibilityHint(
+            isActive
+                ? String(localized: "Opens the current timer.")
+                : String(localized: "Choose a project in the app to start a timer.")
+        )
     }
 
     private var circular: some View {
         VStack(spacing: 1) {
             Image(systemName: statusSymbol)
                 .font(.caption2)
+                .foregroundStyle(accent)
                 .widgetAccentable()
                 .accessibilityHidden(true)
             if isActive {
                 elapsed.font(.system(.caption, design: .rounded, weight: .semibold))
                 Text(state?.timerState == .paused ? String(localized: "PAUSED") : String(localized: "TIME"))
-                    .font(.system(size: 8, weight: .semibold))
+                    .font(.system(size: 11, weight: .semibold))
             } else {
                 Text(state?.timerState == .ready ? String(localized: "Projects") : shortStatus)
                     .font(.caption2.weight(.semibold))
@@ -85,8 +98,9 @@ struct WellSpentWatchStatusView: View {
     private var detailedRectangular: some View {
         VStack(alignment: .leading, spacing: 3) {
             HStack(spacing: 4) {
-                Image(systemName: statusSymbol).widgetAccentable().accessibilityHidden(true)
-                Text(statusLabel).fixedSize()
+                Image(systemName: statusSymbol).foregroundStyle(accent)
+                    .widgetAccentable().accessibilityHidden(true)
+                Text(state?.timerState == .ready ? String(localized: "WellSpent") : statusLabel).fixedSize()
                 Spacer(minLength: 0)
                 if state?.pendingSync == true {
                     Image(systemName: "arrow.triangle.2.circlepath")
@@ -111,23 +125,14 @@ struct WellSpentWatchStatusView: View {
                 }
                 .font(.caption2)
                 .foregroundStyle(.secondary)
-            } else if state?.timerState == .ready, let projects = state?.recentProjects, !projects.isEmpty {
-                ForEach(Array(projects.prefix(2).enumerated()), id: \.element.id) { index, project in
-                    Link(destination: WatchWidgetRoute.project(project.id).url) {
-                        HStack {
-                            Text(projectLabel(project, index: index))
-                                .privacySensitive(project.name != nil)
-                                .fixedSize()
-                            Spacer(minLength: 0)
-                            Image(systemName: "chevron.right").font(.caption2).accessibilityHidden(true)
-                        }
-                        .frame(minHeight: 30)
-                        .contentShape(Rectangle())
-                    }
-                    .buttonStyle(.plain)
-                    .font(.caption.weight(.medium))
-                    .accessibilityHint("Opens timer setup. Does not start until you choose a timer.")
-                }
+            } else if state?.timerState == .ready {
+                Text("Start timer")
+                    .font(.system(.title2, design: .rounded, weight: .semibold))
+                    .fixedSize()
+                Label("Choose a project", systemImage: "chevron.right")
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+                    .fixedSize()
             } else {
                 Text(detailLabel).font(.caption2).foregroundStyle(.secondary)
             }
@@ -136,8 +141,8 @@ struct WellSpentWatchStatusView: View {
     }
 
     /// Accessory views cannot scroll. Prefer full copy when it fits, then keep
-    /// the essential state/time or both project destinations without ellipses.
-    /// Full recent-project names and status explanations remain available to VoiceOver.
+    /// the essential state/time or the single project-picker destination.
+    /// A tap is navigation only, including when the visible snapshot is stale.
     @ViewBuilder
     private var compactRectangular: some View {
         if isActive {
@@ -153,45 +158,22 @@ struct WellSpentWatchStatusView: View {
                     }
                 }
             }
-        } else if state?.timerState == .ready, let projects = state?.recentProjects, !projects.isEmpty {
-            ViewThatFits {
-                VStack(spacing: 3) {
-                    ForEach(Array(projects.prefix(2).enumerated()), id: \.element.id) { index, project in
-                        Link(destination: WatchWidgetRoute.project(project.id).url) {
-                            Text(
-                                redacted
-                                    ? String(localized: "Project \(index + 1)")
-                                    : (project.name ?? String(localized: "Project \(index + 1)"))
-                            )
-                            .font(.caption2.weight(.semibold)).fixedSize()
-                            .frame(maxWidth: .infinity, minHeight: 30, alignment: .leading)
-                            .contentShape(Rectangle())
-                        }
-                        .buttonStyle(.plain)
-                        .accessibilityLabel(projectLabel(project, index: index))
-                        .accessibilityHint("Opens timer setup. Does not start until you choose a timer.")
-                    }
-                }
-                HStack(spacing: 6) {
-                    ForEach(Array(projects.prefix(2).enumerated()), id: \.element.id) { index, project in
-                        Link(destination: WatchWidgetRoute.project(project.id).url) {
-                            VStack(spacing: 3) {
-                                Image(systemName: "folder").widgetAccentable()
-                                Text(verbatim: "\(index + 1)").monospacedDigit()
-                            }
-                            .font(.caption.weight(.semibold))
-                            .frame(maxWidth: .infinity, minHeight: 44)
-                            .contentShape(Rectangle())
-                        }
-                        .buttonStyle(.plain)
-                        .accessibilityLabel(projectLabel(project, index: index))
-                        .accessibilityHint("Opens timer setup. Does not start until you choose a timer.")
-                    }
-                }
+        } else if state?.timerState == .ready {
+            VStack(alignment: .leading, spacing: 4) {
+                Image(systemName: "play.fill")
+                    .foregroundStyle(accent)
+                    .widgetAccentable()
+                    .accessibilityHidden(true)
+                Text("Start timer")
+                    .font(.caption2.weight(.semibold))
+                    .fixedSize(horizontal: false, vertical: true)
             }
+            .accessibilityElement(children: .combine)
+            .accessibilityHint("Choose a project in the app to start a timer.")
         } else {
             VStack(alignment: .leading, spacing: 4) {
-                Image(systemName: statusSymbol).font(.title3).widgetAccentable().accessibilityHidden(true)
+                Image(systemName: statusSymbol).font(.title3).foregroundStyle(accent)
+                    .widgetAccentable().accessibilityHidden(true)
                 Text(shortStatus).font(.caption2.weight(.semibold))
                     .fixedSize(horizontal: false, vertical: true)
             }
@@ -199,12 +181,6 @@ struct WellSpentWatchStatusView: View {
             .accessibilityLabel(statusLabel)
             .accessibilityValue(detailLabel)
         }
-    }
-
-    private func projectLabel(_ project: WatchWidgetProject, index: Int) -> String {
-        redacted
-            ? String(localized: "Recent project \(index + 1)")
-            : (project.name ?? String(localized: "Recent project \(index + 1)"))
     }
 
     private func goalLabel(seconds: Int, state: WatchWidgetState) -> String {
@@ -231,7 +207,7 @@ struct WellSpentWatchStatusView: View {
         switch state?.timerState {
         case .blocked: String(localized: "Review on iPhone")
         case .paused: String(localized: "Paused")
-        case .ready: String(localized: "Recent projects")
+        case .ready: String(localized: "Start timer")
         case .running: String(localized: "Tracking time")
         case .setupRequired: String(localized: "Set up on iPhone")
         case .updateRequired: String(localized: "Update WellSpent")
@@ -263,7 +239,7 @@ struct WellSpentWatchStatusView: View {
         case .paused: "pause.fill"
         case .running: "stopwatch.fill"
         case .updateRequired: "arrow.down.app"
-        case .ready: "folder"
+        case .ready: "play.fill"
         case .setupRequired, .none: "stopwatch"
         }
     }

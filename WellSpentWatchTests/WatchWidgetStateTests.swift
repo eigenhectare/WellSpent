@@ -124,6 +124,22 @@ final class WatchWidgetStateTests: XCTestCase {
         XCTAssertEqual(WatchWidgetRoute.run(runID).resolved(in: idle, isBlocked: false), .projects)
     }
 
+    func testIdleComplicationOpensProjectsAndPausedComplicationKeepsPausedRun() {
+        var idle = makeProjection()
+        idle.activeRun = nil
+        idle.activeRunSegments = []
+        XCTAssertEqual(state(idle).route, .projects)
+        XCTAssertEqual(state(idle).route.resolved(in: idle, isBlocked: false), .projects)
+
+        let paused = makeProjection(paused: true)
+        XCTAssertEqual(state(paused).route, .run(runID))
+        for stale in [WatchWidgetRoute.projects, .project(projectID), .run(UUID())] {
+            XCTAssertEqual(stale.resolved(in: paused, isBlocked: false), .run(runID))
+        }
+        XCTAssertEqual(paused.activeRun?.state, .paused)
+        XCTAssertNil(state(paused).elapsedTimerStart)
+    }
+
     func testMirroredPhoneLinksOpenCurrentWatchRunWithoutMutation() throws {
         let projection = makeProjection()
         for raw in ["wellspent://track", "wellspent://completion/\(UUID())"] {
