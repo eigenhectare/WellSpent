@@ -22,12 +22,11 @@ final class WatchWidgetLayoutUITests: XCTestCase {
                 let name = fixture == "long-names" ? "Quarterly launch planning and customer research" : "Client Launch"
                 if privacy != "visible" {
                     XCTAssertFalse(tree.contains(name))
-                    if fixture != "active" { verifyPrivateRecentLabels(app) }
-                } else if fixture != "active" {
-                    // The installed fixture projection orders its catalog;
-                    // the long-name case presents A and one long-name project.
-                    let expected = fixture == "long-names" ? ["A", name] : ["Admin & Operations", name]
-                    XCTAssertEqual(Set(app.buttons.allElementsBoundByIndex.map(\.label)), Set(expected))
+
+                }
+                if fixture != "active" {
+                    verifyProjectPickerLabel(app)
+                    XCTAssertFalse(tree.contains(name))
                 }
                 app.terminate()
             }
@@ -45,7 +44,7 @@ final class WatchWidgetLayoutUITests: XCTestCase {
             let app = launch(fixture, extra: extra)
             try verify(app, name: fixture, expanded: expanded, recent: fixture == "populated")
             XCTAssertFalse(app.debugDescription.contains("Client Launch"))
-            if fixture == "populated" { verifyPrivateRecentLabels(app) }
+            if fixture == "populated" { verifyProjectPickerLabel(app) }
             app.terminate()
         }
     }
@@ -78,22 +77,16 @@ final class WatchWidgetLayoutUITests: XCTestCase {
         XCTAssertFalse((texts + app.buttons.allElementsBoundByIndex).isEmpty)
         for text in texts { assertInside(text, region: region) }
         if recent {
-            let buttons = app.buttons.allElementsBoundByIndex
-            XCTAssertEqual(buttons.count, 2)
-            for button in buttons {
-                XCTAssertTrue(button.isHittable)
-                XCTAssertGreaterThanOrEqual(button.frame.width, 28)
-                XCTAssertGreaterThanOrEqual(button.frame.height, 28)
-                XCTAssertFalse(button.label.isEmpty)
-                assertInside(button, region: region)
-            }
-            XCTAssertTrue(buttons[0].frame.intersection(buttons[1].frame).isNull)
+            // The whole accessory is a single widgetURL destination. There
+            // must be no nested project shortcut that bypasses the picker.
+            XCTAssertTrue(app.buttons.allElementsBoundByIndex.isEmpty)
+            verifyProjectPickerLabel(app)
         }
         if expanded && !name.contains("visible") {
             let labels = (texts + app.buttons.allElementsBoundByIndex).map(\.label)
             XCTAssertTrue(
                 labels.contains { label in
-                    ["Recent project", "Running", "Paused", "Review", "Update", "Set up", "Open"].contains { word in
+                    ["Start timer", "Running", "Paused", "Review", "Update", "Set up", "Open"].contains { word in
                         label.components(separatedBy: word).count >= 3
                     }
                 }, "The real localization boundary must expand; a launch flag alone is not evidence.")
@@ -113,11 +106,8 @@ final class WatchWidgetLayoutUITests: XCTestCase {
         add(rendered)
     }
 
-    private func verifyPrivateRecentLabels(_ app: XCUIApplication) {
-        for (index, button) in app.buttons.allElementsBoundByIndex.enumerated() {
-            XCTAssertTrue(button.label.contains("Recent project"))
-            XCTAssertTrue(button.label.hasSuffix("\(index + 1)"))
-        }
+    private func verifyProjectPickerLabel(_ app: XCUIApplication) {
+        XCTAssertTrue(app.staticTexts.allElementsBoundByIndex.contains { $0.label.contains("Start timer") })
     }
 
     private func assertInside(_ element: XCUIElement, region: CGRect) {

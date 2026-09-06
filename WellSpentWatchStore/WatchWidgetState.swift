@@ -98,6 +98,8 @@ public struct WatchWidgetState: Equatable, Sendable {
         return [date, deadline]
     }
 
+    /// Idle surfaces always enter the picker. Paused is an existing run, so
+    /// reopening it must not offer a competing start or implicitly resume it.
     public var route: WatchWidgetRoute {
         runID.map(WatchWidgetRoute.run) ?? .projects
     }
@@ -166,7 +168,7 @@ public enum WatchWidgetRoute: Equatable, Sendable {
         guard !isBlocked, projection.conflict == nil, projection.updateGuidance?.updateRequired != true else {
             return .projects
         }
-        // Never let a stale project/run link displace a newer active run.
+        // Never let a stale project/run link displace a newer running or paused run.
         if let run = projection.activeRun { return .run(run.id) }
         if case .project(let id) = self, projection.projects.contains(where: { $0.id == id }) {
             return .project(id)

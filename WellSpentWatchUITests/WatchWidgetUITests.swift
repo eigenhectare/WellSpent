@@ -2,24 +2,24 @@ import XCTest
 
 @MainActor
 final class WatchWidgetUITests: XCTestCase {
-    func testRecentWidgetNamesArePrivateAndOptInIsRedacted() {
+    func testIdleWidgetOpensProjectsAndActiveNamesRespectPrivacy() {
         let privateApp = launch(fixture: "populated", family: "rectangular")
-        XCTAssertTrue(named("Recent project 1", in: privateApp).waitForExistence(timeout: 10))
+        XCTAssertTrue(named("Start timer", in: privateApp).waitForExistence(timeout: 10))
         XCTAssertFalse(privateApp.debugDescription.contains("Client Launch"))
-        capture(privateApp, name: "recent-private")
+        capture(privateApp, name: "idle-project-picker")
         privateApp.terminate()
-        let optedIn = launch(fixture: "populated", family: "rectangular", extra: ["-ui-test-widget-names"])
+        let optedIn = launch(fixture: "active", family: "rectangular", extra: ["-ui-test-widget-names"])
         XCTAssertTrue(named("Client Launch", in: optedIn).waitForExistence(timeout: 10))
-        capture(optedIn, name: "recent-opt-in")
+        capture(optedIn, name: "active-opt-in")
         optedIn.terminate()
         let redacted = launch(
-            fixture: "populated", family: "rectangular",
+            fixture: "active", family: "rectangular",
             extra: [
                 "-ui-test-widget-names", "-ui-test-privacy-redacted",
             ])
-        XCTAssertTrue(named("Recent project 1", in: redacted).waitForExistence(timeout: 10))
+        XCTAssertTrue(named("Billable time", in: redacted).waitForExistence(timeout: 10))
         XCTAssertFalse(redacted.debugDescription.contains("Client Launch"))
-        capture(redacted, name: "recent-redacted")
+        capture(redacted, name: "active-redacted")
     }
 
     func testActivePausedAndBlockedWidgetRendering() {
@@ -38,13 +38,44 @@ final class WatchWidgetUITests: XCTestCase {
     }
 
     func testAllAccessoryFamiliesRenderWithoutProjectNames() {
-        for family in ["circular", "corner", "inline", "rectangular"] {
-            let app = launch(fixture: "active", family: family)
-            XCTAssertTrue(app.descendants(matching: .any)["watch.widget-preview"].waitForExistence(timeout: 10))
-            XCTAssertFalse(app.staticTexts["Client Launch"].exists)
-            capture(app, name: "family-\(family)")
-            app.terminate()
+        for fixture in ["populated", "active", "paused"] {
+            for family in ["circular", "corner", "inline", "rectangular"] {
+                let app = launch(fixture: fixture, family: family)
+                XCTAssertTrue(app.descendants(matching: .any)["watch.widget-preview"].waitForExistence(timeout: 10))
+                XCTAssertFalse(app.staticTexts["Client Launch"].exists)
+                capture(app, name: "\(fixture)-family-\(family)")
+                app.terminate()
+            }
         }
+    }
+
+    func testIdleComplicationOpensPickerBeforeProjectTapStartsTimer() {
+        let app = launch(
+            fixture: "populated", family: nil,
+            extra: ["-ui-test-widget-url", "wellspent-watch://projects"])
+        let project = app.buttons["watch.project.open.20000000-0000-0000-0000-000000000001"]
+        XCTAssertTrue(project.waitForExistence(timeout: 10))
+        XCTAssertFalse(app.buttons["watch.goal.open"].exists)
+        XCTAssertFalse(app.descendants(matching: .any)["watch.timer.running"].exists)
+        project.tap()
+        XCTAssertTrue(app.descendants(matching: .any)["watch.timer.running"].waitForExistence(timeout: 5))
+        XCTAssertEqual(app.descendants(matching: .any)["watch.metrics.project"].label, "Project, Client Launch")
+        XCTAssertTrue(app.buttons["watch.metrics.no-goal"].exists)
+        capture(app, name: "idle-tap-started-selected-project")
+    }
+
+    func testPausedComplicationReopensPausedTimerWithoutResuming() {
+        let app = launch(
+            fixture: "paused", family: nil,
+            extra: ["-ui-test-widget-url", "wellspent-watch://projects"])
+        XCTAssertTrue(app.staticTexts["watch.metrics.elapsed"].waitForExistence(timeout: 10))
+        XCTAssertEqual(app.staticTexts["watch.metrics.elapsed"].label, "Paused")
+        XCTAssertFalse(app.buttons["watch.project.open.20000000-0000-0000-0000-000000000001"].exists)
+        XCTAssertFalse(app.buttons["watch.goal.open"].exists)
+        app.swipeRight()
+        XCTAssertTrue(app.buttons["watch.controls.resume"].waitForExistence(timeout: 5))
+        XCTAssertFalse(app.buttons["watch.controls.pause"].exists)
+        capture(app, name: "paused-tap-awaits-resume")
     }
 
     func testProjectLinkOpensSetupWithoutStartingAndStaleLinkKeepsCurrentRun() {

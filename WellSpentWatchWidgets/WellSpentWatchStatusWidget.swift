@@ -34,10 +34,14 @@ struct WellSpentWatchStatusWidget: Widget {
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: WellSpentWatchStatusProvider()) { entry in
             WellSpentWatchStatusView(entry: entry)
-                .containerBackground(.fill.tertiary, for: .widget)
+                .containerBackground(for: .widget) {
+                    Color(red: 0.067, green: 0.176, blue: 0.235)
+                }
         }
         .configurationDisplayName("WellSpent")
-        .description("See billable time, paused status, or recent projects. Names stay private by default.")
+        .description(
+            "See billable time or reopen a paused timer. When idle, choose a project to start. Names stay private by default."
+        )
         .supportedFamilies([
             .accessoryCircular, .accessoryCorner, .accessoryInline, .accessoryRectangular,
         ])
