@@ -1,5 +1,9 @@
 # Adaptive hourglass app icon
 
+Release candidate: **WellSpent 0.2.0 (6)**. Build 5 and its original-icon archive
+remain preserved as historical evidence. Build 6 requires its own source, CI,
+archive and installed-device results.
+
 The September 6, 2026 owner request replaces the clock/checkmark identity with
 an hourglass. The iPhone app now supplies distinct light and dark artwork in its
 existing primary AppIcon asset catalog. The Watch uses the same light artwork,
