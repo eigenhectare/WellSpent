@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "CI-DESIGN-00-INTEGRATION-FAILED-20260906-165940",
+  "taskId": "DESIGN-00-INTEGRATION",
+  "requirementId": "ER-2",
+  "evidenceClass": "unit",
+  "result": "failed",
+  "producerRole": "verifier",
+  "producerId": "screen-design-audit",
+  "observedAt": "2026-09-06T16:59:40Z",
+  "source": {
+    "commit": "7e88045c9ad0fe54e836ac8d94d230da3476d5ce",
+    "tree": "1fbbf4daf01c36a2b58a6bf97c734de1d630862a",
+    "clean": true,
+    "version": "0.1.0",
+    "build": "4"
+  },
+  "gate": {
+    "id": "ci-full",
+    "exitCode": 65
+  },
+  "claims": [
+    "Ran the canonical full CI script with verified XcodeGen 2.46.0 on the exact clean source; source checks, all four joint builds, golden contracts, Watch unit, phone unit, and release-product checks passed.",
+    "Full CI failed in Watch UI: 59 of 62 tests passed; three largest-text idle rectangular tests measured the known preview padding as combined accessibility content.",
+    "Exact native screenshots and accessibility trees show the idle widget text and icon within the 180 by 88 point proposal; the rejected combined wrapper equals the proposal enlarged by five points on every edge.",
+    "Idle picker entry, project-tap immediate start, paused entry without resuming, warm return to elapsed preserving paused time, and legacy/stale project-route tests all passed.",
+    "Ran the skipped phone UI phase separately using the canonical manifest and timeout settings on the same dark simulator and clean source: 17 of 18 tests passed; active Running status reported textClipped at the first accessibility audit.",
+    "Five focused existing accessibility and interaction tests passed on the smallest 40 mm Watch simulator, including immediate start under combined adaptations, controls, custom goal, long project names, and summary.",
+    "Inspected native 40 mm attachments: primary actions remain operable; the Running status wraps awkwardly beside sync at largest combined settings and is reported for visual repair.",
+    "Final source identity and clean working tree were checked before releasing simulator/build use; no source repairs were made by the verifier."
+  ],
+  "artifacts": [
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/DesignCI/run.Md4PDU/stages.tsv",
+      "sha256": "0acc3699e9ee4d135885a6ce28e4cff631b8a9fccc8787366d505f31b90c3b8d"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/DesignCI/run.Md4PDU/source-provenance/summary.json",
+      "sha256": "1b00ec12372afd5b102364db67b216fc97b17db51643ffed84292aae6a113b10"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/DesignCI/run.Md4PDU/source-product-provenance.json",
+      "sha256": "f099b830f3328584b7f2090a4cd34a86f11eb8d68e251ccd8efb2e5e964fb42e"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/design-review/integration-7e880-test-summary.json",
+      "sha256": "67b4120e1c0fd80f09e6e6c2f5bac00622b2c4b9e1a4e37ad844f7ab4ad1c493"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/DesignCI/run.Md4PDU/logs/watch-ui.log",
+      "sha256": "86c83ee2313743f2e421460065565d04dc2abcddcd4443bf92d921dfaae4decc"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/design-review/phone-ui-7e880.log",
+      "sha256": "4484dcce62de9263729441b4a5c2fc45ed9866ee8bee836223cb57718872be9d"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/design-review/watch-40mm-7e880.log",
+      "sha256": "8af242f08347a3c9be05485e577b7a9f4b88e04c153a69669effd615bb094e07"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/DesignCI/run.Z2DNuF/stages.tsv",
+      "sha256": "3cb14a5464ff15a1cc75556d1f79e82ea62774c3c5220bd66d79c805c6789639"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/design-review/watch-widget-largest-failure/manifest.json",
+      "sha256": "103b036217fbb041dff6b303371f2568cf6e62106c0028c46d6c9aea309fbe22"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/design-review/watch-widget-expanded-failure/manifest.json",
+      "sha256": "274ef67ada3ff9e7fae1438d6ce6a1f62bc7d295393d51dde6d705dc720e4d4f"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/design-review/phone-running-7e880-failure/manifest.json",
+      "sha256": "a4cccb0c90349802fb2c561d93eca3f2a42e7c138e23c855e13b2767f6d43ff0"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/design-review/watch-40mm-7e880-attachments/manifest.json",
+      "sha256": "9d0e05cb1f478f165fef3ba94718ed1035b5ad632819d1fc6693b26302052090"
+    }
+  ],
+  "limitations": [
+    "This failed receipt does not close the full CI acceptance requirement; integration repair and a new exact-candidate verification run are required.",
+    "Initial simulator test-host failure and fresh-simulator recovery are retained as separate observations; no simulator data was erased.",
+    "App-hosted widget rendering and the DEBUG warm URL trigger do not prove WidgetKit compositor or delivery behavior.",
+    "The phone completion accessibility audit was not reached because the active status audit failed.",
+    "This is simulator and engineering evidence for version 0.1.0 build 4 only, not physical-device, signed-package, App Review, public-release, or later-version evidence."
+  ],
+  "authorityReference": {
+    "kind": "user-message",
+    "reference": "2026-09-06 user authorization to port the approved design into the native app and explicit choice that a paused complication reopens the paused timer.",
+    "confirmedBy": "owner",
+    "confirmedAt": "2026-09-06",
+    "authorityIds": [
+      "repository-write"
+    ]
+  },
+  "publicReleaseApproved": false
+}

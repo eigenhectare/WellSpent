@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "taskId": "DESIGN-05-BUILD",
+  "title": "Build the next native design version",
+  "type": "release",
+  "status": "ready",
+  "risk": "medium",
+  "outcome": "Allocate WellSpent 0.2.0 (5) and build an exact-source signed archive of the redesigned iPhone and Watch apps.",
+  "assignment": {
+    "role": "release-steward",
+    "id": "codex-release-steward"
+  },
+  "base": {
+    "branch": "main",
+    "commit": "53ec2e2bf462c70906ccd462791e022eb69c136a"
+  },
+  "dependsOn": [
+    "DESIGN-00-INTEGRATION"
+  ],
+  "scope": {
+    "included": [
+      "Allocate marketing version 0.2.0 and build 5 across all four components.",
+      "Freeze the exact source commit and build a signed Release archive with current automatic signing.",
+      "Independently inspect source identity, signatures, entitlements, privacy manifests and dSYM coverage.",
+      "Document how to test idle, paused and running Watch complication entry.",
+      "Record coordinator-managed verification receipts, integration result and release-task state."
+    ],
+    "excluded": [
+      "App Store Connect upload, App Review submission and public release.",
+      "Device installation, destructive tests and tester invitations.",
+      "Changes to signing identities, bundle identifiers, privacy declarations, models or timer behavior."
+    ]
+  },
+  "writeScope": {
+    "paths": [
+      "project.yml",
+      "WellSpent.xcodeproj",
+      "WAT-29-DESIGN-REVISION.md",
+      "AgentControl"
+    ],
+    "resources": [
+      "git-integration",
+      "project-generation",
+      "release-status",
+      "signing-archive",
+      "version-build"
+    ]
+  },
+  "acceptanceCriteria": [
+    {
+      "id": "AC-1",
+      "statement": "A clean frozen source receipt identifies version 0.2.0 (5), with generated-project parity and no functional changes after the validated design candidate."
+    },
+    {
+      "id": "AC-2",
+      "statement": "The exact-source signed Release archive contains valid iPhone, iPhone widget, Watch app and Watch widget components with matching versions, signatures and dSYMs."
+    }
+  ],
+  "evidenceRequirements": [
+    {
+      "id": "ER-1",
+      "criterionIds": [
+        "AC-1"
+      ],
+      "evidenceClass": "source",
+      "gateIds": [
+        "release-source-receipt",
+        "xcodegen-drift"
+      ],
+      "candidateBound": true
+    },
+    {
+      "id": "ER-2",
+      "criterionIds": [
+        "AC-2"
+      ],
+      "evidenceClass": "signed-package",
+      "gateIds": [
+        "signed-archive-inspection"
+      ],
+      "candidateBound": true
+    }
+  ],
+  "authorityRequirements": [
+    "repository-write",
+    "signing-upload"
+  ],
+  "legacyRefs": [
+    "WAT-OWNER-DECISIONS.md"
+  ],
+  "blocker": null,
+  "result": null
+}

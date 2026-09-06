@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "SRC-DESIGN-00-INTEGRATION-20260906-163230",
+  "taskId": "DESIGN-00-INTEGRATION",
+  "requirementId": "ER-1",
+  "evidenceClass": "source",
+  "result": "passed",
+  "producerRole": "verifier",
+  "producerId": "screen-design-audit",
+  "observedAt": "2026-09-06T16:32:30Z",
+  "source": {
+    "commit": "7e88045c9ad0fe54e836ac8d94d230da3476d5ce",
+    "tree": "1fbbf4daf01c36a2b58a6bf97c734de1d630862a",
+    "clean": true,
+    "version": "0.1.0",
+    "build": "4"
+  },
+  "gate": {
+    "id": "xcodegen-drift",
+    "exitCode": 0
+  },
+  "claims": [
+    "Independently reviewed the integration contract and combined source diff; no blocking functionality, privacy, or accessibility source defect found in the native design port.",
+    "The canonical integration scope check passed against the declared base and exact candidate; the resulting working tree is clean.",
+    "XcodeGen 2.46.0 drift check and the full source-gates stage passed, including agent-control, localization, privacy, fixture, and relevant Watch source checks.",
+    "Active Watch presentation is recreated on widgetRouteRevision so a warm route returns to elapsed while runtime state and paused time remain intact.",
+    "The warm navigation test trigger is DEBUG-only and calls the actual runtime URL handler; production onOpenURL behavior is preserved.",
+    "Localization additions match the new source strings; the test manifests include idle, paused, warm route, and phone active/completion accessibility regression cases.",
+    "Independent worker source receipts were checked against their exact clean commits and preserved byte-for-byte in repository evidence."
+  ],
+  "artifacts": [
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/DesignCI/run.Md4PDU/logs/generate.log",
+      "sha256": "cca4620c134a9e16e3bc8863b433dc98f2aa550eeba01a55ed999bcfcbafbabf"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/DesignCI/run.Md4PDU/logs/source-gates.log",
+      "sha256": "bee1fd4bad6c4be6543f473a9b8762decdd5a08e9b0f84c99bb5032292b9547b"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/DesignCI/run.Md4PDU/source-provenance/summary.json",
+      "sha256": "1b00ec12372afd5b102364db67b216fc97b17db51643ffed84292aae6a113b10"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/design-review/integration-source-scope-7e880.log",
+      "sha256": "1cb3703dc2f78112f66999abd17e96fafe27a43ab3df0e33587dd33b818c9c38"
+    }
+  ],
+  "limitations": [
+    "This receipt is source verification only and provides no simulator, physical-device, signed-package, or external-service evidence.",
+    "The debug reentry harness exercises app-hosted runtime navigation; it is not evidence of WidgetKit delivery.",
+    "This source remains version 0.1.0 build 4; later version allocation or signed artifacts require their own exact-candidate evidence."
+  ],
+  "authorityReference": {
+    "kind": "user-message",
+    "reference": "2026-09-06 user authorization to port the approved design into the native app and explicit choice that a paused complication reopens the paused timer.",
+    "confirmedBy": "owner",
+    "confirmedAt": "2026-09-06",
+    "authorityIds": [
+      "repository-write"
+    ]
+  },
+  "publicReleaseApproved": false
+}

@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "SRC-DESIGN-00-INTEGRATION-20260906-171300",
+  "taskId": "DESIGN-00-INTEGRATION",
+  "requirementId": "ER-1",
+  "evidenceClass": "source",
+  "result": "passed",
+  "producerRole": "verifier",
+  "producerId": "screen-design-audit",
+  "observedAt": "2026-09-06T17:13:00Z",
+  "source": {
+    "commit": "53ec2e2bf462c70906ccd462791e022eb69c136a",
+    "tree": "d3fbcf392a56332059d06ffc9b938227a722ddc5",
+    "clean": true,
+    "version": "0.1.0",
+    "build": "4"
+  },
+  "gate": {
+    "id": "xcodegen-drift",
+    "exitCode": 0
+  },
+  "claims": [
+    "Independently reviewed the integration contract and combined source diff; no blocking functionality, privacy, or accessibility source defect found in the native design port.",
+    "The canonical integration scope check passed against the declared base and exact candidate; the resulting working tree is clean.",
+    "XcodeGen 2.46.0 drift check and the full source-gates stage passed, including agent-control, localization, privacy, fixture, and relevant Watch source checks.",
+    "Active Watch presentation is recreated on widgetRouteRevision so a warm route returns to elapsed while runtime state and paused time remain intact.",
+    "The warm navigation test trigger is DEBUG-only and calls the actual runtime URL handler; production onOpenURL behavior is preserved.",
+    "Localization additions match the new source strings; the test manifests include idle, paused, warm route, and phone active/completion accessibility regression cases.",
+    "Independent worker source receipts were checked against their exact clean commits and preserved byte-for-byte in repository evidence.",
+    "Independently reviewed the three-file repair: the phone status uses an independently sized text and decorative icon without an audit exemption, and the Watch accessibility status stacks sync below the intact status and elapsed identifiers.",
+    "The widget test handles only the identified combined preview wrapper with nonempty text descendants, asserts all four wrapper edges equal exactly five points of existing harness padding, and checks all descendant text and images inside the unchanged proposal.",
+    "Existing localization, privacy, no-nested-project-button, accessibility-audit, and ordinary-content bounds checks remain active after the repair."
+  ],
+  "artifacts": [
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/DesignCI/run.fBTbSv/logs/generate.log",
+      "sha256": "cca4620c134a9e16e3bc8863b433dc98f2aa550eeba01a55ed999bcfcbafbabf"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/DesignCI/run.fBTbSv/logs/source-gates.log",
+      "sha256": "c43d0e1b7be452fd4a5da0530daafd53d03247ecf549ceb0cbae9745fdf5d682"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/DesignCI/run.fBTbSv/source-provenance/summary.json",
+      "sha256": "9fb835ae92a8341795a1ebba3c39fbe7dcdff7d136b8cfb864db8f15b3ce3e44"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/design-review/repair-53ec2e2-lint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/design-review/repair-53ec2e2-scope.log",
+      "sha256": "60059e8cf06071a473d838629ac0e80b1603b6b170746b1e38ab0e0e112267fc"
+    }
+  ],
+  "limitations": [
+    "This receipt is source verification only and provides no simulator, physical-device, signed-package, or external-service evidence.",
+    "The debug reentry harness exercises app-hosted runtime navigation; it is not evidence of WidgetKit delivery.",
+    "This source remains version 0.1.0 build 4; later version allocation or signed artifacts require their own exact-candidate evidence."
+  ],
+  "authorityReference": {
+    "kind": "user-message",
+    "reference": "2026-09-06 user authorization to port the approved design into the native app and explicit choice that a paused complication reopens the paused timer.",
+    "confirmedBy": "owner",
+    "confirmedAt": "2026-09-06",
+    "authorityIds": [
+      "repository-write"
+    ]
+  },
+  "publicReleaseApproved": false
+}

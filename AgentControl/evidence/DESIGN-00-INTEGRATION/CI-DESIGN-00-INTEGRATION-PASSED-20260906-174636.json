@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "CI-DESIGN-00-INTEGRATION-PASSED-20260906-174636",
+  "taskId": "DESIGN-00-INTEGRATION",
+  "requirementId": "ER-2",
+  "evidenceClass": "unit",
+  "result": "passed",
+  "producerRole": "verifier",
+  "producerId": "screen-design-audit",
+  "observedAt": "2026-09-06T17:46:36Z",
+  "source": {
+    "commit": "53ec2e2bf462c70906ccd462791e022eb69c136a",
+    "tree": "d3fbcf392a56332059d06ffc9b938227a722ddc5",
+    "clean": true,
+    "version": "0.1.0",
+    "build": "4"
+  },
+  "gate": {
+    "id": "ci-full",
+    "exitCode": 0
+  },
+  "claims": [
+    "The canonical full scripts/ci.sh passed all 13 stages on the exact clean candidate using verified XcodeGen 2.46.0 and the known-good dark iPhone simulator destination.",
+    "All 386 full CI test executions passed with no failures, skips, or expected failures: 19 golden iOS contracts, 124 Watch unit, 163 phone unit, 62 Watch UI, and 18 phone UI.",
+    "The full run includes passing idle picker entry then project-tap immediate start, paused entry without resuming, warm return from Controls and Run to elapsed preserving paused duration, and legacy/stale project routes.",
+    "The repaired largest-text rectangular widget matrices passed strict original content bounds, exact padded-wrapper checks, localization expansion, privacy, and full accessibility audits.",
+    "The repaired phone active timer and completion accessibility audits passed in full CI and in focused dark and light appearance runs without adding an audit exemption.",
+    "Five focused existing tests passed on the smallest 40 mm Watch for immediate start under combined adaptations, timer controls, custom goal, long project names, and summary; the repaired header was visually verified.",
+    "Source generation, agent-control, privacy, localization, all four joint builds, release fixture exclusion, and unsigned release-product provenance checks passed.",
+    "Independent native visual review found no blocking fit issue in ordinary Watch surfaces or phone ordinary/largest text light/dark captures; image locators and digests are recorded in the visual index.",
+    "Final source commit/tree and clean working tree were verified after CI exited successfully and before releasing build/simulator use and source freeze; no source repair was made by this verifier."
+  ],
+  "artifacts": [
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/DesignCI/run.fBTbSv/stages.tsv",
+      "sha256": "6abbb98f41c680b18e3d8893a7971825d9a7bcc55f7024da148eb0428a990e6a"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/DesignCI/run.fBTbSv/source-provenance/summary.json",
+      "sha256": "9fb835ae92a8341795a1ebba3c39fbe7dcdff7d136b8cfb864db8f15b3ce3e44"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/DesignCI/run.fBTbSv/source-product-provenance.json",
+      "sha256": "0817093a32caf853e20783f3426cd25906541caa1e97d2e2786c1ed9218cdff2"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/design-review/integration-53ec2e2-test-summary.json",
+      "sha256": "3d6a82fbaa57167b7d1991ff38c7ae60335793ddea90351e9613cc0788571469"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/design-review/focused-53ec2e2-summary.json",
+      "sha256": "852a579073e49e0637472075acc931bd1794ef4594be0407b5f5246f25e075b8"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": ".derivedData/design-review/visual-review-53ec2e2.json",
+      "sha256": "65db4cf72920da6cd30e8a7c790bd5320c231038c9bd13b3382a735d185c9dbe"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/DesignCI/run.fBTbSv/logs/watch-unit.log",
+      "sha256": "fe74f63e9c2eb305325e3496351b06e45e30d3a30c3c46f410639fc80ca21ec9"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/DesignCI/run.fBTbSv/logs/phone-unit.log",
+      "sha256": "624f3f493db6a9f66d8fac2e7ab9700c05a713e1b0cbcbc39fcb95cfb10b94ab"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/DesignCI/run.fBTbSv/logs/watch-ui.log",
+      "sha256": "6af490b7e602dcef0694a4fa0e8a132dd733f106f85f51b7f7d9a7bbd60934d2"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/DesignCI/run.fBTbSv/logs/phone-ui.log",
+      "sha256": "444ddb213e8098bef588fd244d1c200167e6059301d531729a6a919fb0533f0c"
+    }
+  ],
+  "limitations": [
+    "This is engineering/simulator evidence for exact source version 0.1.0 build 4; it does not certify a later version-only commit or signed archive.",
+    "App-hosted widget rendering and DEBUG URL-runtime triggers do not prove WidgetKit delivery or physical Watch behavior.",
+    "The initial old-simulator XCTest host failure and prior 7e880 layout/audit failures remain separate preserved attempts.",
+    "A focused light test-without-building attempt failed before the expected fixture appeared; its canonical test retry on unchanged repaired source passed both audits.",
+    "No signing, export, upload, App Review, public release, or physical-device gate is closed by this receipt."
+  ],
+  "authorityReference": {
+    "kind": "user-message",
+    "reference": "2026-09-06 user authorization to port the approved design into the native app and explicit choice that a paused complication reopens the paused timer.",
+    "confirmedBy": "owner",
+    "confirmedAt": "2026-09-06",
+    "authorityIds": [
+      "repository-write"
+    ]
+  },
+  "publicReleaseApproved": false
+}
