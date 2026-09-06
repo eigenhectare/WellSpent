@@ -85,7 +85,8 @@ struct WatchEndedTimerSummaryView: View {
             .padding(.bottom, 9)
         }
         .scrollIndicators(.hidden)
-        .background(Color.black)
+        .foregroundStyle(WatchDesign.foreground)
+        .background(WatchDesign.canvas)
         .accessibilityIdentifier("watch.end-summary.screen")
         .watchPrivateScreen(title: "Run saved", elapsedSeconds: metrics.billableSeconds)
         .sheet(item: $editor) { editor in
@@ -130,7 +131,7 @@ struct WatchEndedTimerSummaryView: View {
     private var savedHeader: some View {
         Label("Saved", systemImage: "checkmark.circle.fill")
             .font(.headline)
-            .foregroundStyle(.green)
+            .foregroundStyle(WatchDesign.teal)
             .accessibilityLabel("Run saved")
             .accessibilityIdentifier("watch.end-summary.saved")
     }
@@ -204,7 +205,7 @@ struct WatchEndedTimerSummaryView: View {
             )
         }
         .padding(.horizontal, 10)
-        .background(Color.white.opacity(0.07), in: RoundedRectangle(cornerRadius: 15))
+        .watchPanel()
     }
 
     private var syncLabel: some View {
@@ -214,7 +215,7 @@ struct WatchEndedTimerSummaryView: View {
             Image(systemName: syncSymbol)
         }
         .font(.caption2.weight(.semibold))
-        .foregroundStyle(pendingSync ? (isReachable ? Color.orange : Color.yellow) : Color.green)
+        .foregroundStyle(pendingSync ? WatchDesign.amber : WatchDesign.teal)
         .accessibilityLabel(syncAccessibilityLabel)
         .accessibilityIdentifier("watch.end-summary.sync")
     }
@@ -272,22 +273,24 @@ struct WatchEndedTimerSummaryView: View {
                 }
                 .frame(maxWidth: .infinity, minHeight: 44)
             }
-            .buttonStyle(.borderedProminent)
+            .buttonStyle(WatchActionButtonStyle(foreground: .black, fill: WatchDesign.amber))
             .disabled(isSaving)
             .accessibilityIdentifier(
                 isSaving ? "watch.end-summary.saving" : "watch.end-summary.save"
             )
         }
 
-        Button("Done") {
+        Button {
             if hasUnsavedChanges {
                 showsDiscardConfirmation = true
             } else {
                 onDone()
             }
+        } label: {
+            Text("Done")
+                .frame(maxWidth: .infinity, minHeight: 44)
         }
-        .buttonStyle(.borderedProminent)
-        .tint(hasUnsavedChanges ? .gray : .blue)
+        .buttonStyle(WatchActionButtonStyle(foreground: hasUnsavedChanges ? WatchDesign.muted : WatchDesign.teal))
         .controlSize(.large)
         .frame(minHeight: 44)
         .disabled(isSaving)
@@ -415,7 +418,7 @@ private struct WatchSummaryEditRow: View {
         HStack(spacing: 9) {
             Image(systemName: symbol)
                 .frame(width: 22)
-                .foregroundStyle(.blue)
+                .foregroundStyle(WatchDesign.teal)
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 1) {
                 Text(title)
@@ -435,7 +438,7 @@ private struct WatchSummaryEditRow: View {
         }
         .padding(.horizontal, 10)
         .frame(maxWidth: .infinity, minHeight: 48)
-        .background(Color.white.opacity(0.07), in: RoundedRectangle(cornerRadius: 15))
+        .watchPanel()
         .contentShape(RoundedRectangle(cornerRadius: 15))
     }
 }

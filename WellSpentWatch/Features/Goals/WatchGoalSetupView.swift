@@ -8,6 +8,7 @@ struct WatchGoalSetupView: View {
     let onSelect: (Int?) -> Void
 
     @EnvironmentObject private var alerts: WatchGoalAlertCoordinator
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.dismiss) private var dismiss
     @WatchPrivacyRedaction private var hidesPrivateContent
     @State private var customMinutes = 45
@@ -42,11 +43,15 @@ struct WatchGoalSetupView: View {
                         .accessibilityIdentifier("watch.goal.custom-picker")
                         // A separate sibling, not a wheel overlay or a control
                         // trapped beneath a wheel inside a ScrollView.
-                        Button("Use") { onSelect(customMinutes * 60) }
-                            .buttonStyle(.borderedProminent)
-                            .frame(minHeight: 44)
-                            .accessibilityLabel("Use \(customMinutes) minute goal")
-                            .accessibilityIdentifier("watch.goal.custom-confirm")
+                        Button {
+                            onSelect(customMinutes * 60)
+                        } label: {
+                            Text("Use")
+                                .frame(maxWidth: .infinity, minHeight: 44)
+                        }
+                        .buttonStyle(WatchActionButtonStyle(foreground: .black, fill: WatchDesign.amber))
+                        .accessibilityLabel("Use \(customMinutes) minute goal")
+                        .accessibilityIdentifier("watch.goal.custom-confirm")
                     }
                     .padding(.horizontal, 8)
                 } else {
@@ -67,18 +72,22 @@ struct WatchGoalSetupView: View {
                                     .frame(maxWidth: .infinity, minHeight: 44)
                                     .fixedSize(horizontal: false, vertical: true)
                                 }
+                                .buttonStyle(WatchActionButtonStyle(foreground: WatchDesign.teal))
                                 .accessibilityHint(
                                     isEditing
                                         ? String(localized: "Keeps tracking without a goal.")
                                         : String(localized: "Starts a timer with no time goal.")
                                 )
                                 .accessibilityIdentifier("watch.goal.open")
-                                ForEach([15, 30, 60], id: \.self) { minutes in goalButton(minutes) }
+                                presetLayout {
+                                    ForEach([15, 30, 60], id: \.self) { minutes in goalButton(minutes) }
+                                }
                                 Button {
                                     isChoosingCustomGoal = true
                                 } label: {
                                     Text("Custom…").frame(maxWidth: .infinity, minHeight: 44)
                                 }
+                                .buttonStyle(WatchActionButtonStyle(foreground: WatchDesign.teal))
                                 .accessibilityHint("Choose a time goal from 5 minutes to 8 hours.")
                                 .accessibilityIdentifier("watch.goal.custom")
                             } header: {
@@ -110,6 +119,7 @@ struct WatchGoalSetupView: View {
                                     )
                                 )
                                 .frame(minHeight: 44)
+                                .tint(WatchDesign.teal)
                                 .disabled(alerts.isRequestingPermission)
                                 .accessibilityHint("Optional notification permission. Timers work without it.")
                                 .accessibilityIdentifier("watch.goal.alerts-toggle")
@@ -139,7 +149,7 @@ struct WatchGoalSetupView: View {
                                 .fixedSize(horizontal: false, vertical: true)
                             }
                         }
-                        .buttonStyle(.bordered)
+                        .buttonStyle(WatchActionButtonStyle())
                         .padding(.horizontal, 8)
                         .padding(.bottom, 12)
                     }
@@ -147,9 +157,10 @@ struct WatchGoalSetupView: View {
             }
             // Titles live in scrollable content so they do not truncate in the
             // small native navigation bar with large or expanded text.
+            .foregroundStyle(WatchDesign.foreground)
             .watchPrivateScreen()
         }
-        .containerBackground(.black, for: .navigation)
+        .containerBackground(WatchDesign.canvas, for: .navigation)
         .onAppear {
             if let seconds = currentGoalSeconds, (300...28_800).contains(seconds), seconds % 300 == 0 {
                 customMinutes = seconds / 60
@@ -167,6 +178,12 @@ struct WatchGoalSetupView: View {
                 .disabled(hidesPrivateContent)
             }
         }
+    }
+
+    private var presetLayout: AnyLayout {
+        dynamicTypeSize.isAccessibilitySize
+            ? AnyLayout(VStackLayout(spacing: 8))
+            : AnyLayout(HStackLayout(spacing: 6))
     }
 
     private func goalButton(_ minutes: Int) -> some View {

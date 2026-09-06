@@ -44,13 +44,15 @@ struct WatchProjectPickerView: View {
                     .accessibilityLabel("Project management is available in WellSpent on iPhone")
                 Button("Siri & Controls") { showsSystemActionHelp = true }
                     .frame(minHeight: 44)
+                    .tint(WatchDesign.teal)
                     .accessibilityIdentifier("watch.system-actions.help")
             }
             .padding(.horizontal, 7)
             .padding(.bottom, 8)
         }
         .scrollIndicators(.hidden)
-        .background(Color.black)
+        .foregroundStyle(WatchDesign.foreground)
+        .background(WatchDesign.canvas)
         .accessibilityIdentifier("watch.project-picker.screen")
         .watchPrivateScreen()
         .onChange(of: requestedProjectID, initial: true) { _, id in
@@ -78,7 +80,7 @@ struct WatchProjectPickerView: View {
                     .font(.headline)
                 Text("Choose what gets your time")
                     .font(.caption2)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(WatchDesign.muted)
             }
             Spacer(minLength: 4)
             if let badge = WatchSyncBadge(
@@ -105,28 +107,26 @@ private struct WatchConfiguringProject: Identifiable {
 }
 
 private struct WatchProjectCard: View {
-    @WatchAccessibilitySettings private var accessibilitySettings
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     let project: ProjectSnapshot
     let onOpen: () -> Void
     let onConfigure: () -> Void
 
-    private var accent: Color { Color.watchProjectToken(project.colorToken) }
-
     var body: some View {
-        VStack(spacing: 0) {
+        cardLayout {
             Button(action: onOpen) {
-                VStack(alignment: .leading, spacing: 8) {
-                    HStack {
-                        WatchProjectGlyph(project: project, accent: accent)
-                        Spacer()
-                        playSymbol
-                    }
+                VStack(alignment: .leading, spacing: 5) {
                     projectTitle
+                    Label("Open Timer", systemImage: "play.fill")
+                        .font(.caption2.weight(.semibold))
+                        .foregroundStyle(WatchDesign.teal)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
+                .frame(maxWidth: .infinity, minHeight: 52, alignment: .leading)
                 .contentShape(Rectangle())
                 .padding(.leading, 10)
                 .padding(.vertical, 10)
-                .padding(.trailing, 6)
+                .padding(.trailing, 8)
             }
             .buttonStyle(.plain)
             .accessibilityLabel("\(project.name), available project, open timer")
@@ -134,50 +134,44 @@ private struct WatchProjectCard: View {
             .accessibilityIdentifier("watch.project.open.\(project.id.uuidString)")
 
             Button(action: onConfigure) {
-                Text("Options").font(.caption.weight(.semibold))
-                    .frame(maxWidth: .infinity)
-                    .foregroundStyle(.secondary)
-                    .frame(minHeight: 44)
-                    .contentShape(Rectangle())
+                VStack(spacing: 4) {
+                    Image(systemName: "slider.horizontal.3")
+                        .font(.body)
+                        .accessibilityHidden(true)
+                    Text("Options")
+                        .font(.caption2.weight(.semibold))
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+                .foregroundStyle(WatchDesign.teal)
+                .frame(minWidth: 44, maxWidth: dynamicTypeSize.isAccessibilitySize ? .infinity : 58)
+                .frame(minHeight: 44, maxHeight: .infinity)
+                .padding(.vertical, 8)
+                .background(WatchDesign.teal.opacity(0.09))
+                .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
             .accessibilityLabel("Timer options for \(project.name)")
             .accessibilityHint("Choose an open timer or a time goal to start immediately.")
             .accessibilityIdentifier("watch.project.options.\(project.id.uuidString)")
         }
-        .background(
-            LinearGradient(
-                colors: [accent.opacity(0.22), Color.white.opacity(0.075)],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            ),
-            in: RoundedRectangle(cornerRadius: 17, style: .continuous)
-        )
-        .overlay {
-            RoundedRectangle(cornerRadius: 17, style: .continuous)
-                .stroke(
-                    accessibilitySettings.increaseContrast ? .white.opacity(0.8) : accent.opacity(0.22),
-                    lineWidth: accessibilitySettings.increaseContrast ? 1.5 : 0.75)
-        }
+        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+        .watchPanel()
+    }
+
+    private var cardLayout: AnyLayout {
+        dynamicTypeSize.isAccessibilitySize
+            ? AnyLayout(VStackLayout(spacing: 0))
+            : AnyLayout(HStackLayout(spacing: 0))
     }
 
     private var projectTitle: some View {
         Text(verbatim: project.name)
             .privacySensitive()
             .font(.system(.body, design: .rounded, weight: .semibold))
-            .foregroundStyle(.primary)
+            .foregroundStyle(WatchDesign.foreground)
             .lineLimit(nil)
             .fixedSize(horizontal: false, vertical: true)
             .frame(maxWidth: .infinity, alignment: .leading)
-    }
-
-    private var playSymbol: some View {
-        Image(systemName: "play.fill")
-            .font(.caption.weight(.bold))
-            .foregroundStyle(.black)
-            .frame(width: 30, height: 30)
-            .background(accent, in: Circle())
-            .accessibilityHidden(true)
     }
 }
 
