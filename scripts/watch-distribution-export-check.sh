@@ -96,8 +96,9 @@ for component in "${components[@]}"; do
     [[ "${observed_architectures}" == "${expected_architectures}" ]] || fail "${label} architectures"
     codesign --verify --strict "${bundle}" >/dev/null 2>&1 || fail "${label} signature is invalid or untrusted"
 
-    compiled_icon_checked=false
-    compiled_icon_digest=''
+    compiled_icon_report="${scratch_directory}/${label}-compiled-icon.json"
+    jq -n '{compiledIconChecked:false,compiledIconRenditionDigest:null,compiledIconRenditions:[]}' \
+        >"${compiled_icon_report}"
     case "${label}" in
         phone|watch)
             [[ -s "${bundle}/Assets.car" ]] || fail "${label} compiled assets are missing"
@@ -106,19 +107,10 @@ for component in "${components[@]}"; do
                 || fail "${label} compiled asset catalog is invalid"
             xcrun assetutil --info "${bundle}/Assets.car" \
                 >"${scratch_directory}/${label}-asset-info.json"
-            jq -e '[.[] | select(.Name == "AppIcon" and .AssetType == "Icon Image")]
-                | length == 1
-                and .[0].Opaque == true
-                and .[0].PixelWidth == 1024
-                and .[0].PixelHeight == 1024
-                and .[0].Colorspace == "srgb"
-                and .[0].BitsPerComponent == 8
-                and (.[0].SHA1Digest | type == "string" and test("^[A-F0-9]{64}$"))' \
-                "${scratch_directory}/${label}-asset-info.json" >/dev/null \
+            jq -e --arg component "${label}" \
+                -f "${script_directory}/watch-distribution-icon-check.jq" \
+                "${scratch_directory}/${label}-asset-info.json" >"${compiled_icon_report}" \
                 || fail "${label} compiled AppIcon rendition"
-            compiled_icon_digest="$(jq -r '.[] | select(.Name == "AppIcon" and .AssetType == "Icon Image") | .SHA1Digest' \
-                "${scratch_directory}/${label}-asset-info.json")"
-            compiled_icon_checked=true
             ;;
     esac
 
@@ -178,8 +170,7 @@ for component in "${components[@]}"; do
         --arg version "${expected_version}" \
         --arg build "${expected_build}" \
         --arg profileExpiresAt "${profile_expiration}" \
-        --arg compiledIconRenditionDigest "${compiled_icon_digest}" \
-        --argjson compiledIconChecked "${compiled_icon_checked}" \
+        --slurpfile compiledIcon "${compiled_icon_report}" \
         '{
             component:$component,
             bundleID:$bundleID,
@@ -191,10 +182,8 @@ for component in "${components[@]}"; do
             profileChecked:true,
             profileExpiresAt:$profileExpiresAt,
             developmentDeviceListPresent:false,
-            symbolsIncluded:true,
-            compiledIconChecked:$compiledIconChecked,
-            compiledIconRenditionDigest:(if $compiledIconRenditionDigest == "" then null else $compiledIconRenditionDigest end)
-        }' >"${component_report}"
+            symbolsIncluded:true
+        } + $compiledIcon[0]' >"${component_report}"
     component_reports+=("${component_report}")
 done
 
