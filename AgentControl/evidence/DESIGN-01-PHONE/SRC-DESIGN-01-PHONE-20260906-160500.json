@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "SRC-DESIGN-01-PHONE-20260906-160500",
+  "taskId": "DESIGN-01-PHONE",
+  "requirementId": "ER-1",
+  "evidenceClass": "source",
+  "result": "passed",
+  "producerRole": "verifier",
+  "producerId": "screen-design-audit",
+  "observedAt": "2026-09-06T16:05:00Z",
+  "source": {
+    "commit": "55325a616617ea7d69f599ec981804cd604bea7e",
+    "tree": "c2ed2c69c3819a4e42abfa74bf6886f439129e6e",
+    "clean": true,
+    "version": null,
+    "build": null
+  },
+  "gate": {
+    "id": "lint",
+    "exitCode": 0
+  },
+  "claims": [
+    "AC-1 source review: Track adopts warm light surfaces and navy dark surfaces, exact elapsed typography, grouped projects, and primary pause/resume and stop controls consistent with the approved timer comparison.",
+    "AC-2 source review: existing command closures, busy/conflict conditions, Watch-origin context, navigation destinations, accessibility identifiers, spoken elapsed time, and Dynamic Type layout fallbacks remain available.",
+    "The registered lint gate exited 0 in the clean worker worktree at 55325a616617ea7d69f599ec981804cd604bea7e.",
+    "Canonical agent-scope check exited 0 for task DESIGN-01-PHONE, exact base 950fe8832f0fc56fa7adffac3fa521846f5f839c, and result 55325a616617ea7d69f599ec981804cd604bea7e; the changed paths are within the declared write scope.",
+    "Independent review found no concrete blocking issue in the bounded source diff."
+  ],
+  "artifacts": [
+    {
+      "kind": "repository",
+      "locator": "WellSpentApp/Features/Track/TrackView.swift",
+      "sha256": null
+    },
+    {
+      "kind": "repository",
+      "locator": "WellSpentApp/Features/Shared/PresentationSupport.swift",
+      "sha256": null
+    },
+    {
+      "kind": "repository",
+      "locator": "WellSpentApp/App/Navigation/RootView.swift",
+      "sha256": null
+    }
+  ],
+  "limitations": [
+    "This receipt is source evidence only. No compilation, unit/UI suite execution, simulator run, physical-device observation, WidgetKit compositor validation, or signed-package verification was performed.",
+    "Visual alignment was assessed from source and the approved concept images; native rendered layout, Dynamic Type fit, contrast, and system tint remain integration verification work."
+  ],
+  "authorityReference": {
+    "kind": "user-message",
+    "reference": "2026-09-06 current conversation: owner authorized the native port of the approved iPhone and Watch designs and specified that tapping a paused complication reopens the paused timer.",
+    "confirmedBy": "owner",
+    "confirmedAt": "2026-09-06",
+    "authorityIds": [
+      "repository-write"
+    ]
+  },
+  "publicReleaseApproved": false
+}

@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "SRC-DESIGN-02-WATCH-20260906-160500",
+  "taskId": "DESIGN-02-WATCH",
+  "requirementId": "ER-1",
+  "evidenceClass": "source",
+  "result": "passed",
+  "producerRole": "verifier",
+  "producerId": "screen-design-audit",
+  "observedAt": "2026-09-06T16:05:00Z",
+  "source": {
+    "commit": "ed8ce18e0ee4c7a491d6ffcfd549b6f1146cf7d4",
+    "tree": "c56b0327171e9b8464b2664301524af9b0434028",
+    "clean": true,
+    "version": null,
+    "build": null
+  },
+  "gate": {
+    "id": "lint",
+    "exitCode": 0
+  },
+  "claims": [
+    "AC-1 source review: picker, timer, controls, time-goal setup, and ended summary adopt the approved navy, amber, and teal visual language through shared Watch presentation styles.",
+    "AC-2 source review: command callbacks, exact-duration and goal calculations, native custom-goal wheel, Crown paging, privacy wrappers, annotation retry/discard semantics, accessibility identifiers, and large-text fallbacks remain intact.",
+    "The registered lint gate exited 0 in the clean worker worktree at ed8ce18e0ee4c7a491d6ffcfd549b6f1146cf7d4.",
+    "Canonical agent-scope check exited 0 for task DESIGN-02-WATCH, exact base 950fe8832f0fc56fa7adffac3fa521846f5f839c, and result ed8ce18e0ee4c7a491d6ffcfd549b6f1146cf7d4; the changed paths are within the declared write scope.",
+    "Independent review found no concrete blocking issue in the bounded source diff."
+  ],
+  "artifacts": [
+    {
+      "kind": "repository",
+      "locator": "WellSpentWatch/Features/Projects/WatchProjectPickerView.swift",
+      "sha256": null
+    },
+    {
+      "kind": "repository",
+      "locator": "WellSpentWatch/Features/Timer/WatchStartedTimerView.swift",
+      "sha256": null
+    },
+    {
+      "kind": "repository",
+      "locator": "WellSpentWatch/Features/Timer/WatchTimerControlsView.swift",
+      "sha256": null
+    },
+    {
+      "kind": "repository",
+      "locator": "WellSpentWatch/Features/Timer/WatchEndedTimerSummaryView.swift",
+      "sha256": null
+    },
+    {
+      "kind": "repository",
+      "locator": "WellSpentWatch/Features/Goals/WatchGoalSetupView.swift",
+      "sha256": null
+    },
+    {
+      "kind": "repository",
+      "locator": "WellSpentWatch/Features/Shared/WatchAccessibilityPreferences.swift",
+      "sha256": null
+    }
+  ],
+  "limitations": [
+    "This receipt is source evidence only. No compilation, unit/UI suite execution, simulator run, physical-device observation, WidgetKit compositor validation, or signed-package verification was performed.",
+    "Visual alignment was assessed from source and the approved concept images; native rendered layout, Dynamic Type fit, contrast, and system tint remain integration verification work."
+  ],
+  "authorityReference": {
+    "kind": "user-message",
+    "reference": "2026-09-06 current conversation: owner authorized the native port of the approved iPhone and Watch designs and specified that tapping a paused complication reopens the paused timer.",
+    "confirmedBy": "owner",
+    "confirmedAt": "2026-09-06",
+    "authorityIds": [
+      "repository-write"
+    ]
+  },
+  "publicReleaseApproved": false
+}

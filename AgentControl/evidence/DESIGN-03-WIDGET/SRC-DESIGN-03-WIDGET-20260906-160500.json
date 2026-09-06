@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "SRC-DESIGN-03-WIDGET-20260906-160500",
+  "taskId": "DESIGN-03-WIDGET",
+  "requirementId": "ER-1",
+  "evidenceClass": "source",
+  "result": "passed",
+  "producerRole": "verifier",
+  "producerId": "screen-design-audit",
+  "observedAt": "2026-09-06T16:05:00Z",
+  "source": {
+    "commit": "81e16018bbd3ddb7dad3e8937b340dae6a7e32d5",
+    "tree": "b556db6e66a6fb1d3c32f78ef9dad9d0efc5a331",
+    "clean": true,
+    "version": null,
+    "build": null
+  },
+  "gate": {
+    "id": "lint",
+    "exitCode": 0
+  },
+  "claims": [
+    "AC-1 source review: detailed and compact idle rectangular project shortcuts are removed, leaving the shared navigation-only widgetURL; running and paused route state and legacy specific-project URL resolution are preserved.",
+    "AC-2 source review: accessory visuals use the approved palette, rendering-mode-aware accents, existing reduced-luminance/privacy identity sanitization, and a WidgetKit container background; source regression coverage includes idle picker entry, project-tap start, paused reopen, and all supported accessory families.",
+    "The registered lint gate exited 0 in the clean worker worktree at 81e16018bbd3ddb7dad3e8937b340dae6a7e32d5.",
+    "Canonical agent-scope check exited 0 for task DESIGN-03-WIDGET, exact base 950fe8832f0fc56fa7adffac3fa521846f5f839c, and result 81e16018bbd3ddb7dad3e8937b340dae6a7e32d5; the changed paths are within the declared write scope.",
+    "Independent review found no concrete blocking issue in the bounded source diff."
+  ],
+  "artifacts": [
+    {
+      "kind": "repository",
+      "locator": "WellSpentWatchWidgets/WellSpentWatchStatusView.swift",
+      "sha256": null
+    },
+    {
+      "kind": "repository",
+      "locator": "WellSpentWatchWidgets/WellSpentWatchStatusWidget.swift",
+      "sha256": null
+    },
+    {
+      "kind": "repository",
+      "locator": "WellSpentWatchStore/WatchWidgetState.swift",
+      "sha256": null
+    },
+    {
+      "kind": "repository",
+      "locator": "WellSpentWatchTests/WatchWidgetStateTests.swift",
+      "sha256": null
+    },
+    {
+      "kind": "repository",
+      "locator": "WellSpentWatchUITests/WatchWidgetUITests.swift",
+      "sha256": null
+    },
+    {
+      "kind": "repository",
+      "locator": "WellSpentWatchUITests/WatchWidgetLayoutUITests.swift",
+      "sha256": null
+    },
+    {
+      "kind": "repository",
+      "locator": "scripts/ci-watch-ui-tests.txt",
+      "sha256": null
+    }
+  ],
+  "limitations": [
+    "This receipt is source evidence only. No compilation, unit/UI suite execution, simulator run, physical-device observation, WidgetKit compositor validation, or signed-package verification was performed.",
+    "Visual alignment was assessed from source and the approved concept images; native rendered layout, Dynamic Type fit, contrast, and system tint remain integration verification work.",
+    "Runtime warm-navigation presentation is unchanged in this worker commit; the coordinator has reserved the elapsed-screen reset for a separate integration change."
+  ],
+  "authorityReference": {
+    "kind": "user-message",
+    "reference": "2026-09-06 current conversation: owner authorized the native port of the approved iPhone and Watch designs and specified that tapping a paused complication reopens the paused timer.",
+    "confirmedBy": "owner",
+    "confirmedAt": "2026-09-06",
+    "authorityIds": [
+      "repository-write"
+    ]
+  },
+  "publicReleaseApproved": false
+}

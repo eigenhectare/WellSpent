@@ -3,7 +3,7 @@
   "taskId": "DESIGN-01-PHONE",
   "title": "Port the approved iPhone timer design",
   "type": "feature",
-  "status": "in_review",
+  "status": "done",
   "risk": "medium",
   "outcome": "Port the approved iPhone timer design.",
   "assignment": {

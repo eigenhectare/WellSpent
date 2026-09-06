@@ -93,6 +93,30 @@ final class WatchWidgetUITests: XCTestCase {
         XCTAssertFalse(active.buttons["watch.goal.open"].exists)
     }
 
+    func testWarmComplicationReturnsToElapsedAndKeepsPausedTime() {
+        let app = launch(fixture: "paused", family: nil, extra: ["-ui-test-widget-reentry"])
+        let elapsed = app.staticTexts["watch.metrics.elapsed"]
+        XCTAssertTrue(elapsed.waitForExistence(timeout: 10))
+        let billable = app.staticTexts["watch.metrics.billable"].label
+        app.swipeRight()
+        XCTAssertTrue(app.buttons["watch.controls.resume"].waitForExistence(timeout: 5))
+        app.buttons["watch.widget.reentry"].tap()
+        XCTAssertTrue(elapsed.waitForExistence(timeout: 5))
+        XCTAssertTrue(elapsed.isHittable)
+        XCTAssertEqual(elapsed.label, "Paused")
+        XCTAssertEqual(app.staticTexts["watch.metrics.billable"].label, billable)
+
+        app.swipeUp()
+        XCTAssertTrue(app.descendants(matching: .any)["watch.metrics.run"].waitForExistence(timeout: 5))
+        app.buttons["watch.widget.reentry"].tap()
+        XCTAssertTrue(elapsed.waitForExistence(timeout: 5))
+        XCTAssertTrue(elapsed.isHittable)
+        XCTAssertFalse(app.buttons["watch.goal.open"].exists)
+        XCTAssertEqual(elapsed.label, "Paused")
+        XCTAssertEqual(app.staticTexts["watch.metrics.billable"].label, billable)
+        capture(app, name: "warm-paused-complication")
+    }
+
     private func launch(fixture: String, family: String?, extra: [String] = []) -> XCUIApplication {
         let app = XCUIApplication()
         app.launchArguments = ["-ui-test-watch-fixture", fixture] + extra

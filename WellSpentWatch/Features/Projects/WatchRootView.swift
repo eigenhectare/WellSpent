@@ -25,6 +25,23 @@ struct WatchRootView: View {
         }
         .background(Color.black.ignoresSafeArea())
         .onOpenURL(perform: runtime.openWidgetURL)
+        #if DEBUG
+            .overlay(alignment: .topLeading) {
+                if ProcessInfo.processInfo.arguments.contains("-ui-test-widget-reentry") {
+                    // App-hosted warm-navigation coverage. WidgetKit URL
+                    // delivery remains a separate system/device observation.
+                    Button {
+                        runtime.openWidgetURL(URL(string: "wellspent-watch://projects")!)
+                    } label: {
+                        Image(systemName: "arrow.up.forward.app")
+                        .frame(width: 44, height: 44)
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityLabel("Test complication navigation")
+                    .accessibilityIdentifier("watch.widget.reentry")
+                }
+            }
+        #endif
         .alert("Couldn’t save time goal", isPresented: $runtime.goalSaveFailed) {
             Button("OK", role: .cancel) {}
         } message: {
@@ -110,14 +127,17 @@ struct WatchRootView: View {
                 pendingSync: pendingCount(state) > 0,
                 isReachable: runtime.connectivityState.isReachable,
                 forcePrivacyRedaction: runtime.forcePrivacyRedaction,
-                initialPage: runtime.initialMetricPage,
-                startsOnControlSurface: runtime.startsOnControlSurface,
+                initialPage: runtime.widgetRouteRevision == 0 ? runtime.initialMetricPage : 0,
+                startsOnControlSurface: runtime.widgetRouteRevision == 0 && runtime.startsOnControlSurface,
                 controlOperation: runtime.controlOperation,
                 onPauseOrResume: runtime.pauseOrResumeActiveRun,
                 onEnd: runtime.endActiveRun,
                 onSwitch: { runtime.switchActiveRun(to: $0) },
                 onSetGoal: { runtime.setDurationGoal($0, runID: run.id) }
             )
+            // A warm complication open returns to elapsed and dismisses a
+            // secondary timer sheet. The persisted running/paused run survives.
+            .id(runtime.widgetRouteRevision)
         } else if state.projection.projects.isEmpty {
             if state.projection.ledgerHead == nil {
                 WatchInterruptionView(

@@ -372,6 +372,28 @@
         }
       }
     },
+    "Choose a project": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose a project"
+          }
+        }
+      }
+    },
+    "Choose a project in the app to start a timer.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose a project in the app to start a timer."
+          }
+        }
+      }
+    },
     "Choose a time goal from 5 minutes to 8 hours.": {
       "localizations": {
         "en": {
@@ -1262,6 +1284,17 @@
         }
       }
     },
+    "Opens the current timer.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opens the current timer."
+          }
+        }
+      }
+    },
     "Opens time goal and optional alert settings.": {
       "localizations": {
         "en": {
@@ -1855,6 +1888,17 @@
         }
       }
     },
+    "See billable time or reopen a paused timer. When idle, choose a project to start. Names stay private by default.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "See billable time or reopen a paused timer. When idle, choose a project to start. Names stay private by default."
+          }
+        }
+      }
+    },
     "See billable time, paused status, or recent projects. Names stay private by default.": {
       "localizations": {
         "en": {
@@ -1881,6 +1925,17 @@
           "stringUnit": {
             "state": "translated",
             "value": "Select active tags or remove tags already assigned to this run."
+          }
+        }
+      }
+    },
+    "Set a time goal": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set a time goal"
           }
         }
       }
@@ -2011,6 +2066,17 @@
           "stringUnit": {
             "state": "translated",
             "value": "Start immediately"
+          }
+        }
+      }
+    },
+    "Start timer": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start timer"
           }
         }
       }
