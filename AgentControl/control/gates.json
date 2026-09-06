@@ -6,7 +6,10 @@
       "description": "Validate task, evidence, gate, resource, and dependency contracts.",
       "tier": "focused",
       "evidenceClass": "source",
-      "argv": ["bash", "scripts/agent-control-check.sh"],
+      "argv": [
+        "bash",
+        "scripts/agent-control-check.sh"
+      ],
       "arguments": [],
       "resources": []
     },
@@ -15,8 +18,15 @@
       "description": "Compare a task's declared write scope with a base-to-head diff.",
       "tier": "focused",
       "evidenceClass": "source",
-      "argv": ["bash", "scripts/agent-scope-check.sh"],
-      "arguments": ["task-json", "base-commit", "head-commit"],
+      "argv": [
+        "bash",
+        "scripts/agent-scope-check.sh"
+      ],
+      "arguments": [
+        "task-json",
+        "base-commit",
+        "head-commit"
+      ],
       "resources": []
     },
     {
@@ -24,16 +34,24 @@
       "description": "Regenerate the Xcode project and reject project.yml drift.",
       "tier": "impacted",
       "evidenceClass": "source",
-      "argv": ["bash", "scripts/xcodegen-drift-check.sh"],
+      "argv": [
+        "bash",
+        "scripts/xcodegen-drift-check.sh"
+      ],
       "arguments": [],
-      "resources": ["project-generation"]
+      "resources": [
+        "project-generation"
+      ]
     },
     {
       "id": "lint",
       "description": "Run the repository Swift formatting gate.",
       "tier": "focused",
       "evidenceClass": "source",
-      "argv": ["bash", "scripts/lint.sh"],
+      "argv": [
+        "bash",
+        "scripts/lint.sh"
+      ],
       "arguments": [],
       "resources": []
     },
@@ -42,7 +60,10 @@
       "description": "Run the local-first privacy and production-log audit.",
       "tier": "impacted",
       "evidenceClass": "source",
-      "argv": ["bash", "scripts/privacy-audit.sh"],
+      "argv": [
+        "bash",
+        "scripts/privacy-audit.sh"
+      ],
       "arguments": [],
       "resources": []
     },
@@ -51,54 +72,102 @@
       "description": "Validate shared phone/Watch contracts and golden fixtures.",
       "tier": "impacted",
       "evidenceClass": "unit",
-      "argv": ["bash", "scripts/watch-contract-check.sh"],
+      "argv": [
+        "bash",
+        "scripts/watch-contract-check.sh"
+      ],
       "arguments": [],
-      "resources": ["ios-simulator", "project-generation", "watch-simulator", "watch-wire-contract"]
+      "resources": [
+        "ios-simulator",
+        "project-generation",
+        "watch-simulator",
+        "watch-wire-contract"
+      ]
     },
     {
       "id": "watch-foundation",
       "description": "Build and inspect the generated iPhone/Watch product graph.",
       "tier": "impacted",
       "evidenceClass": "unit",
-      "argv": ["bash", "scripts/watch-foundation-check.sh"],
+      "argv": [
+        "bash",
+        "scripts/watch-foundation-check.sh"
+      ],
       "arguments": [],
-      "resources": ["ios-simulator", "watch-simulator", "project-generation"]
+      "resources": [
+        "ios-simulator",
+        "watch-simulator",
+        "project-generation"
+      ]
     },
     {
       "id": "ci-full",
       "description": "Run the authoritative thirteen-stage clean source/build/test gate.",
       "tier": "full",
       "evidenceClass": "unit",
-      "argv": ["bash", "scripts/ci.sh"],
+      "argv": [
+        "bash",
+        "scripts/ci.sh"
+      ],
       "arguments": [],
-      "resources": ["ios-simulator", "watch-simulator", "project-generation"]
+      "resources": [
+        "ios-simulator",
+        "watch-simulator",
+        "project-generation"
+      ]
     },
     {
       "id": "release-source-receipt",
       "description": "Bind a clean commit/tree/version/build to the production source manifest.",
       "tier": "full",
       "evidenceClass": "source",
-      "argv": ["bash", "scripts/watch-release-source-receipt.sh"],
-      "arguments": ["new-report-directory"],
-      "resources": ["git-integration", "version-build"]
+      "argv": [
+        "bash",
+        "scripts/watch-release-source-receipt.sh"
+      ],
+      "arguments": [
+        "new-report-directory"
+      ],
+      "resources": [
+        "git-integration",
+        "version-build"
+      ]
     },
     {
       "id": "release-tag-binding",
       "description": "Verify that an annotated tag matches the source version/build and peels to the task result commit.",
       "tier": "focused",
       "evidenceClass": "source",
-      "argv": ["bash", "scripts/agent-release-tag-check.sh"],
-      "arguments": ["task-json", "tag-name"],
-      "resources": ["git-integration"]
+      "argv": [
+        "bash",
+        "scripts/agent-release-tag-check.sh"
+      ],
+      "arguments": [
+        "task-json",
+        "tag-name"
+      ],
+      "resources": [
+        "git-integration"
+      ]
     },
     {
       "id": "signed-archive-inspection",
       "description": "Inspect the exact signed four-component archive without granting release authority.",
       "tier": "full",
       "evidenceClass": "signed-package",
-      "argv": ["bash", "scripts/watch-release-check.sh", "signed-archive"],
-      "arguments": ["archive-path", "new-report-directory"],
-      "resources": ["signing-archive", "version-build"]
+      "argv": [
+        "bash",
+        "scripts/watch-release-check.sh",
+        "signed-archive"
+      ],
+      "arguments": [
+        "archive-path",
+        "new-report-directory"
+      ],
+      "resources": [
+        "signing-archive",
+        "version-build"
+      ]
     },
     {
       "id": "owner-attestation",
@@ -106,8 +175,28 @@
       "tier": "full",
       "evidenceClass": "human-approval",
       "argv": [],
-      "arguments": ["authority-reference"],
+      "arguments": [
+        "authority-reference"
+      ],
       "resources": []
+    },
+    {
+      "id": "physical-device-preflight",
+      "description": "Read-only exact-version and wired-pair installation readiness checks; does not certify app flows, WidgetKit delivery or counterpart registration.",
+      "tier": "impacted",
+      "evidenceClass": "physical-device",
+      "argv": [
+        "bash",
+        "scripts/watch-product-device-preflight.sh"
+      ],
+      "arguments": [
+        "iphone-device-id",
+        "watch-device-id",
+        "new-report-directory"
+      ],
+      "resources": [
+        "paired-devices"
+      ]
     }
   ]
 }

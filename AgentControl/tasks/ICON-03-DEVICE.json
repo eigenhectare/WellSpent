@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "taskId": "ICON-03-DEVICE",
+  "title": "Install and preflight the hourglass candidate on the physical pair",
+  "type": "chore",
+  "status": "backlog",
+  "risk": "medium",
+  "outcome": "Install WellSpent 0.2.0 (6) through Xcode's paired Watch destination and independently verify both installed components before the physical design walkthrough.",
+  "assignment": {
+    "role": "implementer",
+    "id": "codex-device-operator"
+  },
+  "base": {
+    "branch": "codex/hourglass-build-6",
+    "commit": "6c5f66f954ee3f891e4b7e438ecd4eba60d2fc29"
+  },
+  "dependsOn": [
+    "ICON-02-BUILD"
+  ],
+  "scope": {
+    "included": [
+      "Use a separate physical-device checkout so Xcode cannot rewrite the frozen CI/archive source.",
+      "Install and launch the production app through one Xcode-owned paired destination, preserving any existing user data.",
+      "Independently query installed versions, device readiness and counterpart status; record exact installation channel and configuration.",
+      "Perform feasible real-device icon and idle/paused/running complication observations and record every unobserved step explicitly."
+    ],
+    "excluded": [
+      "Uninstalling, erasing, unpairing, backup restore, oldest-build substitution and personal-content inspection.",
+      "Full WAT-24 resilience, multi-hour battery certification, distribution validation, App Store upload and release.",
+      "Public support/privacy edits."
+    ]
+  },
+  "writeScope": {
+    "paths": [
+      "AgentControl",
+      "WAT-31-HOURGLASS-DEVICE-CHECK.md",
+      "WellSpent.xcodeproj"
+    ],
+    "resources": [
+      "git-integration",
+      "paired-devices",
+      "project-generation",
+      "release-status",
+      "signing-archive",
+      "version-build"
+    ]
+  },
+  "acceptanceCriteria": [
+    {
+      "id": "AC-1",
+      "statement": "A nondestructive Xcode paired installation is independently confirmed at 0.2.0 (6) on both physical devices with the canonical wired-device readiness preflight passing."
+    },
+    {
+      "id": "AC-2",
+      "statement": "The device observation record distinguishes observed icon/workflow results from pending owner-operated checks, exact archive delivery, and broader release gates; no unobserved behavior is reported passed."
+    }
+  ],
+  "evidenceRequirements": [
+    {
+      "id": "ER-1",
+      "criterionIds": [
+        "AC-1"
+      ],
+      "evidenceClass": "physical-device",
+      "gateIds": [
+        "physical-device-preflight"
+      ],
+      "candidateBound": true
+    },
+    {
+      "id": "ER-2",
+      "criterionIds": [
+        "AC-2"
+      ],
+      "evidenceClass": "source",
+      "gateIds": [
+        "agent-control"
+      ],
+      "candidateBound": false
+    }
+  ],
+  "authorityRequirements": [
+    "device-mutate",
+    "repository-write",
+    "signing-upload"
+  ],
+  "legacyRefs": [
+    "WAT-OWNER-DECISIONS.md",
+    "WAT-29-DESIGN-REVISION.md",
+    "WAT-30-HOURGLASS-ICON.md"
+  ],
+  "blocker": null,
+  "result": null
+}
