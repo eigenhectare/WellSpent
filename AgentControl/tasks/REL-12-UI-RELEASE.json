@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "taskId": "REL-12-UI-RELEASE",
+  "title": "Build and submit the iPhone UI refresh",
+  "type": "release",
+  "status": "in_progress",
+  "risk": "medium",
+  "outcome": "Freeze WellSpent 0.2.0 (10) from the approved iPhone UI refresh, validate and upload the signed four-component build, attach it to the existing App Store version, and submit it for App Review with accurate metadata.",
+  "assignment": {
+    "role": "release-steward",
+    "id": "codex-release-steward"
+  },
+  "base": {
+    "branch": "codex/iphone-ui-refresh",
+    "commit": "1a16e8f58cc5985ef5c37412ead89ca310a54749"
+  },
+  "dependsOn": [
+    "ICON-04-ABSTRACT"
+  ],
+  "scope": {
+    "included": [
+      "Allocate build 10 while retaining marketing version 0.2.0 across all four components.",
+      "Freeze the exact UI-refresh source, regenerate the Xcode project, and run the full validation suite.",
+      "Create and inspect an automatically signed archive and App Store distribution export.",
+      "Upload build 10, wait for App Store processing, attach it to version 0.2.0, update candidate-specific review metadata, and submit for App Review.",
+      "Record source, automated, signed-package and external-service evidence without relabeling build 9 artifacts."
+    ],
+    "excluded": [
+      "Public release after App Review approval, phased release changes, rating reset, tester invitations or external beta enrollment.",
+      "Destructive device actions, legal agreement acceptance, signing identity changes, bundle identifier changes, schema changes, privacy declaration changes or feature work beyond the committed UI refresh.",
+      "Replacing accurate existing marketing screenshots unless the attached build makes one materially inaccurate."
+    ]
+  },
+  "writeScope": {
+    "paths": [
+      "project.yml",
+      "WellSpent.xcodeproj",
+      "AgentControl",
+      "WAT-35-UI-RELEASE.md",
+      "APP-STORE-RELEASE.md",
+      "AppStore/Abstract-0.2.0-10"
+    ],
+    "resources": [
+      "app-store-connect",
+      "git-integration",
+      "ios-simulator",
+      "project-generation",
+      "release-status",
+      "signing-archive",
+      "version-build",
+      "watch-simulator"
+    ]
+  },
+  "acceptanceCriteria": [
+    {
+      "id": "AC-1",
+      "statement": "A clean exact-source receipt identifies the committed UI refresh as WellSpent 0.2.0 (10), with generated-project parity."
+    },
+    {
+      "id": "AC-2",
+      "statement": "The authoritative full CI suite passes on the frozen build-10 source."
+    },
+    {
+      "id": "AC-3",
+      "statement": "The exact signed archive and App Store distribution export pass four-component inspection."
+    },
+    {
+      "id": "AC-4",
+      "statement": "App Store Connect processes and selects build 10 for version 0.2.0, candidate-specific metadata is accurate, and the exact build is submitted for App Review with manual release retained."
+    }
+  ],
+  "evidenceRequirements": [
+    {
+      "id": "ER-1",
+      "criterionIds": [
+        "AC-1"
+      ],
+      "evidenceClass": "source",
+      "gateIds": [
+        "release-source-receipt",
+        "xcodegen-drift"
+      ],
+      "candidateBound": true
+    },
+    {
+      "id": "ER-2",
+      "criterionIds": [
+        "AC-2"
+      ],
+      "evidenceClass": "unit",
+      "gateIds": [
+        "ci-full"
+      ],
+      "candidateBound": true
+    },
+    {
+      "id": "ER-3",
+      "criterionIds": [
+        "AC-3"
+      ],
+      "evidenceClass": "signed-package",
+      "gateIds": [
+        "signed-archive-inspection",
+        "distribution-export-inspection"
+      ],
+      "candidateBound": true
+    },
+    {
+      "id": "ER-4",
+      "criterionIds": [
+        "AC-4"
+      ],
+      "evidenceClass": "external-service",
+      "gateIds": [
+        "app-store-staging"
+      ],
+      "candidateBound": true
+    },
+    {
+      "id": "ER-5",
+      "criterionIds": [
+        "AC-4"
+      ],
+      "evidenceClass": "human-approval",
+      "gateIds": [
+        "owner-attestation"
+      ],
+      "candidateBound": true
+    }
+  ],
+  "authorityRequirements": [
+    "app-store-submit",
+    "repository-write",
+    "signing-upload"
+  ],
+  "legacyRefs": [
+    "WAT-OWNER-DECISIONS.md",
+    "WAT-33-UPDATE-RELEASE.md",
+    "APP-STORE-RELEASE.md"
+  ],
+  "blocker": null,
+  "result": null
+}
