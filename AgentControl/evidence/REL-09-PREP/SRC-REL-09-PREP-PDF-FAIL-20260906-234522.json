@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "SRC-REL-09-PREP-PDF-FAIL-20260906-234522",
+  "taskId": "REL-09-PREP",
+  "requirementId": "ER-4",
+  "evidenceClass": "source",
+  "result": "failed",
+  "producerRole": "verifier",
+  "producerId": "screen-design-audit",
+  "observedAt": "2026-09-06T23:45:22Z",
+  "source": {
+    "commit": "31538cee04c3bf1ddddc3be152ae5fa0da56cef1",
+    "tree": "a954ab56b998f62c61c536f042207c8d89b94d0f",
+    "clean": true,
+    "version": "0.2.0",
+    "build": "9"
+  },
+  "gate": {
+    "id": "store-materials-review",
+    "exitCode": 1
+  },
+  "claims": [
+    "Independently inspected the supplied Xcode PrivacyReport PDF using the PDF skill, Poppler metadata/text extraction and a rendered image of its only page.",
+    "The 807-byte PDF SHA256 is 9ac322434178fbf5c19a50dc6e0e4612bef0c6c36c7929251de908dbd98240c6. It renders entirely blank and yields no non-whitespace text. The page tree has zero-sized MediaBox and the decompressed stream contains graphics-state save/restore only, with no text or drawing content.",
+    "This document cannot be reconciled as an inspectable aggregate privacy report. The narrow PDF review therefore fails; a successful file save or valid PDF container does not establish meaningful report contents.",
+    "Separately re-read all four original Release archive privacy manifests against exact frozen source: they match, declare no tracking and no collected-data types, and retain their required-reason API declarations. Those existing package facts remain consistent with the coordinator-observed Data Not Collected position; they do not substitute for a populated Xcode report.",
+    "The source remains clean at exact31538ce. The PDF attempt and independent rendering/text/structural diagnostics are preserved without modifying the PDF, source or archive."
+  ],
+  "artifacts": [
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/resumed-staging/WellSpent-0.2.0-9-Xcode-PrivacyReport.pdf",
+      "sha256": "9ac322434178fbf5c19a50dc6e0e4612bef0c6c36c7929251de908dbd98240c6"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/resumed-staging/independent-privacy-pdf-31538ce/pdfinfo.txt",
+      "sha256": "b48e23bd12d7fe732a42ffa49cd98e167f559448f9a8fd773ecf8a41786df9a5"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/resumed-staging/independent-privacy-pdf-31538ce/report-text.txt",
+      "sha256": "ef6cbd2161eaea7943ce8693b9824d23d1793ffb1c0fca05b600d3899b44c977"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/resumed-staging/independent-privacy-pdf-31538ce/page-1.png",
+      "sha256": "e51f4be9e219f022c0a13decf59163da7ce5ff7667fc17ac2b6e7b8618af85ee"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/resumed-staging/independent-privacy-pdf-31538ce/summary.json",
+      "sha256": "29486b6e8f7521743b445618e4cecba28bb22b7852ab83e3708b620d0bbe032e"
+    }
+  ],
+  "limitations": [
+    "This is a failed narrow PDF review, not a finding of new data collection or a failed signed package. Broader store-materials review, external validation/upload/processing and privacy PDF generation remain distinct.",
+    "The verifier did not observe or operate Organizer generation, browser/App Store UI, devices or simulators. The cause of the blank PDF is not established here.",
+    "No original archive or IPA rehash was needed for this PDF-content failure; earlier independent exact-file reconciliation remains separately recorded.",
+    "A later valid report and passed receipt must be appended without overwriting this failed PDF artifact or evidence."
+  ],
+  "authorityReference": {
+    "kind": "signed-record",
+    "reference": "REL-09-PREP records owner-authorized abstract-icon release preparation and bounded disclosure corrections; WAT-OWNER-DECISIONS.md section4 retains signing/upload authority. Physical actions and App Review/public release remain excluded until outstanding physical acceptance.",
+    "confirmedBy": "owner",
+    "confirmedAt": "2026-09-06",
+    "authorityIds": [
+      "repository-write",
+      "signing-upload"
+    ]
+  },
+  "publicReleaseApproved": false
+}

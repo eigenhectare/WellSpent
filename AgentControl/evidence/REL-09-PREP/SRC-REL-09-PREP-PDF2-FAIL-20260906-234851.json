@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "SRC-REL-09-PREP-PDF2-FAIL-20260906-234851",
+  "taskId": "REL-09-PREP",
+  "requirementId": "ER-4",
+  "evidenceClass": "source",
+  "result": "failed",
+  "producerRole": "verifier",
+  "producerId": "screen-design-audit",
+  "observedAt": "2026-09-06T23:48:51Z",
+  "source": {
+    "commit": "31538cee04c3bf1ddddc3be152ae5fa0da56cef1",
+    "tree": "a954ab56b998f62c61c536f042207c8d89b94d0f",
+    "clean": true,
+    "version": "0.2.0",
+    "build": "9"
+  },
+  "gate": {
+    "id": "store-materials-review",
+    "exitCode": 1
+  },
+  "claims": [
+    "Independently inspected the distinct second Organizer PDF once with metadata, text extraction, complete page rendering and content-stream inspection; the original first PDF and failed receipt remain unchanged.",
+    "The retry is again an 807-byte, one-page blank document with no non-whitespace text, zero-sized MediaBox and graphics-state-only q Q content stream. Its exact digest and rendered/text diagnostics are retained in the second inspection folder.",
+    "Researched primary Apple documentation and WWDC material. Apple describes the report as a collected-data aggregate supporting Privacy Nutrition Labels; manifest documentation separately defines required-reason API declarations. Exact source URLs and bounded conclusions are retained in primary-source-research.json.",
+    "Because the four previously verified component manifests declare no collected categories, an empty collected-data report is plausible and consistent with those declarations. This is explicitly an inference, not Apple confirmation of the exact blank-PDF rendering.",
+    "No primary Apple statement confirming this zero-sized blank output as expected behavior, or documenting it as an Xcode export bug, was found in this bounded research. The retry therefore still provides no inspectable report content for the narrow PDF reconciliation.",
+    "This failed content review establishes neither a new privacy violation nor a product/package defect. Earlier independent source/compiled manifest audits and separate Apple validation remain distinct evidence; no truthful privacy declaration was modified to force report output."
+  ],
+  "artifacts": [
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/resumed-staging/WellSpent-0.2.0-9-Xcode-PrivacyReport-attempt-2.pdf",
+      "sha256": "3dea65fd26af5f47a846809c6bea1ea9ac30b01b439ec353597dbfdfe9460ff0"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/resumed-staging/independent-privacy-pdf-attempt-2-31538ce/pdfinfo.txt",
+      "sha256": "6975579d5bb1c0ab42947440d70e3dcf8c4b605c05b34c9d362303a7a46b50a6"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/resumed-staging/independent-privacy-pdf-attempt-2-31538ce/report-text.txt",
+      "sha256": "ef6cbd2161eaea7943ce8693b9824d23d1793ffb1c0fca05b600d3899b44c977"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/resumed-staging/independent-privacy-pdf-attempt-2-31538ce/page-1.png",
+      "sha256": "e51f4be9e219f022c0a13decf59163da7ce5ff7667fc17ac2b6e7b8618af85ee"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/resumed-staging/independent-privacy-pdf-attempt-2-31538ce/summary.json",
+      "sha256": "788e6063c648cda2f7f9a8396c1895b237fa280d096b17383e3c37e21c71cc17"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-9/resumed-staging/independent-privacy-pdf-attempt-2-31538ce/primary-source-research.json",
+      "sha256": "d845d677d9526883794f8d9b93105b1040246571ad58266de53576ec24f59dd5"
+    }
+  ],
+  "limitations": [
+    "The failed result is limited to non-inspectable PDF contents, not overall store readiness or a claim that Apple requires nonempty categories for an app that collects no data.",
+    "Absence of a confirming primary source in bounded research is not proof that no Apple documentation or internal bug exists. The exact cause remains unverified.",
+    "The verifier did not observe or operate the Organizer generation or Apple validation/upload flow, change source or products, query devices, or create a substitute PDF.",
+    "The coordinator owns the release disposition for this report limitation; no App Review or public-release approval is implied."
+  ],
+  "authorityReference": {
+    "kind": "signed-record",
+    "reference": "REL-09-PREP records owner-authorized abstract-icon release preparation and bounded disclosure corrections; WAT-OWNER-DECISIONS.md section4 retains signing/upload authority. Physical actions and App Review/public release remain excluded until outstanding physical acceptance.",
+    "confirmedBy": "owner",
+    "confirmedAt": "2026-09-06",
+    "authorityIds": [
+      "repository-write",
+      "signing-upload"
+    ]
+  },
+  "publicReleaseApproved": false
+}

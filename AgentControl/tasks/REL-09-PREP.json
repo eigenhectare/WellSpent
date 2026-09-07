@@ -148,8 +148,8 @@
   "blocker": {
     "kind": "human-input",
     "owner": "owner",
-    "reference": "WAT-33-UPDATE-RELEASE.md; AgentControl/evidence/REL-09-PREP/EXT-REL-09-PREP-RESUME-20260906-231547.json",
-    "resumeEvent": "Owner unlocks the Mac and resolves the updated Apple Developer Program agreement request. Resume native screenshot selection and Organizer privacy report/validation/upload with separately verified Xcode account access, then confirm contact and processed assets/build."
+    "reference": "WAT-33-UPDATE-RELEASE.md",
+    "resumeEvent": "Owner unlocks the Mac so supplied review contact can be saved and an independent live audit can verify the processed build 9 draft, screenshots and manual-release selection. Upload is complete; public-copy publication and applicable physical acceptance remain separate gates."
   },
   "result": {
     "commit": "31538cee04c3bf1ddddc3be152ae5fa0da56cef1",

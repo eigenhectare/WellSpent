@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "EXT-REL-09-PREP-VERIFY-BLOCKED-20260906-235942",
+  "taskId": "REL-09-PREP",
+  "requirementId": "ER-5",
+  "evidenceClass": "external-service",
+  "result": "blocked",
+  "producerRole": "verifier",
+  "producerId": "screen-design-audit",
+  "observedAt": "2026-09-06T23:59:42Z",
+  "source": {
+    "commit": "31538cee04c3bf1ddddc3be152ae5fa0da56cef1",
+    "tree": "a954ab56b998f62c61c536f042207c8d89b94d0f",
+    "clean": true,
+    "version": "0.2.0",
+    "build": "9"
+  },
+  "gate": {
+    "id": "app-store-staging",
+    "exitCode": null
+  },
+  "claims": [
+    "Attempted the delegated read-only live App Store Connect draft verification. Selecting the supplied browser/tab failed because that browser identifier was unavailable; the immediately following enabled-surface inventory reported the Mac locked and automatic unlock unsuccessful.",
+    "No live draft state, saved build attachment, screenshot count/order, processed build metadata, manual-release selection or review-contact presence was independently observed in this attempt. No navigation, form mutation, Save, invitation or submission occurred.",
+    "Independently reviewed the retained Organizer package supplement: its authentic metadata binds the distinct c3ad0920 IPA and exact31538ce source, while the export-only gate failure for destination=upload remains preserved. Those local package facts do not substitute for live external-state evidence.",
+    "The older external-staging-resume-observation.json predates the reported final attachment/screenshots and was not used to certify the newer saved draft."
+  ],
+  "artifacts": [
+    {
+      "kind": "external",
+      "locator": "https://appstoreconnect.apple.com/apps/6807058949/distribution/ios/version/inflight",
+      "sha256": null
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/resumed-staging/independent-external-staging-blocked-20260906-235942.json",
+      "sha256": "e873de66c443d48bfa4df560059b8d2adfcd24b4b3b26bfadddd44db8c6d0ed8"
+    }
+  ],
+  "limitations": [
+    "This blocked independent-read receipt does not contradict or relabel the coordinator-reported successful upload/processing and later draft edits; those outcomes require their separate external observation evidence.",
+    "Resume requires an actual unlocked Mac and accessible target tab. The verifier will not poll unchanged lock state or manufacture confirmation from local diagnostics.",
+    "Review-contact presence, public privacy/support copy, full physical acceptance, blank privacy PDFs and the new Organizer IPA export-only gate mismatch remain distinct gaps; no submission-readiness or public-release approval is claimed."
+  ],
+  "authorityReference": {
+    "kind": "signed-record",
+    "reference": "REL-09-PREP records owner-authorized abstract-icon release preparation and bounded disclosure corrections; WAT-OWNER-DECISIONS.md section4 retains signing/upload authority. Physical actions and App Review/public release remain excluded until outstanding physical acceptance.",
+    "confirmedBy": "owner",
+    "confirmedAt": "2026-09-06",
+    "authorityIds": [
+      "repository-write",
+      "signing-upload"
+    ]
+  },
+  "publicReleaseApproved": false
+}
