@@ -129,17 +129,13 @@ final class WellSpentWatchUITests: XCTestCase {
         XCTAssertTrue(app.descendants(matching: .any)["watch.metrics.billable"].exists)
         XCTAssertTrue(app.descendants(matching: .any)["watch.metrics.goal"].exists)
 
-        app.swipeUp()
         let runPage = app.descendants(matching: .any)["watch.metrics.run"]
-        XCTAssertTrue(runPage.waitForExistence(timeout: 5))
+        XCTAssertTrue(swipeUp(app, until: runPage))
         XCTAssertTrue(app.descendants(matching: .any)["watch.metrics.run.paused"].exists)
         XCTAssertTrue(app.descendants(matching: .any)["watch.metrics.run.segments"].exists)
 
-        app.swipeUp()
-        XCTAssertTrue(
-            app.descendants(matching: .any)["watch.metrics.totals"]
-                .waitForExistence(timeout: 5)
-        )
+        let totalsPage = app.descendants(matching: .any)["watch.metrics.totals"]
+        XCTAssertTrue(swipeUp(app, until: totalsPage))
         XCTAssertTrue(app.descendants(matching: .any)["watch.metrics.totals.today"].exists)
         XCTAssertTrue(app.descendants(matching: .any)["watch.metrics.totals.week"].exists)
     }
@@ -574,5 +570,14 @@ final class WellSpentWatchUITests: XCTestCase {
         attachment.name = "WellSpentWatch-\(name)"
         attachment.lifetime = .keepAlways
         add(attachment)
+    }
+
+    private func swipeUp(_ app: XCUIApplication, until element: XCUIElement) -> Bool {
+        if element.exists { return true }
+        for _ in 0..<3 {
+            app.swipeUp()
+            if element.waitForExistence(timeout: 2) { return true }
+        }
+        return false
     }
 }

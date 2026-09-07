@@ -142,8 +142,8 @@ final class WatchWidgetUITests: XCTestCase {
         XCTAssertEqual(elapsed.label, "Paused")
         XCTAssertEqual(app.staticTexts["watch.metrics.billable"].label, billable)
 
-        app.swipeUp()
-        XCTAssertTrue(app.descendants(matching: .any)["watch.metrics.run"].waitForExistence(timeout: 5))
+        let runPage = app.descendants(matching: .any)["watch.metrics.run"]
+        XCTAssertTrue(swipeUp(app, until: runPage))
         app.buttons["watch.widget.reentry"].tap()
         XCTAssertTrue(elapsed.waitForExistence(timeout: 5))
         XCTAssertTrue(elapsed.isHittable)
@@ -166,5 +166,14 @@ final class WatchWidgetUITests: XCTestCase {
         attachment.name = "WAT-18-\(name)"
         attachment.lifetime = .keepAlways
         add(attachment)
+    }
+
+    private func swipeUp(_ app: XCUIApplication, until element: XCUIElement) -> Bool {
+        if element.exists { return true }
+        for _ in 0..<3 {
+            app.swipeUp()
+            if element.waitForExistence(timeout: 2) { return true }
+        }
+        return false
     }
 }

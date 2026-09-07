@@ -25,7 +25,7 @@ final class WatchWidgetLayoutUITests: XCTestCase {
 
                 }
                 if fixture != "active" {
-                    verifyProjectPickerLabel(app)
+                    verifyProjectPickerLabel(app, expanded: true)
                     XCTAssertFalse(tree.contains(name))
                 }
                 app.terminate()
@@ -44,7 +44,7 @@ final class WatchWidgetLayoutUITests: XCTestCase {
             let app = launch(fixture, extra: extra)
             try verify(app, name: fixture, expanded: expanded, recent: fixture == "populated")
             XCTAssertFalse(app.debugDescription.contains("Client Launch"))
-            if fixture == "populated" { verifyProjectPickerLabel(app) }
+            if fixture == "populated" { verifyProjectPickerLabel(app, expanded: expanded) }
             app.terminate()
         }
     }
@@ -87,16 +87,14 @@ final class WatchWidgetLayoutUITests: XCTestCase {
             // The whole accessory is a single widgetURL destination. There
             // must be no nested project shortcut that bypasses the picker.
             XCTAssertTrue(controls.isEmpty)
-            verifyProjectPickerLabel(app)
+            verifyProjectPickerLabel(app, expanded: expanded)
         }
         if expanded && !name.contains("visible") {
-            let labels = (texts + controls).map(\.label)
+            let labels = (texts + controls).map(\.label) + [(preview.value as? String) ?? ""]
             XCTAssertTrue(
-                labels.contains { label in
-                    ["Start timer", "Running", "Paused", "Review", "Update", "Set up", "Open"].contains { word in
-                        label.components(separatedBy: word).count >= 3
-                    }
-                }, "The real localization boundary must expand; a launch flag alone is not evidence.")
+                labels.contains(where: isDoubledLocalization),
+                "The real localization boundary must expand; a launch flag alone is not evidence."
+            )
         }
         try app.performAccessibilityAudit { issue in
             let detail = XCTAttachment(string: "\(issue.detailedDescription)\n\(issue.element?.debugDescription ?? "")")
@@ -113,10 +111,20 @@ final class WatchWidgetLayoutUITests: XCTestCase {
         add(rendered)
     }
 
-    private func verifyProjectPickerLabel(_ app: XCUIApplication) {
+    private func verifyProjectPickerLabel(_ app: XCUIApplication, expanded: Bool) {
         let preview = app.descendants(matching: .any)["watch.widget-preview"]
         XCTAssertEqual(preview.label, "WellSpent")
-        XCTAssertEqual(preview.value as? String, "No timer running")
+        XCTAssertEqual(
+            preview.value as? String,
+            expanded ? "No timer running No timer running" : "No timer running"
+        )
+    }
+
+    private func isDoubledLocalization(_ value: String) -> Bool {
+        let words = value.split(separator: " ")
+        guard words.count >= 2, words.count.isMultiple(of: 2) else { return false }
+        let midpoint = words.count / 2
+        return words[..<midpoint].elementsEqual(words[midpoint...])
     }
 
     private func assertInside(_ element: XCUIElement, region: CGRect) {

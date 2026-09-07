@@ -35,7 +35,7 @@ struct WellSpentWatchStatusView: View {
         .unredacted()
         .widgetURL((entry.state?.route ?? .projects).url)
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel("WellSpent")
+        .accessibilityLabel(Text(verbatim: "WellSpent"))
         .accessibilityValue(isRunning ? "Timer running" : "No timer running")
         .accessibilityHint(
             entry.state?.runID != nil
