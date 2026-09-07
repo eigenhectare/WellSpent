@@ -24,6 +24,7 @@
       "Create and inspect an automatically signed archive and App Store distribution export.",
       "Reconcile the three shipping Watch stop-control localization keys required by the release catalog gate.",
       "Keep the Watch widget brand accessibility label verbatim under expanded-localization testing and make vertical-page UI checks tolerate ignored simulator swipes without weakening their assertions.",
+      "Replace two stale Watch UI manifest selections with the six current idle, running, stop and exact-run regression tests so the authoritative gate executes every selected case.",
       "Upload build 10, wait for App Store processing, attach it to version 0.2.0, update candidate-specific review metadata, and submit for App Review.",
       "Record source, automated, signed-package and external-service evidence without relabeling build 9 artifacts."
     ],
@@ -41,6 +42,7 @@
       "WAT-35-UI-RELEASE.md",
       "APP-STORE-RELEASE.md",
       "AppStore/Abstract-0.2.0-10",
+      "scripts",
       "WellSpentWatchUITests",
       "WellSpentWatchWidgets",
       "WellSpentWatchLocalization"
