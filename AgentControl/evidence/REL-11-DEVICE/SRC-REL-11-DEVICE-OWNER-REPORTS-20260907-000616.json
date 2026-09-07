@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "SRC-REL-11-DEVICE-OWNER-REPORTS-20260907-000616",
+  "taskId": "REL-11-DEVICE",
+  "requirementId": "ER-2",
+  "evidenceClass": "source",
+  "result": "passed",
+  "producerRole": "verifier",
+  "producerId": "native-phone-owner-report-ledger-verifier",
+  "observedAt": "2026-09-07T00:06:16Z",
+  "source": {
+    "commit": "31538cee04c3bf1ddddc3be152ae5fa0da56cef1",
+    "tree": "a954ab56b998f62c61c536f042207c8d89b94d0f",
+    "clean": true,
+    "version": "0.2.0",
+    "build": "9"
+  },
+  "gate": {
+    "id": "agent-control",
+    "exitCode": 0
+  },
+  "claims": [
+    "Independently reviewed only the appended Subsequent owner reports section of WAT-34 and the sanitized owner-reports-20260907.json against the exact question/answer excerpts relayed by the coordinator from the root conversation. Five recorded answers support the six narrowly scoped owner-reported table entries.",
+    "The reported results are fresh fictitious phone-project arrival on Watch, idle complication navigation without starting, paused complication reentry with unchanged displayed elapsed time after the requested approximate wait, paused and idle Smart Stack navigation, and iPhone Light/Dark/Automatic icon appearance. The compound Smart Stack answer covers both described steps; the Home Screen answer responds to the prompt about appearance and switching.",
+    "The appended ledger explicitly labels these as owner answers rather than independently witnessed interactions or instrumented measurements. It records no actual numeric elapsed time, measured pause interval or exact start/end boundary and makes no broad timing or duplicate-reconciliation claim.",
+    "The new section inherits source and installed-version provenance from the earlier Debug Apple Development physical session. It explicitly distinguishes that installation from the newly uploaded App Store distribution IPA and a fresh installed-binary hash check.",
+    "The unanswered History/Reports exactly-once and pause-exclusion question remains open, as do running complication reentry, explicit Resume/Switch with a shared boundary and the actual Watch app-screen icon. The default CoreDevice Watch render is not promoted into an app-screen observation.",
+    "The broader mandatory physical, privacy, accessibility, goal-alert, offline/relaunch, repeated and long-duration, resource, distribution-companion and public-build-2 upgrade requirements remain open with their separate destructive-data authority boundaries. The task remains blocked at unanswered owner observations rather than being declared complete.",
+    "The coordinator relayed the earlier two-part Mac-unlock/agreement request and the owner answer confirming both; the appended agreement reference is consistent with that relay. The section refers external upload/processing facts to WAT-33 and does not treat them as physical acceptance or App Review completion.",
+    "The prior WAT-34 bytes are preserved verbatim as a prefix of the current document: prior SHA256 f8d1bfb8a10c09f93825a9252c5dc8caba74ef103dc9a6764c934e62265664d5, followed by 3444 appended bytes. Both prior receipts are unchanged and retained by exact digests below.",
+    "The frozen candidate checkout was independently clean at exact commit 31538cee04c3bf1ddddc3be152ae5fa0da56cef1 and tree a954ab56b998f62c61c536f042207c8d89b94d0f. The canonical agent-control gate passed with 15 tasks and 36 receipts before this supplement; scoped git diff --check passed."
+  ],
+  "artifacts": [
+    {
+      "kind": "repository",
+      "locator": "WAT-34-CANDIDATE-DEVICE-SESSION.md",
+      "sha256": "97c2f7390f78d4e53888d712ab434105d515d8c1900218f578ed7a04462fdc93"
+    },
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-9/device-session/owner-reports-20260907.json",
+      "sha256": "dc1d7448ea8bbad8f6e33e34c17ad0e169f2787cc6a1ed59094ef0b1e676de80"
+    },
+    {
+      "kind": "repository",
+      "locator": "AgentControl/evidence/REL-11-DEVICE/PHY-REL-11-DEVICE-20260906-231132.json",
+      "sha256": "1f25640f89b85ee9fbf9633e9a0e249a9ea9484d8dc254633edefff43797aee1"
+    },
+    {
+      "kind": "repository",
+      "locator": "AgentControl/evidence/REL-11-DEVICE/SRC-REL-11-DEVICE-LEDGER-20260906-231727.json",
+      "sha256": "0b635a443feaa5c5a4ee3d902f4d5f0840d6e75b08efb6d47604eea2c67cfd51"
+    }
+  ],
+  "limitations": [
+    "The new question/answer excerpts were supplied by the coordinator because they were not present in this verifier subagent inherited conversation. This review checks the sanitized report and ledger against that explicitly identified relay, not an independently retrieved conversation transcript or direct device observation.",
+    "This source receipt verifies accurate evidence classification and reporting under AC-2. It is not new physical-device evidence, an owner-authored human-approval receipt, independent transport instrumentation or acceptance of timing correctness.",
+    "Owner reports do not supply measured numeric timing, duplicate/history results, distribution-binary identity, broad appearance/accessibility coverage or any waiver of the mandatory physical matrix.",
+    "The reviewer issued no device, simulator, GUI, browser, build, signing, upload, timer, personal-data, install, erase or uninstall operation. Only this unique append-only evidence receipt was written; product files, ledger, task state and prior receipts were not changed.",
+    "The source.clean value refers to the exact frozen candidate checkout. The appended ledger was reviewed as uncommitted integration work in main and is bound by its current digest; integration and final-tree cleanliness remain the coordinator responsibility.",
+    "The final paragraph external-service references are reported context, not a new independent verification of agreement acceptance, Apple upload/processing or saved App Store state. No App Review submission or public-release authority is inferred.",
+    "No full CI was rerun for this documentation-only supplement. The reviewer previously contributed phone design work; this review is limited to the later coordinator-authored owner-observation ledger and does not approve earlier implementation."
+  ],
+  "authorityReference": {
+    "kind": "user-message",
+    "reference": "The coordinator explicitly delegated REL-11-DEVICE AC-2/ER-2 review of the appended owner reports and authorized one unique sanitized source receipt while retaining the task leases. Only bounded repository-write authority was exercised.",
+    "confirmedBy": "coordinator",
+    "confirmedAt": "2026-09-07",
+    "authorityIds": [
+      "repository-write"
+    ]
+  },
+  "publicReleaseApproved": false
+}

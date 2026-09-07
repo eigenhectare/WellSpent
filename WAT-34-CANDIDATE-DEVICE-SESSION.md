@@ -50,3 +50,26 @@ The current readiness message and WAT-OWNER-DECISIONS.md §3 / WAT-24 authorize 
 Artifacts are retained under ignored `AppStore/Abstract-0.2.0-9/device-session/`: initial and intermediate preflights, exact installed-app queries, source receipts, development product build/result bundle, independent product manifest, normalization patches, launch results and installed icon renders. Raw device-bearing logs are not committed. Append-only sanitized independent receipts belong under `AgentControl/evidence/REL-11-DEVICE/`.
 
 App Store staging remains a separate task. The signed-in site currently requests Account Holder acceptance of an updated Apple Developer Program agreement before updates; the owner has been asked to review it. No agreement was accepted by the agent. Physical installation does not close App Store processing, accurate public-copy publication, review or release gates.
+
+## Subsequent owner reports — September 6 local / recorded September 7 UTC
+
+The owner subsequently completed the following on the physical pair using the previously installed **0.2.0 (9), Debug / Apple Development** apps and the deliberately fictitious test project. These reports supersede only the corresponding earlier unobserved items; the earlier observations and receipts remain unchanged.
+
+| Check | Owner-reported result |
+| --- | --- |
+| New fictitious iPhone project appears on Watch | Pass: project appears on Watch. This is a report of fresh paired exchange, beyond the earlier cached-state/launch evidence. |
+| Actual idle watch-face complication | Pass: opens Projects; no timer starts. |
+| Actual paused complication after a roughly 20-second wait | Pass: the same timer reopens, remains paused and shows unchanged elapsed time. |
+| Actual Smart Stack while paused | Pass: reopens the paused timer without resuming. |
+| Actual Smart Stack after ending that test timer | Pass: opens Projects without starting another timer. |
+| iPhone Home Screen Light, Dark and Automatic appearances | Pass: the abstract hourglass looks correct in all three settings and switches appropriately. |
+
+These are explicit owner answers to the described checks, not independently witnessed interactions or instrumented measurements. No actual numerical elapsed time, pause duration or start/end timestamps were supplied. Source and installed-version provenance are inherited from the preceding documented development installation, not from a fresh cryptographic installed-binary check. They do not describe the newly uploaded App Store distribution IPA.
+
+The pending owner question asks whether the ended Watch timer appears exactly once in iPhone History/Reports, with the paused interval excluded. No answer has yet been received. Running complication reentry, explicit Resume/Switch with a shared exact boundary and the icon on the actual Watch app screen also remain unreported. The default Watch icon was independently viewed only through the prior CoreDevice render. No broad exact-accounting, duplicate-reconciliation or Watch appearance claim is inferred from these narrower passes.
+
+The sanitized answers and limitations are preserved in ignored `device-session/owner-reports-20260907.json`; the actual project label and private device/contact details are omitted. No additional device query, installation, remote timer manipulation, erasure, uninstall or personal-data inspection accompanied this recording step.
+
+All other mandatory physical acceptance remains open as listed above and in WAT-33: actual system surfaces and privacy controls beyond these entries, accessibility, goal alerts, offline/relaunch/reconciliation, repeated detached and long-duration trials, accepted resource/privacy measurements, actual distribution companion installation and public-build-2 upgrade coverage. The short owner walkthrough does not replace the WAT-05/23/24/25/26/28 gates or their separate destructive-data authority boundaries. Public-binary smoke remains post-release.
+
+Separately, the owner confirmed Apple agreement acceptance and Xcode subsequently validated/uploaded build 9. App Store processing and saved draft attachment are recorded in WAT-33; they do not certify this physical session or complete App Review. REL-11 remains paused at the unanswered short-smoke observations, with the feasible results preserved for the next session.
