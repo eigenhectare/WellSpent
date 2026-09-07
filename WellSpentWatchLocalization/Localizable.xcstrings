@@ -984,6 +984,16 @@
         }
       }
     },
+    "No timer running": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No timer running"
+          }
+        }
+      }
+    },
     "No timer was created. Try again or choose another project.": {
       "localizations": {
         "en": {
@@ -1194,6 +1204,16 @@
         }
       }
     },
+    "Open WellSpent from a face-tinted hourglass. A traced outline marks a running timer.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open WellSpent from a face-tinted hourglass. A traced outline marks a running timer."
+          }
+        }
+      }
+    },
     "Open WellSpent on iPhone to refresh.": {
       "localizations": {
         "en": {
@@ -1291,6 +1311,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Opens the current timer."
+          }
+        }
+      }
+    },
+    "Opens WellSpent to choose a project.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opens WellSpent to choose a project."
           }
         }
       }
@@ -1401,6 +1431,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Pause counted time for the current Watch timer."
+          }
+        }
+      }
+    },
+    "Pauses billable time at one saved boundary.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pauses billable time at one saved boundary."
           }
         }
       }
@@ -1684,6 +1724,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Resume counted time for the paused Watch timer."
+          }
+        }
+      }
+    },
+    "Resumes billable time from one saved boundary.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resumes billable time from one saved boundary."
           }
         }
       }
@@ -2381,6 +2431,16 @@
         }
       }
     },
+    "Stop": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop"
+          }
+        }
+      }
+    },
     "This Week": {
       "localizations": {
         "en": {
@@ -2427,6 +2487,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Timer options for %@"
+          }
+        }
+      }
+    },
+    "Timer running": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Timer running"
           }
         }
       }

@@ -14,241 +14,201 @@ struct WellSpentWatchStatusEntry: TimelineEntry {
 
 struct WellSpentWatchStatusView: View {
     @Environment(\.widgetFamily) private var widgetFamily
-    @Environment(\.widgetRenderingMode) private var renderingMode
     @Environment(\.isLuminanceReduced) private var isLuminanceReduced
-    @Environment(\.redactionReasons) private var redactionReasons
     let entry: WellSpentWatchStatusEntry
     var familyOverride: WidgetFamily? = nil
 
     private var family: WidgetFamily { familyOverride ?? widgetFamily }
-
-    private var redacted: Bool { isLuminanceReduced || !redactionReasons.isEmpty }
-    private var state: WatchWidgetState? { entry.state }
-    private var isActive: Bool { state?.runID != nil }
-
-    private var accent: Color {
-        renderingMode == .fullColor
-            ? Color(red: 1, green: 0.76, blue: 0.42) : .primary
-    }
+    private var isRunning: Bool { entry.state?.timerState == .running }
 
     var body: some View {
-        Group {
-            switch family {
-            case .accessoryCircular:
-                circular
-            case .accessoryCorner:
-                Image(systemName: statusSymbol)
-                    .font(.title2)
-                    .foregroundStyle(accent)
-                    .widgetAccentable()
-                    .widgetLabel {
-                        if isActive { elapsed } else { Text(statusLabel) }
-                    }
-                    .accessibilityLabel(statusLabel)
-            case .accessoryInline:
-                HStack(spacing: 3) {
-                    Image(systemName: statusSymbol)
-                    if isActive { elapsed } else { Text(statusLabel) }
-                    if state?.pendingSync == true { Image(systemName: "arrow.triangle.2.circlepath") }
-                }
-            default:
-                rectangular
-            }
-        }
-        // Identity has already been replaced above when the incoming privacy
-        // environment is active. Keep that sanitized content visible instead
-        // of letting SwiftUI redact the entire generic status/link label too.
-        .unredacted()
-        .widgetURL((state?.route ?? .projects).url)
-        .accessibilityHint(
-            isActive
-                ? String(localized: "Opens the current timer.")
-                : String(localized: "Choose a project in the app to start a timer.")
+        WellSpentHourglassComplicationMark(
+            isRunning: isRunning,
+            animatesTrace: !isLuminanceReduced
         )
+        .frame(width: markSize, height: markSize)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .unredacted()
+        .widgetURL((entry.state?.route ?? .projects).url)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("WellSpent")
+        .accessibilityValue(isRunning ? "Timer running" : "No timer running")
+        .accessibilityHint(
+            entry.state?.runID != nil
+                ? String(localized: "Opens the current timer.")
+                : String(localized: "Opens WellSpent to choose a project.")
+        )
+        .accessibilityIdentifier("watch.complication.hourglass")
     }
 
-    private var circular: some View {
-        VStack(spacing: 1) {
-            Image(systemName: statusSymbol)
-                .font(.caption2)
-                .foregroundStyle(accent)
-                .widgetAccentable()
-                .accessibilityHidden(true)
-            if isActive {
-                elapsed.font(.system(.caption, design: .rounded, weight: .semibold))
-                Text(state?.timerState == .paused ? String(localized: "PAUSED") : String(localized: "TIME"))
-                    .font(.system(size: 11, weight: .semibold))
-            } else {
-                Text(state?.timerState == .ready ? String(localized: "Projects") : shortStatus)
-                    .font(.caption2.weight(.semibold))
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.7)
-            }
-        }
-        .accessibilityElement(children: .combine)
-    }
-
-    private var rectangular: some View {
-        ViewThatFits {
-            detailedRectangular
-            compactRectangular
+    private var markSize: CGFloat {
+        switch family {
+        case .accessoryInline: 18
+        case .accessoryCorner: 38
+        case .accessoryCircular: 44
+        case .accessoryRectangular: 52
+        default: 44
         }
     }
+}
 
-    private var detailedRectangular: some View {
-        VStack(alignment: .leading, spacing: 3) {
-            HStack(spacing: 4) {
-                Image(systemName: statusSymbol).foregroundStyle(accent)
-                    .widgetAccentable().accessibilityHidden(true)
-                Text(state?.timerState == .ready ? String(localized: "WellSpent") : statusLabel).fixedSize()
-                Spacer(minLength: 0)
-                if state?.pendingSync == true {
-                    Image(systemName: "arrow.triangle.2.circlepath")
-                        .accessibilityLabel("Pending sync")
-                }
-            }
-            .font(.caption2.weight(.semibold))
-            if isActive {
-                elapsed.font(.system(.title2, design: .rounded, weight: .semibold))
-                HStack(spacing: 4) {
-                    Text(
-                        redacted
-                            ? String(localized: "Billable time")
-                            : (state?.projectName ?? String(localized: "Billable time"))
-                    )
-                    .privacySensitive(state?.projectName != nil)
-                    .fixedSize()
-                    Spacer(minLength: 0)
-                    if let goal = state?.durationGoalSeconds, let state {
-                        Text(goalLabel(seconds: goal, state: state)).fixedSize()
-                    }
-                }
-                .font(.caption2)
-                .foregroundStyle(.secondary)
-            } else if state?.timerState == .ready {
-                Text("Start timer")
-                    .font(.system(.title2, design: .rounded, weight: .semibold))
-                    .fixedSize()
-                Label("Choose a project", systemImage: "chevron.right")
-                    .font(.caption2)
-                    .foregroundStyle(.secondary)
-                    .fixedSize()
-            } else {
-                Text(detailLabel).font(.caption2).foregroundStyle(.secondary)
-            }
-        }
-        .fixedSize(horizontal: false, vertical: true)
-    }
+/// A one-color vector interpretation of the iPhone app icon. WidgetKit assigns
+/// the accent group's actual color so the mark follows the selected Watch face.
+private struct WellSpentHourglassComplicationMark: View {
+    @Environment(\.widgetRenderingMode) private var renderingMode
+    let isRunning: Bool
+    let animatesTrace: Bool
 
-    /// Accessory views cannot scroll. Prefer full copy when it fits, then keep
-    /// the essential state/time or the single project-picker destination.
-    /// A tap is navigation only, including when the visible snapshot is stale.
-    @ViewBuilder
-    private var compactRectangular: some View {
-        if isActive {
-            VStack(alignment: .leading, spacing: 3) {
-                Text(state?.timerState == .paused ? String(localized: "Paused") : String(localized: "Running"))
-                    .font(.caption2.weight(.semibold))
-                    .fixedSize(horizontal: false, vertical: true)
-                HStack(spacing: 4) {
-                    elapsed.font(.system(.title2, design: .rounded, weight: .semibold))
-                    if state?.pendingSync == true {
-                        Image(systemName: "arrow.triangle.2.circlepath")
-                            .font(.caption2).accessibilityLabel("Pending sync")
-                    }
-                }
-            }
-        } else if state?.timerState == .ready {
-            VStack(alignment: .leading, spacing: 4) {
-                Image(systemName: "play.fill")
-                    .foregroundStyle(accent)
+    var body: some View {
+        GeometryReader { geometry in
+            let dimension = min(geometry.size.width, geometry.size.height)
+            ZStack {
+                WellSpentHourglassSilhouette()
+                    .fill(.primary)
                     .widgetAccentable()
-                    .accessibilityHidden(true)
-                Text("Start timer")
-                    .font(.caption2.weight(.semibold))
-                    .fixedSize(horizontal: false, vertical: true)
+
+                WellSpentHourglassTrace()
+                    .trim(from: 0, to: isRunning ? 1 : 0)
+                    .stroke(
+                        traceColor,
+                        style: StrokeStyle(
+                            lineWidth: max(1.5, dimension * 0.065),
+                            lineCap: .round,
+                            lineJoin: .round
+                        )
+                    )
+                    .opacity(isRunning ? 1 : 0)
             }
-            .accessibilityElement(children: .combine)
-            .accessibilityHint("Choose a project in the app to start a timer.")
-        } else {
-            VStack(alignment: .leading, spacing: 4) {
-                Image(systemName: statusSymbol).font(.title3).foregroundStyle(accent)
-                    .widgetAccentable().accessibilityHidden(true)
-                Text(shortStatus).font(.caption2.weight(.semibold))
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-            .accessibilityElement(children: .ignore)
-            .accessibilityLabel(statusLabel)
-            .accessibilityValue(detailLabel)
+            .animation(
+                animatesTrace ? .linear(duration: 2) : nil,
+                value: isRunning
+            )
         }
+        .aspectRatio(1, contentMode: .fit)
     }
 
-    private func goalLabel(seconds: Int, state: WatchWidgetState) -> String {
-        state.elapsed(at: entry.date) >= Double(seconds)
-            ? String(localized: "Goal met") : String(localized: "\(seconds / 60)m goal")
+    private var traceColor: Color {
+        renderingMode == .fullColor ? .black.opacity(0.72) : .primary
     }
+}
 
-    @ViewBuilder
-    private var elapsed: some View {
-        if let start = state?.elapsedTimerStart {
-            Text(timerInterval: start...Date.distantFuture, countsDown: false)
-                .monospacedDigit()
-                .lineLimit(1)
-                .minimumScaleFactor(0.65)
-        } else {
-            Text(Self.duration(state?.elapsed(at: entry.date) ?? 0))
-                .monospacedDigit()
-                .lineLimit(1)
-                .minimumScaleFactor(0.65)
-        }
+/// The filled shape preserves the app icon's broad rounded caps, concave sides,
+/// narrow waist, and balanced upper/lower silhouette without its multicolor fill.
+private struct WellSpentHourglassSilhouette: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        path.move(to: point(0.22, 0.08, in: rect))
+        path.addCurve(
+            to: point(0.15, 0.22, in: rect),
+            control1: point(0.14, 0.08, in: rect),
+            control2: point(0.12, 0.15, in: rect)
+        )
+        path.addCurve(
+            to: point(0.47, 0.49, in: rect),
+            control1: point(0.24, 0.36, in: rect),
+            control2: point(0.36, 0.44, in: rect)
+        )
+        path.addCurve(
+            to: point(0.47, 0.55, in: rect),
+            control1: point(0.50, 0.51, in: rect),
+            control2: point(0.50, 0.53, in: rect)
+        )
+        path.addCurve(
+            to: point(0.15, 0.88, in: rect),
+            control1: point(0.36, 0.64, in: rect),
+            control2: point(0.24, 0.75, in: rect)
+        )
+        path.addCurve(
+            to: point(0.22, 0.96, in: rect),
+            control1: point(0.12, 0.93, in: rect),
+            control2: point(0.15, 0.96, in: rect)
+        )
+        path.addLine(to: point(0.78, 0.96, in: rect))
+        path.addCurve(
+            to: point(0.85, 0.88, in: rect),
+            control1: point(0.85, 0.96, in: rect),
+            control2: point(0.88, 0.93, in: rect)
+        )
+        path.addCurve(
+            to: point(0.53, 0.55, in: rect),
+            control1: point(0.76, 0.75, in: rect),
+            control2: point(0.64, 0.64, in: rect)
+        )
+        path.addCurve(
+            to: point(0.53, 0.49, in: rect),
+            control1: point(0.50, 0.53, in: rect),
+            control2: point(0.50, 0.51, in: rect)
+        )
+        path.addCurve(
+            to: point(0.85, 0.22, in: rect),
+            control1: point(0.64, 0.44, in: rect),
+            control2: point(0.76, 0.36, in: rect)
+        )
+        path.addCurve(
+            to: point(0.78, 0.08, in: rect),
+            control1: point(0.88, 0.15, in: rect),
+            control2: point(0.86, 0.08, in: rect)
+        )
+        path.closeSubpath()
+        return path
     }
+}
 
-    private var statusLabel: String {
-        switch state?.timerState {
-        case .blocked: String(localized: "Review on iPhone")
-        case .paused: String(localized: "Paused")
-        case .ready: String(localized: "Start timer")
-        case .running: String(localized: "Tracking time")
-        case .setupRequired: String(localized: "Set up on iPhone")
-        case .updateRequired: String(localized: "Update WellSpent")
-        case .none: String(localized: "WellSpent")
-        }
+/// The trace walks clockwise around one half, crosses the waist, continues
+/// around the opposite half, crosses again, and returns to its starting point.
+private struct WellSpentHourglassTrace: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        path.move(to: point(0.50, 0.08, in: rect))
+        path.addLine(to: point(0.78, 0.08, in: rect))
+        path.addCurve(
+            to: point(0.85, 0.22, in: rect),
+            control1: point(0.86, 0.08, in: rect),
+            control2: point(0.88, 0.15, in: rect)
+        )
+        path.addCurve(
+            to: point(0.53, 0.50, in: rect),
+            control1: point(0.76, 0.36, in: rect),
+            control2: point(0.64, 0.44, in: rect)
+        )
+        path.addLine(to: point(0.47, 0.54, in: rect))
+        path.addCurve(
+            to: point(0.15, 0.88, in: rect),
+            control1: point(0.36, 0.64, in: rect),
+            control2: point(0.24, 0.75, in: rect)
+        )
+        path.addCurve(
+            to: point(0.22, 0.96, in: rect),
+            control1: point(0.12, 0.93, in: rect),
+            control2: point(0.15, 0.96, in: rect)
+        )
+        path.addLine(to: point(0.78, 0.96, in: rect))
+        path.addCurve(
+            to: point(0.85, 0.88, in: rect),
+            control1: point(0.85, 0.96, in: rect),
+            control2: point(0.88, 0.93, in: rect)
+        )
+        path.addCurve(
+            to: point(0.53, 0.54, in: rect),
+            control1: point(0.76, 0.75, in: rect),
+            control2: point(0.64, 0.64, in: rect)
+        )
+        path.addLine(to: point(0.47, 0.50, in: rect))
+        path.addCurve(
+            to: point(0.15, 0.22, in: rect),
+            control1: point(0.36, 0.44, in: rect),
+            control2: point(0.24, 0.36, in: rect)
+        )
+        path.addCurve(
+            to: point(0.22, 0.08, in: rect),
+            control1: point(0.12, 0.15, in: rect),
+            control2: point(0.14, 0.08, in: rect)
+        )
+        path.closeSubpath()
+        return path
     }
+}
 
-    private var shortStatus: String {
-        switch state?.timerState {
-        case .blocked: String(localized: "Review")
-        case .updateRequired: String(localized: "Update")
-        case .setupRequired: String(localized: "Set up")
-        default: String(localized: "Open")
-        }
-    }
-
-    private var detailLabel: String {
-        switch state?.timerState {
-        case .blocked: String(localized: "Your time is preserved.")
-        case .updateRequired: String(localized: "Open the app to continue.")
-        case .setupRequired: String(localized: "Create your first project.")
-        default: String(localized: "Track billable time from your wrist.")
-        }
-    }
-
-    private var statusSymbol: String {
-        switch state?.timerState {
-        case .blocked: "exclamationmark.bubble.fill"
-        case .paused: "pause.fill"
-        case .running: "stopwatch.fill"
-        case .updateRequired: "arrow.down.app"
-        case .ready: "play.fill"
-        case .setupRequired, .none: "stopwatch"
-        }
-    }
-
-    private static func duration(_ seconds: TimeInterval) -> String {
-        let value = max(0, Int(seconds.rounded(.down)))
-        if value >= 3_600 {
-            return String(format: "%d:%02d:%02d", value / 3_600, value / 60 % 60, value % 60)
-        }
-        return String(format: "%d:%02d", value / 60, value % 60)
-    }
+private func point(_ x: CGFloat, _ y: CGFloat, in rect: CGRect) -> CGPoint {
+    CGPoint(x: rect.minX + rect.width * x, y: rect.minY + rect.height * y)
 }

@@ -2,35 +2,36 @@ import XCTest
 
 @MainActor
 final class WatchWidgetUITests: XCTestCase {
-    func testIdleWidgetOpensProjectsAndActiveNamesRespectPrivacy() {
-        let privateApp = launch(fixture: "populated", family: "rectangular")
-        XCTAssertTrue(named("Start timer", in: privateApp).waitForExistence(timeout: 10))
-        XCTAssertFalse(privateApp.debugDescription.contains("Client Launch"))
-        capture(privateApp, name: "idle-project-picker")
-        privateApp.terminate()
-        let optedIn = launch(fixture: "active", family: "rectangular", extra: ["-ui-test-widget-names"])
-        XCTAssertTrue(named("Client Launch", in: optedIn).waitForExistence(timeout: 10))
-        capture(optedIn, name: "active-opt-in")
-        optedIn.terminate()
-        let redacted = launch(
-            fixture: "active", family: "rectangular",
-            extra: [
-                "-ui-test-widget-names", "-ui-test-privacy-redacted",
-            ])
-        XCTAssertTrue(named("Billable time", in: redacted).waitForExistence(timeout: 10))
-        XCTAssertFalse(redacted.debugDescription.contains("Client Launch"))
-        capture(redacted, name: "active-redacted")
+    func testIdleAndRunningWidgetsUseOnlyTheHourglassMark() {
+        var app = launch(fixture: "populated", family: "rectangular")
+        var mark = app.descendants(matching: .any)["watch.widget-preview"]
+        XCTAssertTrue(mark.waitForExistence(timeout: 10))
+        XCTAssertEqual(mark.label, "WellSpent")
+        XCTAssertEqual(mark.value as? String, "No timer running")
+        XCTAssertFalse(app.debugDescription.contains("Start timer"))
+        XCTAssertFalse(app.debugDescription.contains("Client Launch"))
+        capture(app, name: "idle-hourglass")
+        app.terminate()
+
+        app = launch(fixture: "active", family: "rectangular")
+        mark = app.descendants(matching: .any)["watch.widget-preview"]
+        XCTAssertTrue(mark.waitForExistence(timeout: 10))
+        XCTAssertEqual(mark.value as? String, "Timer running")
+        XCTAssertFalse(app.debugDescription.contains("Tracking time"))
+        XCTAssertFalse(app.debugDescription.contains("Client Launch"))
+        capture(app, name: "running-hourglass-trace")
     }
 
-    func testActivePausedAndBlockedWidgetRendering() {
-        for (fixture, expected) in [
-            ("active-pending", "Tracking time"), ("paused", "Paused"), ("conflict", "Review on iPhone"),
+    func testOnlyRunningStateAddsTheHourglassTrace() {
+        for (fixture, expectedValue) in [
+            ("active-pending", "Timer running"),
+            ("paused", "No timer running"),
+            ("conflict", "No timer running"),
         ] {
             let app = launch(fixture: fixture, family: "rectangular")
-            let alternatives = expected == "Tracking time" ? ["Tracking time", "Running"] : [expected]
-            XCTAssertTrue(
-                app.descendants(matching: .any).matching(NSPredicate(format: "label IN %@", alternatives))
-                    .firstMatch.waitForExistence(timeout: 10))
+            let mark = app.descendants(matching: .any)["watch.widget-preview"]
+            XCTAssertTrue(mark.waitForExistence(timeout: 10))
+            XCTAssertEqual(mark.value as? String, expectedValue)
             XCTAssertFalse(app.debugDescription.contains("Client Launch"))
             capture(app, name: fixture)
             app.terminate()
@@ -41,7 +42,10 @@ final class WatchWidgetUITests: XCTestCase {
         for fixture in ["populated", "active", "paused"] {
             for family in ["circular", "corner", "inline", "rectangular"] {
                 let app = launch(fixture: fixture, family: family)
-                XCTAssertTrue(app.descendants(matching: .any)["watch.widget-preview"].waitForExistence(timeout: 10))
+                XCTAssertTrue(
+                    app.descendants(matching: .any)["watch.widget-preview"]
+                        .waitForExistence(timeout: 10)
+                )
                 XCTAssertFalse(app.staticTexts["Client Launch"].exists)
                 capture(app, name: "\(fixture)-family-\(family)")
                 app.terminate()
@@ -123,10 +127,6 @@ final class WatchWidgetUITests: XCTestCase {
         if let family { app.launchArguments += ["-ui-test-widget-family", family] }
         app.launch()
         return app
-    }
-
-    private func named(_ label: String, in app: XCUIApplication) -> XCUIElement {
-        app.descendants(matching: .any).matching(NSPredicate(format: "label == %@", label)).firstMatch
     }
 
     private func capture(_ app: XCUIApplication, name: String) {

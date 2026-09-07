@@ -92,7 +92,7 @@ struct WatchTimerControlsView: View {
     }
 }
 
-private struct WatchTimerControlButton: View {
+struct WatchTimerControlButton: View {
     let title: LocalizedStringResource
     let symbol: String
     let tint: Color

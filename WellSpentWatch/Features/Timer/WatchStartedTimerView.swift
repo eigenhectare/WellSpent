@@ -135,6 +135,12 @@ struct WatchStartedTimerView: View {
                 pendingSync: pendingSync,
                 isReachable: isReachable,
                 redactsProjectIdentity: redactsProjectIdentity,
+                controlOperation: controlOperation,
+                onPauseOrResume: onPauseOrResume,
+                onStop: {
+                    endConfirmationSeconds = metrics.billableSeconds
+                    showsEndConfirmation = true
+                },
                 onConfigureGoal: { presentedSheet = .goal }
             )
             .tag(0)
@@ -174,6 +180,9 @@ private struct WatchElapsedMetricPage: View {
     let pendingSync: Bool
     let isReachable: Bool
     let redactsProjectIdentity: Bool
+    let controlOperation: WatchTimerControlOperation?
+    let onPauseOrResume: () -> Void
+    let onStop: () -> Void
     let onConfigureGoal: () -> Void
 
     private var projectName: String {
@@ -187,7 +196,7 @@ private struct WatchElapsedMetricPage: View {
         ViewThatFits(in: .vertical) {
             content(compact: false)
             content(compact: true)
-            ScrollView { content(compact: false) }
+            ScrollView { content(compact: true) }
         }
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("watch.timer.running")
@@ -236,6 +245,36 @@ private struct WatchElapsedMetricPage: View {
                 .accessibilityLabel("Project, \(projectName)")
                 .accessibilityIdentifier("watch.metrics.project")
                 .accessibilitySortPriority(4)
+
+            HStack(spacing: 8) {
+                WatchTimerControlButton(
+                    title: run.state == .paused ? "Resume" : "Pause",
+                    symbol: run.state == .paused ? "play.fill" : "pause.fill",
+                    tint: WatchDesign.amber,
+                    foreground: .black,
+                    accessibilityHint: run.state == .paused
+                        ? "Resumes billable time from one saved boundary."
+                        : "Pauses billable time at one saved boundary.",
+                    identifier: run.state == .paused
+                        ? "watch.running.resume"
+                        : "watch.running.pause",
+                    isBusy: controlOperation != nil,
+                    compact: true,
+                    action: onPauseOrResume
+                )
+
+                WatchTimerControlButton(
+                    title: "Stop",
+                    symbol: "stop.fill",
+                    tint: WatchDesign.end,
+                    foreground: WatchDesign.foreground,
+                    accessibilityHint: "Asks for confirmation before ending and saving this run.",
+                    identifier: "watch.running.stop",
+                    isBusy: controlOperation != nil,
+                    compact: true,
+                    action: onStop
+                )
+            }
 
             Button(action: onConfigureGoal) {
                 goalView

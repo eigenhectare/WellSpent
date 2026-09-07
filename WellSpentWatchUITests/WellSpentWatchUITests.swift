@@ -98,6 +98,29 @@ final class WellSpentWatchUITests: XCTestCase {
         XCTAssertTrue(app.descendants(matching: .any)["watch.metrics.goal"].exists)
     }
 
+    func testInitialRunningScreenOffersPauseAndStopWithoutHorizontalSwipe() {
+        let app = launch(fixture: "active")
+
+        XCTAssertTrue(
+            app.descendants(matching: .any)["watch.timer.running"]
+                .waitForExistence(timeout: 10)
+        )
+        let pause = app.buttons["watch.running.pause"]
+        let stop = app.buttons["watch.running.stop"]
+        XCTAssertTrue(pause.waitForExistence(timeout: 5))
+        XCTAssertTrue(stop.waitForExistence(timeout: 5))
+        XCTAssertTrue(pause.isHittable)
+        XCTAssertTrue(stop.isHittable)
+        capture(app, name: "initial-running-controls")
+
+        stop.tap()
+        XCTAssertTrue(app.buttons["End Run"].waitForExistence(timeout: 5))
+        app.buttons["Cancel"].tap()
+
+        pause.tap()
+        XCTAssertTrue(app.buttons["watch.running.resume"].waitForExistence(timeout: 5))
+    }
+
     func testCrownMetricPagesExposeElapsedRunAndPhoneAuthoredTotals() {
         let app = launch(fixture: "active")
 
@@ -544,5 +567,12 @@ final class WellSpentWatchUITests: XCTestCase {
         }
         app.launch()
         return app
+    }
+
+    private func capture(_ app: XCUIApplication, name: String) {
+        let attachment = XCTAttachment(screenshot: app.screenshot())
+        attachment.name = "WellSpentWatch-\(name)"
+        attachment.lifetime = .keepAlways
+        add(attachment)
     }
 }

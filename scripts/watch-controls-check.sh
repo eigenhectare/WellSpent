@@ -39,6 +39,9 @@ for identifier in \
     watch.controls.resume \
     watch.controls.new \
     watch.controls.busy \
+    watch.running.pause \
+    watch.running.resume \
+    watch.running.stop \
     watch.switch.screen \
     watch.end-summary.screen
 do
@@ -54,6 +57,7 @@ for test_name in \
     failedSwitchRollsBackOldRunSegmentAndOutboxTogether \
     testEndedRunAndItsPendingOutboxSurviveContainerRecreation \
     testHorizontalSwipeRevealsWorkoutStyleControlSurface \
+    testInitialRunningScreenOffersPauseAndStopWithoutHorizontalSwipe \
     testPauseAndResumeExposeBusyStateAndPersistVisibleState \
     testEndRequiresConfirmationThenRoutesToPersistedSummary \
     testNewSwitchesProjectsAndFailureKeepsOriginalRun \

@@ -35,12 +35,12 @@ struct WellSpentWatchStatusWidget: Widget {
         StaticConfiguration(kind: kind, provider: WellSpentWatchStatusProvider()) { entry in
             WellSpentWatchStatusView(entry: entry)
                 .containerBackground(for: .widget) {
-                    Color(red: 0.067, green: 0.176, blue: 0.235)
+                    Color.clear
                 }
         }
         .configurationDisplayName("WellSpent")
         .description(
-            "See billable time or reopen a paused timer. When idle, choose a project to start. Names stay private by default."
+            "Open WellSpent from a face-tinted hourglass. A traced outline marks a running timer."
         )
         .supportedFamilies([
             .accessoryCircular, .accessoryCorner, .accessoryInline, .accessoryRectangular,
