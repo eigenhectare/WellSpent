@@ -908,6 +908,47 @@ final class PhoneWatchSyncStoreTests: XCTestCase {
         XCTAssertEqual(try fixture.context.fetchCount(FetchDescriptor<TimerRunRecord>()), 2)
     }
 
+    func testBackgroundLiveActivityStopActivatesWatchSyncAndPublishesEndedSnapshot() async throws {
+        let fixture = try makeFixture()
+        let base = try fixture.store.makeSnapshot()
+        _ = try fixture.store.receiveMutationData(
+            ContractWireCodec.encodeMutation(startMutation(head: base.ledgerHead))
+        )
+        let lifecycle = CompanionTestLiveActivity()
+        let session = FakePhoneSession()
+        let suite = "WAT21.BackgroundStop.\(UUID())"
+        defer { try? WellSpentStopHandoff.clear(suiteName: suite) }
+        let model = WellSpentAppModel(
+            modelContainer: fixture.context.container,
+            dependencies: DependencyFixtures.fixed(now: now),
+            startupReconciliation: try fixture.commands.reconcileActiveState(),
+            liveActivityLifecycle: lifecycle,
+            stopHandoffSuiteName: suite,
+            foregroundHandoffPollDelays: [],
+            makeWatchConnectivity: {
+                IPhoneWatchConnectivityCoordinator(syncStore: $0, session: session, now: { self.now })
+            }
+        )
+        try WellSpentStopHandoff.persist(
+            sessionID: runID,
+            endedAt: now,
+            endTimeZoneID: "UTC",
+            expectedRevision: 1,
+            suiteName: suite
+        )
+
+        await model.retryLiveActivityProjection()
+
+        XCTAssertEqual(session.activationState, .activated)
+        XCTAssertNil(model.activeRun)
+        let packet = try XCTUnwrap(session.applicationContexts.last.flatMap(WatchConnectivityWire.decode))
+        XCTAssertEqual(packet.kind, .snapshot)
+        let snapshot = try ContractWireCodec.decodeSnapshot(packet.payload)
+        XCTAssertNil(snapshot.activeRun)
+        XCTAssertEqual(snapshot.recentlyEndedRun?.id, runID)
+        XCTAssertEqual(snapshot.recentlyEndedRun?.state, .ended)
+    }
+
     private func createConcurrentStartConflict(in fixture: Fixture) throws
         -> ConcurrentStartConflict
     {

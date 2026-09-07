@@ -797,6 +797,11 @@ final class WellSpentAppModel: ObservableObject {
     }
 
     func retryLiveActivityProjection() async {
+        // A Live Activity intent can cold-launch the app in the background,
+        // before RootView's foreground task has activated WatchConnectivity.
+        // Start the coordinator here so a stop applied from the Watch mirror
+        // publishes the canonical ended snapshot back to the Watch.
+        activateWatchConnectivity()
         _ = applyPendingStopRequests()
         refresh()
         await reconcileLiveActivityProjection()
