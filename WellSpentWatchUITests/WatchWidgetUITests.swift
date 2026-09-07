@@ -46,6 +46,18 @@ final class WatchWidgetUITests: XCTestCase {
         capture(app, name: "running-hour-minute-display")
     }
 
+    func testRectangularRunningWidgetStopEndsCurrentTimer() {
+        let app = launch(fixture: "active", family: "rectangular")
+        let stop = app.buttons["watch.widget.stop"]
+        XCTAssertTrue(stop.waitForExistence(timeout: 10))
+        stop.tap()
+        let mark = app.descendants(matching: .any)["watch.widget-preview"]
+        XCTAssertTrue(mark.waitForExistence(timeout: 5))
+        XCTAssertEqual(mark.value as? String, "No timer running")
+        XCTAssertFalse(stop.exists)
+        capture(app, name: "native-widget-stop-ended")
+    }
+
     func testAllAccessoryFamiliesRenderWithoutProjectNames() {
         for fixture in ["populated", "active", "paused"] {
             for family in ["circular", "corner", "inline", "rectangular"] {

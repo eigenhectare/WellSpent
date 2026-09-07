@@ -133,6 +133,9 @@ final class WatchSystemCommandTests: XCTestCase {
         XCTAssertEqual(intent.systemRequest.action, .open)
         intent.expectedContext = "old-state"
         XCTAssertEqual(intent.systemRequest.action, .end)
+        let runID = UUID()
+        intent.observedRunID = runID.uuidString
+        XCTAssertEqual(intent.systemRequest.observedRunID, runID)
         intent.action = "erase"
         XCTAssertEqual(intent.systemRequest.action, .open)
     }

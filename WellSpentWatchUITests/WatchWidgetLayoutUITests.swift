@@ -71,37 +71,26 @@ final class WatchWidgetLayoutUITests: XCTestCase {
         measured.name = "WAT-23-widget-proposal-\(name)"
         measured.lifetime = .keepAlways
         add(measured)
+        let preview = app.descendants(matching: .any)["watch.widget-preview"]
+        XCTAssertTrue(preview.exists)
+        let wrapper = region.insetBy(dx: -5, dy: -5)
+        XCTAssertEqual(preview.frame.minX, wrapper.minX, accuracy: 0.5)
+        XCTAssertEqual(preview.frame.maxX, wrapper.maxX, accuracy: 0.5)
+        XCTAssertEqual(preview.frame.minY, wrapper.minY, accuracy: 0.5)
+        XCTAssertEqual(preview.frame.maxY, wrapper.maxY, accuracy: 0.5)
         let texts = app.staticTexts.allElementsBoundByIndex.filter { $0.identifier != "watch.widget-preview.bounds" }
-        // A Link with an explicit accessible name can be a single Button node;
-        // its text children correctly disappear from the accessibility tree.
-        XCTAssertFalse((texts + app.buttons.allElementsBoundByIndex).isEmpty)
-        for text in texts {
-            let children = text.descendants(matching: .staticText).allElementsBoundByIndex
-            if text.identifier == "watch.widget-preview", !children.isEmpty {
-                // SwiftUI can expose a combined widget as a StaticText whose
-                // frame includes the harness's five-point outer padding.
-                // Verify that wrapper separately and measure every real text
-                // and image against the unchanged, unpadded proposal.
-                let wrapper = region.insetBy(dx: -5, dy: -5)
-                XCTAssertEqual(text.frame.minX, wrapper.minX, accuracy: 0.5)
-                XCTAssertEqual(text.frame.maxX, wrapper.maxX, accuracy: 0.5)
-                XCTAssertEqual(text.frame.minY, wrapper.minY, accuracy: 0.5)
-                XCTAssertEqual(text.frame.maxY, wrapper.maxY, accuracy: 0.5)
-                for child in children + text.descendants(matching: .image).allElementsBoundByIndex {
-                    assertInside(child, region: region)
-                }
-            } else {
-                assertInside(text, region: region)
-            }
+        let controls = app.buttons.allElementsBoundByIndex
+        for element in texts + app.images.allElementsBoundByIndex + controls {
+            assertInside(element, region: region)
         }
         if recent {
             // The whole accessory is a single widgetURL destination. There
             // must be no nested project shortcut that bypasses the picker.
-            XCTAssertTrue(app.buttons.allElementsBoundByIndex.isEmpty)
+            XCTAssertTrue(controls.isEmpty)
             verifyProjectPickerLabel(app)
         }
         if expanded && !name.contains("visible") {
-            let labels = (texts + app.buttons.allElementsBoundByIndex).map(\.label)
+            let labels = (texts + controls).map(\.label)
             XCTAssertTrue(
                 labels.contains { label in
                     ["Start timer", "Running", "Paused", "Review", "Update", "Set up", "Open"].contains { word in
@@ -125,7 +114,9 @@ final class WatchWidgetLayoutUITests: XCTestCase {
     }
 
     private func verifyProjectPickerLabel(_ app: XCUIApplication) {
-        XCTAssertTrue(app.staticTexts.allElementsBoundByIndex.contains { $0.label.contains("Start timer") })
+        let preview = app.descendants(matching: .any)["watch.widget-preview"]
+        XCTAssertEqual(preview.label, "WellSpent")
+        XCTAssertEqual(preview.value as? String, "No timer running")
     }
 
     private func assertInside(_ element: XCUIElement, region: CGRect) {

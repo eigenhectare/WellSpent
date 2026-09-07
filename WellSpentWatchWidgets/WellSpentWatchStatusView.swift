@@ -1,3 +1,4 @@
+import AppIntents
 import SwiftUI
 import WellSpentWatchStore
 import WidgetKit
@@ -53,36 +54,76 @@ struct WellSpentWatchStatusView: View {
                 elapsedText
             }
             .font(.caption2.weight(.semibold))
+        } else if family == .accessoryRectangular {
+            rectangularRunningContent
         } else {
-            GeometryReader { geometry in
-                let iconSize = runningMarkSize(in: geometry.size)
-                let midpoint = geometry.size.height / 2
-                ZStack {
-                    WellSpentHourglassComplicationMark()
-                        .frame(width: iconSize, height: iconSize)
-                        .position(
-                            x: geometry.size.width / 2,
-                            y: midpoint - iconSize / 2
-                        )
+            runningMarkAndTimer
+        }
+    }
 
-                    elapsedText
-                        .font(
-                            .system(
-                                size: runningTimerFontSize(for: geometry.size.height),
-                                weight: .semibold,
-                                design: .rounded
-                            )
-                        )
-                        .monospacedDigit()
-                        .frame(width: max(1, geometry.size.width - 4), alignment: .center)
-                        .multilineTextAlignment(.center)
-                        .position(
-                            x: geometry.size.width / 2,
-                            y: midpoint + geometry.size.height / 4
-                        )
+    private var rectangularRunningContent: some View {
+        HStack(spacing: 6) {
+            runningMarkAndTimer
+            if let stopRequest {
+                Button(intent: WellSpentWatchControlAction(request: stopRequest)) {
+                    Image(systemName: "stop.circle.fill")
+                        .font(.system(size: 26, weight: .semibold))
+                        .widgetAccentable()
                 }
+                .buttonStyle(.plain)
+                .frame(width: 36, height: 44)
+                .contentShape(Rectangle())
+                .accessibilityLabel(String(localized: "Stop timer"))
+                .accessibilityHint(String(localized: "Ends and saves the current timer."))
+                .accessibilityIdentifier("watch.widget.stop")
             }
         }
+        .padding(.horizontal, 4)
+    }
+
+    private var runningMarkAndTimer: some View {
+        GeometryReader { geometry in
+            let iconSize = runningMarkSize(in: geometry.size)
+            let midpoint = geometry.size.height / 2
+            ZStack {
+                WellSpentHourglassComplicationMark()
+                    .frame(width: iconSize, height: iconSize)
+                    .position(
+                        x: geometry.size.width / 2,
+                        y: midpoint - iconSize / 2
+                    )
+
+                elapsedText
+                    .font(
+                        .system(
+                            size: runningTimerFontSize(for: geometry.size.height),
+                            weight: .semibold,
+                            design: .rounded
+                        )
+                    )
+                    .monospacedDigit()
+                    .frame(width: max(1, geometry.size.width - 4), alignment: .center)
+                    .multilineTextAlignment(.center)
+                    .position(
+                        x: geometry.size.width / 2,
+                        y: midpoint + geometry.size.height / 4
+                    )
+            }
+        }
+    }
+
+    private var stopRequest: WatchSystemRequest? {
+        guard family == .accessoryRectangular,
+            let state = entry.state,
+            state.timerState == .running,
+            let runID = state.runID,
+            let expectedContext = state.commandContext
+        else { return nil }
+        return WatchSystemRequest(
+            action: .end,
+            observedRunID: runID,
+            expectedContext: expectedContext
+        )
     }
 
     @ViewBuilder

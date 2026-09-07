@@ -64,7 +64,8 @@
                     ProcessInfo.processInfo.arguments.contains("-ui-test-widget-names")
                 return WatchWidgetState.make(
                     projection: projection, pendingSync: state.isPendingSync,
-                    isBlocked: state.isBlocked, recentProjectIDs: state.recentProjectIDs)
+                    isBlocked: state.isBlocked, recentProjectIDs: state.recentProjectIDs,
+                    commandContext: WatchCommandContext.token(for: state))
             }
             return WellSpentWatchStatusEntry(date: .now, state: state)
         }

@@ -105,12 +105,14 @@ struct WellSpentWatchControlAction: WellSpentWatchActionIntent {
     static let isDiscoverable = false
     @Parameter(title: "Action", default: "open") var action: String
     @Parameter(title: "Project Identifier") var projectID: String?
+    @Parameter(title: "Observed Run Identifier") var observedRunID: String?
     @Parameter(title: "Observed State") var expectedContext: String?
 
     init() {}
     init(request: WatchSystemRequest) {
         action = request.action.rawValue
         projectID = request.projectID?.uuidString
+        observedRunID = request.observedRunID?.uuidString
         expectedContext = request.expectedContext
     }
 
@@ -120,7 +122,11 @@ struct WellSpentWatchControlAction: WellSpentWatchActionIntent {
             return .init(action: .open)
         }
         return .init(
-            action: operation, projectID: projectID.flatMap(UUID.init(uuidString:)), expectedContext: expectedContext)
+            action: operation,
+            projectID: projectID.flatMap(UUID.init(uuidString:)),
+            observedRunID: observedRunID.flatMap(UUID.init(uuidString:)),
+            expectedContext: expectedContext
+        )
     }
 }
 
