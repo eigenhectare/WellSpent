@@ -58,6 +58,22 @@ final class WatchWidgetStateTests: XCTestCase {
         XCTAssertEqual(state(makeProjection(paused: true)).timelineDates(from: now), [now])
     }
 
+    func testTimelineChangesToHourMinuteFormattingAndThenTicksEachMinute() {
+        let widget = state(makeProjection())
+        let beforeHour = epoch.addingTimeInterval(2_200)
+        XCTAssertEqual(
+            widget.timelineDates(from: beforeHour),
+            [beforeHour, epoch.addingTimeInterval(3_900)]
+        )
+
+        let afterHour = epoch.addingTimeInterval(4_000)
+        let dates = widget.timelineDates(from: afterHour)
+        XCTAssertEqual(dates.first, afterHour)
+        XCTAssertEqual(dates.dropFirst().first, epoch.addingTimeInterval(4_020))
+        XCTAssertEqual(dates.last, epoch.addingTimeInterval(5_760))
+        XCTAssertEqual(dates.count, 31)
+    }
+
     func testBlockedAndUpdateRequiredSuppressActiveTimerAndProjectIdentity() {
         var projection = makeProjection()
         projection.showProjectNamesOnSystemSurfaces = true

@@ -14,7 +14,6 @@ struct WellSpentWatchStatusEntry: TimelineEntry {
 
 struct WellSpentWatchStatusView: View {
     @Environment(\.widgetFamily) private var widgetFamily
-    @Environment(\.isLuminanceReduced) private var isLuminanceReduced
     let entry: WellSpentWatchStatusEntry
     var familyOverride: WidgetFamily? = nil
 
@@ -22,12 +21,15 @@ struct WellSpentWatchStatusView: View {
     private var isRunning: Bool { entry.state?.timerState == .running }
 
     var body: some View {
-        WellSpentHourglassComplicationMark(
-            isRunning: isRunning,
-            animatesTrace: !isLuminanceReduced
-        )
-        .frame(width: markSize, height: markSize)
-        .scaleEffect(0.8)
+        Group {
+            if isRunning {
+                runningContent
+            } else {
+                WellSpentHourglassComplicationMark()
+                    .frame(width: markSize, height: markSize)
+                    .scaleEffect(0.8)
+            }
+        }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .unredacted()
         .widgetURL((entry.state?.route ?? .projects).url)
@@ -40,6 +42,82 @@ struct WellSpentWatchStatusView: View {
                 : String(localized: "Opens WellSpent to choose a project.")
         )
         .accessibilityIdentifier("watch.complication.hourglass")
+    }
+
+    @ViewBuilder
+    private var runningContent: some View {
+        if family == .accessoryInline {
+            HStack(spacing: 4) {
+                WellSpentHourglassComplicationMark()
+                    .frame(width: 12, height: 12)
+                elapsedText
+            }
+            .font(.caption2.weight(.semibold))
+        } else {
+            GeometryReader { geometry in
+                let iconSize = runningMarkSize(in: geometry.size)
+                let midpoint = geometry.size.height / 2
+                ZStack {
+                    WellSpentHourglassComplicationMark()
+                        .frame(width: iconSize, height: iconSize)
+                        .position(
+                            x: geometry.size.width / 2,
+                            y: midpoint - iconSize / 2
+                        )
+
+                    elapsedText
+                        .font(
+                            .system(
+                                size: runningTimerFontSize(for: geometry.size.height),
+                                weight: .semibold,
+                                design: .rounded
+                            )
+                        )
+                        .frame(width: max(1, geometry.size.width - 4))
+                        .position(
+                            x: geometry.size.width / 2,
+                            y: midpoint + geometry.size.height / 4
+                        )
+                }
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var elapsedText: some View {
+        if let state = entry.state, let timerStart = state.elapsedTimerStart {
+            if state.elapsed(at: entry.date) < 3_600 {
+                Text(
+                    timerInterval: timerStart...Date.distantFuture,
+                    countsDown: false,
+                    showsHours: false
+                )
+            } else {
+                Text(verbatim: Self.hoursAndMinutes(state.elapsed(at: entry.date)))
+            }
+        } else {
+            Text(verbatim: "0:00")
+        }
+    }
+
+    private func runningMarkSize(in size: CGSize) -> CGFloat {
+        let maximum: CGFloat
+        switch family {
+        case .accessoryCorner: maximum = 20
+        case .accessoryCircular: maximum = 24
+        case .accessoryRectangular: maximum = 28
+        default: maximum = 24
+        }
+        return min(maximum, size.width * 0.36, size.height * 0.36)
+    }
+
+    private func runningTimerFontSize(for height: CGFloat) -> CGFloat {
+        min(14, max(10, height * 0.2))
+    }
+
+    private static func hoursAndMinutes(_ interval: TimeInterval) -> String {
+        let totalMinutes = max(0, Int(interval.rounded(.down)) / 60)
+        return String(format: "%d:%02d", totalMinutes / 60, totalMinutes % 60)
     }
 
     private var markSize: CGFloat {
@@ -56,54 +134,11 @@ struct WellSpentWatchStatusView: View {
 /// A one-color vector interpretation of the iPhone app icon. WidgetKit assigns
 /// the accent group's actual color so the mark follows the selected Watch face.
 private struct WellSpentHourglassComplicationMark: View {
-    @Environment(\.widgetRenderingMode) private var renderingMode
-    let isRunning: Bool
-    let animatesTrace: Bool
-
     var body: some View {
-        GeometryReader { geometry in
-            let dimension = min(geometry.size.width, geometry.size.height)
-            ZStack {
-                WellSpentHourglassSilhouette()
-                    .fill(.primary)
-                    .widgetAccentable()
-
-                if isRunning {
-                    runningTrace(dimension: dimension)
-                }
-            }
-        }
-        .aspectRatio(1, contentMode: .fit)
-    }
-
-    @ViewBuilder
-    private func runningTrace(dimension: CGFloat) -> some View {
-        if animatesTrace {
-            PhaseAnimator([false, true]) { completedLap in
-                trace(dimension: dimension, start: completedLap ? 0.5 : 0)
-            } animation: { completedLap in
-                completedLap ? .linear(duration: 2) : nil
-            }
-        } else {
-            trace(dimension: dimension, start: 0.5)
-        }
-    }
-
-    private func trace(dimension: CGFloat, start: CGFloat) -> some View {
-        WellSpentHourglassTrace()
-            .trim(from: start, to: start + 0.475)
-            .stroke(
-                traceColor,
-                style: StrokeStyle(
-                    lineWidth: max(1.5, dimension * 0.065),
-                    lineCap: .round,
-                    lineJoin: .round
-                )
-            )
-    }
-
-    private var traceColor: Color {
-        renderingMode == .fullColor ? .black.opacity(0.72) : .primary
+        WellSpentHourglassSilhouette()
+            .fill(.primary)
+            .widgetAccentable()
+            .aspectRatio(1, contentMode: .fit)
     }
 }
 
@@ -166,72 +201,6 @@ private struct WellSpentHourglassSilhouette: Shape {
         )
         path.closeSubpath()
         return path
-    }
-}
-
-/// The trace walks clockwise around one half, crosses the waist, continues
-/// around the opposite half, crosses again, and returns to its starting point.
-/// It contains two identical laps so a 95%-of-one-lap trim window can cross the
-/// seam continuously. PhaseAnimator starts when the running view appears and
-/// moves the gap a full lap in 2 seconds; the equivalent end frames reset cleanly.
-private struct WellSpentHourglassTrace: Shape {
-    func path(in rect: CGRect) -> Path {
-        let lap = lap(in: rect)
-        var doubledPath = Path()
-        doubledPath.addPath(lap)
-        doubledPath.addPath(lap)
-        return doubledPath
-    }
-
-    private func lap(in rect: CGRect) -> Path {
-        var lap = Path()
-        lap.move(to: point(0.50, 0.08, in: rect))
-        lap.addLine(to: point(0.78, 0.08, in: rect))
-        lap.addCurve(
-            to: point(0.85, 0.22, in: rect),
-            control1: point(0.86, 0.08, in: rect),
-            control2: point(0.88, 0.15, in: rect)
-        )
-        lap.addCurve(
-            to: point(0.53, 0.50, in: rect),
-            control1: point(0.76, 0.36, in: rect),
-            control2: point(0.64, 0.44, in: rect)
-        )
-        lap.addLine(to: point(0.47, 0.54, in: rect))
-        lap.addCurve(
-            to: point(0.15, 0.88, in: rect),
-            control1: point(0.36, 0.64, in: rect),
-            control2: point(0.24, 0.75, in: rect)
-        )
-        lap.addCurve(
-            to: point(0.22, 0.96, in: rect),
-            control1: point(0.12, 0.93, in: rect),
-            control2: point(0.15, 0.96, in: rect)
-        )
-        lap.addLine(to: point(0.78, 0.96, in: rect))
-        lap.addCurve(
-            to: point(0.85, 0.88, in: rect),
-            control1: point(0.85, 0.96, in: rect),
-            control2: point(0.88, 0.93, in: rect)
-        )
-        lap.addCurve(
-            to: point(0.53, 0.54, in: rect),
-            control1: point(0.76, 0.75, in: rect),
-            control2: point(0.64, 0.64, in: rect)
-        )
-        lap.addLine(to: point(0.47, 0.50, in: rect))
-        lap.addCurve(
-            to: point(0.15, 0.22, in: rect),
-            control1: point(0.36, 0.44, in: rect),
-            control2: point(0.24, 0.36, in: rect)
-        )
-        lap.addCurve(
-            to: point(0.22, 0.08, in: rect),
-            control1: point(0.12, 0.15, in: rect),
-            control2: point(0.14, 0.08, in: rect)
-        )
-        lap.closeSubpath()
-        return lap
     }
 }
 

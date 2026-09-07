@@ -2,7 +2,7 @@ import XCTest
 
 @MainActor
 final class WatchWidgetUITests: XCTestCase {
-    func testIdleAndRunningWidgetsUseOnlyTheHourglassMark() {
+    func testIdleUsesCenteredHourglassAndRunningShowsElapsedTime() {
         var app = launch(fixture: "populated", family: "rectangular")
         var mark = app.descendants(matching: .any)["watch.widget-preview"]
         XCTAssertTrue(mark.waitForExistence(timeout: 10))
@@ -19,10 +19,10 @@ final class WatchWidgetUITests: XCTestCase {
         XCTAssertEqual(mark.value as? String, "Timer running")
         XCTAssertFalse(app.debugDescription.contains("Tracking time"))
         XCTAssertFalse(app.debugDescription.contains("Client Launch"))
-        capture(app, name: "running-hourglass-trace")
+        capture(app, name: "running-hourglass-with-elapsed-time")
     }
 
-    func testOnlyRunningStateAddsTheHourglassTrace() {
+    func testOnlyRunningStateShowsElapsedTime() {
         for (fixture, expectedValue) in [
             ("active-pending", "Timer running"),
             ("paused", "No timer running"),
@@ -38,17 +38,12 @@ final class WatchWidgetUITests: XCTestCase {
         }
     }
 
-    func testRunningHourglassGapMovesAfterTheViewAppears() {
-        let app = launch(fixture: "active", family: "rectangular")
+    func testRunningTimerAtOneHourOrMoreUsesHourMinuteDisplay() {
+        let app = launch(fixture: "large-duration", family: "rectangular")
         let mark = app.descendants(matching: .any)["watch.widget-preview"]
         XCTAssertTrue(mark.waitForExistence(timeout: 10))
-
-        let firstFrame = mark.screenshot().pngRepresentation
-        RunLoop.current.run(until: Date().addingTimeInterval(0.5))
-        let secondFrame = mark.screenshot().pngRepresentation
-
-        XCTAssertNotEqual(firstFrame, secondFrame, "The running complication gap stayed stationary.")
-        capture(app, name: "running-hourglass-moving-gap")
+        XCTAssertEqual(mark.value as? String, "Timer running")
+        capture(app, name: "running-hour-minute-display")
     }
 
     func testAllAccessoryFamiliesRenderWithoutProjectNames() {

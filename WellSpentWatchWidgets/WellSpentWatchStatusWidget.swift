@@ -40,7 +40,7 @@ struct WellSpentWatchStatusWidget: Widget {
         }
         .configurationDisplayName("WellSpent")
         .description(
-            "Open WellSpent from a face-tinted hourglass. A traced outline marks a running timer."
+            "Open WellSpent from a face-tinted hourglass. A running timer shows its elapsed time."
         )
         .supportedFamilies([
             .accessoryCircular, .accessoryCorner, .accessoryInline, .accessoryRectangular,

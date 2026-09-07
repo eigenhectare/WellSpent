@@ -94,8 +94,29 @@ public struct WatchWidgetState: Equatable, Sendable {
 
     public func timelineDates(from date: Date) -> [Date] {
         let nextRefresh = date.addingTimeInterval(30 * 60)
-        guard let deadline = goalDeadline, deadline > date, deadline < nextRefresh else { return [date] }
-        return [date, deadline]
+        var dates = [date]
+
+        if timerState == .running, let start = elapsedTimerStart {
+            let elapsed = elapsed(at: date)
+            if elapsed < 3_600 {
+                let hourBoundary = start.addingTimeInterval(3_600)
+                if hourBoundary > date, hourBoundary < nextRefresh {
+                    dates.append(hourBoundary)
+                }
+            } else {
+                let nextElapsedMinute = (floor(elapsed / 60) + 1) * 60
+                var minuteBoundary = start.addingTimeInterval(nextElapsedMinute)
+                while minuteBoundary < nextRefresh {
+                    dates.append(minuteBoundary)
+                    minuteBoundary = minuteBoundary.addingTimeInterval(60)
+                }
+            }
+        }
+
+        if let deadline = goalDeadline, deadline > date, deadline < nextRefresh {
+            dates.append(deadline)
+        }
+        return Array(Set(dates)).sorted()
     }
 
     /// Idle surfaces always enter the picker. Paused is an existing run, so

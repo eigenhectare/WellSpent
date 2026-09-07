@@ -1204,12 +1204,12 @@
         }
       }
     },
-    "Open WellSpent from a face-tinted hourglass. A traced outline marks a running timer.": {
+    "Open WellSpent from a face-tinted hourglass. A running timer shows its elapsed time.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Open WellSpent from a face-tinted hourglass. A traced outline marks a running timer."
+            "value": "Open WellSpent from a face-tinted hourglass. A running timer shows its elapsed time."
           }
         }
       }
