@@ -29,7 +29,9 @@ rg -q '\.linear\(duration: 2\)' WellSpentWatchWidgets/WellSpentWatchStatusView.s
     || fail "two-second trace animation missing"
 rg -q '\.scaleEffect\(0\.8\)' WellSpentWatchWidgets/WellSpentWatchStatusView.swift \
     || fail "twenty-percent centered mark reduction missing"
-rg -q 'traceStart \+ 0\.475' WellSpentWatchWidgets/WellSpentWatchStatusView.swift \
+rg -q 'PhaseAnimator\(\[false, true\]\)' WellSpentWatchWidgets/WellSpentWatchStatusView.swift \
+    || fail "widget-native running phase animation missing"
+rg -q 'start \+ 0\.475' WellSpentWatchWidgets/WellSpentWatchStatusView.swift \
     || fail "moving trace gap missing"
 [[ "$(rg -c 'doubledPath\.addPath\(lap\)' WellSpentWatchWidgets/WellSpentWatchStatusView.swift)" -eq 2 ]] \
     || fail "trace does not contain the two laps needed for a seamless moving gap"
@@ -37,6 +39,8 @@ rg -q '\.widgetAccentable\(\)' WellSpentWatchWidgets/WellSpentWatchStatusView.sw
     || fail "Watch-face palette adaptation missing"
 rg -q 'watch.complication.hourglass' WellSpentWatchWidgets/WellSpentWatchStatusView.swift \
     || fail "hourglass accessibility identity missing"
+rg -q 'testRunningHourglassGapMovesAfterTheViewAppears' WellSpentWatchUITests/WatchWidgetUITests.swift \
+    || fail "moving-gap UI regression missing"
 if rg -n '^[[:space:]]*(Text|Label)\(|timerInterval:|projectName' WellSpentWatchWidgets/WellSpentWatchStatusView.swift; then
     fail "complication contains visible words, numbers, or project identity"
 fi

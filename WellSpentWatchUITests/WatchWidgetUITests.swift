@@ -38,6 +38,19 @@ final class WatchWidgetUITests: XCTestCase {
         }
     }
 
+    func testRunningHourglassGapMovesAfterTheViewAppears() {
+        let app = launch(fixture: "active", family: "rectangular")
+        let mark = app.descendants(matching: .any)["watch.widget-preview"]
+        XCTAssertTrue(mark.waitForExistence(timeout: 10))
+
+        let firstFrame = mark.screenshot().pngRepresentation
+        RunLoop.current.run(until: Date().addingTimeInterval(0.5))
+        let secondFrame = mark.screenshot().pngRepresentation
+
+        XCTAssertNotEqual(firstFrame, secondFrame, "The running complication gap stayed stationary.")
+        capture(app, name: "running-hourglass-moving-gap")
+    }
+
     func testAllAccessoryFamiliesRenderWithoutProjectNames() {
         for fixture in ["populated", "active", "paused"] {
             for family in ["circular", "corner", "inline", "rectangular"] {

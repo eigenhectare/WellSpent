@@ -60,8 +60,6 @@ private struct WellSpentHourglassComplicationMark: View {
     let isRunning: Bool
     let animatesTrace: Bool
 
-    private var traceStart: CGFloat { isRunning ? 0.5 : 0 }
-
     var body: some View {
         GeometryReader { geometry in
             let dimension = min(geometry.size.width, geometry.size.height)
@@ -70,24 +68,38 @@ private struct WellSpentHourglassComplicationMark: View {
                     .fill(.primary)
                     .widgetAccentable()
 
-                WellSpentHourglassTrace()
-                    .trim(from: traceStart, to: traceStart + 0.475)
-                    .stroke(
-                        traceColor,
-                        style: StrokeStyle(
-                            lineWidth: max(1.5, dimension * 0.065),
-                            lineCap: .round,
-                            lineJoin: .round
-                        )
-                    )
-                    .opacity(isRunning ? 1 : 0)
+                if isRunning {
+                    runningTrace(dimension: dimension)
+                }
             }
-            .animation(
-                animatesTrace ? .linear(duration: 2) : nil,
-                value: isRunning
-            )
         }
         .aspectRatio(1, contentMode: .fit)
+    }
+
+    @ViewBuilder
+    private func runningTrace(dimension: CGFloat) -> some View {
+        if animatesTrace {
+            PhaseAnimator([false, true]) { completedLap in
+                trace(dimension: dimension, start: completedLap ? 0.5 : 0)
+            } animation: { completedLap in
+                completedLap ? .linear(duration: 2) : nil
+            }
+        } else {
+            trace(dimension: dimension, start: 0.5)
+        }
+    }
+
+    private func trace(dimension: CGFloat, start: CGFloat) -> some View {
+        WellSpentHourglassTrace()
+            .trim(from: start, to: start + 0.475)
+            .stroke(
+                traceColor,
+                style: StrokeStyle(
+                    lineWidth: max(1.5, dimension * 0.065),
+                    lineCap: .round,
+                    lineJoin: .round
+                )
+            )
     }
 
     private var traceColor: Color {
@@ -160,7 +172,8 @@ private struct WellSpentHourglassSilhouette: Shape {
 /// The trace walks clockwise around one half, crosses the waist, continues
 /// around the opposite half, crosses again, and returns to its starting point.
 /// It contains two identical laps so a 95%-of-one-lap trim window can cross the
-/// seam continuously, leaving one small gap that travels a full lap in 2 seconds.
+/// seam continuously. PhaseAnimator starts when the running view appears and
+/// moves the gap a full lap in 2 seconds; the equivalent end frames reset cleanly.
 private struct WellSpentHourglassTrace: Shape {
     func path(in rect: CGRect) -> Path {
         let lap = lap(in: rect)
