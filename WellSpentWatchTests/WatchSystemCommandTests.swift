@@ -157,4 +157,31 @@ final class WatchSystemCommandTests: XCTestCase {
         } catch {}
         XCTAssertEqual(try store.pendingOutbox().count, 1)
     }
+
+    func testMirroredLiveActivityStopIntentEndsOnlyItsObservedRun() async throws {
+        let (store, _) = try WatchUITestFixture.activePending.makeRuntime()
+        let activeRun = try XCTUnwrap(store.state().projection.activeRun)
+        let original = WatchSystemActionDispatcher.execute
+        defer { WatchSystemActionDispatcher.execute = original }
+        WatchSystemActionDispatcher.execute = { request in
+            _ = try WatchSystemCommandBoundary(now: { self.epoch }).perform(request, store: store)
+            return "Timer saved on Watch."
+        }
+
+        let staleIntent = StopWellSpentTimerIntent()
+        staleIntent.activityID = UUID().uuidString
+        staleIntent.expectedRevision = Int(activeRun.revision)
+        do {
+            _ = try await staleIntent.perform()
+            XCTFail("A mirrored tile for another run must not stop the current timer")
+        } catch {}
+        XCTAssertEqual(try store.state().projection.activeRun?.id, activeRun.id)
+
+        let intent = StopWellSpentTimerIntent()
+        intent.activityID = activeRun.id.uuidString
+        intent.expectedRevision = Int(activeRun.revision)
+        _ = try await intent.perform()
+        XCTAssertNil(try store.state().projection.activeRun)
+        XCTAssertEqual(try store.state().projection.recentlyEndedRun?.id, activeRun.id)
+    }
 }

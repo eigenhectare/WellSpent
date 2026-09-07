@@ -8,6 +8,8 @@ fail() { echo "Watch Live Activity check failed: $1" >&2; exit 1; }
 readonly lifecycle=WellSpentApp/Integrations/LiveActivity/LiveActivityLifecycle.swift
 readonly intent=WellSpentShared/LiveActivity/StopWellSpentTimerIntent.swift
 readonly presentation=WellSpentShared/LiveActivity/WellSpentActivityPresentation.swift
+readonly watch_intents=WellSpentWatchIntents/WellSpentWatchIntents.swift
+readonly watch_boundary=WellSpentWatch/Features/Timer/WatchSystemCommandBoundary.swift
 rg -q 'setDesiredState' "${lifecycle}" || fail 'synchronous canonical publication missing'
 rg -q 'captured == generation' "${lifecycle}" || fail 'generation fence missing'
 rg -q 'drainTask' "${lifecycle}" || fail 'serialized driver drain missing'
@@ -22,6 +24,9 @@ fi
 rg -q 'WellSpentLiveActivityHourglass' "${presentation}" || fail 'custom Watch mirror mark missing'
 rg -q 'Button\(' "${presentation}" || fail 'Watch mirror Stop control missing'
 rg -q 'state\.stopAccessibilityLabel' "${presentation}" || fail 'Watch mirror Stop accessibility missing'
+rg -q 'struct StopWellSpentTimerIntent' "${watch_intents}" || fail 'Watch mirror Stop routing intent missing'
+rg -q 'observedRunID' "${watch_boundary}" || fail 'Watch mirror stale-run guard missing'
+rg -q 'observedRunRevision' "${watch_boundary}" || fail 'Watch mirror stale-revision guard missing'
 if rg -q 'iPhone copy' "${presentation}"; then
     fail 'obsolete iPhone copy label remains visible'
 fi

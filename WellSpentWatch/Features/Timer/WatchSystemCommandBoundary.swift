@@ -51,6 +51,14 @@ struct WatchSystemCommandBoundary {
                 persist: persist)
         case .end:
             guard let run else { return nil }
+            if let observedRunID = request.observedRunID, observedRunID != run.id {
+                throw WatchSystemActionError.staleControl
+            }
+            if let observedRunRevision = request.observedRunRevision,
+                observedRunRevision != run.revision
+            {
+                throw WatchSystemActionError.staleControl
+            }
             return try controls.end(run: run, segments: segments, persist: persist)
         }
     }

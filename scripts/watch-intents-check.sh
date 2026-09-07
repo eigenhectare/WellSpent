@@ -24,14 +24,19 @@ if [[ -n "${WATCH_INTENTS_APP_BUNDLE:-}" ]]; then
     for bundle in "${watch_app}" "${watch_app}/PlugIns/WellSpentWatchWidgets.appex"; do
         metadata="${bundle}/Metadata.appintents/extract.actionsdata"
         [[ -f "${metadata}" ]] || fail 'generated App Intent metadata missing'
-        jq -e '.actions | length == 7' "${metadata}" >/dev/null || fail 'unexpected executable/configuration intent set'
-        for intent in StartWellSpentWatchTimerIntent PauseWellSpentWatchTimerIntent ResumeWellSpentWatchTimerIntent SwitchWellSpentWatchProjectIntent EndWellSpentWatchTimerIntent WellSpentWatchControlAction; do
+        jq -e '.actions | length == 8' "${metadata}" >/dev/null || fail 'unexpected executable/configuration intent set'
+        for intent in StartWellSpentWatchTimerIntent PauseWellSpentWatchTimerIntent ResumeWellSpentWatchTimerIntent SwitchWellSpentWatchProjectIntent EndWellSpentWatchTimerIntent StopWellSpentTimerIntent WellSpentWatchControlAction; do
             jq -e --arg intent "${intent}" '
                 .actions[$intent] as $action |
                 $action.openAppWhenRun == true and $action.supportedModes == 2 and
                 $action.authenticationPolicy == 2 and $action.isAuthPolExplicit == true
             ' "${metadata}" >/dev/null || fail "${intent} lost explicit foreground/authentication policy"
         done
+        jq -e '
+            .actions.StopWellSpentTimerIntent as $action |
+            $action.isDiscoverable == false and
+            [$action.parameters[].name] == ["activityID", "expectedRevision"]
+        ' "${metadata}" >/dev/null || fail 'mirrored Live Activity Stop intent schema mismatch'
         jq -e '.entities.WellSpentWatchProjectEntity != null and .actions.WellSpentWatchFavoriteConfiguration != null' "${metadata}" >/dev/null || fail 'project entity or favorite configuration missing'
     done
     jq -e '.autoShortcuts | length == 5' "${watch_app}/Metadata.appintents/extract.actionsdata" >/dev/null || fail 'five app shortcuts missing'

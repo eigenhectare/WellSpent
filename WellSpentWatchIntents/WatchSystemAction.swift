@@ -8,6 +8,8 @@ enum WatchSystemAction: String, Sendable {
 struct WatchSystemRequest: Equatable, Sendable {
     let action: WatchSystemAction
     var projectID: UUID? = nil
+    var observedRunID: UUID? = nil
+    var observedRunRevision: Int64? = nil
     var expectedContext: String? = nil
 }
 
