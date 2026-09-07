@@ -27,6 +27,12 @@ rg -q 'WellSpentHourglassTrace' WellSpentWatchWidgets/WellSpentWatchStatusView.s
     || fail "running trace missing"
 rg -q '\.linear\(duration: 2\)' WellSpentWatchWidgets/WellSpentWatchStatusView.swift \
     || fail "two-second trace animation missing"
+rg -q '\.scaleEffect\(0\.8\)' WellSpentWatchWidgets/WellSpentWatchStatusView.swift \
+    || fail "twenty-percent centered mark reduction missing"
+rg -q 'traceStart \+ 0\.475' WellSpentWatchWidgets/WellSpentWatchStatusView.swift \
+    || fail "moving trace gap missing"
+[[ "$(rg -c 'doubledPath\.addPath\(lap\)' WellSpentWatchWidgets/WellSpentWatchStatusView.swift)" -eq 2 ]] \
+    || fail "trace does not contain the two laps needed for a seamless moving gap"
 rg -q '\.widgetAccentable\(\)' WellSpentWatchWidgets/WellSpentWatchStatusView.swift \
     || fail "Watch-face palette adaptation missing"
 rg -q 'watch.complication.hourglass' WellSpentWatchWidgets/WellSpentWatchStatusView.swift \
