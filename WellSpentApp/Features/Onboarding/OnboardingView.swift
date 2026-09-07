@@ -4,48 +4,52 @@ struct OnboardingView: View {
     @ObservedObject var model: WellSpentAppModel
     let complete: () -> Void
 
+    @Environment(\.colorScheme) private var colorScheme
     @State private var name = ""
     @State private var colorToken = "blue"
     @State private var emoji = ""
+
+    private var palette: WellSpentPalette { WellSpentPalette(colorScheme: colorScheme) }
 
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
                     VStack(alignment: .leading, spacing: 8) {
-                        Image(systemName: "timer.circle.fill")
-                            .font(.system(size: 56))
-                            .foregroundStyle(.blue)
-                            .accessibilityHidden(true)
-                        Text("Track work when it happens")
-                            .font(.largeTitle.bold())
-                        Text("One tap starts a project. One timer can be active at a time.")
+                        Text("Welcome to WellSpent")
+                            .font(.largeTitle.weight(.bold))
+                            .foregroundStyle(palette.ink)
+                        Text("Track focused work with one tap.")
                             .font(.title3)
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(palette.secondary)
                         Text(
-                            "Apple Watch is optional. Create projects here, then open WellSpent on your paired Watch to track offline."
+                            "Start with a project for the client, contract, or kind of work you want to measure."
                         )
-                        .font(.footnote).foregroundStyle(.secondary)
+                        .font(.subheadline)
+                        .foregroundStyle(palette.secondary)
                     }
 
-                    explanation(
-                        title: "Time survives interruptions",
-                        detail:
-                            "Elapsed time is calculated from saved timestamps, so leaving the app does not reset it.",
-                        systemImage: "clock.arrow.circlepath"
-                    )
-                    explanation(
-                        title: "Private on the Lock Screen",
-                        detail: "Project names are hidden there by default. You can opt in from Settings.",
-                        systemImage: "lock.shield"
-                    )
+                    VStack(alignment: .leading, spacing: 16) {
+                        HStack(alignment: .firstTextBaseline) {
+                            Text("First project")
+                                .font(.caption.weight(.semibold))
+                                .textCase(.uppercase)
+                                .tracking(0.8)
+                                .foregroundStyle(palette.accent)
+                            Spacer()
+                            Text("Setup")
+                                .font(.caption)
+                                .foregroundStyle(palette.secondary)
+                        }
 
-                    VStack(alignment: .leading, spacing: 12) {
-                        Text("Create your first project")
-                            .font(.headline)
+                        projectPreview
+
                         TextField("Project name", text: $name)
                             .textInputAutocapitalization(.words)
-                            .textFieldStyle(.roundedBorder)
+                            .textFieldStyle(.plain)
+                            .padding(.horizontal, 14)
+                            .frame(minHeight: 50)
+                            .background(palette.background, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
                             .accessibilityIdentifier("onboarding-project-name")
                         ProjectEmojiField(emoji: $emoji)
                         ProjectColorPicker(selection: $colorToken)
@@ -59,39 +63,86 @@ struct OnboardingView: View {
                             }
                         }
                         .buttonStyle(.borderedProminent)
+                        .tint(palette.accent)
                         .controlSize(.large)
+                        .frame(maxWidth: .infinity, minHeight: 50)
                         .disabled(
                             name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
                                 || !ProjectEmojiPresentation.isValid(emoji)
                         )
                         .accessibilityIdentifier("onboarding-create-project")
                     }
-                    .padding()
-                    .background(.background.secondary, in: RoundedRectangle(cornerRadius: 18))
+                    .padding(18)
+                    .background(palette.surface, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 16, style: .continuous)
+                            .stroke(palette.separator, lineWidth: 1)
+                    }
+
+                    VStack(alignment: .leading, spacing: 16) {
+                        explanation(
+                            title: "Time survives interruptions",
+                            detail: "Saved timestamps keep elapsed time accurate when you leave the app.",
+                            systemImage: "clock.arrow.circlepath"
+                        )
+                        explanation(
+                            title: "Private on the Lock Screen",
+                            detail: "Project names stay hidden there unless you choose otherwise.",
+                            systemImage: "lock.shield"
+                        )
+                        explanation(
+                            title: "Apple Watch ready",
+                            detail: "Open WellSpent on a paired Watch to track even while offline.",
+                            systemImage: "applewatch"
+                        )
+                    }
 
                     Button("Explore before creating a project", action: complete)
                         .frame(maxWidth: .infinity)
+                        .foregroundStyle(palette.accent)
                         .accessibilityIdentifier("dismiss-onboarding")
                 }
-                .padding()
+                .padding(.horizontal, 20)
+                .padding(.vertical, 24)
             }
-            .navigationTitle("Welcome")
-            .navigationBarTitleDisplayMode(.inline)
+            .background(palette.background)
+            .scrollDismissesKeyboard(.interactively)
+            .toolbar(.hidden, for: .navigationBar)
             .interactiveDismissDisabled()
         }
         .accessibilityIdentifier("onboarding-screen")
     }
 
+    private var projectPreview: some View {
+        HStack(spacing: 10) {
+            Circle()
+                .fill(ProjectPalette.color(for: colorToken))
+                .frame(width: 8, height: 8)
+                .accessibilityHidden(true)
+            Text(name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? "Your project" : name)
+                .font(.headline)
+                .foregroundStyle(palette.ink)
+                .lineLimit(2)
+            Spacer(minLength: 8)
+            if !emoji.isEmpty {
+                Text(emoji)
+                    .font(.title3)
+                    .accessibilityHidden(true)
+            }
+        }
+        .padding(.vertical, 4)
+    }
+
     private func explanation(title: String, detail: String, systemImage: String) -> some View {
         HStack(alignment: .top, spacing: 14) {
             Image(systemName: systemImage)
-                .font(.title2)
-                .foregroundStyle(.blue)
-                .frame(width: 32)
+                .font(.body.weight(.semibold))
+                .foregroundStyle(palette.accent)
+                .frame(width: 24)
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 3) {
-                Text(title).font(.headline)
-                Text(detail).foregroundStyle(.secondary)
+                Text(title).font(.subheadline.weight(.semibold)).foregroundStyle(palette.ink)
+                Text(detail).font(.footnote).foregroundStyle(palette.secondary)
             }
         }
         .accessibilityElement(children: .combine)
@@ -104,7 +155,7 @@ struct ProjectColorPicker: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text("Color").font(.subheadline.weight(.semibold))
-            HStack(spacing: 14) {
+            HStack(spacing: 4) {
                 ForEach(ProjectPalette.tokens, id: \.self) { token in
                     Button {
                         selection = token
@@ -117,7 +168,8 @@ struct ProjectColorPicker: View {
                                     .foregroundStyle(.white)
                             }
                         }
-                        .frame(width: 34, height: 34)
+                        .frame(width: 30, height: 30)
+                        .frame(minWidth: 44, minHeight: 44)
                     }
                     .buttonStyle(.plain)
                     .accessibilityLabel("\(token.capitalized) project color")

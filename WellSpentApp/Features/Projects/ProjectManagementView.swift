@@ -116,6 +116,7 @@ struct ProjectEditorView: View {
     let mode: ProjectEditorMode
 
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.colorScheme) private var colorScheme
     @State private var name: String
     @State private var colorToken: String
     @State private var emoji: String
@@ -135,23 +136,64 @@ struct ProjectEditorView: View {
         }
     }
 
+    private var palette: WellSpentPalette { WellSpentPalette(colorScheme: colorScheme) }
+
     var body: some View {
         NavigationStack {
-            Form {
-                Section("Project") {
-                    TextField("Name", text: $name)
-                        .textInputAutocapitalization(.words)
-                        .accessibilityIdentifier("project-name")
-                    ProjectEmojiField(emoji: $emoji)
-                    ProjectColorPicker(selection: $colorToken)
-                }
+            ScrollView {
+                VStack(alignment: .leading, spacing: 20) {
+                    projectPreview
 
-                Section {
-                    Text("Exact duplicate names are allowed, but the app will warn you after saving.")
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
+                    VStack(alignment: .leading, spacing: 16) {
+                        HStack(alignment: .firstTextBaseline) {
+                            Text("Project details")
+                                .font(.headline)
+                                .foregroundStyle(palette.ink)
+                            Spacer()
+                            Text(modeLabel)
+                                .font(.caption)
+                                .foregroundStyle(palette.secondary)
+                        }
+
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Name")
+                                .font(.subheadline.weight(.semibold))
+                            TextField("Project name", text: $name)
+                                .textInputAutocapitalization(.words)
+                                .textFieldStyle(.plain)
+                                .padding(.horizontal, 14)
+                                .frame(minHeight: 50)
+                                .background(
+                                    palette.background,
+                                    in: RoundedRectangle(cornerRadius: 14, style: .continuous)
+                                )
+                                .accessibilityIdentifier("project-name")
+                        }
+
+                        Divider().overlay(palette.separator)
+                        ProjectEmojiField(emoji: $emoji)
+                        Divider().overlay(palette.separator)
+                        ProjectColorPicker(selection: $colorToken)
+                    }
+                    .padding(18)
+                    .background(palette.surface, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 16, style: .continuous)
+                            .stroke(palette.separator, lineWidth: 1)
+                    }
+
+                    Label(
+                        "Exact duplicate names are allowed. WellSpent will warn you after saving.",
+                        systemImage: "info.circle"
+                    )
+                    .font(.footnote)
+                    .foregroundStyle(palette.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
                 }
+                .padding(20)
             }
+            .background(palette.background)
+            .scrollDismissesKeyboard(.interactively)
             .navigationTitle(title)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -170,6 +212,46 @@ struct ProjectEditorView: View {
                     .accessibilityIdentifier("save-project")
                 }
             }
+        }
+    }
+
+    private var projectPreview: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            HStack {
+                Label("Preview", systemImage: "timer")
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(palette.accent)
+                Spacer()
+                Text("Ready to track")
+                    .font(.caption)
+                    .foregroundStyle(palette.secondary)
+            }
+
+            HStack(spacing: 10) {
+                Circle()
+                    .fill(ProjectPalette.color(for: colorToken))
+                    .frame(width: 8, height: 8)
+                    .accessibilityHidden(true)
+                Text(name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? "Your project" : name)
+                    .font(.headline)
+                    .foregroundStyle(palette.ink)
+                    .lineLimit(2)
+                Spacer(minLength: 8)
+                if !emoji.isEmpty {
+                    Text(emoji)
+                        .font(.title3)
+                        .accessibilityHidden(true)
+                }
+            }
+        }
+        .padding(18)
+        .background(palette.soft, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+    }
+
+    private var modeLabel: String {
+        switch mode {
+        case .create: "New"
+        case .edit: "Editing"
         }
     }
 

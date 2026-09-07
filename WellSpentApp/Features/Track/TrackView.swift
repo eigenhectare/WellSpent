@@ -23,14 +23,6 @@ struct TrackView: View {
                         .accessibilityIdentifier("review-watch-conflict")
                     }
                     .listRowBackground(palette.surface)
-                } else if model.watchSyncOverview.hasWatchHistory {
-                    Section {
-                        Label(model.watchSyncStatusText, systemImage: "applewatch")
-                            .font(.footnote)
-                            .foregroundStyle(palette.secondary)
-                            .accessibilityIdentifier("phone-watch-sync-status")
-                    }
-                    .listRowBackground(palette.surface)
                 }
                 if let activeRun = model.activeRun,
                     let project = model.project(id: activeRun.projectID)
