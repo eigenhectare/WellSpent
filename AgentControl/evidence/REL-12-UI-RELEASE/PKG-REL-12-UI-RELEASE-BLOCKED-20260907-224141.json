@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "PKG-REL-12-UI-RELEASE-BLOCKED-20260907-224141",
+  "taskId": "REL-12-UI-RELEASE",
+  "requirementId": "ER-3",
+  "evidenceClass": "signed-package",
+  "result": "blocked",
+  "producerRole": "release-steward",
+  "producerId": "codex-release-steward",
+  "observedAt": "2026-09-07T22:41:41Z",
+  "source": {
+    "commit": "4f6eae035c944b7336922b4fef34f006b0fbf5d0",
+    "tree": "bab6a8957ca5c1760f76fefde8f2f472ff069610",
+    "clean": true,
+    "version": "0.2.0",
+    "build": "10"
+  },
+  "gate": {
+    "id": "distribution-export-inspection",
+    "exitCode": 70
+  },
+  "claims": [
+    "The exact frozen build-10 source archived successfully and the signed-archive inspection passed for the phone app, phone widget, Watch app and Watch widget.",
+    "The archive contains matching version and build metadata, expected bundle identifiers and architectures, valid signatures, source-reconciled entitlements and privacy manifests, and matching dSYMs for all four components.",
+    "The App Store distribution export could not be produced because command-line Xcode reported No Accounts and no iOS Distribution certificate; the authenticated Organizer fallback is inaccessible while the Mac is locked.",
+    "No IPA upload, App Store build processing, build attachment or App Review submission is claimed by this blocked attempt."
+  ],
+  "artifacts": [
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-10/archive-inspection/summary.json",
+      "sha256": "676773c0f7c2f7307a7c5a955059a9ce28c244c141f4fcba2e1ee31fbdb2671f"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-10/archive.log",
+      "sha256": "db7564969fccc89442d375fd829721a595341aad7915e78f690c3871d425d332"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-10/export.log",
+      "sha256": "e828b9ea78baa61e69123e93e8986cef950a38391051e0c517b58160ad8dfc71"
+    }
+  ],
+  "limitations": [
+    "The development-signed archive is not a substitute for a successful App Store distribution export and upload validation.",
+    "Resume requires the owner to unlock the Mac so the authenticated Xcode Organizer and App Store Connect sessions can be used; unchanged locked state will not be polled.",
+    "Physical-device acceptance, App Review approval and public release remain distinct and are not claimed."
+  ],
+  "authorityReference": {
+    "kind": "user-message",
+    "reference": "On 2026-09-07 the owner requested that the latest app with all changes made today be built and submitted to the App Store.",
+    "confirmedBy": "owner",
+    "confirmedAt": "2026-09-07",
+    "authorityIds": [
+      "repository-write",
+      "signing-upload",
+      "app-store-submit"
+    ]
+  },
+  "publicReleaseApproved": false
+}
