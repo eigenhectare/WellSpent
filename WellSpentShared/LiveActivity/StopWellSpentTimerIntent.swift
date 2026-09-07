@@ -4,9 +4,10 @@ import Foundation
 public struct StopWellSpentTimerIntent: LiveActivityIntent {
     public static let title: LocalizedStringResource = "Stop WellSpent Timer"
     public static let description = IntentDescription(
-        "Save a stop request and open WellSpent to finish saving the timer.")
+        "Save a stop request for the timer shown in the Live Activity.")
     public static let isDiscoverable = false
-    public static let openAppWhenRun = true
+    public static let supportedModes: IntentModes = .background
+    public static let openAppWhenRun = false
     public static let authenticationPolicy: IntentAuthenticationPolicy = .requiresLocalDeviceAuthentication
 
     @Parameter(title: "Activity ID")

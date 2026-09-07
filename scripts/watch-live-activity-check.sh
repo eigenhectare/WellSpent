@@ -8,13 +8,15 @@ fail() { echo "Watch Live Activity check failed: $1" >&2; exit 1; }
 readonly lifecycle=WellSpentApp/Integrations/LiveActivity/LiveActivityLifecycle.swift
 readonly intent=WellSpentShared/LiveActivity/StopWellSpentTimerIntent.swift
 readonly presentation=WellSpentShared/LiveActivity/WellSpentActivityPresentation.swift
-readonly watch_intents=WellSpentWatchIntents/WellSpentWatchIntents.swift
-readonly watch_boundary=WellSpentWatch/Features/Timer/WatchSystemCommandBoundary.swift
+readonly app_entry=WellSpentApp/App/WellSpentApp.swift
 rg -q 'setDesiredState' "${lifecycle}" || fail 'synchronous canonical publication missing'
 rg -q 'captured == generation' "${lifecycle}" || fail 'generation fence missing'
 rg -q 'drainTask' "${lifecycle}" || fail 'serialized driver drain missing'
 rg -q 'canRequestActivity' "${lifecycle}" || fail 'foreground creation gate missing'
 rg -q 'expectedRevision' "${intent}" || fail 'revision-bound Stop missing'
+rg -q 'supportedModes.*background' "${intent}" || fail 'Stop intent must execute without foregrounding iPhone'
+rg -q 'openAppWhenRun.*false' "${intent}" || fail 'Stop intent still requires foreground iPhone launch'
+rg -q 'WellSpentLiveActivityHandoffDispatcher\.reconcile' "${app_entry}" || fail 'early app intent bridge registration missing'
 if rg -n 'Activity<|\.end\(|\.update\(|Activity.request' "${intent}"; then
     fail 'Stop intent writes ActivityKit before canonical persistence'
 fi
@@ -24,9 +26,6 @@ fi
 rg -q 'WellSpentLiveActivityHourglass' "${presentation}" || fail 'custom Watch mirror mark missing'
 rg -q 'Button\(' "${presentation}" || fail 'Watch mirror Stop control missing'
 rg -q 'state\.stopAccessibilityLabel' "${presentation}" || fail 'Watch mirror Stop accessibility missing'
-rg -q 'struct StopWellSpentTimerIntent' "${watch_intents}" || fail 'Watch mirror Stop routing intent missing'
-rg -q 'observedRunID' "${watch_boundary}" || fail 'Watch mirror stale-run guard missing'
-rg -q 'observedRunRevision' "${watch_boundary}" || fail 'Watch mirror stale-revision guard missing'
 if rg -q 'iPhone copy' "${presentation}"; then
     fail 'obsolete iPhone copy label remains visible'
 fi
@@ -34,4 +33,18 @@ rg -q 'WKSupportsLiveActivityLaunchAttributeTypes' project.yml || fail 'Watch mi
 for test_source in LiveActivityLifecycleTests LiveActivitySerializationTests LiveActivityPresentationTests; do
     [[ -s "WellSpentTests/LiveActivity/${test_source}.swift" ]] || fail 'regression suite missing'
 done
-echo "Live Activity structural checks passed. Unit/render/UI tests prove behavior; physical mirroring and lock-screen intent execution remain separate."
+if [[ -n "${LIVE_ACTIVITY_WIDGET_BUNDLE:-}" ]]; then
+    command -v jq >/dev/null || fail 'jq is required for generated metadata validation'
+    metadata="${LIVE_ACTIVITY_WIDGET_BUNDLE}/Metadata.appintents/extract.actionsdata"
+    [[ -f "${metadata}" ]] || fail 'generated Live Activity App Intent metadata missing'
+    jq -e '
+        .actions.StopWellSpentTimerIntent as $action |
+        $action.openAppWhenRun == false and $action.supportedModes == 1 and
+        $action.authenticationPolicy == 2 and $action.isAuthPolExplicit == true and
+        $action.isDiscoverable == false and
+        [$action.parameters[].name] == ["activityID", "expectedRevision"]
+    ' "${metadata}" >/dev/null || fail 'Stop intent lost background/authentication/revision metadata'
+    echo "Live Activity structural and generated intent metadata checks passed."
+else
+    echo "Live Activity structural checks passed; set LIVE_ACTIVITY_WIDGET_BUNDLE to validate generated intent metadata."
+fi

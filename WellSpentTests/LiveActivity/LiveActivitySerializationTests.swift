@@ -197,6 +197,10 @@ final class LiveActivitySerializationTests: XCTestCase {
         XCTAssertTrue(called)
     }
 
+    func testStopIntentRunsWithoutForegroundingThePhoneApp() {
+        XCTAssertFalse(StopWellSpentTimerIntent.openAppWhenRun)
+    }
+
     func testIntentWithoutReadyAppBridgeRemainsDurable() async throws {
         let id = UUID()
         let previous = WellSpentLiveActivityHandoffDispatcher.reconcile

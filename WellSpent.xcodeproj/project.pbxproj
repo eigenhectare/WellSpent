@@ -133,8 +133,6 @@
 		97767666AE74C9AB2D9CC37D /* WellSpentSchemaV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A776AAD0B4E75C059486D /* WellSpentSchemaV2.swift */; };
 		984E6FF4DAB2DB90D787428B /* SpikeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02283A4340B926E3D0FFE902 /* SpikeProtocol.swift */; };
 		9B0813BB824CF4919FE4C9A0 /* WatchTimerMetricsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19334C0DA8161A429266A10 /* WatchTimerMetricsTests.swift */; };
-		9C203BC43E9D6A8A1C1119CF /* WellSpentWatchContracts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0E872F23BE20AE0C3F643830 /* WellSpentWatchContracts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		9C920766272B9A3C75DAF29E /* WellSpentWatchStore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A9181A70CE34A5DE2B87FDC5 /* WellSpentWatchStore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9CA5D230DDA21F04BC61C4AD /* LiveActivityLifecycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F772050E8BDD82FE095121 /* LiveActivityLifecycle.swift */; };
 		9CF5892A4CFE7EB0BA806730 /* WellSpentSchemaV5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2479DFBEECEDAC954F2618EC /* WellSpentSchemaV5.swift */; };
 		9DE4A71B932A0EC96706D963 /* WatchWidgetPreviewSurface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7EFBE97320EA85AB6FE043 /* WatchWidgetPreviewSurface.swift */; };
@@ -223,7 +221,6 @@
 		FA76146B108F0FF048053EE5 /* SpikeConnectivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C958D575C0323BCB6E5827C7 /* SpikeConnectivityController.swift */; };
 		FC2A4CA13969E53C93A34F1C /* ProjectRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6390ACE1C44AEA50CCE81A /* ProjectRepository.swift */; };
 		FC301933EB1DFD33FBE1776D /* IPhoneWatchConnectivityCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FD35403AA5783B8AD6BD9F /* IPhoneWatchConnectivityCoordinator.swift */; };
-		FDB88824E4242D32AD65ED06 /* WellSpentWatchContracts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0E872F23BE20AE0C3F643830 /* WellSpentWatchContracts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -370,17 +367,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		0A50CEA9176C2C7451767CB0 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				FDB88824E4242D32AD65ED06 /* WellSpentWatchContracts.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		17CC4107097E48F9D7F6B1F2 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -423,18 +409,6 @@
 				CA71FD7E6BCB2880EAE1725C /* WellSpentWidgets.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F366016846A46390E509546E /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				9C203BC43E9D6A8A1C1119CF /* WellSpentWatchContracts.framework in Embed Frameworks */,
-				9C920766272B9A3C75DAF29E /* WellSpentWatchStore.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -1517,7 +1491,6 @@
 			buildPhases = (
 				20A4985BF2671088363190AD /* Sources */,
 				016058DBBA73C2213C4F2D12 /* Frameworks */,
-				0A50CEA9176C2C7451767CB0 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1572,7 +1545,6 @@
 			buildPhases = (
 				CDF3B32548C705879F6622D4 /* Sources */,
 				69AE3BA1D820E891527E48B3 /* Frameworks */,
-				F366016846A46390E509546E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1906,22 +1878,22 @@
 			projectRoot = "";
 			targets = (
 				BC75FB58DC410DFF83E9B7C6 /* WellSpent */,
+				825097CC422C76DEBC477699 /* WellSpentConnectivitySpikePhone */,
+				DF5BC631B1D88241157F443C /* WellSpentConnectivitySpikePhoneUITests */,
+				3E2BB950D9A9A3F27674797D /* WellSpentConnectivitySpikeTests */,
+				5B8F9565841937AD988B3BB3 /* WellSpentConnectivitySpikeWatch */,
+				3CA089B8D54AF394130EF7AA /* WellSpentConnectivitySpikeWatchUITests */,
 				A64528016DA24E8DE6368C9D /* WellSpentShared */,
-				14F28F0E433B79158D07643F /* WellSpentWatchContracts */,
-				D155AECC74F4529B3C1E502F /* WellSpentWatchStore */,
-				964E32DDAD063D861DBA9038 /* WellSpentWidgets */,
 				C84F48F3F1AC07BF6D3231B6 /* WellSpentTests */,
 				F0B0F34E21306CCEDD2B6522 /* WellSpentUITests */,
 				7A94A77CE84567AEFBAE1FCE /* WellSpentWatch */,
-				FEF6EDF33D5AD790DD64A362 /* WellSpentWatchWidgets */,
-				53216FA6EC8D30911BF03C42 /* WellSpentWatchTests */,
 				3ABFB95D163EBA7945C1BE1C /* WellSpentWatchContractTests */,
+				14F28F0E433B79158D07643F /* WellSpentWatchContracts */,
+				D155AECC74F4529B3C1E502F /* WellSpentWatchStore */,
+				53216FA6EC8D30911BF03C42 /* WellSpentWatchTests */,
 				8719F8A06B50633A7BC79655 /* WellSpentWatchUITests */,
-				825097CC422C76DEBC477699 /* WellSpentConnectivitySpikePhone */,
-				5B8F9565841937AD988B3BB3 /* WellSpentConnectivitySpikeWatch */,
-				3E2BB950D9A9A3F27674797D /* WellSpentConnectivitySpikeTests */,
-				DF5BC631B1D88241157F443C /* WellSpentConnectivitySpikePhoneUITests */,
-				3CA089B8D54AF394130EF7AA /* WellSpentConnectivitySpikeWatchUITests */,
+				FEF6EDF33D5AD790DD64A362 /* WellSpentWatchWidgets */,
+				964E32DDAD063D861DBA9038 /* WellSpentWidgets */,
 			);
 		};
 /* End PBXProject section */

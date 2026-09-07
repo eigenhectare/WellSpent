@@ -96,36 +96,6 @@ struct EndWellSpentWatchTimerIntent: WellSpentWatchActionIntent {
     var systemRequest: WatchSystemRequest { .init(action: .end) }
 }
 
-/// Matches the identifier and parameters archived by the companion iPhone Live
-/// Activity. Registering it in both Watch targets lets watchOS route the mirrored
-/// Smart Stack button into the Watch app's single-writer command boundary.
-struct StopWellSpentTimerIntent: AppIntent {
-    static let supportedModes: IntentModes = .foreground
-    static let authenticationPolicy: IntentAuthenticationPolicy = .requiresLocalDeviceAuthentication
-    static let title: LocalizedStringResource = "Stop WellSpent Timer"
-    static let description = IntentDescription("End and save the timer shown in the WellSpent Live Activity.")
-    static let isDiscoverable = false
-
-    @Parameter(title: "Activity ID") var activityID: String
-    @Parameter(title: "Run revision") var expectedRevision: Int?
-
-    init() {}
-
-    @MainActor
-    func perform() async throws -> some IntentResult & ProvidesDialog {
-        guard let runID = UUID(uuidString: activityID) else {
-            throw WatchSystemActionError.staleControl
-        }
-        let request = WatchSystemRequest(
-            action: .end,
-            observedRunID: runID,
-            observedRunRevision: expectedRevision.map(Int64.init)
-        )
-        let message = try WatchSystemActionDispatcher.perform(request)
-        return .result(dialog: IntentDialog(stringLiteral: message))
-    }
-}
-
 /// Internal control intent: parameters encode the exact observed state. Siri
 /// uses the named intents above, never this low-level control representation.
 struct WellSpentWatchControlAction: WellSpentWatchActionIntent {

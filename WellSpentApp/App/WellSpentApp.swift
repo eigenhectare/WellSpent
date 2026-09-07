@@ -36,13 +36,19 @@ struct WellSpentApp: App {
                 in: modelContainer,
                 dependencies: dependencies
             )
-            _appModel = StateObject(
-                wrappedValue: WellSpentAppModel(
-                    modelContainer: modelContainer,
-                    dependencies: dependencies,
-                    startupReconciliation: startupReconciliation
-                )
+            let appModel = WellSpentAppModel(
+                modelContainer: modelContainer,
+                dependencies: dependencies,
+                startupReconciliation: startupReconciliation
             )
+            _appModel = StateObject(wrappedValue: appModel)
+
+            // App intents can arrive before SwiftUI creates the root view. Install
+            // the single-writer bridge during App initialization so a background
+            // Live Activity action can reconcile its durable request immediately.
+            WellSpentLiveActivityHandoffDispatcher.reconcile = { [weak appModel] in
+                await appModel?.retryLiveActivityProjection()
+            }
         } catch {
             preconditionFailure("Unable to initialize the local data store.")
         }
@@ -66,11 +72,5 @@ struct WellSpentApp: App {
     private var applicationRoot: some View {
         RootView(model: appModel)
             .environment(\.wellSpentDependencies, dependencies)
-            .task {
-                let model = appModel
-                WellSpentLiveActivityHandoffDispatcher.reconcile = { [weak model] in
-                    await model?.retryLiveActivityProjection()
-                }
-            }
     }
 }
