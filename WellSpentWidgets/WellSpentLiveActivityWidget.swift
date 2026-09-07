@@ -49,8 +49,13 @@ private struct LiveActivityContent: View {
             state: context.state, family: family == .small ? .watchMirror : .lockScreen,
             isStale: context.isStale
         )
-        .activityBackgroundTint(dimmed ? .black : .black.opacity(0.08))
+        .activityBackgroundTint(backgroundTint)
         .activitySystemActionForegroundColor(.primary)
+    }
+
+    private var backgroundTint: Color {
+        if dimmed { return .black }
+        return family == .small ? .black.opacity(0.75) : .black.opacity(0.08)
     }
 }
 
