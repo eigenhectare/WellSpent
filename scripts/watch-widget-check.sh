@@ -32,6 +32,10 @@ rg -q 'showsHours: false' WellSpentWatchWidgets/WellSpentWatchStatusView.swift \
     || fail "sub-hour minute-second timer missing"
 rg -q 'hoursAndMinutes' WellSpentWatchWidgets/WellSpentWatchStatusView.swift \
     || fail "hour-minute timer formatting missing"
+rg -Fq 'fixedSize(horizontal: true, vertical: false)' WellSpentWatchWidgets/WellSpentWatchStatusView.swift \
+    || fail "active timer is not centered by its intrinsic width"
+rg -Fq 'multilineTextAlignment(.center)' WellSpentWatchWidgets/WellSpentWatchStatusView.swift \
+    || fail "active timer center alignment missing"
 rg -q '\.widgetAccentable\(\)' WellSpentWatchWidgets/WellSpentWatchStatusView.swift \
     || fail "Watch-face palette adaptation missing"
 rg -q 'watch.complication.hourglass' WellSpentWatchWidgets/WellSpentWatchStatusView.swift \

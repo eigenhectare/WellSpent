@@ -66,6 +66,7 @@ struct WellSpentWatchStatusView: View {
                         )
 
                     elapsedText
+                        .fixedSize(horizontal: true, vertical: false)
                         .font(
                             .system(
                                 size: runningTimerFontSize(for: geometry.size.height),
@@ -73,7 +74,9 @@ struct WellSpentWatchStatusView: View {
                                 design: .rounded
                             )
                         )
-                        .frame(width: max(1, geometry.size.width - 4))
+                        .monospacedDigit()
+                        .frame(width: max(1, geometry.size.width - 4), alignment: .center)
+                        .multilineTextAlignment(.center)
                         .position(
                             x: geometry.size.width / 2,
                             y: midpoint + geometry.size.height / 4
