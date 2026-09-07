@@ -32,8 +32,6 @@ rg -q 'showsHours: false' WellSpentWatchWidgets/WellSpentWatchStatusView.swift \
     || fail "sub-hour minute-second timer missing"
 rg -q 'hoursAndMinutes' WellSpentWatchWidgets/WellSpentWatchStatusView.swift \
     || fail "hour-minute timer formatting missing"
-rg -Fq 'fixedSize(horizontal: true, vertical: false)' WellSpentWatchWidgets/WellSpentWatchStatusView.swift \
-    || fail "active timer is not centered by its intrinsic width"
 rg -Fq 'multilineTextAlignment(.center)' WellSpentWatchWidgets/WellSpentWatchStatusView.swift \
     || fail "active timer center alignment missing"
 rg -q '\.widgetAccentable\(\)' WellSpentWatchWidgets/WellSpentWatchStatusView.swift \
@@ -42,6 +40,9 @@ rg -q 'watch.complication.hourglass' WellSpentWatchWidgets/WellSpentWatchStatusV
     || fail "hourglass accessibility identity missing"
 if rg -n '^[[:space:]]*Label\(|projectName|PhaseAnimator|WellSpentHourglassTrace' WellSpentWatchWidgets/WellSpentWatchStatusView.swift; then
     fail "complication contains project identity or unsupported animation"
+fi
+if rg -Fq 'fixedSize(horizontal: true, vertical: false)' WellSpentWatchWidgets/WellSpentWatchStatusView.swift; then
+    fail "live timer uses an intrinsic-size constraint that collapses on physical WidgetKit"
 fi
 rg -q 'reloadTimelines\(ofKind: WatchWidgetState.kind\)' WellSpentWatch/App/WellSpentWatchRuntime.swift || fail "state-change reload missing"
 rg -q 'wellspent-watch' WellSpentWatch/Resources/Info.plist || fail "Watch navigation scheme missing"

@@ -66,7 +66,6 @@ struct WellSpentWatchStatusView: View {
                         )
 
                     elapsedText
-                        .fixedSize(horizontal: true, vertical: false)
                         .font(
                             .system(
                                 size: runningTimerFontSize(for: geometry.size.height),
