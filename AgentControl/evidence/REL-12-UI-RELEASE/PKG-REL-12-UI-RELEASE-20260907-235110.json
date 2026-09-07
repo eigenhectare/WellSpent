@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "PKG-REL-12-UI-RELEASE-20260907-235110",
+  "taskId": "REL-12-UI-RELEASE",
+  "requirementId": "ER-3",
+  "evidenceClass": "signed-package",
+  "result": "passed",
+  "producerRole": "release-steward",
+  "producerId": "codex-release-steward",
+  "observedAt": "2026-09-07T23:51:10Z",
+  "source": {
+    "commit": "4f6eae035c944b7336922b4fef34f006b0fbf5d0",
+    "tree": "bab6a8957ca5c1760f76fefde8f2f472ff069610",
+    "clean": true,
+    "version": "0.2.0",
+    "build": "10"
+  },
+  "gate": {
+    "id": "distribution-export-inspection",
+    "exitCode": 0
+  },
+  "claims": [
+    "The exact frozen build-10 archive passed the four-component signed-archive inspection before distribution.",
+    "Xcode Organizer produced an automatic Cloud Managed Apple Distribution export for App Store Connect with version/build management disabled, preserving WellSpent 0.2.0 (10).",
+    "The distribution-export inspection passed for the phone app, phone widget, Watch app and Watch widget, including bundle topology, versions, architectures, strict signatures, source-reconciled entitlements and privacy manifests, unexpired App Store profiles, dSYMs, compiled icon renditions and fixture isolation.",
+    "The exact inspected IPA SHA256 is d23bda44b8d3e908886e8cf6b54c105e79f787b6aceeb826ac8ed1a096bd821d and the exported product-file manifest SHA256 is 05b4d5ae0c636953a9a98331ef571622b66adb64146564c42f2436aa7deb12b9.",
+    "Xcode Organizer separately reported that WellSpent 0.2.0 (10) uploaded successfully; App Store processing and review submission remain external-service evidence."
+  ],
+  "artifacts": [
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-10/archive-inspection/summary.json",
+      "sha256": "676773c0f7c2f7307a7c5a955059a9ce28c244c141f4fcba2e1ee31fbdb2671f"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-10/distribution-export-inspection-attempt-2/summary.json",
+      "sha256": "53952333e9879e9369b76e6a3ada1d9f50edee3fec6123d85c762c13b194b274"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-10/distribution-export-attempt-2/WellSpent.ipa",
+      "sha256": "d23bda44b8d3e908886e8cf6b54c105e79f787b6aceeb826ac8ed1a096bd821d"
+    }
+  ],
+  "limitations": [
+    "This signed-package receipt does not substitute for App Store processing, build attachment, App Review submission, physical-device acceptance or public release.",
+    "The earlier command-line export failure and post-upload package mismatch remain preserved as separate diagnostics; they are not relabeled by this successful automatic local export.",
+    "Public release remains manual and is not approved by this receipt."
+  ],
+  "authorityReference": {
+    "kind": "user-message",
+    "reference": "On 2026-09-07 the owner requested that the latest app with all changes made today be built and submitted to the App Store, then unlocked the Mac to resume the authenticated Xcode Organizer workflow.",
+    "confirmedBy": "owner",
+    "confirmedAt": "2026-09-07",
+    "authorityIds": [
+      "repository-write",
+      "signing-upload",
+      "app-store-submit"
+    ]
+  },
+  "publicReleaseApproved": false
+}
