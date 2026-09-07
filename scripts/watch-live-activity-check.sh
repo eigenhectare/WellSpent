@@ -7,6 +7,7 @@ fail() { echo "Watch Live Activity check failed: $1" >&2; exit 1; }
 
 readonly lifecycle=WellSpentApp/Integrations/LiveActivity/LiveActivityLifecycle.swift
 readonly intent=WellSpentShared/LiveActivity/StopWellSpentTimerIntent.swift
+readonly presentation=WellSpentShared/LiveActivity/WellSpentActivityPresentation.swift
 rg -q 'setDesiredState' "${lifecycle}" || fail 'synchronous canonical publication missing'
 rg -q 'captured == generation' "${lifecycle}" || fail 'generation fence missing'
 rg -q 'drainTask' "${lifecycle}" || fail 'serialized driver drain missing'
@@ -17,6 +18,12 @@ if rg -n 'Activity<|\.end\(|\.update\(|Activity.request' "${intent}"; then
 fi
 if rg -n 'TimelineView|Timer.scheduledTimer' WellSpentShared/LiveActivity/WellSpentActivityPresentation.swift WellSpentWidgets; then
     fail 'widget presentation acquired an extension timer loop'
+fi
+rg -q 'WellSpentLiveActivityHourglass' "${presentation}" || fail 'custom Watch mirror mark missing'
+rg -q 'Button\(' "${presentation}" || fail 'Watch mirror Stop control missing'
+rg -q 'state\.stopAccessibilityLabel' "${presentation}" || fail 'Watch mirror Stop accessibility missing'
+if rg -q 'iPhone copy' "${presentation}"; then
+    fail 'obsolete iPhone copy label remains visible'
 fi
 rg -q 'WKSupportsLiveActivityLaunchAttributeTypes' project.yml || fail 'Watch mirror launch configuration missing'
 for test_source in LiveActivityLifecycleTests LiveActivitySerializationTests LiveActivityPresentationTests; do

@@ -2,8 +2,6 @@ import SwiftUI
 import WidgetKit
 
 /// Shared real presentation views, also hosted by the simulator visual tests.
-/// The small mirrored card deliberately identifies the iPhone copy: a native
-/// Watch command can be newer while the companion is unreachable.
 public struct WellSpentActivityPresentation: View {
     public enum Family: String, CaseIterable {
         case lockScreen, expanded, compact, minimal, watchMirror
@@ -106,23 +104,74 @@ public struct WellSpentActivityPresentation: View {
     }
 
     private var watchMirror: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            Label("iPhone copy", systemImage: "iphone")
-                .font(.caption2.weight(.semibold))
-                .foregroundStyle(.secondary)
-            Text(state.requiresReview == true ? "Review on iPhone" : status)
-                .font(.headline)
+        VStack(alignment: .leading, spacing: 6) {
+            HStack(spacing: 6) {
+                ZStack {
+                    Circle()
+                        .fill(watchMirrorTint.opacity(0.18))
+                    WellSpentLiveActivityHourglass()
+                        .fill(watchMirrorTint)
+                        .frame(width: 18, height: 18)
+                }
+                .frame(width: 34, height: 34)
+                .accessibilityHidden(true)
+
+                VStack(alignment: .leading, spacing: 1) {
+                    Text(status)
+                        .font(.caption2.weight(.semibold))
+                        .foregroundStyle(.secondary)
+                    elapsed
+                        .font(.headline.weight(.bold))
+                }
+                .layoutPriority(1)
+
+                Spacer(minLength: 0)
+
+                if canStop {
+                    Button(
+                        intent: StopWellSpentTimerIntent(
+                            activityID: runID,
+                            revision: state.revision
+                        )
+                    ) {
+                        ZStack {
+                            Circle()
+                                .fill(.red)
+                            Image(systemName: "stop.fill")
+                                .font(.body.weight(.bold))
+                                .foregroundStyle(.white)
+                        }
+                        .frame(width: 44, height: 44)
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityLabel(state.stopAccessibilityLabel)
+                    .accessibilityHint("Opens WellSpent to save the stop for this run")
+                }
+            }
+
             Text(label)
                 .font(.caption)
                 .lineLimit(1)
                 .privacySensitive(state.showsProjectName)
-            Text(state.requiresReview == true ? "Both versions are preserved" : "Open Watch app for current timer")
-                .font(.caption2)
-                .foregroundStyle(.secondary)
-                .lineLimit(2)
+
+            if let syncStatus = state.syncStatusText {
+                Label(syncStatus, systemImage: "arrow.triangle.2.circlepath")
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(1)
+            }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(10)
+    }
+
+    private var watchMirrorTint: Color {
+        if state.requiresReview == true { return .orange }
+        switch state.phase {
+        case .running: return .accentColor
+        case .paused: return .yellow
+        case .stopped: return .green
+        }
     }
 
     @ViewBuilder
@@ -145,5 +194,69 @@ public struct WellSpentActivityPresentation: View {
             .minimumScaleFactor(0.7)
             .accessibilityLabel(state.phase == .stopped ? "Final elapsed time" : "Counted time")
         }
+    }
+}
+
+private struct WellSpentLiveActivityHourglass: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        path.move(to: point(0.22, 0.08, in: rect))
+        path.addCurve(
+            to: point(0.15, 0.22, in: rect),
+            control1: point(0.14, 0.08, in: rect),
+            control2: point(0.12, 0.15, in: rect)
+        )
+        path.addCurve(
+            to: point(0.47, 0.49, in: rect),
+            control1: point(0.24, 0.36, in: rect),
+            control2: point(0.36, 0.44, in: rect)
+        )
+        path.addCurve(
+            to: point(0.47, 0.55, in: rect),
+            control1: point(0.50, 0.51, in: rect),
+            control2: point(0.50, 0.53, in: rect)
+        )
+        path.addCurve(
+            to: point(0.15, 0.88, in: rect),
+            control1: point(0.36, 0.64, in: rect),
+            control2: point(0.24, 0.75, in: rect)
+        )
+        path.addCurve(
+            to: point(0.22, 0.96, in: rect),
+            control1: point(0.12, 0.93, in: rect),
+            control2: point(0.15, 0.96, in: rect)
+        )
+        path.addLine(to: point(0.78, 0.96, in: rect))
+        path.addCurve(
+            to: point(0.85, 0.88, in: rect),
+            control1: point(0.85, 0.96, in: rect),
+            control2: point(0.88, 0.93, in: rect)
+        )
+        path.addCurve(
+            to: point(0.53, 0.55, in: rect),
+            control1: point(0.76, 0.75, in: rect),
+            control2: point(0.64, 0.64, in: rect)
+        )
+        path.addCurve(
+            to: point(0.53, 0.49, in: rect),
+            control1: point(0.50, 0.53, in: rect),
+            control2: point(0.50, 0.51, in: rect)
+        )
+        path.addCurve(
+            to: point(0.85, 0.22, in: rect),
+            control1: point(0.64, 0.44, in: rect),
+            control2: point(0.76, 0.36, in: rect)
+        )
+        path.addCurve(
+            to: point(0.78, 0.08, in: rect),
+            control1: point(0.88, 0.15, in: rect),
+            control2: point(0.86, 0.08, in: rect)
+        )
+        path.closeSubpath()
+        return path
+    }
+
+    private func point(_ x: CGFloat, _ y: CGFloat, in rect: CGRect) -> CGPoint {
+        CGPoint(x: rect.minX + rect.width * x, y: rect.minY + rect.height * y)
     }
 }
