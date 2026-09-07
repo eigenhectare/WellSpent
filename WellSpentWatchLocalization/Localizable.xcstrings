@@ -734,6 +734,16 @@
         }
       }
     },
+    "Ends and saves the current timer.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ends and saves the current timer."
+          }
+        }
+      }
+    },
     "Ends the current run and starts this project at one exact boundary.": {
       "localizations": {
         "en": {
@@ -1070,6 +1080,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Observed State"
+          }
+        }
+      }
+    },
+    "Observed Run Identifier": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Observed Run Identifier"
           }
         }
       }
@@ -2437,6 +2457,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Stop"
+          }
+        }
+      }
+    },
+    "Stop timer": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop timer"
           }
         }
       }

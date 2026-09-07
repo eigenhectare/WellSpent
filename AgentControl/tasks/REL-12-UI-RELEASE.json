@@ -22,6 +22,7 @@
       "Allocate build 10 while retaining marketing version 0.2.0 across all four components.",
       "Freeze the exact UI-refresh source, regenerate the Xcode project, and run the full validation suite.",
       "Create and inspect an automatically signed archive and App Store distribution export.",
+      "Reconcile the three shipping Watch stop-control localization keys required by the release catalog gate.",
       "Upload build 10, wait for App Store processing, attach it to version 0.2.0, update candidate-specific review metadata, and submit for App Review.",
       "Record source, automated, signed-package and external-service evidence without relabeling build 9 artifacts."
     ],
@@ -38,7 +39,8 @@
       "AgentControl",
       "WAT-35-UI-RELEASE.md",
       "APP-STORE-RELEASE.md",
-      "AppStore/Abstract-0.2.0-10"
+      "AppStore/Abstract-0.2.0-10",
+      "WellSpentWatchLocalization"
     ],
     "resources": [
       "app-store-connect",
