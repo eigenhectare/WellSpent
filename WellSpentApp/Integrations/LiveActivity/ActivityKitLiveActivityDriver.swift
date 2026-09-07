@@ -49,9 +49,13 @@ final class ActivityKitLiveActivityDriver: LiveActivityDriver {
     func end(systemID: String, final: LiveActivityProjection?) async throws {
         try throwForcedFailureIfRequested()
         guard let activity = activity(systemID) else { return }
+        // A WellSpent Live Activity represents only an active timer. Keeping an
+        // ended activity under ActivityKit's default dismissal policy leaves its
+        // mirrored small family in the Watch Smart Stack, where the cached timer
+        // can appear to keep running after the canonical run has stopped.
         await activity.end(
             final.map { ActivityContent(state: $0.contentState, staleDate: nil) },
-            dismissalPolicy: final == nil ? .immediate : .default
+            dismissalPolicy: .immediate
         )
     }
 

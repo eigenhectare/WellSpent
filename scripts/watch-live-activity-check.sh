@@ -6,6 +6,7 @@ cd "${repository_root}"
 fail() { echo "Watch Live Activity check failed: $1" >&2; exit 1; }
 
 readonly lifecycle=WellSpentApp/Integrations/LiveActivity/LiveActivityLifecycle.swift
+readonly activity_driver=WellSpentApp/Integrations/LiveActivity/ActivityKitLiveActivityDriver.swift
 readonly intent=WellSpentShared/LiveActivity/StopWellSpentTimerIntent.swift
 readonly presentation=WellSpentShared/LiveActivity/WellSpentActivityPresentation.swift
 readonly app_entry=WellSpentApp/App/WellSpentApp.swift
@@ -15,6 +16,7 @@ rg -q 'setDesiredState' "${lifecycle}" || fail 'synchronous canonical publicatio
 rg -q 'captured == generation' "${lifecycle}" || fail 'generation fence missing'
 rg -q 'drainTask' "${lifecycle}" || fail 'serialized driver drain missing'
 rg -q 'canRequestActivity' "${lifecycle}" || fail 'foreground creation gate missing'
+rg -q 'dismissalPolicy: \.immediate' "${activity_driver}" || fail 'ended timer activity can linger in Watch Smart Stack'
 rg -q 'expectedRevision' "${intent}" || fail 'revision-bound Stop missing'
 rg -q 'supportedModes.*background' "${intent}" || fail 'Stop intent must execute without foregrounding iPhone'
 rg -q 'openAppWhenRun.*false' "${intent}" || fail 'Stop intent still requires foreground iPhone launch'
