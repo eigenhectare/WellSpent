@@ -267,7 +267,9 @@ final class WellSpentAppModel: ObservableObject {
         switch watchConnectionState {
         case .available: return "Watch connected · Waiting for first confirmation"
         case .activating: return "Checking for Apple Watch"
-        case .unavailable: return "No companion Watch available"
+        case .notPaired: return "No Apple Watch paired"
+        case .watchAppNotInstalled: return "WellSpent not detected on Apple Watch"
+        case .unavailable: return "Watch connection unavailable"
         }
     }
 

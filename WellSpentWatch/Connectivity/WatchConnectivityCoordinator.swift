@@ -17,6 +17,7 @@ protocol WatchConnectivitySession: AnyObject {
     var activationState: WCSessionActivationState { get }
     var isReachable: Bool { get }
     var hasContentPending: Bool { get }
+    var receivedApplicationContext: [String: Any] { get }
     var outstandingUserInfoPackets: [[String: Any]] { get }
 
     func configure(delegate: any WCSessionDelegate)
@@ -78,6 +79,7 @@ final class WatchConnectivityCoordinator: NSObject, ObservableObject {
         session.configure(delegate: self)
         session.activate()
         refreshState()
+        installReceivedApplicationContextIfAvailable()
     }
 
     func retryPendingTransfers(forceDurable: Bool = false) {
@@ -196,6 +198,17 @@ final class WatchConnectivityCoordinator: NSObject, ObservableObject {
         }
     }
 
+    /// A current application context can already be waiting when the Watch app
+    /// activates. Do not rely solely on a delegate callback that may have been
+    /// delivered while the process was starting.
+    private func installReceivedApplicationContextIfAvailable() {
+        guard session.activationState == .activated,
+            let packet = WatchConnectivityWire.decode(session.receivedApplicationContext),
+            packet.kind == .snapshot
+        else { return }
+        receive(kind: packet.kind, data: packet.payload)
+    }
+
     private func contradictsPendingMutations(_ snapshot: TimerSnapshotEnvelope) throws -> Bool {
         let pending = try store.pendingOutbox()
         guard !pending.isEmpty else { return false }
@@ -265,6 +278,7 @@ extension WatchConnectivityCoordinator: WCSessionDelegate {
                 self.lastDiagnosticCode = "session_activation_failed"
             }
             self.refreshState()
+            self.installReceivedApplicationContextIfAvailable()
             self.retryPendingTransfers(forceDurable: true)
         }
     }

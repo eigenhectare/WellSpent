@@ -6,6 +6,8 @@ import WellSpentWatchContracts
 enum IPhoneWatchConnectivityState: Equatable {
     case activating
     case available(reachable: Bool)
+    case notPaired
+    case watchAppNotInstalled
     case unavailable
 }
 
@@ -189,11 +191,16 @@ final class IPhoneWatchConnectivityCoordinator: NSObject, ObservableObject {
 
     private func refreshState() {
         defer { onStatusChanged?() }
-        guard session.activationState == .activated,
-            session.isPaired,
-            session.isWatchAppInstalled
-        else {
+        guard session.activationState == .activated else {
             state = session.activationState == .notActivated ? .activating : .unavailable
+            return
+        }
+        guard session.isPaired else {
+            state = .notPaired
+            return
+        }
+        guard session.isWatchAppInstalled else {
+            state = .watchAppNotInstalled
             return
         }
         state = .available(reachable: session.isReachable)

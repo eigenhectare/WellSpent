@@ -188,6 +188,24 @@ final class PhoneWatchSyncStoreTests: XCTestCase {
         XCTAssertEqual(try fixture.context.fetchCount(FetchDescriptor<TimerRunRecord>()), 1)
     }
 
+    func testCoordinatorDistinguishesPairingFromWatchAppInstallation() throws {
+        let fixture = try makeFixture()
+        let session = FakePhoneSession()
+        session.isPaired = false
+        session.isWatchAppInstalled = false
+        let coordinator = IPhoneWatchConnectivityCoordinator(
+            syncStore: fixture.store,
+            session: session
+        )
+
+        coordinator.activate()
+        XCTAssertEqual(coordinator.state, .notPaired)
+
+        session.isPaired = true
+        coordinator.activate()
+        XCTAssertEqual(coordinator.state, .watchAppNotInstalled)
+    }
+
     func testConcurrentStartPreservesCanonicalAndReconstructedWatchBranches() throws {
         let fixture = try makeFixture()
         let conflict = try createConcurrentStartConflict(in: fixture)

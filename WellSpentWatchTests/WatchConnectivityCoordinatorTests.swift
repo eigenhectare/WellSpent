@@ -141,6 +141,30 @@ final class WatchConnectivityCoordinatorTests: XCTestCase {
         XCTAssertEqual(try store.state().pendingSnapshotReceiptCount, 0)
     }
 
+    func testActivationInstallsApplicationContextThatWasAlreadyDelivered() throws {
+        let store = try WellSpentWatchStore.makeInMemory(
+            originDeviceID: originID,
+            now: { self.now }
+        )
+        XCTAssertNil(try store.state().projection.ledgerHead)
+
+        let expected = snapshot(id: snapshotID, generation: 1)
+        let session = FakeWatchSession()
+        session.receivedApplicationContext = WatchConnectivityWire.packet(
+            kind: .snapshot,
+            payload: try ContractWireCodec.encodeSnapshot(expected),
+            identifier: expected.ledgerHead.snapshotID
+        )
+        let coordinator = WatchConnectivityCoordinator(store: store, session: session)
+
+        coordinator.activate()
+
+        let state = try store.state()
+        XCTAssertEqual(state.projection.ledgerHead, expected.ledgerHead)
+        XCTAssertEqual(state.projection.projects, expected.projects)
+        XCTAssertNil(coordinator.lastDiagnosticCode)
+    }
+
     private func configuredStore() throws -> WellSpentWatchStore {
         let store = try WellSpentWatchStore.makeInMemory(
             originDeviceID: originID,
@@ -209,6 +233,7 @@ private final class FakeWatchSession: WatchConnectivitySession {
     var reachable = false
     var isReachable: Bool { reachable }
     var hasContentPending: Bool { !outstandingUserInfoPackets.isEmpty }
+    var receivedApplicationContext: [String: Any] = [:]
     var outstandingUserInfoPackets: [[String: Any]] = []
     var messages: [[String: Any]] = []
     var userInfoPackets: [[String: Any]] = []
