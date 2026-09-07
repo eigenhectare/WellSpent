@@ -1,5 +1,7 @@
 # REL-03 App Store release preparation
 
+**Current update status — September 6, 2026:** The owner confirms WellSpent **0.2.0 (9) has been added for review**. Apple’s exact queue state has not been independently rechecked; App Review approval and public release are not yet confirmed. See the dated owner update in WAT-33-UPDATE-RELEASE.md. Earlier validation gaps and historical observations remain recorded separately.
+
 Current update preparation: see [WAT-33-UPDATE-RELEASE.md](WAT-33-UPDATE-RELEASE.md) for 0.2.0 (9), its exact source, store staging and remaining physical/external gates. Earlier records below remain historical and are not evidence for the new candidate.
 
 Watch-candidate boundary: the historical iPhone readiness checks below are not

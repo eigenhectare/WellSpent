@@ -1,5 +1,7 @@
 # Remaining Watch delivery work
 
+**Current update status — September 6, 2026:** The owner confirms WellSpent **0.2.0 (9) has been added for review**. Apple’s exact queue state has not been independently rechecked; App Review approval and public release are not yet confirmed. See the dated owner update in WAT-33-UPDATE-RELEASE.md. Earlier validation gaps and historical observations remain recorded separately.
+
 Objective: complete WAT-05 and WAT-18–28 against their full Linear acceptance
 criteria. Autonomous implementation/preparation does not close physical or
 distribution gates. See `WAT-05-ACCEPTANCE-MATRIX.md` for evidence ownership and

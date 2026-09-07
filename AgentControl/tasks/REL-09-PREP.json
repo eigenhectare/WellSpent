@@ -146,10 +146,10 @@
     "WAT-28-BETA-RELEASE-RUNBOOK.md"
   ],
   "blocker": {
-    "kind": "human-input",
-    "owner": "owner",
+    "kind": "external-state",
+    "owner": "release-steward",
     "reference": "WAT-33-UPDATE-RELEASE.md",
-    "resumeEvent": "Owner unlocks the Mac so supplied review contact can be saved and an independent live audit can verify the processed build 9 draft, screenshots and manual-release selection. Upload is complete; public-copy publication and applicable physical acceptance remain separate gates."
+    "resumeEvent": "Owner reports 0.2.0 (9) added for review. Resume independent external-state closure when App Store Connect can be read to confirm the exact queue state and candidate. No contact save or submission action should be repeated without first checking current state; outstanding physical/public-copy and report limitations remain separate."
   },
   "result": {
     "commit": "31538cee04c3bf1ddddc3be152ae5fa0da56cef1",
