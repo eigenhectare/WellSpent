@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "CI-REL-12-UI-RELEASE-20260907-223542",
+  "taskId": "REL-12-UI-RELEASE",
+  "requirementId": "ER-2",
+  "evidenceClass": "unit",
+  "result": "passed",
+  "producerRole": "release-steward",
+  "producerId": "codex-release-steward",
+  "observedAt": "2026-09-07T22:35:42Z",
+  "source": {
+    "commit": "4f6eae035c944b7336922b4fef34f006b0fbf5d0",
+    "tree": "bab6a8957ca5c1760f76fefde8f2f472ff069610",
+    "clean": true,
+    "version": "0.2.0",
+    "build": "10"
+  },
+  "gate": {
+    "id": "ci-full",
+    "exitCode": 0
+  },
+  "claims": [
+    "The authoritative scripts/ci.sh gate exited 0 on the exact clean build-10 candidate and all 13 recorded stages passed.",
+    "All 397 selected tests passed with zero failures and zero skips: 19 golden iOS tests, 127 Watch unit tests, 167 phone unit tests, 66 Watch UI tests and 18 phone UI tests.",
+    "The gate also passed source checks plus Debug and Release builds for simulator and device destinations and the four-component release-product validation."
+  ],
+  "artifacts": [
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/CI/run.WaqowL/stages.tsv",
+      "sha256": "94bfc465c3e91ed988b348507450c250b09cfc18b77daf03dc5bd4fbff8e5836"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/CI/run.WaqowL/results/golden-ios.xcresult.summary.json",
+      "sha256": "113649f0f01f1c39edccbea78da76fb21d0a0a1a94a0135698e4bef6a6fa1f60"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/CI/run.WaqowL/results/phone-ui.xcresult.summary.json",
+      "sha256": "877f9a3fb5afad2d7978a452f2e19db14fe1e29494dfaffb2193735601ad34d4"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/CI/run.WaqowL/results/phone-unit.xcresult.summary.json",
+      "sha256": "6d3959e1c85c07d0abc0778d2c1be35786de062605f3edd8195ec20a24b7ceb5"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/CI/run.WaqowL/results/watch-ui.xcresult.summary.json",
+      "sha256": "2ab1e7fcb314f4992d6a57418e17fc0bead5b60fed70088f55d7e6d46c63e825"
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": ".derivedData/CI/run.WaqowL/results/watch-unit.xcresult.summary.json",
+      "sha256": "cdfddfeaa7d1749c6d00a7617e524d1263955d7dbbcafcee72f95496b9b8a18c"
+    }
+  ],
+  "limitations": [
+    "Simulator and compile evidence does not substitute for signed-package inspection, App Store processing, physical-device acceptance or App Review.",
+    "Earlier failed attempts remain historical diagnostics and are not relabeled by this successful exact-candidate run."
+  ],
+  "authorityReference": {
+    "kind": "user-message",
+    "reference": "On 2026-09-07 the owner requested that the latest app with all changes made today be built and submitted to the App Store.",
+    "confirmedBy": "owner",
+    "confirmedAt": "2026-09-07",
+    "authorityIds": [
+      "repository-write",
+      "signing-upload",
+      "app-store-submit"
+    ]
+  },
+  "publicReleaseApproved": false
+}

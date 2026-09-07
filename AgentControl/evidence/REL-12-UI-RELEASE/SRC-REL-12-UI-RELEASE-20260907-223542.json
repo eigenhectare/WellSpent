@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "SRC-REL-12-UI-RELEASE-20260907-223542",
+  "taskId": "REL-12-UI-RELEASE",
+  "requirementId": "ER-1",
+  "evidenceClass": "source",
+  "result": "passed",
+  "producerRole": "release-steward",
+  "producerId": "codex-release-steward",
+  "observedAt": "2026-09-07T22:35:42Z",
+  "source": {
+    "commit": "4f6eae035c944b7336922b4fef34f006b0fbf5d0",
+    "tree": "bab6a8957ca5c1760f76fefde8f2f472ff069610",
+    "clean": true,
+    "version": "0.2.0",
+    "build": "10"
+  },
+  "gate": {
+    "id": "release-source-receipt",
+    "exitCode": 0
+  },
+  "claims": [
+    "The frozen release source is clean commit 4f6eae035c944b7336922b4fef34f006b0fbf5d0 and tree bab6a8957ca5c1760f76fefde8f2f472ff069610, carrying the approved iPhone UI refresh as WellSpent 0.2.0 build 10 across all four components.",
+    "The source receipt contains 143 production files with production-manifest SHA256 a8dc1ea9bbb6e764f5c12f115a4ccb6fa61c188b90c80082e23d72e6ef6cb3d3.",
+    "Generated-project parity, agent-control validation, lint, privacy, Watch contract and Watch localization source gates passed before the candidate was frozen."
+  ],
+  "artifacts": [
+    {
+      "kind": "local-diagnostic",
+      "locator": "AppStore/Abstract-0.2.0-10/source-receipt-attempt-4/summary.json",
+      "sha256": "aa9968311e515a63b9c53de3c3bd66255ee2b0adc00d0b46bc54b77ac6ca1577"
+    },
+    {
+      "kind": "repository",
+      "locator": "project.yml",
+      "sha256": "87fdc613e9ee5c3717dcaa77d1fd979e2600107bd4c9c099210c66950233bce3"
+    },
+    {
+      "kind": "repository",
+      "locator": "WellSpent.xcodeproj/project.pbxproj",
+      "sha256": "775f801411b4e109a733ddd8af801349024bdf69edbab64ae1ca661c19810d43"
+    }
+  ],
+  "limitations": [
+    "This receipt binds source identity and source gates only; signed-package and App Store processing evidence are recorded separately.",
+    "No physical-device acceptance or public-release approval is inferred."
+  ],
+  "authorityReference": {
+    "kind": "user-message",
+    "reference": "On 2026-09-07 the owner requested that the latest app with all changes made today be built and submitted to the App Store.",
+    "confirmedBy": "owner",
+    "confirmedAt": "2026-09-07",
+    "authorityIds": [
+      "repository-write",
+      "signing-upload",
+      "app-store-submit"
+    ]
+  },
+  "publicReleaseApproved": false
+}
