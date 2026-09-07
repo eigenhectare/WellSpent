@@ -128,12 +128,7 @@ public struct WellSpentActivityPresentation: View {
                 Spacer(minLength: 0)
 
                 if canStop {
-                    Button(
-                        intent: StopWellSpentTimerIntent(
-                            activityID: runID,
-                            revision: state.revision
-                        )
-                    ) {
+                    Link(destination: WellSpentDeepLink.watchStopURL(for: runID, revision: state.revision)) {
                         ZStack {
                             Circle()
                                 .fill(.red)
@@ -145,7 +140,7 @@ public struct WellSpentActivityPresentation: View {
                     }
                     .buttonStyle(.plain)
                     .accessibilityLabel(state.stopAccessibilityLabel)
-                    .accessibilityHint("Opens WellSpent to save the stop for this run")
+                    .accessibilityHint("Opens WellSpent on Apple Watch and saves the stop for this run")
                 }
             }
 

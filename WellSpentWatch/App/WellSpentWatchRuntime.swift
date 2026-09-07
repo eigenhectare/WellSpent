@@ -561,6 +561,10 @@ final class WellSpentWatchRuntime: ObservableObject {
     }
 
     func openWidgetURL(_ url: URL) {
+        if let action = WatchLiveActivityAction(url: url) {
+            performLiveActivityAction(action)
+            return
+        }
         guard let route = WatchWidgetRoute(url: url) else { return }
         refreshStoreState()
         guard let state = storeState else { return }
@@ -569,6 +573,24 @@ final class WellSpentWatchRuntime: ObservableObject {
         switch route.resolved(in: state.projection, isBlocked: state.isBlocked) {
         case .project(let id): widgetProjectID = id
         case .projects, .run: widgetProjectID = nil
+        }
+    }
+
+    private func performLiveActivityAction(_ action: WatchLiveActivityAction) {
+        switch action {
+        case .stop(let runID, let revision):
+            do {
+                _ = try performSystemRequest(
+                    WatchSystemRequest(
+                        action: .end,
+                        observedRunID: runID,
+                        observedRunRevision: revision
+                    )
+                )
+            } catch {
+                failedControl = WatchTimerControlFailure(operation: .end, switchRequest: nil)
+                refreshStoreState()
+            }
         }
     }
 

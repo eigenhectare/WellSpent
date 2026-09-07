@@ -161,6 +161,7 @@ public enum WellSpentSpikeStorage {
 
 public enum WellSpentDeepLink {
     public static let scheme = "wellspent"
+    public static let watchScheme = "wellspent-watch"
 
     public static var trackerURL: URL {
         URL(string: "\(scheme)://track")!
@@ -168,6 +169,17 @@ public enum WellSpentDeepLink {
 
     public static func completionURL(for activityID: UUID) -> URL {
         URL(string: "\(scheme)://completion/\(activityID.uuidString)")!
+    }
+
+    public static func watchStopURL(for runID: UUID, revision: Int64?) -> URL {
+        var components = URLComponents()
+        components.scheme = watchScheme
+        components.host = "live-activity"
+        components.path = "/stop/\(runID.uuidString)"
+        if let revision {
+            components.queryItems = [URLQueryItem(name: "revision", value: String(revision))]
+        }
+        return components.url!
     }
 
     public static func isTrackerURL(_ url: URL) -> Bool {

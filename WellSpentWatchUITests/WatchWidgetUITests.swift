@@ -105,6 +105,18 @@ final class WatchWidgetUITests: XCTestCase {
         XCTAssertFalse(active.buttons["watch.goal.open"].exists)
     }
 
+    func testMirroredLiveActivityStopLinkEndsTheExactActiveRun() {
+        let url =
+            "wellspent-watch://live-activity/stop/30000000-0000-0000-0000-000000000001?revision=1"
+        let app = launch(fixture: "active", family: nil, extra: ["-ui-test-widget-url", url])
+
+        XCTAssertTrue(
+            app.descendants(matching: .any)["watch.end-summary.screen"]
+                .waitForExistence(timeout: 10)
+        )
+        XCTAssertFalse(app.descendants(matching: .any)["watch.timer.running"].exists)
+    }
+
     func testWarmComplicationReturnsToElapsedAndKeepsPausedTime() {
         let app = launch(fixture: "paused", family: nil, extra: ["-ui-test-widget-reentry"])
         let elapsed = app.staticTexts["watch.metrics.elapsed"]

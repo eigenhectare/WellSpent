@@ -90,6 +90,16 @@ final class WellSpentTests: XCTestCase {
         XCTAssertEqual(WellSpentDeepLink.completionActivityID(from: url), activityID)
     }
 
+    func testWatchStopDeepLinkCarriesExactRunAndRevision() {
+        let runID = UUID()
+        let url = WellSpentDeepLink.watchStopURL(for: runID, revision: 42)
+
+        XCTAssertEqual(
+            url.absoluteString,
+            "wellspent-watch://live-activity/stop/\(runID.uuidString)?revision=42"
+        )
+    }
+
     func testTrackerDeepLinkOnlyMatchesTrackerRoute() {
         XCTAssertTrue(WellSpentDeepLink.isTrackerURL(WellSpentDeepLink.trackerURL))
         XCTAssertFalse(

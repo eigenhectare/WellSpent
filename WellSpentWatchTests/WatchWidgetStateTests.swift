@@ -126,6 +126,33 @@ final class WatchWidgetStateTests: XCTestCase {
         }
     }
 
+    func testMirroredLiveActivityStopLinkRequiresExactRunAndRevisionShape() throws {
+        let valid = try XCTUnwrap(
+            URL(string: "wellspent-watch://live-activity/stop/\(runID.uuidString)?revision=9")
+        )
+        XCTAssertEqual(
+            WatchLiveActivityAction(url: valid),
+            .stop(runID: runID, revision: 9)
+        )
+        XCTAssertEqual(
+            WatchLiveActivityAction(
+                url: URL(string: "wellspent-watch://live-activity/stop/\(runID.uuidString)")!
+            ),
+            .stop(runID: runID, revision: nil)
+        )
+
+        for invalid in [
+            "wellspent-watch://live-activity/end/\(runID)",
+            "wellspent-watch://live-activity/stop/not-a-uuid",
+            "wellspent-watch://live-activity/stop/\(runID)?revision=-1",
+            "wellspent-watch://live-activity/stop/\(runID)?revision=9&revision=10",
+            "wellspent-watch://live-activity/stop/\(runID)?project=secret",
+            "wellspent-watch://name@live-activity/stop/\(runID)",
+        ] {
+            XCTAssertNil(WatchLiveActivityAction(url: URL(string: invalid)!))
+        }
+    }
+
     func testStaleLinksResolveToCurrentRunAndNeverMutateIt() {
         let projection = makeProjection()
         for route in [WatchWidgetRoute.project(UUID()), .run(UUID()), .projects] {

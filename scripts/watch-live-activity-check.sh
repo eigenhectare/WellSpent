@@ -9,6 +9,8 @@ readonly lifecycle=WellSpentApp/Integrations/LiveActivity/LiveActivityLifecycle.
 readonly intent=WellSpentShared/LiveActivity/StopWellSpentTimerIntent.swift
 readonly presentation=WellSpentShared/LiveActivity/WellSpentActivityPresentation.swift
 readonly app_entry=WellSpentApp/App/WellSpentApp.swift
+readonly watch_runtime=WellSpentWatch/App/WellSpentWatchRuntime.swift
+readonly watch_state=WellSpentWatchStore/WatchWidgetState.swift
 rg -q 'setDesiredState' "${lifecycle}" || fail 'synchronous canonical publication missing'
 rg -q 'captured == generation' "${lifecycle}" || fail 'generation fence missing'
 rg -q 'drainTask' "${lifecycle}" || fail 'serialized driver drain missing'
@@ -24,8 +26,10 @@ if rg -n 'TimelineView|Timer.scheduledTimer' WellSpentShared/LiveActivity/WellSp
     fail 'widget presentation acquired an extension timer loop'
 fi
 rg -q 'WellSpentLiveActivityHourglass' "${presentation}" || fail 'custom Watch mirror mark missing'
-rg -q 'Button\(' "${presentation}" || fail 'Watch mirror Stop control missing'
+rg -q 'Link\(destination: WellSpentDeepLink\.watchStopURL' "${presentation}" || fail 'Watch mirror Stop link missing'
 rg -q 'state\.stopAccessibilityLabel' "${presentation}" || fail 'Watch mirror Stop accessibility missing'
+rg -q 'WatchLiveActivityAction' "${watch_state}" || fail 'Watch Stop link parser missing'
+rg -q 'performLiveActivityAction' "${watch_runtime}" || fail 'Watch Stop link command bridge missing'
 if rg -q 'iPhone copy' "${presentation}"; then
     fail 'obsolete iPhone copy label remains visible'
 fi

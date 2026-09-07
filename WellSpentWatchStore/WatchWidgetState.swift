@@ -197,3 +197,33 @@ public enum WatchWidgetRoute: Equatable, Sendable {
         return .projects
     }
 }
+
+/// A command link from the mirrored iPhone Live Activity. It is intentionally
+/// separate from `WatchWidgetRoute`, whose URLs remain navigation-only.
+public enum WatchLiveActivityAction: Equatable, Sendable {
+    case stop(runID: UUID, revision: Int64?)
+
+    public init?(url: URL) {
+        guard url.scheme == "wellspent-watch", url.host == "live-activity",
+            url.fragment == nil, url.user == nil, url.password == nil, url.port == nil
+        else { return nil }
+
+        let parts = url.pathComponents.filter { $0 != "/" }
+        guard parts.count == 2, parts[0] == "stop", let runID = UUID(uuidString: parts[1]) else {
+            return nil
+        }
+
+        let queryItems = URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems ?? []
+        let revision: Int64?
+        if queryItems.isEmpty {
+            revision = nil
+        } else if queryItems.count == 1, queryItems[0].name == "revision",
+            let value = queryItems[0].value, let parsed = Int64(value), parsed >= 0
+        {
+            revision = parsed
+        } else {
+            return nil
+        }
+        self = .stop(runID: runID, revision: revision)
+    }
+}
