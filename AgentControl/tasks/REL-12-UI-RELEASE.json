@@ -3,7 +3,7 @@
   "taskId": "REL-12-UI-RELEASE",
   "title": "Build and submit the iPhone UI refresh",
   "type": "release",
-  "status": "blocked",
+  "status": "in_progress",
   "risk": "medium",
   "outcome": "Freeze WellSpent 0.2.0 (10) from the approved iPhone UI refresh, validate and upload the signed four-component build, attach it to the existing App Store version, and submit it for App Review with accurate metadata.",
   "assignment": {
@@ -145,12 +145,7 @@
     "WAT-33-UPDATE-RELEASE.md",
     "APP-STORE-RELEASE.md"
   ],
-  "blocker": {
-    "kind": "authentication",
-    "owner": "owner",
-    "reference": "The exact build-10 archive and signed-archive inspection passed, but command-line App Store export reported No Accounts and the authenticated Xcode Organizer/App Store Connect sessions cannot be accessed while the Mac is locked.",
-    "resumeEvent": "The owner unlocks the Mac and confirms it is unlocked so the release steward can use the authenticated Xcode Organizer and App Store Connect sessions."
-  },
+  "blocker": null,
   "result": {
     "commit": "4f6eae035c944b7336922b4fef34f006b0fbf5d0",
     "tree": "bab6a8957ca5c1760f76fefde8f2f472ff069610"
