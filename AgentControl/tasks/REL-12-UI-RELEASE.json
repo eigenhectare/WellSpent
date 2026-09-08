@@ -3,7 +3,7 @@
   "taskId": "REL-12-UI-RELEASE",
   "title": "Build and submit the iPhone UI refresh",
   "type": "release",
-  "status": "in_progress",
+  "status": "in_review",
   "risk": "medium",
   "outcome": "Freeze WellSpent 0.2.0 (10) from the approved iPhone UI refresh, validate and upload the signed four-component build, attach it to the existing App Store version, and submit it for App Review with accurate metadata.",
   "assignment": {

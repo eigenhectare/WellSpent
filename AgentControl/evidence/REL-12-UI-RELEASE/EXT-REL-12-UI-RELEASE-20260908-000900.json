@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "EXT-REL-12-UI-RELEASE-20260908-000900",
+  "taskId": "REL-12-UI-RELEASE",
+  "requirementId": "ER-4",
+  "evidenceClass": "external-service",
+  "result": "passed",
+  "producerRole": "release-steward",
+  "producerId": "codex-release-steward",
+  "observedAt": "2026-09-08T00:09:00Z",
+  "source": {
+    "commit": "4f6eae035c944b7336922b4fef34f006b0fbf5d0",
+    "tree": "bab6a8957ca5c1760f76fefde8f2f472ff069610",
+    "clean": true,
+    "version": "0.2.0",
+    "build": "10"
+  },
+  "gate": {
+    "id": "app-store-staging",
+    "exitCode": 0
+  },
+  "claims": [
+    "Xcode Organizer reported WellSpent 0.2.0 (10) uploaded successfully, and App Store Connect subsequently showed build 10 processing complete and Ready to Submit.",
+    "App Store version 0.2.0 was changed from build 9 to exact build 10, and the saved build table showed 0.2.0 (10) with the processed phone and Apple Watch assets.",
+    "The English release notes and App Review instructions were updated for build 10, including the refreshed first-run and New Project screens, emoji-keyboard behavior, transient Watch confirmation tile and no-account review flow.",
+    "Six existing iPhone screenshots remained attached, manual release remained selected, automatic release remained unselected and the existing rating was not reset.",
+    "The owner confirmed the final App Store actions, and App Store Connect accepted one item for review with submission ID 4b863a87-074f-4314-89ef-88e7c1468072.",
+    "The authoritative submission record shows iOS App 0.2.0 (10) with status Waiting for Review and submission date Sep 7, 2026 at 8:09 PM."
+  ],
+  "artifacts": [
+    {
+      "kind": "external",
+      "locator": "https://appstoreconnect.apple.com/apps/6807058949/distribution/reviewsubmissions/details/4b863a87-074f-4314-89ef-88e7c1468072",
+      "sha256": null
+    },
+    {
+      "kind": "ci-artifact",
+      "locator": "AppStore/Abstract-0.2.0-10/distribution-export-inspection-attempt-2/summary.json",
+      "sha256": "53952333e9879e9369b76e6a3ada1d9f50edee3fec6123d85c762c13b194b274"
+    }
+  ],
+  "limitations": [
+    "Waiting for Review is not App Review approval and does not make the build publicly available.",
+    "Manual public release remains a separate owner action after approval and is not authorized by this receipt.",
+    "This release-steward observation satisfies the submission workflow but does not substitute for the independent verifier receipt required before the repository task may be marked done."
+  ],
+  "authorityReference": {
+    "kind": "user-message",
+    "reference": "On 2026-09-07 the owner requested building and submitting the latest app, then explicitly confirmed replacing build 9 with build 10 and submitting version 0.2.0 for App Review while retaining manual release.",
+    "confirmedBy": "owner",
+    "confirmedAt": "2026-09-07",
+    "authorityIds": [
+      "repository-write",
+      "signing-upload",
+      "app-store-submit"
+    ]
+  },
+  "publicReleaseApproved": false
+}

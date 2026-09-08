@@ -1,5 +1,19 @@
 # REL-03 App Store release preparation
 
+## Current submission — September 7, 2026
+
+WellSpent `0.2.0 (10)` was uploaded from product-source commit
+`4f6eae035c944b7336922b4fef34f006b0fbf5d0` and submitted to App Review.
+App Store Connect shows **Waiting for Review** under submission ID
+`4b863a87-074f-4314-89ef-88e7c1468072`.
+
+Build 10 contains the September 7 iPhone UI refresh: redesigned first-run and
+New Project screens, emoji-keyboard preference for project identity, and the
+transient Watch save-confirmation tile on Track. The exact signed distribution
+export passed four-component inspection, and all 397 selected automated tests
+passed. Manual release remains selected; no public release is authorized or
+claimed.
+
 **Current update status — September 6, 2026:** The owner confirms WellSpent **0.2.0 (9) has been added for review**. Apple’s exact queue state has not been independently rechecked; App Review approval and public release are not yet confirmed. See the dated owner update in WAT-33-UPDATE-RELEASE.md. Earlier validation gaps and historical observations remain recorded separately.
 
 Current update preparation: see [WAT-33-UPDATE-RELEASE.md](WAT-33-UPDATE-RELEASE.md) for 0.2.0 (9), its exact source, store staging and remaining physical/external gates. Earlier records below remain historical and are not evidence for the new candidate.
