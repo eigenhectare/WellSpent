@@ -41,6 +41,7 @@ final class WellSpentAppModel: ObservableObject {
     @Published private(set) var watchConnectionState: IPhoneWatchConnectivityState = .activating
     @Published private(set) var watchSyncNeedsRetry = false
     @Published private(set) var pendingWatchConflicts: [PhoneTimerConflict] = []
+    @Published private(set) var showsWatchConfirmationTile = false
     @Published var conflictReviewRoute: ConflictReviewRoute?
 
     private let dependencies: WellSpentDependencies
@@ -63,6 +64,8 @@ final class WellSpentAppModel: ObservableObject {
     private var liveActivityCanonicalStateAvailable = false
     private var stopHandoffRecoveryMessage: String?
     private var liveActivityOperationID: UUID?
+    private var watchConfirmationExpectedForLocalChange = false
+    private var watchConfirmationDismissTask: Task<Void, Never>?
 
     init(
         modelContainer: ModelContainer,
@@ -181,8 +184,11 @@ final class WellSpentAppModel: ObservableObject {
         return runs.first { $0.id == runID }
     }
 
-    func refresh() {
+    func refresh(afterLocalChange: Bool = false) {
         do {
+            if afterLocalChange {
+                watchConfirmationExpectedForLocalChange = true
+            }
             projects = try projectQueries.allProjects()
             sessionTags = try sessionTagRepository.fetchTags().map(SessionTagSnapshot.init(record:))
             let assignmentsBySession = Dictionary(
@@ -279,11 +285,28 @@ final class WellSpentAppModel: ObservableObject {
             pendingWatchConflicts = try phoneWatchSyncStore.pendingConflicts()
             watchConnectionState = watchConnectivity?.state ?? .unavailable
             watchSyncNeedsRetry = watchConnectivity?.lastDiagnosticCode != nil
+            presentWatchConfirmationIfNeeded()
         } catch {
             watchSyncNeedsRetry = true
             liveActivityCanonicalStateAvailable = false
         }
         updateLiveActivityDesiredState()
+    }
+
+    private func presentWatchConfirmationIfNeeded() {
+        guard watchConfirmationExpectedForLocalChange,
+            watchSyncOverview.hasWatchHistory,
+            !watchSyncOverview.awaitingSnapshotReceipt
+        else { return }
+
+        watchConfirmationExpectedForLocalChange = false
+        watchConfirmationDismissTask?.cancel()
+        showsWatchConfirmationTile = true
+        watchConfirmationDismissTask = Task { [weak self] in
+            try? await Task.sleep(for: .seconds(3))
+            guard !Task.isCancelled else { return }
+            self?.showsWatchConfirmationTile = false
+        }
     }
 
     func retryWatchSync() {
@@ -315,7 +338,7 @@ final class WellSpentAppModel: ObservableObject {
                 conflictID: plan.conflict.snapshot.conflictID, resolution: plan.payload,
                 capturedAt: plan.capturedAt, timeZoneID: plan.timeZoneID, mutationID: plan.id
             )
-            refresh()
+            refresh(afterLocalChange: true)
             await reconcileLiveActivityProjection()
             return nil
         } catch {
@@ -338,7 +361,7 @@ final class WellSpentAppModel: ObservableObject {
                 colorToken: colorToken,
                 emoji: emoji
             )
-            refresh()
+            refresh(afterLocalChange: true)
             presentDuplicateWarningIfNeeded(result.warnings)
             return true
         } catch {
@@ -352,7 +375,7 @@ final class WellSpentAppModel: ObservableObject {
         do {
             try throwForcedFailureIfRequested()
             let result = try projectCommands.rename(projectID: id, to: name)
-            refresh()
+            refresh(afterLocalChange: true)
             presentDuplicateWarningIfNeeded(result.warnings)
             return true
         } catch {
@@ -376,7 +399,7 @@ final class WellSpentAppModel: ObservableObject {
                 colorToken: colorToken,
                 emoji: emoji
             )
-            refresh()
+            refresh(afterLocalChange: true)
             presentDuplicateWarningIfNeeded(result.warnings)
             return true
         } catch {
@@ -390,7 +413,7 @@ final class WellSpentAppModel: ObservableObject {
         do {
             try throwForcedFailureIfRequested()
             _ = try sessionTagCommands.create(name: name)
-            refresh()
+            refresh(afterLocalChange: true)
             return true
         } catch {
             present(error)
@@ -403,7 +426,7 @@ final class WellSpentAppModel: ObservableObject {
         do {
             try throwForcedFailureIfRequested()
             _ = try sessionTagCommands.archive(id: id)
-            refresh()
+            refresh(afterLocalChange: true)
             return true
         } catch {
             present(error)
@@ -416,7 +439,7 @@ final class WellSpentAppModel: ObservableObject {
         do {
             try throwForcedFailureIfRequested()
             _ = try projectCommands.archive(projectID: id)
-            refresh()
+            refresh(afterLocalChange: true)
             message = "Project archived. Its sessions remain in reports."
             return true
         } catch {
@@ -430,7 +453,7 @@ final class WellSpentAppModel: ObservableObject {
         do {
             try throwForcedFailureIfRequested()
             let result = try projectCommands.restore(projectID: id)
-            refresh()
+            refresh(afterLocalChange: true)
             presentDuplicateWarningIfNeeded(result.warnings)
             return true
         } catch {
@@ -448,7 +471,7 @@ final class WellSpentAppModel: ObservableObject {
             try throwForcedFailureIfRequested()
             if let activeRun, activeRun.projectID != projectID {
                 let result = try timerCommands.switchTimer(to: projectID)
-                refresh()
+                refresh(afterLocalChange: true)
                 if case .switched(let completedRun, _) = result {
                     completionRoute = CompletionRoute(
                         sessionID: completedRun.id,
@@ -458,11 +481,11 @@ final class WellSpentAppModel: ObservableObject {
                 }
             } else if let activeRun, activeRun.state == .paused {
                 _ = try timerCommands.resume(runID: activeRun.id)
-                refresh()
+                refresh(afterLocalChange: true)
                 await reconcileLiveActivityProjection()
             } else {
                 let result = try timerCommands.start(projectID: projectID)
-                refresh()
+                refresh(afterLocalChange: true)
                 if result.disposition == .started {
                     await reconcileLiveActivityProjection()
                 }
@@ -481,7 +504,7 @@ final class WellSpentAppModel: ObservableObject {
         do {
             try throwForcedFailureIfRequested()
             let result = try timerCommands.end(runID: runID)
-            refresh()
+            refresh(afterLocalChange: true)
             completionRoute = CompletionRoute(sessionID: result.run.id, kind: .stopped)
             await reconcileLiveActivityProjection()
         } catch {
@@ -497,7 +520,7 @@ final class WellSpentAppModel: ObservableObject {
         do {
             try throwForcedFailureIfRequested()
             _ = try timerCommands.pause(runID: runID)
-            refresh()
+            refresh(afterLocalChange: true)
             await reconcileLiveActivityProjection()
         } catch {
             refresh()
@@ -512,7 +535,7 @@ final class WellSpentAppModel: ObservableObject {
         do {
             try throwForcedFailureIfRequested()
             _ = try timerCommands.resume(runID: runID)
-            refresh()
+            refresh(afterLocalChange: true)
             await reconcileLiveActivityProjection()
         } catch {
             refresh()
@@ -552,7 +575,7 @@ final class WellSpentAppModel: ObservableObject {
                 message = "That completed session is no longer available."
                 return false
             }
-            refresh()
+            refresh(afterLocalChange: true)
             return true
         } catch {
             present(error)
@@ -591,7 +614,7 @@ final class WellSpentAppModel: ObservableObject {
                 note: note,
                 tagIDs: tagIDs
             )
-            refresh()
+            refresh(afterLocalChange: true)
             return true
         } catch {
             present(error)
@@ -618,7 +641,7 @@ final class WellSpentAppModel: ObservableObject {
                 note: note,
                 tagIDs: tagIDs
             )
-            refresh()
+            refresh(afterLocalChange: true)
             return true
         } catch {
             present(error)
@@ -635,7 +658,7 @@ final class WellSpentAppModel: ObservableObject {
                 startAt: startAt,
                 note: note
             )
-            refresh()
+            refresh(afterLocalChange: true)
             return true
         } catch {
             present(error)
@@ -652,7 +675,7 @@ final class WellSpentAppModel: ObservableObject {
             } else {
                 _ = try sessionCommands.delete(sessionID: id, confirmed: true)
             }
-            refresh()
+            refresh(afterLocalChange: true)
             message = "Session deleted. Report totals were recalculated."
             return true
         } catch {

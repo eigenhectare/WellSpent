@@ -3,6 +3,7 @@ set -euo pipefail
 readonly script_directory="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 readonly fixture_root="$(mktemp -d "${TMPDIR:-/tmp}/WellSpentCIGuards.XXXXXX")"
 readonly validator="${script_directory}/ci-check-results-json.sh"
+readonly xcodegen_toolchain="${script_directory}/xcodegen-toolchain.sh"
 echo "CI guard regression evidence: ${fixture_root}"
 
 printf '%s\n' '{"result":"Passed","failedTests":0,"expectedFailures":0,"skippedTests":0,"passedTests":1,"totalTestCount":1}' \
@@ -31,6 +32,19 @@ expect_rejected missing-required bash "${validator}" "${fixture_root}/summary.js
 jq '.testNodes[0].result = "Skipped"' "${fixture_root}/tests.json" > "${fixture_root}/skipped.json"
 expect_rejected skipped-required bash "${validator}" "${fixture_root}/summary.json" \
     "${fixture_root}/skipped.json" 1 "${fixture_root}/required.txt"
+
+# Project generation must not silently change when Homebrew advances XcodeGen.
+printf '#!/bin/bash\nprintf "Version: 2.45.4\\n"\n' > "${fixture_root}/xcodegen-2.45.4"
+chmod +x "${fixture_root}/xcodegen-2.45.4"
+XCODEGEN_BINARY="${fixture_root}/xcodegen-2.45.4" bash -c '
+    source "$1"
+    verify_xcodegen_version "$2/project.yml"
+' guard-toolchain "${xcodegen_toolchain}" "${script_directory}/.."
+printf '#!/bin/bash\nprintf "Version: 2.46.0\\n"\n' > "${fixture_root}/xcodegen-2.46.0"
+chmod +x "${fixture_root}/xcodegen-2.46.0"
+expect_rejected xcodegen-version env XCODEGEN_BINARY="${fixture_root}/xcodegen-2.46.0" \
+    bash -c 'source "$1"; verify_xcodegen_version "$2/project.yml"' \
+    guard-toolchain "${xcodegen_toolchain}" "${script_directory}/.."
 
 # Exercise the actual stage runner, with a successful command following a
 # failure inside the same function. The second command must never execute.

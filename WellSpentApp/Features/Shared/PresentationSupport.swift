@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 struct WellSpentPalette {
     let colorScheme: ColorScheme
@@ -89,20 +90,22 @@ enum ProjectEmojiPresentation {
 
 struct ProjectEmojiField: View {
     @Binding var emoji: String
+    @Environment(\.colorScheme) private var colorScheme
+
+    private var palette: WellSpentPalette { WellSpentPalette(colorScheme: colorScheme) }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text("Emoji (optional)")
                 .font(.subheadline.weight(.semibold))
             HStack(spacing: 12) {
-                TextField("🙂", text: $emoji)
-                    .font(.title2)
-                    .multilineTextAlignment(.center)
+                EmojiKeyboardTextField(emoji: $emoji)
                     .frame(width: 64)
-                    .frame(minHeight: 44)
-                    .textFieldStyle(.roundedBorder)
-                    .accessibilityLabel("Project emoji")
-                    .accessibilityIdentifier("project-emoji")
+                    .frame(minHeight: 50)
+                    .background(
+                        palette.background,
+                        in: RoundedRectangle(cornerRadius: 14, style: .continuous)
+                    )
                     .onChange(of: emoji) { _, newValue in
                         if newValue.count > 1 {
                             emoji = String(newValue.prefix(1))
@@ -119,6 +122,52 @@ struct ProjectEmojiField: View {
                     .accessibilityIdentifier("project-emoji-error")
             }
         }
+    }
+}
+
+/// A native field that asks iOS for the emoji input mode when it becomes first responder.
+/// It falls back to the user's normal keyboard if Emoji has been removed from Settings.
+struct EmojiKeyboardTextField: UIViewRepresentable {
+    @Binding var emoji: String
+
+    func makeUIView(context: Context) -> EmojiPreferringTextField {
+        let field = EmojiPreferringTextField()
+        field.placeholder = "🙂"
+        field.font = .preferredFont(forTextStyle: .title2)
+        field.textAlignment = .center
+        field.autocorrectionType = .no
+        field.returnKeyType = .done
+        field.accessibilityLabel = "Project emoji"
+        field.accessibilityIdentifier = "project-emoji"
+        field.addTarget(context.coordinator, action: #selector(Coordinator.textChanged), for: .editingChanged)
+        return field
+    }
+
+    func updateUIView(_ field: EmojiPreferringTextField, context: Context) {
+        if field.text != emoji {
+            field.text = emoji
+        }
+    }
+
+    func makeCoordinator() -> Coordinator { Coordinator(emoji: $emoji) }
+
+    @MainActor
+    final class Coordinator: NSObject {
+        private var emoji: Binding<String>
+
+        init(emoji: Binding<String>) {
+            self.emoji = emoji
+        }
+
+        @objc func textChanged(_ sender: UITextField) {
+            emoji.wrappedValue = sender.text ?? ""
+        }
+    }
+}
+
+final class EmojiPreferringTextField: UITextField {
+    override var textInputMode: UITextInputMode? {
+        UITextInputMode.activeInputModes.first { $0.primaryLanguage == "emoji" } ?? super.textInputMode
     }
 }
 

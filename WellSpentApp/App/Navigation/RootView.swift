@@ -38,6 +38,16 @@ struct RootView: View {
                 .tag(Tab.settings)
         }
         .tint(WellSpentPalette(colorScheme: colorScheme).accent)
+        .overlay(alignment: .bottom) {
+            if selectedTab == .track, model.showsWatchConfirmationTile {
+                WatchConfirmationTile()
+                    .padding(.horizontal, 16)
+                    .padding(.bottom, 12)
+                    .transition(.move(edge: .bottom).combined(with: .opacity))
+                    .accessibilityIdentifier("watch-confirmation-tile")
+            }
+        }
+        .animation(.easeInOut(duration: 0.25), value: model.showsWatchConfirmationTile)
         .safeAreaInset(edge: .top, spacing: 0) {
             VStack(spacing: 0) {
                 if model.pendingWatchConflicts.isEmpty,
@@ -176,6 +186,39 @@ struct RootView: View {
             selectedTab = .track
             model.openConflictReview(id: id)
         }
+    }
+}
+
+private struct WatchConfirmationTile: View {
+    @Environment(\.colorScheme) private var colorScheme
+
+    private var palette: WellSpentPalette { WellSpentPalette(colorScheme: colorScheme) }
+
+    var body: some View {
+        HStack(spacing: 12) {
+            Image(systemName: "checkmark.circle.fill")
+                .font(.title2)
+                .foregroundStyle(palette.accent)
+                .accessibilityHidden(true)
+            VStack(alignment: .leading, spacing: 2) {
+                Text("Saved and confirmed")
+                    .font(.subheadline.weight(.semibold))
+                Text("Your Apple Watch has the latest changes.")
+                    .font(.footnote)
+                    .foregroundStyle(palette.secondary)
+            }
+            Spacer(minLength: 0)
+        }
+        .padding(14)
+        .foregroundStyle(palette.ink)
+        .background(palette.surface, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
+        .overlay {
+            RoundedRectangle(cornerRadius: 18, style: .continuous)
+                .stroke(palette.separator, lineWidth: 1)
+        }
+        .shadow(color: .black.opacity(colorScheme == .dark ? 0.18 : 0.08), radius: 12, y: 5)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("Saved and confirmed. Your Apple Watch has the latest changes.")
     }
 }
 
