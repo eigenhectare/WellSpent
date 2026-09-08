@@ -54,13 +54,26 @@ if [[ "$#" -gt 0 ]]; then
         rg --files -0 "${release_data}/WellSpentWatch.build" "${release_data}/WellSpentWatchWidgets.build" -g '*.stringsdata'
     )
     [[ "${#extraction_files[@]}" -gt 10 ]] || fail 'missing Release string extraction'
-    jq -s -e --slurpfile catalog "${catalog}" --slurpfile shortcuts "${shortcuts}" '
+    parity_result="$(jq -s --slurpfile catalog "${catalog}" --slurpfile shortcuts "${shortcuts}" '
         ([.[].tables.Localizable[]?.key] | unique) as $local |
         ([.[].tables.AppShortcuts[]?.key] | unique) as $phrases |
-        ($local | length > 200) and ($phrases | length == 5) and
-        ($local - ($catalog[0].strings | keys) | length == 0) and
-        ($phrases - ($shortcuts[0].strings | keys) | length == 0)
-    ' "${extraction_files[@]}" >/dev/null || fail 'shipping source contains keys absent from the catalogs'
+        {
+            localCount: ($local | length),
+            phraseCount: ($phrases | length),
+            missingLocal: ($local - ($catalog[0].strings | keys)),
+            missingPhrases: ($phrases - ($shortcuts[0].strings | keys))
+        }
+    ' "${extraction_files[@]}")"
+    if ! jq -e '
+        .localCount > 200 and .phraseCount == 5 and
+        (.missingLocal | length == 0) and (.missingPhrases | length == 0)
+    ' <<< "${parity_result}" >/dev/null; then
+        jq -r '
+            (.missingLocal[] | "  Localizable.xcstrings: \(.)"),
+            (.missingPhrases[] | "  AppShortcuts.xcstrings: \(.)")
+        ' <<< "${parity_result}" >&2
+        fail 'shipping source contains keys absent from the catalogs'
+    fi
 fi
 
 echo 'Watch localization resources passed: English values, critical keys, plurals, Siri substitutions and fixture isolation.'
