@@ -35,8 +35,11 @@ jobs:
           xcrun swift --version
           xcodebuild -showsdks
 
-      - name: Install project generation and search tools
-        run: brew install xcodegen ripgrep
+      - name: Install pinned project generator and search tool
+        run: |
+          scripts/install-pinned-xcodegen.sh "${RUNNER_TEMP}/wellspent-xcodegen"
+          echo "${RUNNER_TEMP}/wellspent-xcodegen/bin" >> "${GITHUB_PATH}"
+          brew install ripgrep
 
       - name: Resolve Watch simulator
         env:

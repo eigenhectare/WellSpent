@@ -4,6 +4,7 @@ set -euo pipefail
 
 readonly script_directory="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 readonly repository_root="$(cd "${script_directory}/.." && pwd)"
+source "${script_directory}/xcodegen-toolchain.sh"
 temporary_root="$(mktemp -d "${TMPDIR:-/tmp}/WellSpentXcodeGenDrift.XXXXXX")"
 readonly temporary_root
 
@@ -25,6 +26,7 @@ for command in git rsync xcodegen shasum; do
         exit 1
     }
 done
+verify_xcodegen_version "${repository_root}/project.yml"
 
 git -C "${repository_root}" ls-files --cached --others --exclude-standard -z \
     | rsync -a --from0 --files-from=- "${repository_root}/" "${temporary_root}/"
